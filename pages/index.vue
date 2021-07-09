@@ -6,5 +6,10 @@
 </template>
 
 <script>
-export default {}
+export default {
+	async fetch() {
+		const headerData = await this.$prismic.api.getSingle('index')
+		console.log(headerData)
+	},
+}
 </script>

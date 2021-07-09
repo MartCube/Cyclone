@@ -15,8 +15,14 @@ export default {
 
 	plugins: [{ src: '~/plugins/vue-plyr', mode: 'client' }, { src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }],
 
-	modules: ['@nuxtjs/style-resources'],
+	modules: ['@nuxtjs/style-resources', '@nuxtjs/prismic'],
 
+	prismic: {
+		endpoint: 'https://cyclone.cdn.prismic.io/api/v2',
+		linkResolver: '@/plugins/link-resolver',
+		htmlSerializer: '@/plugins/html-serializer',
+		preview: false,
+	},
 	styleResources: {
 		scss: ['./assets/colors.scss', './assets/mixins.scss'],
 	},
