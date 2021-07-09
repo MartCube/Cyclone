@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h2>hello from linux</h2>
+		<h2>ПРивет мир</h2>
 		<VideoItem />
 	</div>
 </template>
