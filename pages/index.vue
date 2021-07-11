@@ -2,7 +2,7 @@
 	<div>
 		<template v-if="!$fetchState.pending">
 			<div v-for="(slice, i) in slices" :key="slice.slice_type + i">
-				<!-- <HomeIntro v-if="slice.slice_type == 'homeIntro'" :key="slice.slice_type + i" :data="slice" /> -->
+				<HomeIntro v-if="slice.slice_type == 'homeintro'" :key="slice.slice_type + i" :data="slice" />
 				<Stages v-if="slice.slice_type == 'stages'" :data="slice" />
 			</div>
 		</template>

@@ -14,7 +14,7 @@ export default {
 		},
 		fill: {
 			type: String,
-			default: 'hsl(0, 0%, 10%)',
+			default: '#B93937',
 		},
 		outlined: {
 			type: Boolean,

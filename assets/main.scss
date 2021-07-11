@@ -16,4 +16,92 @@ body {
 	font-family: 'Circe', system;
 	background-color: $primary;
 	color: $white;
+	font-size: 16px;
+}
+
+section {
+	position: relative;
+	width: 100%;
+	padding: 0 100px;
+	min-height: 100vh;
+	&::after {
+		height: 100%;
+		content: '';
+		width: 1px;
+		background-color: $secondary;
+		position: absolute;
+		top: 0;
+		left: 100px;
+	}
+}
+
+.rich_text{
+	padding: 0 50px;
+	display: inline-flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	p {
+		color: $white;
+		margin-bottom: 10px;
+		word-break: break-word;
+		width: 47%;
+	} 
+	a {
+		color: $white;
+		font-weight: inherit;
+		font-size: inherit;
+		line-height: inherit;
+		margin-bottom: 10px;
+		&:hover{
+			text-decoration: underline;
+			text-decoration-color: $secondary;
+		}
+	}
+	h4, h3, h2 {
+		margin-bottom: 2rem;
+		width: 100%;
+	}
+	ul {
+		margin: 20px 0 20px 20px;
+		list-style-type: none;
+		li {
+			margin-top: 20px;
+			display: flex;
+			line-height: 1.8rem;
+			font-size: 1.2rem;
+			&::before {
+				content: '';
+				margin-top: 10px;
+				margin-right: 20px;
+				min-width: 20px;
+				height: 5px;
+				background: $secondary;
+			}
+		}
+	}
+}
+
+@media (max-width: 950px) {
+	section{
+		padding: 0 50px;
+		&::after{
+			left: 50px;
+		}
+	}
+	.rich_text{
+		padding: 0 15px;
+	}
+}
+@media (max-width: 600px) {
+	section{
+		padding: 0 30px;
+		&::after{
+			left: 30px;
+		}
+	}
+	.rich_text{
+		p {
+			width: 100%;
+		}
+	}
 }
