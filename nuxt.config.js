@@ -1,7 +1,7 @@
 export default {
 	target: 'static',
 	components: ['~/components/icons', '~/components/global', '~/components/items', '~/components/local', '~/components/sections'],
-	css: [],
+	css: ['~/assets/main.scss'],
 
 	// Global page headers: https://go.nuxtjs.dev/config-head
 	head: {
@@ -15,8 +15,14 @@ export default {
 
 	plugins: [{ src: '~/plugins/vue-plyr', mode: 'client' }, { src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }],
 
-	modules: ['@nuxtjs/style-resources'],
+	modules: ['@nuxtjs/style-resources', '@nuxtjs/prismic'],
 
+	prismic: {
+		endpoint: 'https://cyclone.cdn.prismic.io/api/v2',
+		linkResolver: '@/plugins/link-resolver',
+		htmlSerializer: '@/plugins/html-serializer',
+		preview: false,
+	},
 	styleResources: {
 		scss: ['./assets/colors.scss', './assets/mixins.scss'],
 	},
