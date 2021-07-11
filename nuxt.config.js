@@ -27,9 +27,12 @@ export default {
 	],
 
 	build: {
+		// vee validate
 		transpile: ['vee-validate/dist/rules'],
-		// extend(config, { isClient, loaders: { vue } }) {
-		// 	vue.transformAssetUrls.img = ['data-src', 'src']
-		// },
+		// lazysizes
+		extend(config, { isClient, loaders: { vue } }) {
+			vue.transformAssetUrls.img = ['data-src', 'src']
+			vue.transformAssetUrls.source = ['data-srcset', 'srcset']
+		},
 	},
 }
