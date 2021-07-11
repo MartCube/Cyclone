@@ -24,3 +24,19 @@ export default {
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+.container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	picture {
+		max-width: 50%;
+		min-height: 500px;
+		margin: 100px 0;
+	}
+}
+</style>
