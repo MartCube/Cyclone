@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="page">
 		<template v-if="!$fetchState.pending">
 			<div v-for="(slice, i) in slices" :key="slice.slice_type + i">
 				<!-- <HomeIntro v-if="slice.slice_type == 'homeIntro'" :key="slice.slice_type + i" :data="slice" /> -->
@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
+.page {
 	width: 100%;
 	display: flex;
 	flex-direction: column;

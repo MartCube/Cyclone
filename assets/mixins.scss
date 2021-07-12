@@ -1,0 +1,17 @@
+
+@mixin headings($from: 1, $to: 6){
+    @for $i from $from through $to{
+      h#{$i}{
+        @content
+      }
+    }
+};
+
+
+@mixin d-flex($fd:row, $jc: center, $ai: center, $w: 100%) {
+	display: flex;
+	flex-direction: $fd;
+	justify-content: $jc;
+	align-items: $ai;
+	width: $w;
+};

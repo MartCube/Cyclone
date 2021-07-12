@@ -1,0 +1,129 @@
+<template>
+	<ValidationProvider v-slot="{ errors, classes }" :rules="rules" mode="eager" tag="div" class="input_item">
+		<div v-if="errors.length" class="error" :class="classes">
+			{{ errors[0] }}
+		</div>
+
+		<input :id="name" v-model="input_value" :type="type" :placeholder="name" :name="name" @change="emitValue" />
+
+		<label :for="name" class="input_label">{{ label }}</label>
+	</ValidationProvider>
+</template>
+
+<script>
+import { ValidationProvider } from 'vee-validate'
+export default {
+	components: {
+		ValidationProvider,
+	},
+	props: {
+		name: {
+			type: String,
+			required: true,
+		},
+		type: {
+			type: String,
+			default: 'input',
+		},
+		label: {
+			type: String,
+			default: '',
+		},
+		rules: {
+			type: [Object, String],
+			required: true,
+		},
+	},
+	data: () => ({
+		input_value: '',
+	}),
+	methods: {
+		emitValue() {
+			this.$emit('getValue', this.input_value)
+		},
+	},
+}
+</script>
+
+<style lang="scss" scoped>
+.input_item {
+	position: relative;
+	padding: 2rem 0;
+	width: 100%;
+	height: 100%;
+
+	font-weight: 500;
+	input {
+		width: 100%;
+		border: 0;
+		border-bottom: 2px solid $grey;
+		outline: 0;
+		padding: 7px 0;
+		background: transparent;
+
+		font-family: inherit;
+		font-size: 0.9rem;
+		color: $white;
+
+		transition: border-color 0.2s;
+		&:-webkit-autofill,
+		&:-webkit-autofill:hover,
+		&:-webkit-autofill:focus {
+			-webkit-text-fill-color: #fff;
+			box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0) inset;
+			transition: background-color 5000s ease-in-out 0s;
+		}
+		&::placeholder {
+			color: transparent;
+		}
+		&:placeholder-shown ~ label {
+			font-size: 1rem;
+			cursor: text;
+			top: 20px;
+		}
+		&:focus {
+			~ label {
+				position: absolute;
+				top: 0;
+				display: block;
+				transition: 0.2s;
+				font-size: 0.8rem;
+				color: $grey;
+			}
+		}
+		/* reset input */
+		&:required,
+		&:invalid {
+			box-shadow: none;
+		}
+	}
+	label {
+		position: absolute;
+		top: 0;
+		display: block;
+
+		font-size: 0.8rem;
+		color: white;
+
+		&::first-letter {
+			text-transform: uppercase;
+		}
+		transition: 0.2s;
+	}
+	.error {
+		position: absolute;
+		top: 0;
+		right: 0;
+		font-size: 0.8em;
+		color: #ff1461;
+		@include d-flex(row, center, center, initial);
+		&.invalid {
+			display: flex;
+		}
+	}
+}
+// @media (min-width: 1700px) {
+// }
+// @media (max-width: 1200px) {
+// }
+</style>
