@@ -34,11 +34,16 @@ section {
 	}
 }
 
-.rich_text{
+.rich_text, .rich_text {
 	padding: 0 50px;
 	display: inline-flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	div{
+		display: inline-flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
 	p {
 		color: $white;
 		margin-bottom: 10px;
@@ -61,10 +66,13 @@ section {
 		width: 100%;
 	}
 	ul {
-		margin: 20px 0 20px 20px;
 		list-style-type: none;
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
 		li {
 			margin-top: 20px;
+			max-width: 47%;
 			display: flex;
 			line-height: 1.8rem;
 			font-size: 1.2rem;
@@ -98,9 +106,15 @@ section {
 			left: 30px;
 		}
 	}
-	.rich_text{
+	.rich_text, .rich_text div{
 		p {
 			width: 100%;
+		}
+		ul {
+			margin-left: 0;
+			li { 
+				max-width: 100%;
+			}
 		}
 	}
 }
