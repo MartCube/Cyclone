@@ -124,7 +124,7 @@ export default {
 				.stage {
 					width: 100%;
 					.number {
-						width: 20%;
+						width: 17vw;
 						font-size: 7vw;
 					}
 					.info {

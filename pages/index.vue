@@ -4,6 +4,12 @@
 			<div v-for="(slice, i) in slices" :key="slice.slice_type + i">
 				<HomeIntro v-if="slice.slice_type == 'homeintro'" :key="slice.slice_type + i" :data="slice" />
 				<Stages v-if="slice.slice_type == 'stages'" :data="slice" />
+				<TitleText v-if="slice.slice_type == 'title_text'" :data="slice" />
+				<section v-else-if="slice.slice_type == 'text'">
+					<div class="content rich_text">
+						<prismic-rich-text :field="slice.primary.plain_text" />
+					</div>
+				</section>
 			</div>
 		</template>
 		<template v-else>
