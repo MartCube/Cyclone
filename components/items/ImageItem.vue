@@ -1,6 +1,6 @@
 <template>
 	<picture>
-		<source v-if="mobile" :data-srcset="mobile" :media="`(max-width:${mobile})`" />
+		<source v-if="mobile" :data-srcset="mobile" media="(max-width: 900px)" />
 		<img :data-src="src" loading="lazy" class="lazyload" :alt="alt" />
 	</picture>
 </template>
