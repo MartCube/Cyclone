@@ -6,7 +6,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
+.vscode/*
+.zip
 
 # Runtime data
 pids
@@ -89,3 +90,4 @@ sw.*
 
 # Vim swap files
 *.swp
+.vscode/settings.json
