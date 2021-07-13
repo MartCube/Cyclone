@@ -1,5 +1,5 @@
 <template>
-	<div class="page">
+	<div>
 		<template v-if="!$fetchState.pending">
 			<div v-for="(slice, i) in slices" :key="slice.slice_type + i">
 				<HomeIntro v-if="slice.slice_type == 'homeintro'" :key="slice.slice_type + i" :data="slice" />
@@ -20,7 +20,9 @@
 </template>
 
 <script>
+import Partners from '~/components/sections/Partners.vue'
 export default {
+	components: { Partners },
 	data: () => ({
 		slices: [],
 	}),
@@ -31,3 +33,19 @@ export default {
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+.container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	picture {
+		max-width: 50%;
+		min-height: 500px;
+		margin: 100px 0;
+	}
+}
+</style>
