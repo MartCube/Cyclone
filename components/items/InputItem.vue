@@ -7,6 +7,7 @@
 		<input :id="name" v-model="input_value" :type="type" :placeholder="name" :name="name" @change="emitValue" />
 
 		<label :for="name" class="input_label">{{ label }}</label>
+		<div class="border"></div>
 	</ValidationProvider>
 </template>
 
@@ -97,6 +98,9 @@ export default {
 			box-shadow: none;
 		}
 	}
+	.border {
+		display: none;
+	}
 	label {
 		position: absolute;
 		top: 0;
@@ -119,6 +123,43 @@ export default {
 		@include d-flex(row, center, center, initial);
 		&.invalid {
 			display: flex;
+		}
+	}
+}
+.cta_form {
+	.input_item {
+		height: 5rem;
+		padding: 0;
+		input {
+			height: 100%;
+			border-bottom: none;
+			padding-top: 45px;
+			font-size: 20px;
+			&:focus {
+				~ .border {
+					background-image: linear-gradient(to right, $gradient-red, $gradient-red);
+				}
+			}
+			&:placeholder-shown ~ label {
+				top: 2rem;
+				font-size: 1.6rem;
+				font-weight: bold;
+			}
+			&:focus ~ label {
+				top: 0;
+				font-size: 1rem;
+				font-weight: 400;
+			}
+		}
+		.border {
+			position: absolute;
+			bottom: 0;
+			display: block;
+			right: 0;
+			width: 100%;
+			height: 3px;
+			background-image: linear-gradient(to right, $gradient-gray, $gradient-red);
+			transition: background-image 0.3s ease-in;
 		}
 	}
 }
