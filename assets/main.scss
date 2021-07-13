@@ -54,8 +54,12 @@ section {
 		margin-bottom: 3rem;
 		margin-top: 1rem;
 	}
+	a, p, li {font-size: 1.2rem;}
 }
 
+.plain-text {
+	padding-bottom: 2rem;
+}
 .rich_text {
 	padding: 0 50px;
 	display: inline-flex;
@@ -93,7 +97,7 @@ section {
 		justify-content: space-between;
 		flex-wrap: wrap;
 		li {
-			margin-top: 20px;
+			margin: 10px 0;
 			max-width: 47%;
 			display: flex;
 			line-height: 1.8rem;
