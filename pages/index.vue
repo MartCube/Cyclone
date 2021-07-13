@@ -6,7 +6,8 @@
 				<Stages v-if="slice.slice_type == 'stages'" :data="slice" />
 				<TitleText v-if="slice.slice_type == 'title_text'" :data="slice" />
 				<Partners v-if="slice.slice_type == 'partners'" :data="slice" />
-				<section v-else-if="slice.slice_type == 'text'">
+				<Cta v-if="slice.slice_type == 'cta'" :data="slice" />
+				<section v-else-if="slice.slice_type == 'text'" class="plain-text">
 					<div class="content rich_text">
 						<prismic-rich-text :field="slice.primary.plain_text" />
 					</div>

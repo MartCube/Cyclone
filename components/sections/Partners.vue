@@ -24,6 +24,10 @@ export default {
 .partners {
 	padding-top: 50px;
 	padding-bottom: 50px;
+	background-color: $primary-light;
+	&::after {
+		display: none;
+	}
 	.partners-grid {
 		display: flex;
 		width: 100%;
