@@ -80,17 +80,22 @@ export default {
 .cta_form {
 	height: 100%;
 	display: flex;
-	justify-content: center;
 	form {
-		width: 30vw;
+		width: 100%;
 		display: flex;
 		align-items: flex-start;
+		.input_item {
+			height: 5rem;
+			padding: 0;
+			width: 18vw;
+			margin-right: 1.5rem;
+		}
 	}
 	button {
 		background-color: transparent;
 		border: none;
 		transition: transform, filter 0.3s linear;
-		filter: drop-shadow(2px 2px 13px #111);
+		filter: drop-shadow(2px 2px 13px $primary-dark);
 		display: flex;
 		align-items: flex-end;
 		height: 5rem;
@@ -99,7 +104,7 @@ export default {
 		}
 		&:hover {
 			cursor: pointer;
-			filter: drop-shadow(0 0 5px #111);
+			filter: drop-shadow(0 0 5px $primary-dark);
 		}
 		svg {
 			width: 4rem;
@@ -124,8 +129,26 @@ export default {
 	.cta_form {
 		width: 100%;
 		margin-top: 4rem;
+		justify-content: center;
 		form {
 			width: 50vw;
+			.input_item {
+				width: 100%;
+			}
+		}
+	}
+}
+@media (max-width: 600px) {
+	.cta_form {
+		form {
+			width: 70vw;
+		}
+	}
+}
+@media (max-width: 400px) {
+	.cta_form {
+		form {
+			width: 100%;
 		}
 	}
 }

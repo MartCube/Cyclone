@@ -128,8 +128,6 @@ export default {
 }
 .cta_form {
 	.input_item {
-		height: 5rem;
-		padding: 0;
 		input {
 			height: 100%;
 			border-bottom: none;

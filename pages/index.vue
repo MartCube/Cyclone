@@ -7,6 +7,7 @@
 				<TitleText v-if="slice.slice_type == 'title_text'" :data="slice" />
 				<Partners v-if="slice.slice_type == 'partners'" :data="slice" />
 				<Cta v-if="slice.slice_type == 'cta'" :data="slice" />
+				<Achievements v-if="slice.slice_type == 'achievements'" :data="slice" />
 				<section v-else-if="slice.slice_type == 'text'" class="plain-text">
 					<div class="content rich_text">
 						<prismic-rich-text :field="slice.primary.plain_text" />
@@ -21,15 +22,16 @@
 </template>
 
 <script>
+import Achievements from '~/components/sections/Achievements.vue'
 import Partners from '~/components/sections/Partners.vue'
 export default {
-	components: { Partners },
+	components: { Partners, Achievements },
 	data: () => ({
 		slices: [],
 	}),
 	async fetch() {
 		const fetch = await this.$prismic.api.getSingle('index')
-		console.log(fetch.data.body)
+		console.log(fetch.data.body[2].primary)
 		this.slices = fetch.data.body
 	},
 }
