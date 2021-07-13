@@ -1,15 +1,10 @@
 <template>
 	<div class="page">
-		<ContactForm />
+		<section>
+			<h1>Контакты</h1>
+			<!-- <ContactForm /> -->
+		</section>
 	</div>
 </template>
 
-<style lang="scss" scoped>
-.page {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-}
-</style>
+<style lang="scss" scoped></style>

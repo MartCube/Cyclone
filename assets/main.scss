@@ -16,6 +16,14 @@ body {
 	font-family: 'Circe', system;
 	background-color: $primary;
 	color: $white;
+
+	h1 {
+		font-size: 8rem;
+		&::first-letter {
+			text-transform: uppercase;
+			color: $secondary;
+		}
+	}
 }
 
 .page{
