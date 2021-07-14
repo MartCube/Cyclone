@@ -25,8 +25,8 @@ export default {
 
 <style lang="scss" scooped>
 .cta {
-	padding-top: 7vw;
-	padding-bottom: 7vw;
+	padding-top: 10vw;
+	padding-bottom: 10vw;
 	background-color: $primary-light;
 	&::after {
 		display: none;
@@ -42,7 +42,7 @@ export default {
 			padding-right: 3vw;
 			.cta-title {
 				text-align: center;
-				font-size: 6vw;
+				font-size: 5vw;
 				line-height: 1;
 				&::first-letter {
 					color: $secondary;
@@ -50,12 +50,12 @@ export default {
 			}
 			.cta-description {
 				text-align: center;
-				font-size: 2vw;
+				font-size: 1.5vw;
 				line-height: 1;
 			}
 		}
 		.form {
-			padding-left: 7vw;
+			padding-left: 10vw;
 			position: relative;
 			&::before {
 				content: '';

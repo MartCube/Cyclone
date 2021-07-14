@@ -44,6 +44,7 @@ export default {
 		display: flex;
 		.achievement-image {
 			width: 40%;
+			border: 2px solid $secondary;
 		}
 		.achievement-item {
 			width: 30%;
