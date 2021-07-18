@@ -22,7 +22,9 @@
 				</a>
 			</li>
 		</ul>
-		<Logo />
+		<n-link exact :to="'/'">
+			<Logo />
+		</n-link>
 	</aside>
 </template>
 
@@ -35,6 +37,11 @@ export default {
 	data: () => ({
 		color: '#B93937',
 	}),
+	computed: {
+		isActive() {
+			return this.$store.getters.navbarActive
+		},
+	},
 	mounted() {
 		messengersAnim(document.querySelectorAll('.messengers li'))
 	},
@@ -43,10 +50,10 @@ export default {
 <style lang="scss" scoped>
 aside {
 	width: 100px;
-	height: 100vh;
+	height: 100%;
 	background-color: transparent;
 	position: fixed;
-	z-index: 5;
+	z-index: 22;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -61,6 +68,25 @@ aside {
 			opacity: 0;
 			margin-bottom: 1rem;
 		}
+	}
+}
+@media (max-width: 950px) {
+	aside {
+		width: 50px;
+		.messengers {
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			li a svg {
+				width: 20px;
+				height: 20px;
+			}
+		}
+	}
+}
+@media (max-width: 600px) {
+	aside {
+		width: 30px;
 	}
 }
 </style>

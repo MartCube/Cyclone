@@ -37,4 +37,10 @@ svg {
 		opacity: 0;
 	}
 }
+@media (max-width: 600px) {
+	svg {
+		width: 20px;
+		margin-bottom: 0;
+	}
+}
 </style>

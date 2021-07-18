@@ -22,16 +22,13 @@
 </template>
 
 <script>
-import Achievements from '~/components/sections/Achievements.vue'
-import Partners from '~/components/sections/Partners.vue'
 export default {
-	components: { Partners, Achievements },
 	data: () => ({
 		slices: [],
 	}),
 	async fetch() {
 		const fetch = await this.$prismic.api.getSingle('index')
-		console.log(fetch.data.body[2].primary)
+		// console.log(fetch.data.body[2].primary)
 		this.slices = fetch.data.body
 	},
 }

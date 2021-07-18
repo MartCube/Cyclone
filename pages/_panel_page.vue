@@ -1,35 +1,30 @@
 <template>
 	<div>
-		<template v-if="!$fetchState.pending">
-			<div v-for="(slice, i) in slices" :key="slice.slice_type + i">
-				<Panelintro v-if="slice.slice_type == 'panelintro'" :key="slice.slice_type + i" :data="slice" />
-				<!-- <Stages v-if="slice.slice_type == 'stages'" :data="slice" />
-				<TitleText v-if="slice.slice_type == 'title_text'" :data="slice" />
-				<Partners v-if="slice.slice_type == 'partners'" :data="slice" />
-				<Cta v-if="slice.slice_type == 'cta'" :data="slice" />
-				<Achievements v-if="slice.slice_type == 'achievements'" :data="slice" />
-				<section v-else-if="slice.slice_type == 'text'" class="plain-text">
-					<div class="content rich_text">
-						<prismic-rich-text :field="slice.primary.plain_text" />
-					</div>
-				</section> -->
-			</div>
-		</template>
-		<template v-else>
+		<!-- <template v-if="!panel"> -->
+		<div v-for="(slice, i) in panel.data.body" :key="slice.slice_type + i">
+			<IntroPanel v-if="slice.slice_type == 'panelintro'" :data="slice" />
+		</div>
+		<!-- </template> -->
+		<!-- <template v-else>
 			<h2>Loading...</h2>
-		</template>
+		</template> -->
 	</div>
 </template>
 
 <script>
 export default {
-	data: () => ({
-		slices: [],
-	}),
-	async fetch() {
-		const fetch = await this.$prismic.api.getByUID('panel_page', this.$route.params.panel_page)
-		console.log(fetch.data.body)
-		this.slices = fetch.data.body
+	computed: {
+		panel() {
+			const fetch = this.$store.getters.panels.filter((el) => {
+				let page
+				if (el.uid === this.$route.params.panel_page) {
+					page = el
+				}
+				return page
+			})
+			// console.log(fetch[0])
+			return fetch[0]
+		},
 	},
 }
 </script>

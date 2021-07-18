@@ -50,9 +50,6 @@ export default {
 		bottom: 2rem;
 		right: 6rem;
 		z-index: 1;
-		svg {
-			width: 78vw;
-		}
 	}
 	.title-wrapper {
 		position: absolute;
