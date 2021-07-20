@@ -16,14 +16,7 @@ body {
 	font-family: 'Circe', system;
 	background-color: $primary;
 	color: $white;
-
-	h1 {
-		font-size: 8rem;
-		&::first-letter {
-			text-transform: uppercase;
-			color: $secondary;
-		}
-	}
+	font-weight: 200;
 }
 
 .page{
@@ -59,6 +52,26 @@ section {
 
 .plain-text {
 	padding-bottom: 2rem;
+}
+article {
+	.rich_text{
+		padding: 0;
+		p {
+			width: 100%;
+		}
+		ul {
+			list-style-type: initial;
+			li {
+				width: 100%;
+				max-width: 100%;
+				margin: 0 0 0 1rem;
+				display: list-item;
+				&::before {
+					display: none;
+				}
+			}
+		}
+	}
 }
 .rich_text {
 	padding: 0 50px;

@@ -1,5 +1,12 @@
 @font-face {
     font-family: 'Circe';
+    src: url('/fonts/Circe-light.woff2') format('woff2');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Circe';
     src: url('/fonts/Circe-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
@@ -9,6 +16,13 @@
     font-family: 'Circe';
     src: url('/fonts/Circe-Bold.woff2') format('woff2');
     font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Circe';
+    src: url('/fonts/Circe-ExtraBold.woff2') format('woff2');
+    font-weight: 800;
     font-style: normal;
     font-display: swap;
 }

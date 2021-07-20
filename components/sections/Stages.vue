@@ -39,16 +39,6 @@ export default {
 	padding-top: 50px;
 	padding-bottom: 50px;
 	.content {
-		// h2.title {
-		// 	border-left: 5px solid $secondary;
-		// 	font-size: 3rem;
-		// 	line-height: 1;
-		// 	margin-left: 50px;
-		// 	display: flex;
-		// 	padding-left: 1.5rem;
-		// 	margin-bottom: 3rem;
-		// 	margin-top: 1rem;
-		// }
 		.list {
 			display: flex;
 			flex-wrap: wrap;
@@ -115,10 +105,6 @@ export default {
 @media (max-width: 600px) {
 	.stages {
 		.content {
-			// h2.title {
-			// 	font-size: 2rem;
-			// 	margin-left: 25px;
-			// }
 			.list {
 				padding: 0 10px;
 				.stage {
@@ -131,6 +117,7 @@ export default {
 						h3 {
 							margin-bottom: 1rem;
 							font-size: 1.7rem;
+							line-height: 1.2;
 						}
 					}
 				}

@@ -50,9 +50,6 @@ export default {
 		bottom: 2rem;
 		right: 6rem;
 		z-index: 1;
-		svg {
-			width: 78vw;
-		}
 	}
 	.title-wrapper {
 		position: absolute;
@@ -99,11 +96,11 @@ export default {
 @media (max-width: 600px) {
 	.home-intro {
 		.main-image {
-			width: calc(100% - 60px);
+			width: 100%;
 		}
 		.title-wrapper {
-			right: 2rem;
-			bottom: 9rem;
+			right: 0.5rem;
+			bottom: 10rem;
 			h1 {
 				font-size: 8vw;
 			}
@@ -113,7 +110,7 @@ export default {
 		}
 		.cyclone {
 			bottom: 5rem;
-			right: 2rem;
+			right: 0;
 			svg {
 				width: 80vw;
 			}

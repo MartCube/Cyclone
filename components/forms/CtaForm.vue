@@ -1,11 +1,7 @@
 <template>
-	<div class="contact_form">
+	<div class="cta_form">
 		<ValidationObserver v-if="!message" ref="contact" tag="form" autocomplete="off" @submit.prevent="Submit()">
-			<!-- <h4 class="title">Нам правда важно ваше мнение</h4> -->
-			<!-- <InputItem name="name" label="Имя" rules="required" @getValue="getName" /> -->
-			<InputItem name="number" mode="passive" label="Телефон" rules="min:9|required" @getValue="getNumber" />
-			<!-- <InputItem name="email" label="Email" rules="email|required" @getValue="getEmail" /> -->
-			<!-- <InputItem name="message" label="Сообщение" rules="required" @getValue="getMessage" /> -->
+			<InputItem name="number" label="Телефон" rules="min:9|required" @getValue="getNumber" />
 			<button type="submit">
 				<svg width="90" height="87" viewBox="0 0 90 87" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<g>
@@ -47,10 +43,7 @@ export default {
 		message: false,
 		loading: false,
 		form: {
-			// name: '',
 			number: '',
-			// email: '',
-			// message: '',
 			action: 'cta',
 		},
 	}),
@@ -58,7 +51,6 @@ export default {
 		getNumber(value) {
 			this.form.number = value
 		},
-
 		async Submit() {
 			const isValid = await this.$refs.contact.validate()
 			// validation
@@ -85,30 +77,39 @@ export default {
 </script>
 
 <style lang="scss">
-.contact_form {
-	width: 500px;
+.cta_form {
 	height: 100%;
 	display: flex;
-	justify-content: center;
 	form {
 		width: 100%;
 		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
+		align-items: flex-start;
+		.input_item {
+			height: 5rem;
+			padding: 0;
+			width: 18vw;
+			margin-right: 1.5rem;
+		}
 	}
 	button {
 		background-color: transparent;
 		border: none;
-		transition: transform 0.3s linear;
-		svg {
-			fill: url(#gradient-horizontal);
-		}
+		transition: transform, filter 0.3s linear;
+		filter: drop-shadow(2px 2px 13px $primary-dark);
+		display: flex;
+		align-items: flex-end;
+		height: 5rem;
 		&:focus {
 			outline: none;
 		}
 		&:hover {
 			cursor: pointer;
-			transform: scale(1.2);
+			filter: drop-shadow(0 0 5px $primary-dark);
+		}
+		svg {
+			width: 4rem;
+			height: 4rem;
+			margin-bottom: -1rem;
 		}
 	}
 	.message {
@@ -124,21 +125,31 @@ export default {
 		}
 	}
 }
-#gradient-horizontal {
-	--color-stop-1: #595959;
-	--color-stop-2: #e80b08;
+@media (max-width: 800px) {
+	.cta_form {
+		width: 100%;
+		margin-top: 4rem;
+		justify-content: center;
+		form {
+			width: 50vw;
+			.input_item {
+				width: 100%;
+			}
+		}
+	}
 }
-// #gradient-vertical {
-//   --color-stop-1: #00c3ff;
-//   --color-stop-2: #77e190;
-//   --color-stop-3: #ffff1c;
-// }
-.icon-hgradient {
-	fill: url(#gradient-horizontal);
-	/* We could use it as a stroke fill too:
-  stroke: url(#gradient-horizontal) gray; */
+@media (max-width: 600px) {
+	.cta_form {
+		form {
+			width: 70vw;
+		}
+	}
 }
-.icon-vgradient {
-	fill: url(#gradient-vertical) gray;
+@media (max-width: 400px) {
+	.cta_form {
+		form {
+			width: 100%;
+		}
+	}
 }
 </style>
