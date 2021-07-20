@@ -2,9 +2,10 @@
 	<div>
 		<template v-if="!$fetchState.pending">
 			<div v-for="(slice, i) in slices" :key="slice.slice_type + i">
-				<HomeIntro v-if="slice.slice_type == 'homeintro'" :key="slice.slice_type + i" :data="slice" />
+				<HomeIntro v-if="slice.slice_type == 'homeintro'" :data="slice" />
 				<Stages v-if="slice.slice_type == 'stages'" :data="slice" />
 				<TitleText v-if="slice.slice_type == 'title_text'" :data="slice" />
+				<PanelSlider v-if="slice.slice_type == 'panelslider'" :data="slice" />
 				<Partners v-if="slice.slice_type == 'partners'" :data="slice" />
 				<Cta v-if="slice.slice_type == 'cta'" :data="slice" />
 				<Achievements v-if="slice.slice_type == 'achievements'" :data="slice" />
@@ -28,7 +29,7 @@ export default {
 	}),
 	async fetch() {
 		const fetch = await this.$prismic.api.getSingle('index')
-		// console.log(fetch.data.body[2].primary)
+		// console.log(fetch.data.body)
 		this.slices = fetch.data.body
 	},
 }

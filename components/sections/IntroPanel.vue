@@ -1,10 +1,10 @@
 <template>
 	<section class="intro-panel">
 		<div class="main-image">
-			<ImageItem :src="data.primary.image.url" :alt="data.primary.title" />
+			<ImageItem :src="data.image" :alt="data.title" />
 		</div>
 		<div class="title-wrapper">
-			<h1>{{ data.primary.title }}</h1>
+			<h1>{{ data.title }}</h1>
 		</div>
 	</section>
 </template>

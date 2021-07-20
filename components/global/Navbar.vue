@@ -12,8 +12,8 @@
 					<ul class="panels-list">
 						<li v-for="(item, i) in panels" :key="item.uid + i">
 							<n-link exact :to="`/${item.uid}`">
-								<ImageItem :key="item.data.body[0].primary.image.alt" :src="item.data.body[0].primary.image.url" />
-								<span class="title">{{ item.data.body[0].primary.title }}</span>
+								<ImageItem :key="item.data.title" :src="item.data.main_image.url" />
+								<span class="title">{{ item.data.title }}</span>
 							</n-link>
 						</li>
 					</ul>
@@ -44,14 +44,9 @@ export default {
 		},
 	},
 	mounted() {
+		this.navBarAnimation()
 		window.addEventListener('resize', () => {
-			if (window.innerWidth > 950) {
-				window.addEventListener('scroll', this.onScroll)
-				this.onScroll()
-				navbarAnimation(document.querySelectorAll('.first-lvl a'))
-			} else {
-				window.removeEventListener('scroll', this.onScroll)
-			}
+			this.navBarAnimation()
 		})
 	},
 	methods: {
@@ -74,6 +69,15 @@ export default {
 		},
 		CloseMenu() {
 			this.isActive = false
+		},
+		navBarAnimation() {
+			if (window.innerWidth > 950) {
+				window.addEventListener('scroll', this.onScroll)
+				this.onScroll()
+				navbarAnimation(document.querySelectorAll('.first-lvl a'))
+			} else {
+				window.removeEventListener('scroll', this.onScroll)
+			}
 		},
 	},
 }

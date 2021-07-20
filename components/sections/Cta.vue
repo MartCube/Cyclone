@@ -13,7 +13,7 @@
 </template>
 <script>
 export default {
-	name: 'Partners',
+	name: 'Cta',
 	props: {
 		data: {
 			type: Object,
