@@ -22,9 +22,9 @@ export default {
 		},
 	},
 	mounted() {
-		document.addEventListener('lazybeforeunveil', function (e) {
-			console.log(e)
-		})
+		// document.addEventListener('lazybeforeunveil', function (e) {
+		// 	console.log(e)
+		// })
 	},
 }
 </script>

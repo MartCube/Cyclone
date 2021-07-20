@@ -3,7 +3,7 @@
 		<ValidationObserver v-if="!message" ref="contact" tag="form" autocomplete="off" @submit.prevent="Submit()">
 			<!-- <h4 class="title">Нам правда важно ваше мнение</h4> -->
 			<!-- <InputItem name="name" label="Имя" rules="required" @getValue="getName" /> -->
-			<InputItem name="number" label="Телефон" rules="min:9|required" @getValue="getNumber" />
+			<InputItem name="number" mode="passive" label="Телефон" rules="min:9|required" @getValue="getNumber" />
 			<!-- <InputItem name="email" label="Email" rules="email|required" @getValue="getEmail" /> -->
 			<!-- <InputItem name="message" label="Сообщение" rules="required" @getValue="getMessage" /> -->
 			<button type="submit">
@@ -55,18 +55,10 @@ export default {
 		},
 	}),
 	methods: {
-		// getName(value) {
-		// 	this.form.name = value
-		// },
 		getNumber(value) {
 			this.form.number = value
 		},
-		// getEmail(value) {
-		// 	this.form.email = value
-		// },
-		// getMessage(value) {
-		// 	this.form.message = value
-		// },
+
 		async Submit() {
 			const isValid = await this.$refs.contact.validate()
 			// validation

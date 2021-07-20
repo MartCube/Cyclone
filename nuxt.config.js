@@ -1,6 +1,6 @@
 export default {
 	target: 'static',
-	components: ['~/components/icons', '~/components/global', '~/components/items', '~/components/local', '~/components/sections'],
+	components: ['~/components/forms', '~/components/global', '~/components/items', '~/components/local', '~/components/sections'],
 	css: ['~/assets/main.scss'],
 
 	// Global page headers: https://go.nuxtjs.dev/config-head

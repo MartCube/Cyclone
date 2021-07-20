@@ -1,7 +1,7 @@
 <template>
 	<section class="home-intro">
 		<div class="main-image">
-			<img :src="data.primary.main_image.url" alt="" />
+			<ImageItem :src="data.primary.main_image.url" :alt="data.primary.main_image.alt" />
 		</div>
 		<div class="cyclone">
 			<svg width="951" height="199" viewBox="0 0 951 199" fill="none" xmlns="http://www.w3.org/2000/svg">

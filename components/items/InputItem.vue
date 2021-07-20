@@ -1,5 +1,5 @@
 <template>
-	<ValidationProvider v-slot="{ errors, classes }" :rules="rules" mode="eager" tag="div" class="input_item">
+	<ValidationProvider v-slot="{ errors, classes }" :rules="rules" :mode="mode" tag="div" class="input_item">
 		<div v-if="errors.length" class="error" :class="classes">
 			{{ errors[0] }}
 		</div>
@@ -32,6 +32,10 @@ export default {
 		rules: {
 			type: [Object, String],
 			required: true,
+		},
+		mode: {
+			type: String,
+			default: 'eager',
 		},
 	},
 	data: () => ({

@@ -6,7 +6,7 @@
 			<InputItem name="number" label="Телефон" rules="min:9|required" @getValue="getNumber" />
 			<InputItem name="email" label="Email" rules="email|required" @getValue="getEmail" />
 			<InputItem name="message" label="Сообщение" rules="required" @getValue="getMessage" />
-			<ButtonItem> Отправить <IconMail /> </ButtonItem>
+			<ButtonItem> Отправить <Icon name="mail" /> </ButtonItem>
 		</ValidationObserver>
 
 		<div v-else class="message">

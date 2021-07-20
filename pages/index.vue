@@ -21,15 +21,13 @@
 </template>
 
 <script>
-import Partners from '~/components/sections/Partners.vue'
 export default {
-	components: { Partners },
 	data: () => ({
 		slices: [],
 	}),
 	async fetch() {
 		const fetch = await this.$prismic.api.getSingle('index')
-		console.log(fetch.data.body)
+		// console.log(fetch.data.body)
 		this.slices = fetch.data.body
 	},
 }
