@@ -3,22 +3,22 @@
 		<ul class="messengers">
 			<li>
 				<a href="https://www.facebook.com/cyclone.kiev.ua" rel="nofollow" target="_blank">
-					<IconFacebook :fill="color" />
+					<Icon name="instagram" />
 				</a>
 			</li>
 			<li>
 				<a href="https://www.instagram.com/cyclone.kiev/" rel="nofollow" target="_blank">
-					<IconInstagram :fill="color" />
+					<Icon name="facebook" />
 				</a>
 			</li>
 			<li>
 				<a href="https://www.youtube.com/channel/UCrueaE925SkKvspTkq85E2A" rel="nofollow" target="_blank">
-					<IconYoutube :fill="color" />
+					<Icon name="youtube" />
 				</a>
 			</li>
 			<li>
 				<a href="tel:0444920530" rel="nofollow" target="_blank">
-					<IconPhone :fill="color" />
+					<Icon name="phone" />
 				</a>
 			</li>
 		</ul>
@@ -50,7 +50,7 @@ export default {
 <style lang="scss" scoped>
 aside {
 	width: 100px;
-	height: 100%;
+	height: 100vh;
 	background-color: transparent;
 	position: fixed;
 	z-index: 22;

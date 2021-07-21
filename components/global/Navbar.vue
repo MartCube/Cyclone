@@ -1,9 +1,9 @@
 <template>
 	<div class="navbar">
 		<div class="burger" :class="{ active: isActive }" @click="ShowHideMenu">
-			<span class="top" />
-			<span class="mid" />
-			<span class="bot" />
+			<span class="top_line" />
+			<span class="mid_line" />
+			<span class="bot_line" />
 		</div>
 		<nav :class="{ compact: !compact, active: isActive }">
 			<ul>
@@ -61,7 +61,7 @@ export default {
 				return
 			} // Here we determine whether we need to show or hide the navbar
 			this.lastScrollPosition = currentScrollPosition
-			window.removeEventListener('scroll', this.onScroll)
+			// window.removeEventListener('scroll', this.onScroll)
 		},
 		ShowHideMenu() {
 			console.log(this.isActive)
@@ -73,7 +73,7 @@ export default {
 		navBarAnimation() {
 			if (window.innerWidth > 950) {
 				window.addEventListener('scroll', this.onScroll)
-				this.onScroll()
+				// this.onScroll()
 				navbarAnimation(document.querySelectorAll('.first-lvl a'))
 			} else {
 				window.removeEventListener('scroll', this.onScroll)
@@ -285,18 +285,18 @@ nav {
 		width: 2px;
 		opacity: 1;
 		background-color: $secondary;
-		transition: all 0.6s cubic-bezier(0.83, 0, 0.17, 1);
+		transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 	}
 	&.active {
-		.top {
+		.top_line {
 			transform: rotate(20deg) translate(5px, -3px);
 			transition-delay: 0.1s;
 			height: 106%;
 		}
-		.mid {
+		.mid_line {
 			transform: translateX(-4px);
 		}
-		.bot {
+		.bot_line {
 			transition-delay: 0.1s;
 			transform: translateX(-4px);
 		}
