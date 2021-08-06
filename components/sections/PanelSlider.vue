@@ -35,7 +35,7 @@ export default {
 			const panelData = []
 			this.$store.getters.panels.forEach((el) => {
 				if (el.tags.includes('panel_slider')) {
-					console.log(el)
+					// console.log(el)
 					panelData.push({
 						uid: el.uid,
 						title: el.data.title,
@@ -47,7 +47,7 @@ export default {
 					})
 				}
 			})
-			console.log(panelData)
+			// console.log(panelData)
 			return panelData
 		},
 	},
@@ -77,12 +77,6 @@ $article-width: 18rem;
 					.text {
 						display: flex;
 						flex-direction: column;
-						a {
-							&:nth-child(1) {
-							}
-							&:nth-child(2) {
-							}
-						}
 					}
 					.title {
 						margin-bottom: 2rem;
