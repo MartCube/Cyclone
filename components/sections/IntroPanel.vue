@@ -41,6 +41,7 @@ export default {
 		position: absolute;
 		bottom: 3rem;
 		left: 53%;
+		white-space: calc(100vw - 150px);
 		text-transform: uppercase;
 		z-index: 1;
 		transform: translateX(-50%);
@@ -76,10 +77,12 @@ export default {
 	.intro-panel {
 		.main-image {
 			width: 10rem;
+			margin-left: 30px;
 		}
 		.title-wrapper {
 			h1 {
-				font-size: 6rem;
+				width: calc(100vw - 30px);
+				font-size: 4rem;
 			}
 		}
 	}

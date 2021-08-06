@@ -50,7 +50,7 @@ export default {
 <style lang="scss" scoped>
 aside {
 	width: 100px;
-	height: 100%;
+	height: 100vh;
 	background-color: transparent;
 	position: fixed;
 	z-index: 22;

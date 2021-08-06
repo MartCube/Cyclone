@@ -62,6 +62,7 @@ article {
 		padding: 0;
 		p {
 			width: 100%;
+			font-size: 1rem;
 		}
 		ul {
 			list-style-type: initial;
@@ -69,6 +70,7 @@ article {
 				width: 100%;
 				max-width: 100%;
 				margin: 0 0 0 1rem;
+				font-size: 1rem;
 				display: list-item;
 				&::before {
 					display: none;
@@ -157,6 +159,9 @@ article {
 	}
 }
 @media (max-width: 600px) {
+	body {
+		overflow-x: hidden;
+	}
 	section{
 		padding: 0 30px;
 		&::after{
