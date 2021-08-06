@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="page">
 		<template v-if="!$fetchState.pending">
 			<div v-for="(slice, i) in slices" :key="slice.slice_type + i">
 				<HomeIntro v-if="slice.slice_type == 'homeintro'" :data="slice" />

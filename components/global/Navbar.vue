@@ -19,7 +19,7 @@
 					</ul>
 				</li>
 				<li class="first-lvl">
-					<a href="#">Портфолио</a>
+					<n-link to="/projects">projects</n-link>
 				</li>
 				<li class="first-lvl">
 					<a href="#">Статьи</a>
@@ -31,6 +31,7 @@
 		</nav>
 	</div>
 </template>
+
 <script>
 import { navbarAnimation } from '~/assets/anime'
 export default {
@@ -82,6 +83,7 @@ export default {
 	},
 }
 </script>
+
 <style lang="scss" scoped>
 $animation-time: 0.3s;
 nav {

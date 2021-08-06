@@ -3,22 +3,22 @@
 		<ul class="messengers">
 			<li>
 				<a href="https://www.facebook.com/cyclone.kiev.ua" rel="nofollow" target="_blank">
-					<Icon name="instagram" />
+					<Icon name="facebook" :fill="color" />
 				</a>
 			</li>
 			<li>
 				<a href="https://www.instagram.com/cyclone.kiev/" rel="nofollow" target="_blank">
-					<Icon name="facebook" />
+					<Icon name="instagram" :fill="color" />
 				</a>
 			</li>
 			<li>
 				<a href="https://www.youtube.com/channel/UCrueaE925SkKvspTkq85E2A" rel="nofollow" target="_blank">
-					<Icon name="youtube" />
+					<Icon name="youtube" :fill="color" />
 				</a>
 			</li>
 			<li>
 				<a href="tel:0444920530" rel="nofollow" target="_blank">
-					<Icon name="phone" />
+					<Icon name="phone" :fill="color" />
 				</a>
 			</li>
 		</ul>
