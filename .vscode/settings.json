@@ -1,2 +1,71 @@
 {
+	// "terminal.external.windowsExec": "C:\\\\Program Files\\\\Git\\\\bin\\\\bash.exe",
+	// "terminal.integrated.defaultProfile.windows": "Git Bash",
+	// "security.workspace.trust.untrustedFiles": "open",
+	// editor
+	"editor.renderWhitespace": "none",
+	"editor.renderControlCharacters": false,
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	},
+	// "window.zoomLevel": 1,
+	// "editor.fontSize": 16,
+	"editor.tabSize": 4,
+	// "editor.detectIndentation": false,
+	// "editor.insertSpaces": false,
+	// "html.format.wrapLineLength": 250,
+	// explorer
+	"explorer.openEditors.visible": 0,
+	"explorer.confirmDelete": false,
+	"explorer.confirmDragAndDrop": false,
+	// workbench
+	// "workbench.startupEditor": "newUntitledFile",
+	// "workbench.colorCustomizations": {
+	//   "statusBar.background": "#1A1A1A",
+	//   "statusBar.noFolderBackground": "#212121",
+	//   "statusBar.debuggingBackground": "#263238"
+	// },
+	// "workbench.settings.editor": "json",
+	// "workbench.settings.useSplitJSON": true,
+	// "workbench.iconTheme": "vscode-icons",
+	// "vsicons.dontShowNewVersionMessage": true,
+	// Eslint Prettier
+	"[javascript]": {
+		"editor.formatOnSave": false
+	},
+	// Vetur
+	"vetur.validation.template": false,
+	"vetur.format.defaultFormatter.html": "none",
+	"vetur.format.defaultFormatter.js": "none",
+	"vetur.format.defaultFormatter.css": "none",
+	"vetur.format.defaultFormatter.scss": "none",
+	"vetur.ignoreProjectWarning": true,
+	"emmet.includeLanguages": {
+		"vue-html": "html",
+	},
+	// git
+	"files.exclude": {
+		"/.git": true,
+		"/.svn": true,
+		"/.hg": true,
+		"/CVS": true,
+		"**/.DS_Store": true,
+		"node_modules": true,
+		".vscode": true,
+		// custom
+		".eslintcache": true,
+		".nuxt": true,
+		"package-lock.json": true,
+		"README.md": true,
+		"jsconfig.json": true
+	},
+	"git.ignoreLimitWarning": true,
+	"git.ignoreMissingGitWarning": true,
+	// "extensions.autoUpdate": false,
+	"breadcrumbs.enabled": false,
+	"git.enableSmartCommit": true,
+	// eslint
+	"eslint.format.enable": true,
+	"eslint.alwaysShowStatus": true,
 }
