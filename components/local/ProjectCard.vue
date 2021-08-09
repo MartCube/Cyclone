@@ -1,9 +1,13 @@
 <template>
-	<n-link :to="link" class="project_card">
+	<n-link class="project_card" :to="link">
 		<div class="image">
 			<ImageItem :src="image" :alt="title" />
+			<span class="link">Смотреть</span>
 		</div>
-		<h2>{{ title }}</h2>
+		<h2 class="title">
+			{{ title }}
+			<Icon name="arrow" size="40px" fill="#F7F7F7" />
+		</h2>
 	</n-link>
 </template>
 
@@ -31,29 +35,41 @@ export default {
 
 <style lang="scss" scoped>
 .project_card {
-	width: 300px;
+	width: 340px;
 	cursor: pointer;
 
 	display: flex;
 	flex-direction: column;
 
+	text-decoration: none;
+	color: $white;
+
 	.image {
 		width: inherit;
-		height: 300px;
+		height: 340px;
 
 		user-select: none;
 		position: relative;
 		overflow: hidden;
 
-		.overlay {
+		.link {
 			position: absolute;
 			top: 0;
-			right: 0;
-			width: 100%;
+			right: -40px;
+			width: 40px;
 			height: 100%;
-			z-index: -1;
-			background: primary-dark;
-			opacity: 0.2;
+			background: $secondary;
+			z-index: 4;
+
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			transition: all 0.35s ease;
+
+			font-size: 1.5rem;
+			transform: rotate(180deg);
+			writing-mode: vertical-rl;
+			text-orientation: mixed;
 		}
 		picture {
 			width: 100%;
@@ -73,78 +89,25 @@ export default {
 			}
 		}
 	}
-	h2 {
-		margin: 20px 40px;
-		padding-top: 20px;
-		position: relative;
+	.title {
+		margin: 20px 0;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		font-weight: 400;
 		font-size: 1.8rem;
-		// text-transform: capitalize;
 		&::first-letter {
 			text-transform: capitalize;
-		}
-		&::after {
-			content: '';
-			position: absolute;
-			width: 10%;
-			background-color: primary-dark;
-			height: 3px;
-			top: 0;
-			left: 0;
 		}
 	}
 
 	&:hover {
-		.image {
-			img {
-				transform: scale(1.1);
-			}
-			.link {
-				opacity: 1;
-			}
+		h2 svg {
+			fill: $secondary;
 		}
-	}
-}
-
-// @media (min-width: 1700px) {
-// 	.project_card h2{
-// 		font-size: 2rem;
-// 	}
-// }
-
-@media (max-width: 900px) {
-	.project_card {
-		width: 40vw;
-		.image {
-			height: auto;
-			.link {
-				width: 100%;
-				height: 100%;
-				padding: 0;
-
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				svg {
-					width: 2rem;
-					height: 2rem;
-				}
-			}
-		}
-		h2 {
-			margin: 20px;
-			font-size: 1.4rem;
-		}
-	}
-}
-@media (max-width: 500px) {
-	.projects .grid {
-		width: 90%;
-	}
-	.project_card {
-		width: 37vw;
-		h2 {
-			margin: 20px;
-			font-size: 1.1rem;
+		.image .link {
+			right: 0;
 		}
 	}
 }

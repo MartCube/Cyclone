@@ -14,6 +14,7 @@
 				<template v-if="$fetchState.error">error</template>
 				<template v-else-if="!$fetchState.pending">
 					<ProjectCard v-for="(project, i) in projects" :key="i" :project="project" />
+					<ButtonItem>Показать больше</ButtonItem>
 				</template>
 			</div>
 		</div>
@@ -102,11 +103,15 @@ export default {
 
 	border-left: 1px solid $secondary;
 	margin-left: 100px;
-	padding: 80px 40px;
+	padding: 80px 0 0 40px;
+	button {
+		width: 340px;
+		margin: 80px auto;
+	}
 
 	.filter {
-		min-width: 240px;
-		padding-right: 1.5rem;
+		width: 340px;
+
 		height: fit-content;
 		position: relative;
 		z-index: 6;
@@ -130,16 +135,19 @@ export default {
 			}
 		}
 	}
+
 	.grid {
-		width: calc(100% - 240px);
+		width: 1140px;
+		height: 100%;
+		padding-left: 40px;
 		border-left: 1px solid $secondary;
+
 		display: flex;
-		justify-content: flex-start;
+		justify-content: space-between;
 		align-items: flex-start;
 		flex-wrap: wrap;
-		.project_card {
-			margin-right: 2rem;
-		}
 	}
 }
+
+// 1525px mobile version
 </style>

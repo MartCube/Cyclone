@@ -69,6 +69,7 @@ export default {
 			this.isActive = !this.isActive
 		},
 		CloseMenu() {
+			console.log('closeMenu', this.isActive)
 			this.isActive = false
 		},
 		navBarAnimation() {

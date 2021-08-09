@@ -38,6 +38,9 @@ export default {
 </script>
 
 <style>
+svg {
+	transition: all 0.35s ease;
+}
 /* direction prop styles */
 .top {
 	transform: rotate(-90deg);
