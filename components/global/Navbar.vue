@@ -19,7 +19,7 @@
 					</ul>
 				</li>
 				<li class="first-lvl">
-					<n-link to="/projects">projects</n-link>
+					<n-link to="/projects">Projects</n-link>
 				</li>
 				<li class="first-lvl">
 					<a href="#">Статьи</a>
@@ -108,7 +108,7 @@ nav {
 			width: fit-content;
 			height: 100%;
 			padding: 0 2rem;
-			transition: all $animation-time linear;
+			transition: all 0.3s ease;
 			&:first-child {
 				border-left: 1px solid $secondary;
 			}
@@ -120,12 +120,28 @@ nav {
 				font-weight: 400;
 				font-size: 1.1rem;
 				transition: all $animation-time linear;
+				padding: 0 10px;
 
-				&:hover {
-					text-decoration: underline;
-					color: $white;
-					text-decoration-color: $secondary;
-					text-decoration-thickness: 2px;
+				position: relative;
+				&::before {
+					content: '';
+					position: absolute;
+					bottom: 0;
+					right: 0;
+					width: 0;
+					height: 100%;
+					z-index: -1;
+					transition: all 0.35s ease;
+				}
+
+				&:hover,
+				&.nuxt-link-active {
+					&::before {
+						width: 100%;
+						background: $secondary;
+						right: unset;
+						left: 0;
+					}
 				}
 			}
 			&.submenu:active,

@@ -1,8 +1,6 @@
-<template>
-	<button :class="{ submit: submit }">
-		<div ref="buttonText" class="text">
-			<slot />
-		</div>
+<template functional>
+	<button>
+		<slot />
 	</button>
 </template>
 
@@ -32,24 +30,25 @@ button {
 	z-index: 1;
 	overflow: hidden;
 	position: relative;
-	font-size: 1.5rem;
-	.text {
-		display: flex;
-		justify-content: center;
-		align-items: center;
 
-		&::first-letter {
-			text-transform: uppercase;
-		}
-		font-weight: 700;
-		font-size: inherit;
-		line-height: 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	// text
+
+	&::first-letter {
+		text-transform: uppercase;
+	}
+	font-size: 1.5rem;
+	font-weight: 700;
+	font-size: inherit;
+	line-height: 2rem;
+	transition: all 0.2s ease;
+	svg {
+		fill: $grey;
+		margin-left: 15px;
 		transition: all 0.2s ease;
-		svg {
-			fill: $grey;
-			margin-left: 15px;
-			transition: all 0.2s ease;
-		}
 	}
 	transition: all 0.2s ease;
 
