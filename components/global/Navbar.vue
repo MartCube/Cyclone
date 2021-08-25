@@ -19,7 +19,7 @@
 					</ul>
 				</li>
 				<li class="first-lvl">
-					<n-link to="/projects">projects</n-link>
+					<n-link to="/projects">Объекты</n-link>
 				</li>
 				<li class="first-lvl">
 					<a href="#">Статьи</a>

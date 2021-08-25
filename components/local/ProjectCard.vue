@@ -34,8 +34,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$card-size: 250px;
 .project_card {
-	width: 340px;
+	width: $card-size;
 	cursor: pointer;
 
 	display: flex;
@@ -43,10 +44,11 @@ export default {
 
 	text-decoration: none;
 	color: $white;
+	margin: 0 0.5rem 0.5rem 0.5rem;
 
 	.image {
 		width: inherit;
-		height: 340px;
+		height: $card-size;
 
 		user-select: none;
 		position: relative;
@@ -108,6 +110,26 @@ export default {
 		}
 		.image .link {
 			right: 0;
+		}
+	}
+}
+@media (max-width: 1200px) {
+	.project_card {
+		width: 15rem;
+		.image {
+			height: 15rem;
+		}
+	}
+}
+@media (max-width: 900px) {
+	.project_card {
+		margin: 0 20px 20px 0;
+		width: 200px;
+		.image {
+			height: 200px;
+		}
+		.title {
+			font-size: 1.3rem;
 		}
 	}
 }

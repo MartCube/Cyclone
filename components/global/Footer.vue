@@ -87,4 +87,16 @@ footer {
 		}
 	}
 }
+@media (max-width: 900px) {
+	footer {
+		padding: 0 30px 0 50px;
+		& > * {
+			flex: initial;
+			width: 100%;
+			h4 {
+				margin: 30px 0;
+			}
+		}
+	}
+}
 </style>

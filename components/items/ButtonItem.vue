@@ -64,4 +64,9 @@ button {
 		}
 	}
 }
+@media (max-width: 900px) {
+	button {
+		font-size: 1.2rem;
+	}
+}
 </style>

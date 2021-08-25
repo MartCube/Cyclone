@@ -14,7 +14,9 @@
 				<template v-if="$fetchState.error">error</template>
 				<template v-else-if="!$fetchState.pending">
 					<ProjectCard v-for="(project, i) in projects" :key="i" :project="project" />
-					<ButtonItem>Показать больше</ButtonItem>
+					<div class="wrapper">
+						<ButtonItem>Показать больше</ButtonItem>
+					</div>
 				</template>
 			</div>
 		</div>
@@ -97,6 +99,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.page {
+	min-height: initial;
+}
 .projects {
 	display: flex;
 	flex-wrap: wrap;
@@ -106,7 +111,7 @@ export default {
 	padding: 80px 0 0 40px;
 	button {
 		width: 340px;
-		margin: 80px auto;
+		margin: 80px 0;
 	}
 
 	.filter {
@@ -137,17 +142,64 @@ export default {
 	}
 
 	.grid {
-		width: 1140px;
+		flex: 1;
 		height: 100%;
 		padding-left: 40px;
 		border-left: 1px solid $secondary;
 
 		display: flex;
-		justify-content: space-between;
+		// justify-content: space-between;
 		align-items: flex-start;
 		flex-wrap: wrap;
+		.wrapper {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+		}
 	}
 }
-
+@media (max-width: 1200px) {
+	.projects {
+		.filter {
+			width: auto;
+			padding-right: 40px;
+		}
+	}
+}
+@media (max-width: 900px) {
+	.projects {
+		margin-left: 30px;
+		padding: 0px 0 0 25px;
+		.filter {
+			width: 100%;
+			padding-right: 40px;
+			flex-direction: row;
+			flex-wrap: wrap;
+			padding-bottom: 40px;
+			margin-bottom: 4rem;
+			border-bottom: 1px solid red;
+			span {
+				margin: 0px 20px 5px 0;
+			}
+		}
+		.grid {
+			flex: initial;
+			width: 100%;
+			padding-left: 0;
+			border-left: none;
+			.wrapper {
+				justify-content: flex-start;
+			}
+		}
+		.title {
+			height: 110px;
+			font-size: 3rem;
+		}
+		button {
+			width: auto;
+			padding: 0 1.5rem 1rem 1.5rem;
+		}
+	}
+}
 // 1525px mobile version
 </style>
