@@ -1,5 +1,7 @@
 <template>
 	<div class="page project">
+		<Crumbs />
+
 		<template v-if="!$fetchState.pending">
 			<div class="intro">
 				<div class="text">
@@ -30,7 +32,7 @@ export default {
 .project {
 	display: flex;
 	flex-direction: column;
-	padding: 180px 40px;
+	padding: 80px 0 80px 40px;
 	margin-left: 100px;
 	border-left: 1px solid $secondary;
 

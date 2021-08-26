@@ -21,13 +21,6 @@ export default {
 			default: 'Alt',
 		},
 	},
-	watch: {
-		async src(newValue, oldValue) {
-			console.log('src change')
-			await this.$nextTick() // wait DOM to render
-			this.$refs.image.src = this.src
-		},
-	},
 }
 </script>
 

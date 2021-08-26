@@ -1,6 +1,8 @@
 <template>
 	<div class="page">
 		<div class="projects">
+			<Crumbs />
+
 			<Title value="Объекты" />
 
 			<div class="filter">
