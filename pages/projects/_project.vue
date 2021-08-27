@@ -1,5 +1,7 @@
 <template>
 	<div class="page project">
+		<Crumbs />
+
 		<template v-if="!$fetchState.pending">
 			<div class="intro">
 				<div class="text">
@@ -8,7 +10,7 @@
 				</div>
 				<ImageItem :src="project.data.main_image.url" :alt="project.data.title" />
 			</div>
-			<div class="gallery"></div>
+			<Gallery :data="project.data.gallery" />
 		</template>
 	</div>
 </template>
@@ -30,8 +32,10 @@ export default {
 .project {
 	display: flex;
 	flex-direction: column;
-	padding: 180px 40px;
+	padding: 80px 0 80px 40px;
 	margin-left: 100px;
+	border-left: 1px solid $secondary;
+
 	.intro {
 		display: flex;
 
@@ -42,7 +46,10 @@ export default {
 			flex-direction: column;
 
 			.title {
-				border-left: 1px solid red;
+				border-left: 2px solid $secondary;
+				padding-left: 1rem;
+				margin-bottom: 2rem;
+				font-size: 2rem;
 			}
 		}
 	}

@@ -1,6 +1,8 @@
 <template>
 	<div class="page">
 		<div class="projects">
+			<Crumbs />
+
 			<Title value="Объекты" />
 
 			<div class="filter">
@@ -15,7 +17,7 @@
 				<template v-else-if="!$fetchState.pending">
 					<ProjectCard v-for="(project, i) in projects" :key="i" :project="project" />
 					<div class="wrapper">
-						<ButtonItem>Показать больше</ButtonItem>
+						<ButtonItem v-if="total_pages !== current_page">Показать больше</ButtonItem>
 					</div>
 				</template>
 			</div>

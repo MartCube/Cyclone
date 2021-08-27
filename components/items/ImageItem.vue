@@ -1,7 +1,7 @@
 <template>
 	<picture>
 		<source v-if="mobile" :data-srcset="mobile" media="(max-width: 900px)" />
-		<img :data-src="src" loading="lazy" class="lazyload" :alt="alt" />
+		<img ref="image" :data-src="src" :src="src" loading="lazy" class="lazyload" :alt="alt" />
 	</picture>
 </template>
 
@@ -21,23 +21,17 @@ export default {
 			default: 'Alt',
 		},
 	},
-	mounted() {
-		// document.addEventListener('lazybeforeunveil', function (e) {
-		// 	console.log(e)
-		// })
-	},
 }
 </script>
 
 <style lang="scss" scoped>
 picture {
-	width: 100%;
-	height: 100%;
 	z-index: 3;
+	display: flex;
+
 	img {
 		width: inherit;
 		height: inherit;
-		position: relative;
 		object-fit: cover;
 		object-position: center;
 		&::before {

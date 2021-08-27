@@ -70,6 +70,10 @@ footer {
 			}
 		}
 
+		&.map picture {
+			width: 100%;
+		}
+
 		&.policy {
 			flex-basis: 100%;
 			margin-top: 25px;
