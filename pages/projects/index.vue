@@ -112,12 +112,13 @@ export default {
 	margin-left: 100px;
 	padding: 80px 0 0 40px;
 	button {
-		width: 340px;
+		width: initial;
+		padding: 1rem 2rem;
 		margin: 80px 0;
 	}
 
 	.filter {
-		width: 340px;
+		width: 20%;
 
 		height: fit-content;
 		position: relative;
@@ -130,7 +131,7 @@ export default {
 			text-transform: capitalize;
 			white-space: nowrap;
 			font-weight: 500;
-			font-size: 1.5rem;
+			font-size: 1.3rem;
 			display: flex;
 			align-items: center;
 			cursor: pointer;
@@ -147,16 +148,15 @@ export default {
 		flex: 1;
 		height: 100%;
 		padding-left: 40px;
-		border-left: 1px solid $secondary;
 
 		display: flex;
-		// justify-content: space-between;
 		align-items: flex-start;
 		flex-wrap: wrap;
 		.wrapper {
 			width: 100%;
 			display: flex;
 			justify-content: center;
+			padding-right: 20%;
 		}
 	}
 }
@@ -170,7 +170,7 @@ export default {
 }
 @media (max-width: 900px) {
 	.projects {
-		margin-left: 30px;
+		margin-left: 50px;
 		padding: 0px 0 0 25px;
 		.filter {
 			width: 100%;
@@ -178,8 +178,8 @@ export default {
 			flex-direction: row;
 			flex-wrap: wrap;
 			padding-bottom: 40px;
-			margin-bottom: 4rem;
-			border-bottom: 1px solid red;
+			margin: 2rem 0;
+			// border-bottom: 1px solid red;
 			span {
 				margin: 0px 20px 5px 0;
 			}
@@ -197,9 +197,20 @@ export default {
 			height: 110px;
 			font-size: 3rem;
 		}
-		button {
-			width: auto;
-			padding: 0 1.5rem 1rem 1.5rem;
+	}
+}
+@media (max-width: 600px) {
+	.projects {
+		margin-left: 30px;
+		.grid {
+			.wrapper {
+				padding-right: 25px;
+				justify-content: center;
+				button {
+					width: auto;
+					// padding: 0 1.5rem 1rem 1.5rem;
+				}
+			}
 		}
 	}
 }

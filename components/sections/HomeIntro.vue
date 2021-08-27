@@ -38,7 +38,7 @@ export default {
 		position: absolute;
 		width: calc(100% - 200px);
 		height: 100%;
-		img {
+		picture {
 			width: 100%;
 			height: 100%;
 			object-fit: cover;

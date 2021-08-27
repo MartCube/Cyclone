@@ -89,11 +89,11 @@ export default {
 $animation-time: 0.3s;
 nav {
 	position: fixed;
-	width: 100%;
+	width: calc(100vw - 100px);
 	background-color: $primary;
 	height: 100px;
 	z-index: 20;
-	right: 0;
+	left: 0;
 	top: 0;
 	transition: height 0.05s linear;
 	padding-left: 100px;
@@ -126,10 +126,10 @@ nav {
 				&::before {
 					content: '';
 					position: absolute;
-					bottom: 0;
+					top: 0;
 					right: 0;
 					width: 0;
-					height: 100%;
+					height: 25px;
 					z-index: -1;
 					transition: all 0.35s ease;
 				}
@@ -177,13 +177,15 @@ nav {
 						flex-direction: column-reverse;
 						align-items: center;
 						justify-content: flex-start;
-						max-width: 120px;
+						max-width: 130px;
 						width: 100%;
 						transition: $animation-time linear;
 						span {
 							margin-bottom: 1rem;
 						}
 						picture {
+							width: 100%;
+							height: 100%;
 							filter: drop-shadow(10px 10px 10px $primary-dark);
 						}
 						&:hover {
@@ -329,11 +331,21 @@ nav {
 				.panels-list {
 					li {
 						width: 50%;
+						padding: 0;
 						a {
+							padding: 0.3rem;
 							span {
 								font-size: 0.9rem;
 							}
+							&::before {
+								height: 70px;
+							}
 						}
+					}
+				}
+				a {
+					&::before {
+						height: 45px;
 					}
 				}
 			}
