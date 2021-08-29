@@ -10,10 +10,10 @@
 				<li class="first-lvl submenu" :class="{ active: isActive }">
 					<a href="#" @mouseover="isActive = true">Вентилируемые фасады</a>
 					<ul class="panels-list">
-						<li v-for="(item, i) in panels" :key="item.uid + i">
-							<n-link exact :to="`/${item.uid}`">
-								<ImageItem :key="item.data.title" :src="item.data.main_image.url" />
-								<span class="title">{{ item.data.title }}</span>
+						<li v-for="(item, i) in panels" :key="item.node._meta.uid + i">
+							<n-link exact :to="`/${item.node._meta.uid}`">
+								<ImageItem :key="item.node.title" :src="item.node.main_image.url" />
+								<span class="title">{{ item.node.title }}</span>
 							</n-link>
 						</li>
 					</ul>
@@ -129,7 +129,7 @@ nav {
 					top: 0;
 					right: 0;
 					width: 0;
-					height: 25px;
+					height: 100%;
 					z-index: -1;
 					transition: all 0.35s ease;
 				}

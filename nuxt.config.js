@@ -31,6 +31,11 @@ export default {
 		// https://go.nuxtjs.dev/eslint
 		'@nuxtjs/eslint-module',
 	],
+	apollo: {
+		clientConfigs: {
+			default: '@/plugins/qraphql.js',
+		},
+	},
 
 	build: {
 		// vee validate

@@ -28,7 +28,7 @@ export default {
 	flex-direction: column;
 	padding: 0 0px 0 100px;
 	.main-image {
-		width: 15rem;
+		width: 20vw;
 		margin-top: 2rem;
 		height: auto;
 		filter: drop-shadow(30px 40px 100px hsl(0, 0%, 5%));
@@ -42,7 +42,7 @@ export default {
 	.title-wrapper {
 		text-transform: uppercase;
 		h1 {
-			font-size: 9rem;
+			font-size: 9vw;
 			line-height: 1;
 			text-align: center;
 			font-weight: 800;
@@ -55,42 +55,32 @@ export default {
 	}
 }
 
-@media (max-width: 800px) {
+@media (min-width: 1400px) {
 	.intro-panel {
-		.main-image {
-			width: 12rem;
-		}
 		.title-wrapper {
-			bottom: 6rem;
-			h1 {
-				font-size: 7rem;
-			}
+			font-size: 9rem;
 		}
+		.main-image {
+			width: 15rem;
+		}
+	}
+}
+@media (max-width: 900px) {
+	.intro-panel {
+		padding: 0 0px 0 50px;
 	}
 }
 @media (max-width: 600px) {
 	.intro-panel {
+		padding: 0 0px 0 30px;
 		.main-image {
-			width: 10rem;
-			margin-left: 30px;
+			margin-bottom: 2rem;
+			width: 30vw;
 		}
 		.title-wrapper {
 			h1 {
 				width: calc(100vw - 30px);
-				font-size: 4rem;
-			}
-		}
-	}
-}
-@media (max-width: 400px) {
-	.intro-panel {
-		.main-image {
-			width: 7rem;
-		}
-		.title-wrapper {
-			bottom: 11rem;
-			h1 {
-				font-size: 5rem;
+				font-size: 12vw;
 			}
 		}
 	}

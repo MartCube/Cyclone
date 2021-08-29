@@ -1,21 +1,21 @@
 <template>
 	<section class="panel-slider">
 		<div class="content">
-			<h2 class="title">{{ data.primary.title }}</h2>
+			<h2 class="title">Фасадные системы</h2>
 			<div class="slider">
 				<div class="slider-wrapper">
-					<article v-for="panel in panels" :key="panel.uid">
+					<article v-for="panel in panels" :key="panel.node._meta.uid">
 						<div class="text">
-							<h3 class="title">{{ panel.title }}</h3>
+							<h3 class="title">{{ panel.node.title }}</h3>
 							<div class="rich_text description">
-								<prismic-rich-text :field="panel.description" />
+								<prismic-rich-text :field="panel.node.description" />
 							</div>
 							<div class="links">
-								<n-link exact :to="`/portfolio#${panel.uid}`">Объекты с {{ panel.title }}</n-link>
-								<n-link exact :to="`/${panel.uid}`">Подробнее</n-link>
+								<n-link exact :to="`/portfolio#${panel.node._meta.uid}`">Объекты с {{ panel.node.title }}</n-link>
+								<n-link exact :to="`/${panel.node._meta.uid}`">Подробнее</n-link>
 							</div>
 						</div>
-						<ImageItem :src="panel.image" :alt="panel.title" />
+						<ImageItem :src="panel.node.main_image.url" :alt="panel.title" />
 					</article>
 				</div>
 			</div>
@@ -34,22 +34,9 @@ export default {
 	},
 	computed: {
 		panels() {
-			const panelData = []
-			this.$store.getters.panels.forEach((el) => {
-				if (el.tags.includes('panel_slider')) {
-					// console.log(el)
-					panelData.push({
-						uid: el.uid,
-						title: el.data.title,
-						image: el.data.main_image.url,
-						description: el.data.description,
-						// gallery_images: el.data.body.filter((el) => {
-						// 	return el.slice_type === 'short_info' ? el.items : ''
-						// }),
-					})
-				}
+			const panelData = this.$store.getters.panels.filter((el) => {
+				return el.node._meta.tags[0] === 'panel_slider' ? el.node : false
 			})
-			// console.log(panelData)
 			return panelData
 		},
 	},
