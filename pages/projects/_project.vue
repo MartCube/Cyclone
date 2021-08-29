@@ -57,11 +57,56 @@ export default {
 		}
 		.image {
 			width: 60%;
+			max-height: 450px;
 			picture {
 				width: 100%;
-				height: auto;
+				height: 100%;
+				img {
+					object-position: top;
+				}
 			}
 		}
+	}
+}
+@media (max-width: 900px) {
+	.project {
+		margin-left: 50px;
+		padding: 0px 25px;
+		width: calc(100% - 50px);
+		.intro {
+			.text {
+				width: 60%;
+			}
+			.image {
+				width: 40%;
+			}
+		}
+	}
+}
+@media (max-width: 700px) {
+	.project {
+		padding: 0;
+		flex-direction: column;
+		.crumbs {
+			margin-left: 2rem;
+		}
+		.intro {
+			.text {
+				width: 100%;
+				order: 2;
+				padding: 2rem;
+			}
+			.image {
+				order: 1;
+				width: 100%;
+			}
+		}
+	}
+}
+@media (max-width: 600px) {
+	.project {
+		margin-left: 30px;
+		width: calc(100% - 30px);
 	}
 }
 </style>

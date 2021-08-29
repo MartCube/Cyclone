@@ -24,8 +24,16 @@
 			</n-link>
 		</div>
 		<div class="policy">
-			<p><Icon name="copyright" /> Cyclone <span /> All rights reserved</p>
-			<n-link to="/">Privacy Policy <span /> Terms and Conditions</n-link>
+			<p>
+				<span class="text"><Icon name="copyright" />Cyclone</span>
+				<span class="line"></span>
+				<span class="text">All rights reserved</span>
+			</p>
+			<n-link to="/">
+				<span class="text">Privacy Policy</span>
+				<span class="line"></span>
+				<span class="text">Terms and Conditions</span>
+			</n-link>
 		</div>
 	</footer>
 </template>
@@ -82,7 +90,7 @@ footer {
 			justify-content: space-between;
 			justify-items: center;
 
-			span {
+			span.line {
 				width: 2px;
 				height: inherit;
 				background: $secondary;
@@ -99,6 +107,36 @@ footer {
 			width: 100%;
 			h4 {
 				margin: 30px 0;
+			}
+		}
+	}
+}
+@media (max-width: 600px) {
+	footer {
+		padding: 0 0 0 50px;
+		.policy {
+			flex-direction: column;
+			padding-right: 30px;
+			a {
+				justify-content: center;
+				align-items: flex-end;
+				flex-direction: column;
+			}
+			p {
+				justify-content: center;
+				align-items: flex-start;
+				flex-direction: column;
+				margin-bottom: 0;
+			}
+			.text {
+				display: flex;
+				margin-bottom: 10px;
+			}
+			span.line {
+				display: none;
+			}
+			svg {
+				margin-right: 10px;
 			}
 		}
 	}
