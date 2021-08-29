@@ -5,10 +5,10 @@
 			<span class="mid_line" />
 			<span class="bot_line" />
 		</div>
-		<nav :class="{ compact: !compact, active: isActive }">
+		<nav :class="{ active: isActive }" @click="isActive = false">
 			<ul>
-				<li class="first-lvl submenu">
-					<a href="#">Вентилируемые фасады</a>
+				<li class="first-lvl submenu" :class="{ active: isActive }">
+					<a href="#" @mouseover="isActive = true">Вентилируемые фасады</a>
 					<ul class="panels-list">
 						<li v-for="(item, i) in panels" :key="item.uid + i">
 							<n-link exact :to="`/${item.uid}`">
@@ -144,9 +144,7 @@ nav {
 					}
 				}
 			}
-			&.submenu:active,
-			&.submenu:focus,
-			&.submenu:hover {
+			&.active.submenu {
 				.panels-list {
 					animation: fadeIn $animation-time linear forwards;
 				}
@@ -180,6 +178,7 @@ nav {
 						max-width: 130px;
 						width: 100%;
 						transition: $animation-time linear;
+
 						span {
 							margin-bottom: 1rem;
 						}
@@ -271,6 +270,9 @@ nav {
 							width: 100%;
 							margin: 0 0px;
 							height: auto;
+							&:before {
+								height: 100%;
+							}
 							picture {
 								height: 12vw;
 								width: auto;
@@ -336,9 +338,6 @@ nav {
 							padding: 0.3rem;
 							span {
 								font-size: 0.9rem;
-							}
-							&::before {
-								height: 70px;
 							}
 						}
 					}

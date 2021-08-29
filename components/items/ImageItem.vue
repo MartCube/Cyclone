@@ -32,7 +32,7 @@ picture {
 	img {
 		width: inherit;
 		height: inherit;
-		object-fit: cover;
+		object-fit: inherit;
 		object-position: center;
 		&::before {
 			display: none;

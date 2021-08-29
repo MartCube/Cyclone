@@ -1,15 +1,22 @@
 <template>
-	<div id="gallery" class="gallery">
-		<ImageItem v-for="(item, i) in data" :key="i" :src="item.image.thumbnail.url" :alt="item.image.alt" @click.native="Toggle(i)" />
+	<div id="gallery">
+		<div class="gallery">
+			<ImageItem v-for="(item, i) in data" :key="i" :src="item.image.thumbnail.url" :alt="item.image.alt" @click.native="Toggle(i)" />
+		</div>
 
 		<div v-if="lightbox" class="lightbox">
-			<Icon name="close" class="close" @click.native="Toggle(null)" />
-
-			<Icon name="chevron" :class="{ disable: currentImage == 0 }" direction="left" @click.native="Prev(0)" />
-
-			<ImageItem width="90%" height="90%" :src="data[currentImage].image.url" :alt="data[currentImage].image.alt" />
-
-			<Icon name="chevron" :class="{ disable: currentImage == data.length - 1 }" @click.native="Next(0)" />
+			<div class="content">
+				<Icon name="close" class="close" @click.native="Toggle(null)" />
+				<div class="icons_navigation">
+					<Icon name="chevron" :class="{ disable: currentImage == 0 }" direction="left" @click.native="Prev(0)" />
+				</div>
+				<div class="image">
+					<ImageItem :src="data[currentImage].image.url" :alt="data[currentImage].image.alt" />
+				</div>
+				<div class="icons_navigation">
+					<Icon name="chevron" :class="{ disable: currentImage == data.length - 1 }" @click.native="Next(0)" />
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -78,6 +85,7 @@ export default {
 		cursor: pointer;
 		width: 100%;
 		height: 100%;
+		object-fit: cover;
 		&:nth-child(1) {
 			grid-column: 1 / 3;
 			grid-row: 1;
@@ -129,6 +137,56 @@ export default {
 		&:nth-child(13) {
 			grid-column: 4 / last;
 			grid-row: 4;
+		}
+	}
+}
+.lightbox {
+	z-index: 999;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.85);
+
+	.content {
+		position: relative;
+		display: flex;
+		align-items: center;
+		.image {
+			width: calc(100% - 100px);
+			height: 100vh;
+			picture {
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+			}
+		}
+	}
+	.icons_navigation {
+		width: 40px;
+		height: 40px;
+	}
+	svg {
+		width: 40px;
+		height: 40px;
+		fill: white;
+		&.disable {
+			visibility: hidden;
+		}
+		cursor: pointer;
+		opacity: 0.6;
+		transition: all 0.2s ease;
+		&:hover {
+			opacity: 0.9;
+		}
+		&.close {
+			position: fixed;
+			top: 0;
+			right: 0;
+		}
+		&.left {
+			transform: rotate(180deg);
 		}
 	}
 }
@@ -196,45 +254,11 @@ export default {
 			}
 		}
 	}
-}
-.lightbox {
-	z-index: 999;
-	position: fixed;
-	width: 100%;
-	height: 100vh;
-	top: 0;
-	left: 0;
-	background: rgba(0, 0, 0, 0.85);
-
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-
-	picture {
-		height: 100%;
-	}
-
-	svg {
-		width: 40px;
-		height: 40px;
-		margin: 10px;
-		fill: white;
-		&.disable {
-			visibility: hidden;
-		}
-		cursor: pointer;
-		opacity: 0.6;
-		transition: all 0.2s ease;
-		&:hover {
-			opacity: 0.9;
-		}
-		&.close {
-			position: fixed;
-			top: 0;
-			right: 0;
-		}
-		&.left {
-			transform: rotate(180deg);
+	.lightbox {
+		.content {
+			.image {
+				width: calc(100% - 80px);
+			}
 		}
 	}
 }

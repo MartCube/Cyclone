@@ -45,6 +45,11 @@ export default {
 		.achievement-image {
 			width: 40%;
 			border: 2px solid $secondary;
+			picture {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
 		}
 		.achievement-item {
 			width: 30%;

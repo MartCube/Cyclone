@@ -61,6 +61,7 @@ export default {
 			picture {
 				width: 100%;
 				height: 100%;
+				object-fit: cover;
 				img {
 					object-position: top;
 				}
@@ -86,11 +87,11 @@ export default {
 @media (max-width: 700px) {
 	.project {
 		padding: 0;
-		flex-direction: column;
 		.crumbs {
 			margin-left: 2rem;
 		}
 		.intro {
+			flex-direction: column;
 			.text {
 				width: 100%;
 				order: 2;
