@@ -1,5 +1,5 @@
 <template>
-	<footer>
+	<footer v-if="footer">
 		<div class="contacts">
 			<h4>Контакты</h4>
 			<n-link to="/"> <Icon name="phone" /> 044 492 05 30</n-link>
@@ -24,7 +24,7 @@
 			</n-link>
 		</div>
 		<div class="policy">
-			<p><Icon name="copyright" /> Cyclone <span /> All rights reserved</p>
+			<p><Icon name="copyright" /> Cyclone {{ year }}<span /> All rights reserved</p>
 			<n-link to="/">Privacy Policy <span /> Terms and Conditions</n-link>
 		</div>
 	</footer>
@@ -38,6 +38,14 @@ export default {
 	async fetch() {
 		const fetch = await this.$prismic.api.getSingle('footer')
 		this.map = fetch.data.map.url
+	},
+	computed: {
+		year() {
+			return new Date().getFullYear()
+		},
+		footer() {
+			return this.$store.getters.footer
+		},
 	},
 }
 </script>

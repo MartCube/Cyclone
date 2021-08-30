@@ -1,24 +1,22 @@
 <template>
-	<div class="page">
-		<div class="projects">
-			<Crumbs />
+	<div class="page projects">
+		<Crumbs />
 
-			<Title value="Объекты" />
+		<Title value="Объекты" />
 
-			<div class="filter">
-				<span :class="{ active: active_filter[0] == null }" @click="filterUpdate('all')">all</span>
-				<span v-for="filter in filters" :key="filter" :class="{ active: active_filter[0] == filter }" @click="filterUpdate(filter)">
-					{{ filter }}
-				</span>
-			</div>
+		<div class="filter">
+			<span :class="{ active: active_filter[0] == null }" @click="filterUpdate('all')">all</span>
+			<span v-for="filter in filters" :key="filter" :class="{ active: active_filter[0] == filter }" @click="filterUpdate(filter)">
+				{{ filter }}
+			</span>
+		</div>
 
-			<div class="grid">
-				<template v-if="$fetchState.error">error</template>
-				<template v-else-if="!$fetchState.pending">
-					<ProjectCard v-for="(project, i) in projects" :key="i" :project="project" />
-					<ButtonItem v-if="total_pages !== current_page">Показать больше</ButtonItem>
-				</template>
-			</div>
+		<div class="grid">
+			<template v-if="$fetchState.error">error</template>
+			<template v-else-if="!$fetchState.pending">
+				<ProjectCard v-for="(project, i) in projects" :key="i" :project="project" />
+				<ButtonItem v-if="total_pages !== current_page">Показать больше</ButtonItem>
+			</template>
 		</div>
 	</div>
 </template>
