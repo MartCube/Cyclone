@@ -19,17 +19,16 @@ export default {
 button {
 	width: 100%;
 	height: 100%;
-	margin-top: 1rem;
-	padding-bottom: 1rem;
-	border: 2px solid $secondary;
-	border-top: none;
+	margin: 1rem 0;
+	padding: 1rem 2rem;
+	border: none;
 
-	background: $primary;
-	color: $grey;
+	background-color: $secondary;
+	color: $white;
 	cursor: pointer;
-	z-index: 1;
-	overflow: hidden;
-	position: relative;
+	// z-index: 1;
+	// overflow: hidden;
+	// position: relative;
 
 	display: flex;
 	justify-content: center;
@@ -40,9 +39,8 @@ button {
 	&::first-letter {
 		text-transform: uppercase;
 	}
-	font-size: 1.5rem;
-	font-weight: 700;
-	font-size: inherit;
+	font-size: 1.1rem;
+	font-weight: 500;
 	line-height: 2rem;
 	transition: all 0.2s ease;
 	svg {
@@ -53,7 +51,8 @@ button {
 	transition: all 0.2s ease;
 
 	&:hover {
-		color: $white;
+		background-color: hsl(1, 84%, 40%);
+		box-shadow: 0 0 10px 0 #000;
 		.overlay {
 			width: 100%;
 		}
@@ -61,6 +60,11 @@ button {
 			opacity: 1;
 			fill: $secondary;
 		}
+	}
+}
+@media (max-width: 900px) {
+	button {
+		font-size: 1.2rem;
 	}
 }
 </style>

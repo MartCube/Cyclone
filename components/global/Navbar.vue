@@ -5,21 +5,21 @@
 			<span class="mid_line" />
 			<span class="bot_line" />
 		</div>
-		<nav :class="{ compact: !compact, active: isActive }">
+		<nav :class="{ active: isActive }" @click="isActive = false">
 			<ul>
-				<li class="first-lvl submenu">
-					<a href="#">Вентилируемые фасады</a>
+				<li class="first-lvl submenu" :class="{ active: isActive }">
+					<a href="#" @mouseover="isActive = true">Вентилируемые фасады</a>
 					<ul class="panels-list">
-						<li v-for="(item, i) in panels" :key="item.uid + i">
-							<n-link exact :to="`/${item.uid}`">
-								<ImageItem :key="item.data.title" :src="item.data.main_image.url" />
-								<span class="title">{{ item.data.title }}</span>
+						<li v-for="(item, i) in panels" :key="item.node._meta.uid + i">
+							<n-link exact :to="`/${item.node._meta.uid}`">
+								<ImageItem :key="item.node.title" :src="item.node.main_image.url" />
+								<span class="title">{{ item.node.title }}</span>
 							</n-link>
 						</li>
 					</ul>
 				</li>
 				<li class="first-lvl">
-					<n-link to="/projects">Projects</n-link>
+					<n-link to="/projects">Объекты</n-link>
 				</li>
 				<li class="first-lvl">
 					<a href="#">Статьи</a>
@@ -89,11 +89,11 @@ export default {
 $animation-time: 0.3s;
 nav {
 	position: fixed;
-	width: 100%;
+	width: calc(100vw - 100px);
 	background-color: $primary;
 	height: 100px;
 	z-index: 20;
-	right: 0;
+	left: 0;
 	top: 0;
 	transition: height 0.05s linear;
 	padding-left: 100px;
@@ -126,7 +126,7 @@ nav {
 				&::before {
 					content: '';
 					position: absolute;
-					bottom: 0;
+					top: 0;
 					right: 0;
 					width: 0;
 					height: 100%;
@@ -144,9 +144,7 @@ nav {
 					}
 				}
 			}
-			&.submenu:active,
-			&.submenu:focus,
-			&.submenu:hover {
+			&.active.submenu {
 				.panels-list {
 					animation: fadeIn $animation-time linear forwards;
 				}
@@ -177,13 +175,16 @@ nav {
 						flex-direction: column-reverse;
 						align-items: center;
 						justify-content: flex-start;
-						max-width: 120px;
+						max-width: 130px;
 						width: 100%;
 						transition: $animation-time linear;
+
 						span {
 							margin-bottom: 1rem;
 						}
 						picture {
+							width: 100%;
+							height: 100%;
 							filter: drop-shadow(10px 10px 10px $primary-dark);
 						}
 						&:hover {
@@ -269,6 +270,9 @@ nav {
 							width: 100%;
 							margin: 0 0px;
 							height: auto;
+							&:before {
+								height: 100%;
+							}
 							picture {
 								height: 12vw;
 								width: auto;
@@ -329,11 +333,18 @@ nav {
 				.panels-list {
 					li {
 						width: 50%;
+						padding: 0;
 						a {
+							padding: 0.3rem;
 							span {
 								font-size: 0.9rem;
 							}
 						}
+					}
+				}
+				a {
+					&::before {
+						height: 45px;
 					}
 				}
 			}

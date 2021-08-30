@@ -37,9 +37,9 @@ svg {
 		opacity: 0;
 	}
 }
-@media (max-width: 600px) {
+@media (max-width: 900px) {
 	svg {
-		width: 20px;
+		width: 18px;
 		margin-bottom: 0;
 	}
 }

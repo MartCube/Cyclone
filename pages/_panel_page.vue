@@ -11,16 +11,11 @@ export default {
 	computed: {
 		intro() {
 			const fetch = this.$store.getters.panels.filter((el) => {
-				let page
-				if (el.uid === this.$route.params.panel_page) {
-					page = el
-				}
-				return page
+				return el.node._meta.uid === this.$route.params.panel_page ? el.node : false
 			})
-			// console.log(fetch[0])
 			return {
-				title: fetch[0].data.title,
-				image: fetch[0].data.main_image.url,
+				title: fetch[0].node.title,
+				image: fetch[0].node.main_image.url,
 			}
 		},
 	},

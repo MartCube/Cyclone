@@ -90,11 +90,53 @@ footer {
 			justify-content: space-between;
 			justify-items: center;
 
-			span {
+			span.line {
 				width: 2px;
 				height: inherit;
 				background: $secondary;
 				margin: 0 25px;
+			}
+		}
+	}
+}
+@media (max-width: 900px) {
+	footer {
+		padding: 0 30px 0 50px;
+		& > * {
+			flex: initial;
+			width: 100%;
+			h4 {
+				margin: 30px 0;
+			}
+		}
+	}
+}
+@media (max-width: 600px) {
+	footer {
+		padding: 0 0 0 50px;
+		.policy {
+			flex-direction: column;
+			padding-right: 30px;
+			a {
+				justify-content: center;
+				align-items: flex-end;
+				flex-direction: column;
+			}
+			p {
+				justify-content: center;
+				align-items: flex-start;
+				flex-direction: column;
+				margin-bottom: 0;
+			}
+			.text {
+				display: flex;
+				margin-bottom: 10px;
+			}
+			span.line {
+				display: none;
+			}
+			svg {
+				margin-right: 10px;
 			}
 		}
 	}

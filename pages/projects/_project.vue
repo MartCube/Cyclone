@@ -8,7 +8,9 @@
 					<h2 class="title">{{ project.data.title }}</h2>
 					<prismic-rich-text class="description" :field="project.data.description" />
 				</div>
-				<ImageItem :src="project.data.main_image.url" :alt="project.data.title" />
+				<div class="image">
+					<ImageItem :src="project.data.main_image.url" :alt="project.data.title" />
+				</div>
 			</div>
 			<Gallery :data="project.data.gallery" />
 		</template>
@@ -35,23 +37,77 @@ export default {
 	padding: 80px 0 80px 40px;
 	margin-left: 100px;
 	border-left: 1px solid $secondary;
-
+	width: calc(100vw - 200px);
+	overflow-x: hidden;
 	.intro {
 		display: flex;
-
+		width: 100%;
 		.text {
-			min-width: 50%;
-
+			width: 40%;
+			padding-right: 2rem;
 			display: flex;
 			flex-direction: column;
 
 			.title {
-				border-left: 2px solid $secondary;
+				border-left: 5px solid $secondary;
 				padding-left: 1rem;
-				margin-bottom: 2rem;
+				margin-bottom: 3rem;
 				font-size: 2rem;
 			}
 		}
+		.image {
+			width: 60%;
+			max-height: 450px;
+			picture {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				img {
+					object-position: top;
+				}
+			}
+		}
+	}
+}
+@media (max-width: 900px) {
+	.project {
+		margin-left: 50px;
+		padding: 0px 25px;
+		width: calc(100% - 50px);
+		.intro {
+			.text {
+				width: 60%;
+			}
+			.image {
+				width: 40%;
+			}
+		}
+	}
+}
+@media (max-width: 700px) {
+	.project {
+		padding: 0;
+		.crumbs {
+			margin-left: 2rem;
+		}
+		.intro {
+			flex-direction: column;
+			.text {
+				width: 100%;
+				order: 2;
+				padding: 2rem;
+			}
+			.image {
+				order: 1;
+				width: 100%;
+			}
+		}
+	}
+}
+@media (max-width: 600px) {
+	.project {
+		margin-left: 30px;
+		width: calc(100% - 30px);
 	}
 }
 </style>
