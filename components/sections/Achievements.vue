@@ -10,7 +10,7 @@
 				</div>
 			</div>
 			<div class="achievement-image">
-				<ImageItem :key="data.primary.image.alt" :src="data.primary.image.url" :mobile="data.primary.image.mobile.url" />
+				<ImageItem :data="data.primary.image" />
 			</div>
 			<div class="achievement-item">
 				<div class="number">

@@ -1,7 +1,7 @@
 <template>
 	<n-link class="project_card" :to="link">
 		<div class="image">
-			<ImageItem :src="image" :alt="title" />
+			<ImageItem :data="image" />
 			<span class="link">Смотреть</span>
 		</div>
 		<h2 class="title">
@@ -21,7 +21,7 @@ export default {
 	},
 	computed: {
 		image() {
-			return this.project.data.main_image.url
+			return this.project.data.main_image.thumbnail
 		},
 		title() {
 			return this.project.data.title

@@ -2,8 +2,7 @@
 	<client-only>
 		<div class="plyr_video">
 			<vue-plyr>
-				<!-- <div data-plyr-provider="vimeo" :data-plyr-embed-id="video"></div> -->
-				<div data-plyr-provider="youtube" :data-plyr-embed-id="video"></div>
+				<div :data-plyr-provider="provider" :data-plyr-embed-id="data"></div>
 			</vue-plyr>
 		</div>
 	</client-only>
@@ -12,9 +11,13 @@
 <script>
 export default {
 	props: {
-		video: {
+		data: {
 			type: String,
 			required: true,
+		},
+		provider: {
+			type: String,
+			default: 'youtube',
 		},
 	},
 }
@@ -22,16 +25,10 @@ export default {
 
 <style lang="scss">
 .plyr_video {
-	width: 50%;
+	width: 100%;
 }
 
 :root {
-	--plyr-color-main: rgb(255, 196, 36);
-}
-
-@media (max-width: 900px) {
-	.plyr_video {
-		width: 100%;
-	}
+	--plyr-color-main: #b93937;
 }
 </style>

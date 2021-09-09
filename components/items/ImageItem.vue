@@ -1,24 +1,16 @@
 <template>
 	<picture>
-		<source v-if="mobile" :data-srcset="mobile" media="(max-width: 900px)" />
-		<img ref="image" :data-src="src" :src="src" loading="lazy" class="lazyload" :alt="alt" />
+		<!-- <source v-if="data.mobile" :data-srcset="data.mobile.url" media="(max-width: 900px)" /> -->
+		<img :width="data.dimensions.width" :height="data.dimensions.height" :data-src="data.url" :src="data.url" loading="lazy" class="lazyload" alt="data.alt" />
 	</picture>
 </template>
 
 <script>
 export default {
 	props: {
-		src: {
-			type: String,
+		data: {
+			type: Object,
 			required: true,
-		},
-		mobile: {
-			type: String,
-			default: null,
-		},
-		alt: {
-			type: String,
-			default: 'Alt',
 		},
 	},
 }

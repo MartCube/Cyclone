@@ -20,7 +20,7 @@ export const mutations = {
 }
 
 export const actions = {
-	bindPanelPages(context, payload) {
+	bindPanels(context, payload) {
 		context.commit('setPanelPages', payload)
 	},
 	bindFooter(context, payload) {

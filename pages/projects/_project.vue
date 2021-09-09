@@ -8,8 +8,9 @@
 					<h2 class="title">{{ project.data.title }}</h2>
 					<prismic-rich-text class="description" :field="project.data.description" />
 				</div>
-				<div class="image">
-					<ImageItem :src="project.data.main_image.url" :alt="project.data.title" />
+				<div class="video">
+					<VideoItem v-if="project.data.video_link" :data="project.data.video_link" />
+					<ImageItem v-else :data="project.data.main_image" />
 				</div>
 			</div>
 			<Gallery :data="project.data.gallery" />
@@ -34,7 +35,7 @@ export default {
 .project {
 	display: flex;
 	flex-direction: column;
-	padding: 80px 0 80px 40px;
+	padding: 80px 0 0 40px;
 	margin-left: 100px;
 	border-left: 1px solid $secondary;
 	width: calc(100vw - 200px);
@@ -42,6 +43,7 @@ export default {
 	.intro {
 		display: flex;
 		width: 100%;
+		justify-content: space-between;
 		.text {
 			width: 40%;
 			padding-right: 2rem;
@@ -55,15 +57,19 @@ export default {
 				font-size: 2rem;
 			}
 		}
-		.image {
-			width: 60%;
-			max-height: 450px;
-			picture {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				img {
-					object-position: top;
+		.video {
+			width: 50%;
+
+			.image {
+				width: 50%;
+				max-height: 450px;
+				picture {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					img {
+						object-position: top;
+					}
 				}
 			}
 		}
