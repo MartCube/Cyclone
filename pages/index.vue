@@ -15,6 +15,9 @@
 					</div>
 				</section>
 			</div>
+			<div>
+				<Faq />
+			</div>
 		</template>
 		<template v-else>
 			<h2>Loading...</h2>

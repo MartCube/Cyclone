@@ -3,8 +3,6 @@
 		<Crumbs />
 		<Title value="Контакты" />
 		<ContactForm />
-
-		<Accordion header="question" body="answer" />
 	</div>
 </template>
 

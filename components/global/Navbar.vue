@@ -89,14 +89,13 @@ export default {
 $animation-time: 0.3s;
 nav {
 	position: fixed;
-	width: calc(100vw - 100px);
+	width: calc(100% - 100px);
 	background-color: $primary;
 	height: 100px;
 	z-index: 20;
-	left: 0;
+	right: 0;
 	top: 0;
 	transition: height 0.05s linear;
-	padding-left: 100px;
 	ul {
 		display: flex;
 		align-items: center;

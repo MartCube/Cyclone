@@ -61,37 +61,37 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 			padding-bottom: 1rem;
 			overflow-y: hidden;
 			height: auto;
-			*::-webkit-scrollbar {
+			&::-webkit-scrollbar {
 				width: 5px;
 				height: 5px;
 			}
-			*::-webkit-scrollbar-button {
+			&::-webkit-scrollbar-button {
 				width: 0px;
 				height: 0px;
 			}
-			*::-webkit-scrollbar-thumb {
+			&::-webkit-scrollbar-thumb {
 				background: $secondary;
 				border: 5px none $secondary;
 				border-radius: 50px;
 			}
-			*::-webkit-scrollbar-thumb:hover {
+			&::-webkit-scrollbar-thumb:hover {
 				background: $gradient-red;
 			}
-			*::-webkit-scrollbar-thumb:active {
+			&::-webkit-scrollbar-thumb:active {
 				background: $secondary;
 			}
-			*::-webkit-scrollbar-track {
+			&::-webkit-scrollbar-track {
 				background: $primary-dark;
 				border: 5px none $primary-dark;
 				border-radius: 50px;
 			}
-			*::-webkit-scrollbar-track:hover {
+			&::-webkit-scrollbar-track:hover {
 				background: $gradient-gray;
 			}
-			*::-webkit-scrollbar-track:active {
+			&::-webkit-scrollbar-track:active {
 				background: $gradient-gray;
 			}
-			*::-webkit-scrollbar-corner {
+			&::-webkit-scrollbar-corner {
 				background: $gradient-gray;
 			}
 			.slider-wrapper {
