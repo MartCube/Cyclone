@@ -24,8 +24,8 @@
 			</n-link>
 		</div>
 		<div class="policy">
-			<p><Icon name="copyright" /> Cyclone {{ year }}<span /> All rights reserved</p>
-			<n-link to="/">Privacy Policy <span /> Terms and Conditions</n-link>
+			<p><Icon name="copyright" /> Cyclone {{ year }} All rights reserved</p>
+			<n-link to="/">Privacy Policy Terms and Conditions</n-link>
 		</div>
 	</footer>
 </template>

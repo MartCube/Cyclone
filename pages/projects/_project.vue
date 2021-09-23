@@ -9,8 +9,11 @@
 					<prismic-rich-text class="description" :field="project.data.description" />
 				</div>
 				<div class="video">
-					<VideoItem v-if="project.data.video_link" :data="project.data.video_link" />
-					<ImageItem v-else :data="project.data.main_image" />
+					<div class="play" @click="OpenModal">
+						<Icon name="play" fill="white" />
+					</div>
+					<ImageItem :data="project.data.main_image" />
+					<ModalVideo :data="project.data.video_link" />
 				</div>
 			</div>
 			<Gallery :data="project.data.gallery" />
@@ -27,6 +30,11 @@ export default {
 	async fetch() {
 		const project = await this.$prismic.api.getByUID('project_post', this.$route.params.project)
 		this.project = project
+	},
+	methods: {
+		OpenModal() {
+			this.$store.dispatch('bindModalVideo', true)
+		},
 	},
 }
 </script>
@@ -59,6 +67,22 @@ export default {
 		}
 		.video {
 			width: 50%;
+			max-height: 450px;
+			position: relative;
+			.play {
+				z-index: 4;
+				display: flex;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+
+				height: min-content;
+				border-radius: 50%;
+				padding: 20px;
+				background: $secondary;
+				cursor: pointer;
+			}
 
 			.image {
 				width: 50%;

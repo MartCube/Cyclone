@@ -1,5 +1,6 @@
 export const state = (context) => ({
 	panels: {},
+	modalVideo: false,
 
 	// toggle footer visibility
 	footer: true,
@@ -8,6 +9,7 @@ export const state = (context) => ({
 export const getters = {
 	panels: (state) => state.panels,
 	footer: (state) => state.footer,
+	modalVideo: (state) => state.modalVideo,
 }
 
 export const mutations = {
@@ -17,6 +19,9 @@ export const mutations = {
 	setFooter(state, payload) {
 		state.footer = payload
 	},
+	setModalVideo(state, payload) {
+		state.modalVideo = payload
+	},
 }
 
 export const actions = {
@@ -25,5 +30,8 @@ export const actions = {
 	},
 	bindFooter(context, payload) {
 		context.commit('setFooter', payload)
+	},
+	bindModalVideo(context, payload) {
+		context.commit('setModalVideo', payload)
 	},
 }

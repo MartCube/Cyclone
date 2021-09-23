@@ -25,7 +25,7 @@ export default {
 
 <style lang="scss">
 .plyr_video {
-	width: 100%;
+	width: 50%;
 }
 
 :root {
