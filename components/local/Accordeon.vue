@@ -1,16 +1,16 @@
 <template>
-	<div class="message" @click="toggleAccordion">
-		<div class="header">
+	<div class="accordeon" :class="{ active: isOpen }" @click="toggleAccordion">
+		<div class="question">
 			<span class="number">{{ number }}</span>
-			<h3>{{ header }}</h3>
+			<h3>{{ question }}</h3>
 			<!-- <Icon name="close" /> -->
-			<button class="collapse_button" :class="{ active: isOpen }">
+			<button class="collapse_button">
 				<span></span>
 				<span></span>
 			</button>
 		</div>
-		<div class="body" :class="{ colapseAnim: isOpen }">
-			<p>{{ body }}</p>
+		<div class="answer">
+			<p>{{ answer }}</p>
 		</div>
 	</div>
 </template>
@@ -23,18 +23,18 @@ export default {
 			required: true,
 			default: 1,
 		},
-		header: {
+		question: {
 			type: String,
 			required: true,
 		},
-		body: {
+		answer: {
 			type: String,
 			required: true,
 		},
 	},
 	data() {
 		return {
-			isOpen: true,
+			isOpen: false,
 		}
 	},
 	methods: {
@@ -46,9 +46,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.message {
+.accordeon {
 	// margin-bottom: 1rem;
-	.header {
+	.question {
 		position: relative;
 		z-index: 2;
 		cursor: pointer;
@@ -57,21 +57,22 @@ export default {
 		min-height: 70px;
 		align-items: center;
 		border: 2px solid $secondary;
-		border-bottom-color: transparent;
 		.number {
-			height: 100%;
+			min-height: 70px;
 			display: flex;
-			width: 4rem;
+			width: 5rem;
 			justify-content: center;
 			align-items: center;
 			position: relative;
+			font-size: 2rem;
+			font-weight: bold;
 			&::before,
 			&::after {
 				content: '';
-				transform: rotate(90deg);
+				// transform: rotate(90deg);
 				display: flex;
-				width: 1rem;
-				height: 2px;
+				width: 2px;
+				height: 1.5rem;
 				background-color: $secondary;
 				position: absolute;
 				right: 0;
@@ -86,6 +87,7 @@ export default {
 		h3 {
 			display: inline-block;
 			flex: 1;
+			padding-left: 2rem;
 		}
 		.collapse_button {
 			width: 30px;
@@ -93,14 +95,22 @@ export default {
 			border: none;
 			display: flex;
 			justify-content: center;
+			position: relative;
 			align-items: center;
+			background-color: $primary;
+			margin-right: 2rem;
 			span {
 				display: flex;
+				position: absolute;
+				z-index: 1;
 				width: 100%;
 				height: 2px;
 				background-color: $secondary;
 				&:first-child {
-					transform: rotate(90deg);
+					transform: rotate(45deg);
+				}
+				&:last-child {
+					transform: rotate(-45deg);
 				}
 			}
 		}
@@ -108,7 +118,7 @@ export default {
 			opacity: 0.9;
 		}
 	}
-	.body {
+	.answer {
 		// background-color: white;
 		max-height: 30em;
 		overflow: hidden;
@@ -129,7 +139,7 @@ export default {
 	}
 }
 @media (max-width: 750px) {
-	.message {
+	.accordeon {
 		width: 95%;
 	}
 }

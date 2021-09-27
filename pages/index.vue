@@ -3,20 +3,18 @@
 		<template v-if="!$fetchState.pending">
 			<div v-for="(slice, i) in slices" :key="slice.slice_type + i">
 				<HomeIntro v-if="slice.slice_type == 'homeintro'" :data="slice" />
-				<Stages v-if="slice.slice_type == 'stages'" :data="slice" />
-				<TitleText v-if="slice.slice_type == 'title_text'" :data="slice" />
-				<PanelSlider v-if="slice.slice_type == 'panelslider'" :data="slice" />
-				<Partners v-if="slice.slice_type == 'partners'" :data="slice" />
-				<Cta v-if="slice.slice_type == 'cta'" :data="slice" />
-				<Achievements v-if="slice.slice_type == 'achievements'" :data="slice" />
+				<Stages v-else-if="slice.slice_type == 'stages'" :data="slice" />
+				<TitleText v-else-if="slice.slice_type == 'title_text'" :data="slice" />
+				<PanelSlider v-else-if="slice.slice_type == 'panelslider'" :data="slice" />
+				<Partners v-else-if="slice.slice_type == 'partners'" :data="slice" />
+				<Cta v-else-if="slice.slice_type == 'cta'" :data="slice" />
+				<Achievements v-else-if="slice.slice_type == 'achievements'" :data="slice" />
+				<Faq v-else-if="slice.slice_type == 'faq'" :data="slice" />
 				<section v-else-if="slice.slice_type == 'text'" class="plain-text">
 					<div class="content rich_text">
 						<prismic-rich-text :field="slice.primary.plain_text" />
 					</div>
 				</section>
-			</div>
-			<div>
-				<Faq />
 			</div>
 		</template>
 		<template v-else>

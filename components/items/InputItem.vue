@@ -53,7 +53,7 @@ export default {
 <style lang="scss" scoped>
 .input_item {
 	position: relative;
-	padding: 2rem 0;
+	padding: inherit;
 	width: 100%;
 	height: 100%;
 

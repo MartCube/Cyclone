@@ -3,11 +3,7 @@
 		<div class="content">
 			<h2 class="title">FAQ</h2>
 			<div class="accordeon_wrapper">
-				<Accordion number="1" header="Sometimes we also need to access the original DOM event in an inline statement handler." body="Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. " />
-				<Accordion number="2" header="Sometimes we also need to access the original DOM event in an inline statement handler." body="Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. " />
-				<Accordion number="3" header="Sometimes we also need to access the original DOM event in an inline statement handler." body="Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. " />
-				<Accordion number="4" header="Sometimes we also need to access the original DOM event in an inline statement handler." body="Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. " />
-				<Accordion number="5" header="Sometimes we also need to access the original DOM event in an inline statement handler." body="Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. " />
+				<Accordeon v-for="(item, i) in data.items" :key="i" :number="i + 1" :question="item.question" :answer="item.answer" />
 			</div>
 			<div class="question-icon">
 				<svg width="270" height="382" viewBox="0 0 270 382" fill="none" xmlns="http://www.w3.org/2000/svg">

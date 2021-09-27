@@ -113,5 +113,8 @@ export default {
 			margin-top: 2rem;
 		}
 	}
+	.input_item {
+		padding: 2rem 0;
+	}
 }
 </style>

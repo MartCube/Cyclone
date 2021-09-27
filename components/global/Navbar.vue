@@ -93,7 +93,7 @@ export default {
 $animation-time: 0.3s;
 nav {
 	position: fixed;
-	width: 100%;
+	width: calc(100% - 100px);
 	background-color: $primary;
 	height: 100px;
 	z-index: 20;

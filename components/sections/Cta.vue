@@ -6,7 +6,7 @@
 				<p class="cta-description">{{ data.primary.description }}</p>
 			</div>
 			<div class="form">
-				<!-- <CtaForm /> -->
+				<CtaForm />
 			</div>
 		</div>
 	</section>
