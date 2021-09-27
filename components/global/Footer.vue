@@ -20,12 +20,12 @@
 		<div class="map">
 			<h4>Карта</h4>
 			<n-link to="/">
-				<ImageItem :src="map" />
+				<ImageItem :data="map" />
 			</n-link>
 		</div>
 		<div class="policy">
-			<p><Icon name="copyright" /> Cyclone {{ year }}<span /> All rights reserved</p>
-			<n-link to="/">Privacy Policy <span /> Terms and Conditions</n-link>
+			<p><Icon name="copyright" /> Cyclone {{ year }} All rights reserved</p>
+			<n-link to="/">Privacy Policy Terms and Conditions</n-link>
 		</div>
 	</footer>
 </template>
@@ -37,7 +37,7 @@ export default {
 	}),
 	async fetch() {
 		const fetch = await this.$prismic.api.getSingle('footer')
-		this.map = fetch.data.map.url
+		this.map = fetch.data.map
 	},
 	computed: {
 		year() {

@@ -1,7 +1,7 @@
 <template>
 	<div id="gallery">
 		<div class="gallery">
-			<ImageItem v-for="(item, i) in data" :key="i" :src="item.image.thumbnail.url" :alt="item.image.alt" @click.native="Toggle(i)" />
+			<ImageItem v-for="(item, i) in data" :key="i" :data="item.image.gallery" @click.native="Toggle(i)" />
 		</div>
 
 		<div v-if="lightbox" class="lightbox">
@@ -11,7 +11,7 @@
 					<Icon name="chevron" :class="{ disable: currentImage == 0 }" direction="left" @click.native="Prev(0)" />
 				</div>
 				<div class="image">
-					<ImageItem :src="data[currentImage].image.url" :alt="data[currentImage].image.alt" />
+					<ImageItem :data="data[currentImage].image" />
 				</div>
 				<div class="icons_navigation">
 					<Icon name="chevron" :class="{ disable: currentImage == data.length - 1 }" @click.native="Next(0)" />
@@ -78,6 +78,7 @@ export default {
 	grid-template-rows: 16vw 16vw 16vw 16vw;
 	grid-column-gap: 0px;
 	grid-row-gap: 0px;
+	margin: 40px 0;
 	// justify-items: stretch;
 	// align-items: stretch;
 

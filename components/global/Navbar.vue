@@ -10,10 +10,10 @@
 				<li class="first-lvl submenu" :class="{ active: isActive }">
 					<a href="#" @mouseover="isActive = true">Вентилируемые фасады</a>
 					<ul class="panels-list">
-						<li v-for="(item, i) in panels" :key="item.node._meta.uid + i">
-							<n-link exact :to="`/${item.node._meta.uid}`">
-								<ImageItem :key="item.node.title" :src="item.node.main_image.url" />
-								<span class="title">{{ item.node.title }}</span>
+						<li v-for="panel in panels.results" :key="panel.uid">
+							<n-link exact :to="panel.uid">
+								<ImageItem :data="panel.data.main_image" />
+								<span class="title">{{ panel.data.title }}</span>
 							</n-link>
 						</li>
 					</ul>
@@ -39,6 +39,10 @@ export default {
 		compact: true,
 		isActive: false,
 	}),
+	async fetch() {
+		const panels = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'panel_post')])
+		this.$store.dispatch('bindPanels', panels)
+	},
 	computed: {
 		panels() {
 			return this.$store.getters.panels
@@ -89,7 +93,7 @@ export default {
 $animation-time: 0.3s;
 nav {
 	position: fixed;
-	width: calc(100% - 100px);
+	width: 100%;
 	background-color: $primary;
 	height: 100px;
 	z-index: 20;

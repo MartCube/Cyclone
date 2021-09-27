@@ -1,6 +1,6 @@
 <template>
 	<section class="panel-slider">
-		<div class="content">
+		<!-- <div class="content">
 			<h2 class="title">Фасадные системы</h2>
 			<div class="slider">
 				<div class="slider-wrapper">
@@ -19,7 +19,7 @@
 					</article>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</section>
 </template>
 
@@ -32,14 +32,14 @@ export default {
 			required: true,
 		},
 	},
-	computed: {
-		panels() {
-			const panelData = this.$store.getters.panels.filter((el) => {
-				return el.node._meta.tags[0] === 'panel_slider' ? el.node : false
-			})
-			return panelData
-		},
-	},
+	// computed: {
+	// 	panels() {
+	// 		const panelData = this.$store.getters.panels.filter((el) => {
+	// 			return el.node._meta.tags[0] === 'panel_slider' ? el.node : false
+	// 		})
+	// 		return panelData
+	// 	},
+	// },
 }
 </script>
 

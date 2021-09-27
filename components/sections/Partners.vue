@@ -3,7 +3,7 @@
 		<div class="content">
 			<h2 class="title">{{ data.primary.title }}</h2>
 			<div class="partners-grid">
-				<ImageItem v-for="(img, i) in data.items" :key="img.partner_image.alt + i" :src="img.partner_image.url" />
+				<ImageItem v-for="(img, i) in data.items" :key="img.partner_image.alt + i" :data="img.partner_image" />
 			</div>
 		</div>
 	</section>

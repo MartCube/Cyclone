@@ -8,8 +8,12 @@
 					<h2 class="title">{{ project.data.title }}</h2>
 					<prismic-rich-text class="description" :field="project.data.description" />
 				</div>
-				<div class="image">
-					<ImageItem :src="project.data.main_image.url" :alt="project.data.title" />
+				<div class="video">
+					<div class="play" @click="OpenModal">
+						<Icon name="play" fill="white" />
+					</div>
+					<ImageItem :data="project.data.main_image" />
+					<ModalVideo :data="project.data.video_link" />
 				</div>
 			</div>
 			<Gallery :data="project.data.gallery" />
@@ -27,6 +31,11 @@ export default {
 		const project = await this.$prismic.api.getByUID('project_post', this.$route.params.project)
 		this.project = project
 	},
+	methods: {
+		OpenModal() {
+			this.$store.dispatch('bindModalVideo', true)
+		},
+	},
 }
 </script>
 
@@ -34,7 +43,7 @@ export default {
 .project {
 	display: flex;
 	flex-direction: column;
-	padding: 80px 0 80px 40px;
+	padding: 80px 0 0 40px;
 	margin-left: 100px;
 	border-left: 1px solid $secondary;
 	width: calc(100vw - 200px);
@@ -42,6 +51,7 @@ export default {
 	.intro {
 		display: flex;
 		width: 100%;
+		justify-content: space-between;
 		.text {
 			width: 40%;
 			padding-right: 2rem;
@@ -55,15 +65,35 @@ export default {
 				font-size: 2rem;
 			}
 		}
-		.image {
-			width: 60%;
+		.video {
+			width: 50%;
 			max-height: 450px;
-			picture {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				img {
-					object-position: top;
+			position: relative;
+			.play {
+				z-index: 4;
+				display: flex;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+
+				height: min-content;
+				border-radius: 50%;
+				padding: 20px;
+				background: $secondary;
+				cursor: pointer;
+			}
+
+			.image {
+				width: 50%;
+				max-height: 450px;
+				picture {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					img {
+						object-position: top;
+					}
 				}
 			}
 		}
