@@ -48,6 +48,9 @@ export default {
 <style lang="scss" scoped>
 .accordeon {
 	// margin-bottom: 1rem;
+	&:not(:last-child) .question {
+		border-bottom-color: $primary;
+	}
 	.question {
 		position: relative;
 		z-index: 2;
@@ -56,7 +59,7 @@ export default {
 		display: flex;
 		min-height: 70px;
 		align-items: center;
-		border: 2px solid $secondary;
+		border: 1px solid $secondary;
 		.number {
 			min-height: 70px;
 			display: flex;
@@ -71,7 +74,7 @@ export default {
 				content: '';
 				// transform: rotate(90deg);
 				display: flex;
-				width: 2px;
+				width: 1px;
 				height: 1.5rem;
 				background-color: $secondary;
 				position: absolute;
@@ -90,21 +93,23 @@ export default {
 			padding-left: 2rem;
 		}
 		.collapse_button {
-			width: 30px;
-			height: 30px;
+			width: 25px;
+			height: 25px;
 			border: none;
 			display: flex;
 			justify-content: center;
 			position: relative;
 			align-items: center;
-			background-color: $primary;
+			background-color: transparent;
 			margin-right: 2rem;
+			transform: rotate(45deg);
+			transition: transform 0.5s ease-in-out;
 			span {
 				display: flex;
 				position: absolute;
 				z-index: 1;
 				width: 100%;
-				height: 2px;
+				height: 4px;
 				background-color: $secondary;
 				&:first-child {
 					transform: rotate(45deg);
@@ -121,26 +126,41 @@ export default {
 	.answer {
 		// background-color: white;
 		max-height: 30em;
+		height: 0;
 		overflow: hidden;
-		opacity: 1;
-		transition: 0.5s ease all;
+		opacity: 0;
+		transform: translateY(-20px);
+		transition: all 0.1s ease-in-out;
 		p {
 			padding: 20px 10px;
 		}
 	}
-	.colapseAnim {
-		transform: translateY(-20px);
-		opacity: 0;
-		max-height: 0;
-	}
-	.iconAnim {
-		transform: rotate(135deg);
-		color: #4a88c8;
+	&.active {
+		.question {
+			.collapse_button {
+				transform: rotate(405deg);
+			}
+			border-bottom-color: $secondary;
+		}
+		.answer {
+			height: 100%;
+			transform: translateY(0);
+			opacity: 1;
+		}
 	}
 }
 @media (max-width: 750px) {
 	.accordeon {
-		width: 95%;
+		width: 90%;
+		.question {
+			align-items: stretch;
+			.collapse_button {
+				margin: 1rem;
+			}
+			h3 {
+				padding: 10px 0 10px 20px;
+			}
+		}
 	}
 }
 </style>

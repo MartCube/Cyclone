@@ -125,8 +125,13 @@ export default {
 	.cta_form {
 		width: 100%;
 		margin-top: 4rem;
+		justify-content: flex-end;
+		padding-right: 1.5rem;
 		form {
-			width: 50vw;
+			width: 75vw;
+			button {
+				align-items: center;
+			}
 		}
 	}
 }

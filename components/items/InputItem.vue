@@ -135,7 +135,6 @@ export default {
 		input {
 			height: 100%;
 			border-bottom: none;
-			padding-top: 45px;
 			font-size: 20px;
 			&:focus {
 				~ .border {
@@ -143,7 +142,7 @@ export default {
 				}
 			}
 			&:placeholder-shown ~ label {
-				top: 2rem;
+				top: 1rem;
 				font-size: 1.6rem;
 				font-weight: bold;
 			}
@@ -155,7 +154,7 @@ export default {
 		}
 		.border {
 			position: absolute;
-			bottom: 0;
+			bottom: 18px;
 			display: block;
 			right: 0;
 			width: 100%;
@@ -167,6 +166,9 @@ export default {
 }
 // @media (min-width: 1700px) {
 // }
-// @media (max-width: 1200px) {
+// @media (max-width: 900px) {
+// 	.cta_form {
+
+// 	}
 // }
 </style>
