@@ -1,6 +1,7 @@
 <template>
 	<div class="page project">
 		<Crumbs />
+		<span class="go_back" @click="$router.back()"> <Icon name="arrow" size="36px" direction="left" /> назад </span>
 
 		<template v-if="!$fetchState.pending">
 			<div class="intro">
@@ -48,6 +49,20 @@ export default {
 	border-left: 1px solid $secondary;
 	width: calc(100vw - 200px);
 	overflow-x: hidden;
+
+	.go_back {
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+		margin-bottom: 50px;
+		svg {
+			margin-right: 1rem;
+		}
+		&:hover {
+			opacity: 0.75;
+		}
+	}
+
 	.intro {
 		display: flex;
 		width: 100%;

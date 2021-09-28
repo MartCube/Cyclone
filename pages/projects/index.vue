@@ -15,7 +15,7 @@
 			<template v-if="$fetchState.error">error</template>
 			<template v-else-if="!$fetchState.pending">
 				<ProjectCard v-for="(project, i) in projects" :key="i" :project="project" />
-				<div class="wrapper">
+				<div class="wrapper" @click="fetchMore">
 					<ButtonItem v-if="total_pages !== current_page">Показать больше</ButtonItem>
 				</div>
 			</template>
@@ -32,10 +32,8 @@ export default {
 		active_filter: [],
 		// pagination
 		current_page: 1,
-		page_size: 6,
+		page_size: 4,
 		total_pages: null,
-		prev_page: null,
-		next_page: null,
 	}),
 	async fetch() {
 		const projects = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'project_post'), this.$prismic.predicates.at('document.tags', this.active_filter)], {
@@ -47,8 +45,6 @@ export default {
 		// move this to vuex store
 		this.projects = projects.results
 		this.total_pages = projects.total_pages
-		this.prev_page = projects.prev_page
-		this.next_page = projects.next_page
 	},
 	computed: {
 		filters() {
@@ -56,40 +52,18 @@ export default {
 		},
 	},
 	methods: {
-		// filters
 		filterUpdate(filter) {
 			this.active_filter = [filter]
 			if (filter === 'all') this.active_filter = []
 			// restart results
 			this.current_page = 1
-			this.next_page = 6
+			this.page_size = 4
 			this.$fetch()
 		},
-		// pagination
-		fetchNext() {
-			if (this.next_page) {
-				this.current_page++
-				this.ScrollToTop()
-				this.$fetch()
-			}
-		},
-		fetchBack() {
-			if (this.prev_page) {
-				this.current_page--
-				this.ScrollToTop()
-				this.$fetch()
-			}
-		},
-		fetchPage(value) {
-			this.current_page = value
+		fetchMore() {
+			this.page_size += 4
 			this.ScrollToTop()
 			this.$fetch()
-		},
-		fetchFirst() {
-			this.fetchPage(1)
-		},
-		fetchLast() {
-			this.fetchPage(this.total_pages)
 		},
 		ScrollToTop() {
 			window.scrollTo({ top: 0, behavior: 'smooth' })

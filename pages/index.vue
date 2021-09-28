@@ -17,9 +17,6 @@
 				</section>
 			</div>
 		</template>
-		<template v-else>
-			<h2>Loading...</h2>
-		</template>
 	</div>
 </template>
 
