@@ -1,4 +1,5 @@
-# cyclone
+![favicon](https://github.com/MartCube/Cyclone/blob/master/static/favicon.ico?raw=true) 
+# Cyclone
 
 ## Jamstack architecture
 
