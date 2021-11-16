@@ -1,4 +1,4 @@
-... 🏗️
+# 🏗️
 # Cyclone
 
 ## Jamstack architecture
