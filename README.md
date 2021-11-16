@@ -1,5 +1,13 @@
 # cyclone
 
+## Jamstack architecture
+
+- Nuxt - full static site generation
+- Prismic as CMS
+- Netlify AWS Lambda functions
+- Blog with filters
+- Anime.js
+
 ## Build Setup
 
 ```bash
