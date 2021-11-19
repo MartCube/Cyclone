@@ -4,7 +4,7 @@
 ## Jamstack architecture
 
 - Nuxt - full static site generation
-- Prismic as CMS
+- Prismic as CMS, GraphQL
 - Netlify AWS Lambda functions
 - Blog with filters
 - Anime.js
