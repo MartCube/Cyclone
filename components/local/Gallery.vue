@@ -6,7 +6,10 @@
 
 		<div v-if="lightbox" class="lightbox">
 			<div class="content">
-				<Icon name="close" class="close" @click.native="Toggle(null)" />
+				<div class="close" @click.native="Toggle(null)">
+					<!-- <Icon name="close" size="35px" /> -->
+					<Icon name="close" class="close" />
+				</div>
 				<div class="icons_navigation">
 					<Icon name="chevron" :class="{ disable: currentImage == 0 }" direction="left" @click.native="Prev(0)" />
 				</div>
@@ -76,9 +79,11 @@ export default {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	grid-template-rows: 16vw 16vw 16vw 16vw;
-	grid-column-gap: 0px;
-	grid-row-gap: 0px;
-	margin: 40px 0;
+	grid-column-gap: 5px;
+	grid-row-gap: 5px;
+	// margin: 40px 0;
+	margin-bottom: 40px;
+	margin-top: 5px;
 	// justify-items: stretch;
 	// align-items: stretch;
 
@@ -168,6 +173,11 @@ export default {
 		width: 40px;
 		height: 40px;
 	}
+	.close {
+		position: fixed;
+		top: 0;
+		right: 0;
+	}
 	svg {
 		width: 40px;
 		height: 40px;
@@ -181,11 +191,7 @@ export default {
 		&:hover {
 			opacity: 0.9;
 		}
-		&.close {
-			position: fixed;
-			top: 0;
-			right: 0;
-		}
+
 		&.left {
 			transform: rotate(180deg);
 		}

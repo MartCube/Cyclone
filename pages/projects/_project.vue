@@ -82,7 +82,7 @@ export default {
 		}
 		.video {
 			width: 50%;
-			max-height: 450px;
+			// max-height: 450px;
 			position: relative;
 			.play {
 				z-index: 4;
@@ -99,16 +99,12 @@ export default {
 				cursor: pointer;
 			}
 
-			.image {
-				width: 50%;
-				max-height: 450px;
-				picture {
-					width: 100%;
-					height: 100%;
-					object-fit: cover;
-					img {
-						object-position: top;
-					}
+			picture {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				img {
+					object-position: top;
 				}
 			}
 		}

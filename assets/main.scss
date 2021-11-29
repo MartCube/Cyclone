@@ -108,12 +108,14 @@ article {
 	}
 	ul {
 		list-style-type: none;
-		display: flex;
-		justify-content: space-between;
-		flex-wrap: wrap;
+		// display: flex;
+		// justify-content: space-between;
+		// flex-wrap: wrap;
 		li {
 			margin: 7px 0;
 			display: flex;
+			flex-wrap: nowrap;
+			white-space: nowrap;
 			line-height: 1.8rem;
 			font-size: 1.2rem;
 			&::before {
