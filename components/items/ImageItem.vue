@@ -1,7 +1,7 @@
 <template>
 	<picture>
 		<!-- <source v-if="data.mobile" :data-srcset="data.mobile.url" media="(max-width: 900px)" /> -->
-		<img :width="data.dimensions.width" :height="data.dimensions.height" :data-src="data.url" :src="data.url" loading="lazy" class="lazyload" alt="data.alt" />
+		<img :data-src="data.url" :src="data.url" loading="lazy" class="lazyload" :alt="data.alt" :width="data.dimensions.width" :height="data.dimensions.height" />
 	</picture>
 </template>
 

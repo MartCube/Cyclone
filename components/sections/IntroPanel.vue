@@ -1,7 +1,7 @@
 <template>
 	<section class="intro-panel">
 		<div class="main-image">
-			<ImageItem :src="data.image" :alt="data.title" />
+			<ImageItem :data="data.image" />
 		</div>
 		<div class="title-wrapper">
 			<h1>{{ data.title }}</h1>
