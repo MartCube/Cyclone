@@ -2,16 +2,16 @@
 	<div class="contact_form">
 		<ValidationObserver v-if="!message" ref="contact" tag="form" autocomplete="off" @submit.prevent="Submit()">
 			<h4 class="title">Нам правда важно ваше мнение</h4>
-			<InputItem name="name" label="Имя" rules="required" @getValue="getName" />
-			<InputItem name="number" label="Телефон" rules="min:9|required" @getValue="getNumber" />
-			<InputItem name="email" label="Email" rules="email|required" @getValue="getEmail" />
-			<InputItem name="message" label="Сообщение" rules="required" @getValue="getMessage" />
+			<InputItem name="name" label="Имя" rules="required" @getValue="storeValue" />
+			<InputItem name="number" label="Телефон" rules="min:9|required" @getValue="storeValue" />
+			<InputItem name="email" label="Email" rules="email|required" @getValue="storeValue" />
+			<InputItem name="message" label="Сообщение" rules="required" @getValue="storeValue" />
 			<ButtonItem> Отправить <Icon name="mail" /> </ButtonItem>
 		</ValidationObserver>
 
 		<div v-else class="message">
-			<span>response like thank you</span>
-			<ButtonItem @click.native="$router.push('/')"> go back</ButtonItem>
+			<span>Thanks for being awesome!</span>
+			<ButtonItem @click.native="message = false">write us more</ButtonItem>
 		</div>
 	</div>
 </template>
@@ -34,18 +34,13 @@ export default {
 		},
 	}),
 	methods: {
-		getName(value) {
-			this.form.name = value
+		storeValue(input) {
+			if (input.name === 'name') this.form.name = input.value
+			else if (input.name === 'number') this.form.number = input.value
+			else if (input.name === 'email') this.form.email = input.value
+			else if (input.name === 'message') this.form.message = input.value
 		},
-		getNumber(value) {
-			this.form.number = value
-		},
-		getEmail(value) {
-			this.form.email = value
-		},
-		getMessage(value) {
-			this.form.message = value
-		},
+
 		async Submit() {
 			const isValid = await this.$refs.contact.validate()
 			// validation
@@ -64,11 +59,12 @@ export default {
 				<p>${this.form.message}</p>
 			`
 			// trigger netlify function
-			try {
-				await this.$axios.$post('.netlify/functions/sendmail', this.form)
-			} catch (error) {
-				console.log(error)
-			}
+			// try {
+			// 	await this.$axios.$post('.netlify/functions/sendmail', this.form)
+			// } catch (error) {
+			// 	console.log(error)
+			// }
+
 			this.loading = false
 			console.log('submited')
 			this.message = !this.message
@@ -114,7 +110,7 @@ export default {
 		}
 	}
 	.input_item {
-		padding: 2rem 0;
+		margin: 2rem 0;
 	}
 }
 </style>

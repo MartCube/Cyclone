@@ -4,7 +4,7 @@
 			{{ errors[0] }}
 		</div>
 
-		<input :id="name" v-model="input_value" :type="type" :placeholder="name" :name="name" @change="emitValue" />
+		<input :id="name" v-model="inputValue" :type="type" :placeholder="name" :name="name" @change="emitValue" />
 
 		<label :for="name" class="input_label">{{ label }}</label>
 		<div class="border"></div>
@@ -40,11 +40,11 @@ export default {
 		},
 	},
 	data: () => ({
-		input_value: '',
+		inputValue: '',
 	}),
 	methods: {
 		emitValue() {
-			this.$emit('getValue', this.input_value)
+			this.$emit('getValue', { name: this.name, value: this.inputValue })
 		},
 	},
 }
@@ -60,10 +60,11 @@ export default {
 	font-weight: 500;
 	input {
 		width: 100%;
+		height: 50px;
 		border: 0;
 		border-bottom: 2px solid $grey;
 		outline: 0;
-		padding: 7px 0;
+		padding-top: 20px;
 		background: transparent;
 
 		font-family: inherit;
