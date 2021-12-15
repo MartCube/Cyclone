@@ -1,50 +1,46 @@
 <template>
 	<div class="page">
-		<template v-if="!$fetchState.pending">
-			<div v-for="(slice, i) in slices" :key="slice.slice_type + i">
-				<HomeIntro v-if="slice.slice_type == 'homeintro'" :data="slice" />
-				<Stages v-else-if="slice.slice_type == 'stages'" :data="slice" />
-				<TitleText v-else-if="slice.slice_type == 'title_text'" :data="slice" />
-				<PanelSlider v-else-if="slice.slice_type == 'panelslider'" :data="slice" />
-				<Partners v-else-if="slice.slice_type == 'partners'" :data="slice" />
-				<Cta v-else-if="slice.slice_type == 'cta'" :data="slice" />
-				<Achievements v-else-if="slice.slice_type == 'achievements'" :data="slice" />
-				<Faq v-else-if="slice.slice_type == 'faq'" :data="slice" />
-				<section v-else-if="slice.slice_type == 'text'" class="plain-text">
-					<div class="content rich_text">
-						<prismic-rich-text :field="slice.primary.plain_text" />
-					</div>
-				</section>
-			</div>
-		</template>
+		<div v-for="block in blocks" :key="block.__typename">
+			<template v-if="block.__typename === 'IntroRecord'">
+				<span>IntroRecord</span>
+			</template>
+			<template v-else-if="block.__typename === 'GalleryRecord'">
+				<Partners :data="block.gallery" />
+			</template>
+			<template v-else-if="block.__typename === 'FaqRecord'">
+				<span>FaqRecord</span>
+			</template>
+			<template v-else-if="block.__typename === 'RichtextRecord'">
+				<datocms-structured-text :data="block.text.value" />
+			</template>
+		</div>
 	</div>
 </template>
 
 <script>
+import { request } from '~/plugins/datocms'
+import { index } from '~/plugins/dato-query'
+
 export default {
 	data: () => ({
-		slices: [],
+		blocks: null,
 	}),
 	async fetch() {
-		const fetch = await this.$prismic.api.getSingle('index')
-		// console.log(fetch.data.body)
-		this.slices = fetch.data.body
+		const fetch = await request({
+			query: index,
+		})
+		this.blocks = fetch.index.content
 	},
+	methods: {},
 }
 </script>
 
 <style lang="scss" scoped>
-.container {
+.page {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-
-	picture {
-		max-width: 50%;
-		min-height: 500px;
-		margin: 100px 0;
-	}
 }
 </style>

@@ -3,7 +3,6 @@ export default {
 	components: ['~/components/forms', '~/components/global', '~/components/items', '~/components/local', '~/components/sections'],
 	css: ['~/assets/main.scss'],
 
-	// Global page headers: https://go.nuxtjs.dev/config-head
 	head: {
 		title: 'cyclone',
 		htmlAttrs: {
@@ -13,16 +12,10 @@ export default {
 		link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
 	},
 
-	plugins: [{ src: '~/plugins/vue-plyr', mode: 'client' }, { src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }],
+	plugins: [{ src: '~/plugins/dato-components.js' }, { src: '~/plugins/vue-plyr', mode: 'client' }, { src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }],
 
-	modules: ['@nuxtjs/style-resources', '@nuxtjs/prismic'],
+	modules: ['@nuxtjs/axios', '@nuxtjs/style-resources'],
 
-	prismic: {
-		endpoint: 'https://cyclone.cdn.prismic.io/api/v2',
-		linkResolver: '@/plugins/link-resolver',
-		htmlSerializer: '@/plugins/html-serializer',
-		preview: false,
-	},
 	styleResources: {
 		scss: ['./assets/colors.scss', './assets/mixins.scss'],
 	},
@@ -31,11 +24,6 @@ export default {
 		// https://go.nuxtjs.dev/eslint
 		'@nuxtjs/eslint-module',
 	],
-	apollo: {
-		clientConfigs: {
-			default: '@/plugins/qraphql.js',
-		},
-	},
 
 	build: {
 		// vee validate

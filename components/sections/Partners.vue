@@ -1,19 +1,20 @@
 <template>
 	<section class="partners">
 		<div class="content">
-			<h2 class="title">{{ data.primary.title }}</h2>
+			<h2 class="title">title</h2>
 			<div class="partners-grid">
-				<ImageItem v-for="(img, i) in data.items" :key="img.partner_image.alt + i" :data="img.partner_image" />
+				<datocms-image v-for="image in data" :key="image.responsiveImage.src" :data="image.responsiveImage" />
 			</div>
 		</div>
 	</section>
 </template>
+
 <script>
 export default {
 	name: 'Partners',
 	props: {
 		data: {
-			type: Object,
+			type: Array,
 			required: true,
 		},
 	},

@@ -10,22 +10,16 @@
 				<li class="first-lvl submenu" :class="{ active: isActive }">
 					<a href="#" @mouseover="isActive = true">Вентилируемые фасады</a>
 					<ul class="panels-list">
-						<li v-for="panel in panels.results" :key="panel.uid">
+						<li v-for="panel in panels" :key="panel.uid">
 							<n-link exact :to="panel.uid">
-								<ImageItem :data="panel.data.main_image" />
-								<span class="title">{{ panel.data.title }}</span>
+								<datocms-image :data="panel.poster.responsiveImage" />
+								<span class="title">{{ panel.title }}</span>
 							</n-link>
 						</li>
 					</ul>
 				</li>
-				<li class="first-lvl">
-					<n-link to="/projects">Объекты</n-link>
-				</li>
-				<li class="first-lvl">
-					<a href="#">Статьи</a>
-				</li>
-				<li class="first-lvl">
-					<n-link exact :to="'/contact'">Контакты</n-link>
+				<li v-for="link in menu" :key="link" class="first-lvl">
+					<n-link to="/projects">{{ link }}</n-link>
 				</li>
 			</ul>
 		</nav>
@@ -34,20 +28,23 @@
 
 <script>
 import { navbarAnimation } from '~/assets/anime'
+import { request } from '~/plugins/datocms'
+import { panelList } from '~/plugins/dato-query'
+
 export default {
 	data: () => ({
 		compact: true,
 		isActive: false,
+		menu: ['Объекты', 'Статьи', 'Контакты'],
+		panels: null,
 	}),
 	async fetch() {
-		const panels = await this.$prismic.api.query([this.$prismic.predicates.at('document.type', 'panel_post')])
-		this.$store.dispatch('bindPanels', panels)
+		const fetch = await request({
+			query: panelList,
+		})
+		this.panels = fetch.allPanels
 	},
-	computed: {
-		panels() {
-			return this.$store.getters.panels
-		},
-	},
+	computed: {},
 	mounted() {
 		this.navBarAnimation()
 		window.addEventListener('resize', () => {
