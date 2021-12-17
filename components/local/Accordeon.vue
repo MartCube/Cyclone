@@ -138,7 +138,7 @@ export default {
 	&.active {
 		.question {
 			.collapse_button {
-				transform: rotate(405deg);
+				transform: rotate(180deg);
 			}
 			border-bottom-color: $secondary;
 		}

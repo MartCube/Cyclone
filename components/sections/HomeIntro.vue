@@ -1,8 +1,6 @@
 <template>
 	<section class="home-intro">
-		<div class="main-image">
-			<ImageItem :data="data.primary.main_image" />
-		</div>
+		<datocms-image class="main-image" :data="data.image.responsiveImage" />
 		<div class="cyclone">
 			<svg width="951" height="199" viewBox="0 0 951 199" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path d="M134.463 146.691L148.283 174.617C143.267 180.154 135.866 184.67 126.08 188.167C116.45 191.51 106.145 193.147 95.1638 193.079C69.9536 192.922 49.5519 185.14 33.9586 169.731C18.369 154.012 10.7234 133.626 11.0219 108.572C11.3131 84.1364 18.9764 64.0772 34.0121 48.3946C49.0478 32.7119 70.0213 24.9542 96.9328 25.1214C107.141 25.1848 116.634 26.7904 125.413 29.9383C134.192 33.0861 141.18 37.2282 146.378 42.3645L129.575 70.1002C118.828 63.3828 107.809 59.989 96.5182 59.9189C83.3718 59.8372 72.4164 64.0998 63.6521 72.7068C55.0442 81.16 50.6473 93.1967 50.4612 108.817C50.2917 123.045 54.7133 134.905 63.726 144.395C72.7425 153.577 84.5199 158.213 99.0583 158.303C112.05 158.384 123.851 154.513 134.463 146.691Z" fill="white" fill-opacity="0.1" />
@@ -15,11 +13,12 @@
 			</svg>
 		</div>
 		<div class="title-wrapper">
-			<h1>{{ $prismic.asText(data.primary.title) }}</h1>
-			<h2>{{ $prismic.asText(data.primary.sub_title) }}</h2>
+			<h1>{{ data.title }}</h1>
+			<h2>{{ data.subtitle }}</h2>
 		</div>
 	</section>
 </template>
+
 <script>
 export default {
 	name: 'HomeIntro',
@@ -31,12 +30,13 @@ export default {
 	},
 }
 </script>
+
 <style lang="scss" scoped>
 .home-intro {
 	height: 100vh;
 	.main-image {
 		position: absolute;
-		width: calc(100% - 200px);
+		width: 100%;
 		height: 100%;
 		picture {
 			width: 100%;
