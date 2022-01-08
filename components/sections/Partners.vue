@@ -3,7 +3,7 @@
 		<div class="content">
 			<h2 class="title">title</h2>
 			<div class="partners-grid">
-				<datocms-image v-for="image in data" :key="image.responsiveImage.src" :data="image.responsiveImage" />
+				<DatocmsImage v-for="image in data" :key="image.responsiveImage.src" :data="image.responsiveImage" />
 			</div>
 		</div>
 	</section>

@@ -1,27 +1,29 @@
 <template>
 	<div class="page">
-		<div v-for="block in blocks" :key="block.__typename">
-			<HomeIntro v-if="block.__typename === 'IntroRecord'" :data="block" />
-			<Partners v-else-if="block.__typename === 'GalleryRecord'" :data="block.gallery" />
-			<Faq v-else-if="block.__typename === 'FaqRecord'" :data="block" />
-			<datocms-structured-text v-else-if="block.__typename === 'RichtextRecord'" :data="block.text.value" />
-		</div>
+		test
+		<!-- <SanityContent :blocks="content" :serializers="serializers" /> -->
 	</div>
 </template>
 
 <script>
-import { request } from '~/plugins/datocms'
-import { index } from '~/plugins/dato-query'
+import { panelList } from '@/plugins/queries'
+// import YouTube from '@/components/YouTube'
 
 export default {
+	asyncData({ $sanity, payload }) {
+		if (payload) {
+			console.log(payload)
+		}
+		return $sanity.fetch(panelList)
+	},
 	data: () => ({
 		blocks: null,
 	}),
 	async fetch() {
-		const fetch = await request({
-			query: index,
-		})
-		this.blocks = fetch.index.content
+		// const fetch = await request({
+		// 	query: index,
+		// })
+		// this.blocks = fetch.index.content
 	},
 	methods: {},
 }

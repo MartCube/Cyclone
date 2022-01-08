@@ -12,12 +12,18 @@ export default {
 		link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
 	},
 
-	plugins: [{ src: '~/plugins/dato-components.js' }, { src: '~/plugins/vue-plyr', mode: 'client' }, { src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }],
+	plugins: [{ src: '~/plugins/vue-plyr', mode: 'client' }, { src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }],
 
-	modules: ['@nuxtjs/axios', '@nuxtjs/style-resources'],
+	modules: ['@nuxtjs/sanity/module', '@nuxtjs/style-resources'],
 
 	styleResources: {
 		scss: ['./assets/colors.scss', './assets/mixins.scss'],
+	},
+
+	sanity: {
+		projectId: process.env.projectId,
+		minimal: true,
+		contentHepler: true,
 	},
 
 	buildModules: [

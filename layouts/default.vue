@@ -1,8 +1,8 @@
 <template>
 	<div>
-		<Navbar />
+		<!-- <Navbar /> -->
 		<!-- <Sidebar /> -->
-		<Nuxt />
+		<Nuxt keep-alive />
 
 		<!-- <Footer /> -->
 	</div>

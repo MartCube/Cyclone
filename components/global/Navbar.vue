@@ -12,7 +12,7 @@
 					<ul class="panels-list">
 						<li v-for="panel in panels" :key="panel.uid">
 							<n-link exact :to="panel.uid">
-								<datocms-image :data="panel.poster.responsiveImage" />
+								<DatocmsImage :data="panel.poster.responsiveImage" />
 								<span class="title">{{ panel.title }}</span>
 							</n-link>
 						</li>
@@ -28,8 +28,6 @@
 
 <script>
 import { navbarAnimation } from '~/assets/anime'
-import { request } from '~/plugins/datocms'
-import { panelList } from '~/plugins/dato-query'
 
 export default {
 	data: () => ({
@@ -39,10 +37,10 @@ export default {
 		panels: null,
 	}),
 	async fetch() {
-		const fetch = await request({
-			query: panelList,
-		})
-		this.panels = fetch.allPanels
+		// const fetch = await request({
+		// 	query: panelList,
+		// })
+		// this.panels = fetch.allPanels
 	},
 	computed: {},
 	mounted() {

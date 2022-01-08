@@ -1,11 +1,11 @@
 <template>
-	<n-link class="project_card" :to="link">
+	<n-link class="project_card" :to="project.uid">
 		<div class="image">
-			<ImageItem :data="image" />
+			<DatocmsImage :data="project.poster.responsiveImage" />
 			<span class="link">Смотреть</span>
 		</div>
 		<h2 class="title">
-			{{ title }}
+			{{ project.title }}
 			<Icon name="arrow" size="40px" fill="#F7F7F7" />
 		</h2>
 	</n-link>
@@ -17,17 +17,6 @@ export default {
 		project: {
 			type: Object,
 			required: true,
-		},
-	},
-	computed: {
-		image() {
-			return this.project.data.main_image.thumbnail
-		},
-		title() {
-			return this.project.data.title
-		},
-		link() {
-			return this.$prismic.linkResolver(this.project)
 		},
 	},
 }
