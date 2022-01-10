@@ -1,30 +1,24 @@
 <template>
 	<div class="page">
-		test
-		<!-- <SanityContent :blocks="content" :serializers="serializers" /> -->
+		<SanityContent :blocks="content" :serializers="serializers" />
 	</div>
 </template>
 
 <script>
-import { panelList } from '@/plugins/queries'
-// import YouTube from '@/components/YouTube'
+import { index } from '@/plugins/queries'
+import Cta from '@/components/sections/Cta'
 
 export default {
-	asyncData({ $sanity, payload }) {
-		if (payload) {
-			console.log(payload)
-		}
-		return $sanity.fetch(panelList)
+	asyncData({ $sanity }) {
+		return $sanity.fetch(index)
 	},
 	data: () => ({
-		blocks: null,
+		serializers: {
+			types: {
+				cta: Cta,
+			},
+		},
 	}),
-	async fetch() {
-		// const fetch = await request({
-		// 	query: index,
-		// })
-		// this.blocks = fetch.index.content
-	},
 	methods: {},
 }
 </script>

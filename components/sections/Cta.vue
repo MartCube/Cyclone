@@ -2,11 +2,11 @@
 	<section class="cta">
 		<div class="content">
 			<div class="text">
-				<h2 class="cta-title">{{ data.primary.title }}</h2>
-				<p class="cta-description">{{ data.primary.description }}</p>
+				<h2 class="cta-title">{{ title }}</h2>
+				<p class="cta-description">{{ subtitle }}</p>
 			</div>
 			<div class="form">
-				<CtaForm />
+				<CtaForm :label="lable" />
 			</div>
 		</div>
 	</section>
@@ -15,8 +15,16 @@
 export default {
 	name: 'Cta',
 	props: {
-		data: {
-			type: Object,
+		lable: {
+			type: String,
+			required: true,
+		},
+		title: {
+			type: String,
+			required: true,
+		},
+		subtitle: {
+			type: String,
 			required: true,
 		},
 	},
@@ -36,7 +44,7 @@ export default {
 		justify-content: center;
 		.text,
 		.form {
-			width: 50%;
+			width: 45%;
 		}
 		.text {
 			padding-right: 3vw;
@@ -52,19 +60,6 @@ export default {
 				text-align: center;
 				font-size: 1.5vw;
 				line-height: 1;
-			}
-		}
-		.form {
-			padding-left: 10vw;
-			position: relative;
-			&::before {
-				content: '';
-				height: 100%;
-				width: 5px;
-				background-color: $secondary;
-				display: block;
-				position: absolute;
-				left: 0;
 			}
 		}
 	}
