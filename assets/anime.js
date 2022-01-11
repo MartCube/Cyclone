@@ -105,7 +105,7 @@ export function logoAnim(items, logo) {
 				targets: items,
 				opacity: [0, 1],
 				delay: anime.stagger(50),
-				translateY: ['10%', '0%'],
+				translateX: ['10%', '0%'],
 			},
 			10,
 		)

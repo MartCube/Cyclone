@@ -7,6 +7,7 @@
 <script>
 import { index } from '@/plugins/queries'
 import Cta from '@/components/sections/Cta'
+import PanelSlider from '@/components/sections/PanelSlider'
 
 export default {
 	asyncData({ $sanity }) {
@@ -16,19 +17,10 @@ export default {
 		serializers: {
 			types: {
 				cta: Cta,
+				slider_panel: PanelSlider,
 			},
 		},
 	}),
 	methods: {},
 }
 </script>
-
-<style lang="scss" scoped>
-.page {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-}
-</style>

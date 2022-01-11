@@ -9,14 +9,14 @@
 			<ul>
 				<li class="first-lvl submenu" :class="{ active: isActive }">
 					<a href="#" @mouseover="isActive = true">Вентилируемые фасады</a>
-					<ul class="panels-list">
+					<!-- <ul class="panels-list">
 						<li v-for="panel in panels" :key="panel.uid">
 							<n-link exact :to="panel.uid">
 								<DatocmsImage :data="panel.poster.responsiveImage" />
 								<span class="title">{{ panel.title }}</span>
 							</n-link>
 						</li>
-					</ul>
+					</ul> -->
 				</li>
 				<li v-for="link in menu" :key="link" class="first-lvl">
 					<n-link to="/projects">{{ link }}</n-link>
@@ -87,17 +87,11 @@ export default {
 <style lang="scss" scoped>
 $animation-time: 0.3s;
 nav {
-	position: fixed;
-	width: calc(100% - 100px);
-	background-color: $primary;
-	height: 100px;
-	z-index: 20;
-	right: 0;
-	top: 0;
-	transition: height 0.05s linear;
 	ul {
 		display: flex;
 		align-items: center;
+		flex-direction: column;
+
 		width: 100%;
 		height: 100%;
 		li {
@@ -105,7 +99,7 @@ nav {
 			align-items: center;
 			width: fit-content;
 			height: 100%;
-			padding: 0 2rem;
+			// padding: 0.5rem 2rem;
 			transition: all 0.3s ease;
 			&:first-child {
 				border-left: 1px solid $secondary;
@@ -118,7 +112,7 @@ nav {
 				font-weight: 400;
 				font-size: 1.1rem;
 				transition: all $animation-time linear;
-				padding: 0 10px;
+				// padding: 0 10px;
 
 				position: relative;
 				&::before {

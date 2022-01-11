@@ -6,7 +6,7 @@
 				<p class="cta-description">{{ subtitle }}</p>
 			</div>
 			<div class="form">
-				<CtaForm :label="lable" />
+				<CtaForm :label="label" />
 			</div>
 		</div>
 	</section>
@@ -15,7 +15,7 @@
 export default {
 	name: 'Cta',
 	props: {
-		lable: {
+		label: {
 			type: String,
 			required: true,
 		},
