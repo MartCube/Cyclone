@@ -1,9 +1,9 @@
 <template>
 	<section class="faq">
 		<div class="content">
-			<h2 class="title">{{ data.title }}</h2>
+			<h2 class="title">{{ title }}</h2>
 			<div class="accordeon_wrapper">
-				<Accordeon v-for="(item, i) in data.faq" :key="i" :number="i + 1" :question="item.question" :answer="item.answer" />
+				<Accordeon v-for="(item, i) in faqItems" :key="item._key" :number="i + 1" :question="item.question" :answer="item.answer" />
 			</div>
 			<div class="question-icon">
 				<svg width="660" height="1040" viewBox="0 0 660 1040" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,8 +24,12 @@
 export default {
 	name: 'Faq',
 	props: {
-		data: {
-			type: Object,
+		faqItems: {
+			type: Array,
+			required: true,
+		},
+		title: {
+			type: String,
 			required: true,
 		},
 	},

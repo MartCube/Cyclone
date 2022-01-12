@@ -63,16 +63,10 @@ export default {
 
 <style lang="scss">
 .cta_form {
-	// height: 100%;
-	display: flex;
-	justify-content: center;
 	form {
 		width: 25rem;
 		display: flex;
 		align-items: flex-end;
-		.input_item {
-			// padding-top: 2rem;
-		}
 	}
 	button {
 		height: 40px;
@@ -83,10 +77,6 @@ export default {
 		flex-direction: column;
 		justify-content: center;
 		color: $grey;
-		// font-size: 1.2rem;
-		// button {
-		// 	margin-top: 2rem;
-		// }
 	}
 }
 @media (max-width: 800px) {

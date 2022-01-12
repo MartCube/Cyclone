@@ -46,12 +46,21 @@ export default {
 		.form {
 			width: 45%;
 		}
+		.form {
+			display: flex;
+			align-items: center;
+		}
 		.text {
 			padding-right: 3vw;
 			.cta-title {
 				text-align: center;
 				font-size: 5vw;
 				line-height: 1;
+				margin: 0;
+				padding: 0;
+				border: none;
+				width: 100%;
+				display: inline-block;
 				&::first-letter {
 					color: $secondary;
 				}

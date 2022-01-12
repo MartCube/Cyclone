@@ -11,6 +11,6 @@
 .layout {
 	display: grid;
 	width: 100%;
-	grid-template-columns: 25% 75%;
+	grid-template-columns: 20% 80%;
 }
 </style>

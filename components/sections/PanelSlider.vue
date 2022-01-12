@@ -1,11 +1,12 @@
 <template>
 	<section class="panel-slider">
+		<h2>{{ title }}</h2>
 		<div class="slider">
 			<div class="slider-wrapper">
 				<article v-for="panel in panels" :key="panel._id">
 					<div class="text">
 						<h3 class="title">{{ panel.title }}</h3>
-						<div class="rich_text description">
+						<div class="description">
 							<SanityContent :blocks="panel.description" />
 						</div>
 						<div class="links">
@@ -28,6 +29,10 @@ export default {
 			type: Array,
 			required: true,
 		},
+		title: {
+			type: String,
+			required: true,
+		},
 	},
 	data: () => ({
 		panels: null,
@@ -40,12 +45,12 @@ export default {
 			const panelData = this.panelItems.map((el) => {
 				return el.panelItem._ref
 			})
-			console.log(panelData)
+			// console.log(panelData)
 			const query = '*[_id in $ids]{"uid": uid.current, _id, title, description, "poster": poster.asset._ref}'
 			const params = { ids: panelData }
 
 			await this.$sanity.fetch(query, params).then((data) => {
-				console.log(data)
+				// console.log(data)
 				this.panels = data
 			})
 		},
@@ -54,7 +59,7 @@ export default {
 </script>
 
 <style lang="scss" scooped>
-$article-width: 16rem;
+$article-width: 18rem;
 $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 
 .panel-slider {
@@ -108,13 +113,31 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 			width: auto;
 			article {
 				width: $article-width;
-				margin: 1rem;
+				margin: 0.5rem;
 				height: auto;
 				padding: 1.5rem;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
 				transition: $transition;
+				p {
+					width: 100%;
+					font-size: 1rem;
+					margin: 0;
+					padding: 0;
+				}
+				ul {
+					list-style-type: initial;
+					margin: 1rem 0;
+					li {
+						margin: 0 0 0 1rem;
+						font-size: 1rem;
+						display: list-item;
+						&::before {
+							display: none;
+						}
+					}
+				}
 				.text {
 					display: flex;
 					flex-direction: column;
@@ -142,13 +165,16 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 					margin-bottom: 1rem;
 					font-size: 1.4rem;
 				}
-				picture {
-					width: 100%;
+				img {
+					width: 90%;
+					margin: 0 auto;
 					height: auto;
+					filter: drop-shadow(0px 4px 11px rgba(26, 26, 26, 1));
 				}
 				&:hover {
 					box-shadow: 0 0 30px 0px $primary-dark;
 					transform: scale(1.03);
+					background-color: hsl(0deg 0% 19%);
 				}
 			}
 		}

@@ -2,7 +2,7 @@
 	<div class="accordeon" :class="{ active: isOpen }" @click="toggleAccordion">
 		<div class="question">
 			<span class="number">{{ number }}</span>
-			<h3>{{ question }}</h3>
+			<p>{{ question }}</p>
 			<!-- <Icon name="close" /> -->
 			<button class="collapse_button">
 				<span></span>
@@ -10,7 +10,7 @@
 			</button>
 		</div>
 		<div class="answer">
-			<p>{{ answer }}</p>
+			<SanityContent :blocks="answer.richTextContent" />
 		</div>
 	</div>
 </template>
@@ -28,7 +28,7 @@ export default {
 			required: true,
 		},
 		answer: {
-			type: String,
+			type: Object,
 			required: true,
 		},
 	},

@@ -1,20 +1,17 @@
 <template>
-	<section class="title-text">
+	<section class="rich_text">
 		<div class="content">
-			<h2 class="title">{{ $prismic.asText(data.primary.title) }}</h2>
-			<template v-if="data.primary.content">
-				<prismic-rich-text class="rich_text" :field="data.primary.content" />
-			</template>
+			<SanityContent :blocks="richTextContent" />
 		</div>
 	</section>
 </template>
 
 <script>
 export default {
-	name: 'TitleText',
+	name: 'RichText',
 	props: {
-		data: {
-			type: Object,
+		richTextContent: {
+			type: Array,
 			required: true,
 		},
 	},
@@ -22,7 +19,7 @@ export default {
 </script>
 
 <style lang="scss" scooped>
-.title-text {
+.rich_text {
 	padding-top: 50px;
 	padding-bottom: 50px;
 	.content {

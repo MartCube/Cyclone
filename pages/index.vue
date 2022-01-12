@@ -8,6 +8,11 @@
 import { index } from '@/plugins/queries'
 import Cta from '@/components/sections/Cta'
 import PanelSlider from '@/components/sections/PanelSlider'
+import Achievements from '@/components/sections/Achievements'
+import Benefits from '@/components/sections/Benefits'
+import Partners from '@/components/sections/Partners'
+import RichText from '@/components/sections/RichText'
+import Faq from '@/components/sections/Faq'
 
 export default {
 	asyncData({ $sanity }) {
@@ -18,6 +23,11 @@ export default {
 			types: {
 				cta: Cta,
 				slider_panel: PanelSlider,
+				counter: Achievements,
+				benefits: Benefits,
+				gallery: Partners,
+				richText: RichText,
+				faq: Faq,
 			},
 		},
 	}),

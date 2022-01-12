@@ -62,8 +62,9 @@ aside {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		align-items: center;
+		align-items: flex-start;
 		height: 100vh;
+		padding: 2rem;
 	}
 	.messengers {
 		display: flex;
@@ -76,7 +77,7 @@ aside {
 		}
 	}
 	.logo {
-		margin-top: 2rem;
+		width: 100%;
 	}
 }
 // @media (max-width: 950px) {

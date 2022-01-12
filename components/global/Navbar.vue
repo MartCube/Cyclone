@@ -89,7 +89,7 @@ $animation-time: 0.3s;
 nav {
 	ul {
 		display: flex;
-		align-items: center;
+		align-items: flex-start;
 		flex-direction: column;
 
 		width: 100%;
@@ -101,18 +101,16 @@ nav {
 			height: 100%;
 			// padding: 0.5rem 2rem;
 			transition: all 0.3s ease;
-			&:first-child {
-				border-left: 1px solid $secondary;
-			}
 			a {
 				opacity: 0;
 				color: $white;
 				white-space: nowrap;
 				text-decoration: none;
 				font-weight: 400;
-				font-size: 1.1rem;
+				font-size: 1.3rem;
 				transition: all $animation-time linear;
-				// padding: 0 10px;
+				padding: 0 3px;
+				margin-bottom: 0.5rem;
 
 				position: relative;
 				&::before {
