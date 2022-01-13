@@ -1,7 +1,7 @@
 <template>
 	<section class="home-intro">
 		<div class="main-image">
-			<ImageItem :data="data.primary.main_image" />
+			<img src="~/static/homeintro.jpg" alt="" />
 		</div>
 		<div class="cyclone">
 			<svg width="951" height="199" viewBox="0 0 951 199" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -15,11 +15,14 @@
 			</svg>
 		</div>
 		<div class="title-wrapper">
-			<h1>{{ $prismic.asText(data.primary.title) }}</h1>
-			<h2>{{ $prismic.asText(data.primary.sub_title) }}</h2>
+			<h1>
+				вентиляционные <br />
+				фасады
+			</h1>
 		</div>
 	</section>
 </template>
+
 <script>
 export default {
 	name: 'HomeIntro',
@@ -31,14 +34,15 @@ export default {
 	},
 }
 </script>
+
 <style lang="scss" scoped>
 .home-intro {
 	height: 100vh;
 	.main-image {
 		position: absolute;
-		width: calc(100% - 200px);
+		width: 100%;
 		height: 100%;
-		picture {
+		img {
 			width: 100%;
 			height: 100%;
 			object-fit: cover;

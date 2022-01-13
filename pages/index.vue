@@ -1,46 +1,39 @@
 <template>
 	<div class="page">
-		<div v-for="block in blocks" :key="block.__typename">
-			<template v-if="block.__typename === 'IntroRecord'">
-				<span>IntroRecord</span>
-			</template>
-			<template v-else-if="block.__typename === 'GalleryRecord'">
-				<Partners :data="block.gallery" />
-			</template>
-			<template v-else-if="block.__typename === 'FaqRecord'">
-				<span>FaqRecord</span>
-			</template>
-			<template v-else-if="block.__typename === 'RichtextRecord'">
-				<datocms-structured-text :data="block.text.value" />
-			</template>
-		</div>
+		<HomeIntro />
+		<SanityContent :blocks="content" :serializers="serializers" />
 	</div>
 </template>
 
 <script>
-import { request } from '~/plugins/datocms'
-import { index } from '~/plugins/dato-query'
+import { index } from '@/plugins/queries'
+import Cta from '@/components/sections/Cta'
+import PanelSlider from '@/components/sections/PanelSlider'
+import ProjectSlider from '@/components/sections/ProjectSlider'
+import Achievements from '@/components/sections/Achievements'
+import Benefits from '@/components/sections/Benefits'
+import Partners from '@/components/sections/Partners'
+import RichText from '@/components/sections/RichText'
+import Faq from '@/components/sections/Faq'
 
 export default {
-	data: () => ({
-		blocks: null,
-	}),
-	async fetch() {
-		const fetch = await request({
-			query: index,
-		})
-		this.blocks = fetch.index.content
+	asyncData({ $sanity }) {
+		return $sanity.fetch(index)
 	},
+	data: () => ({
+		serializers: {
+			types: {
+				cta: Cta,
+				slider_panel: PanelSlider,
+				slider_projects: ProjectSlider,
+				counter: Achievements,
+				benefits: Benefits,
+				gallery: Partners,
+				richText: RichText,
+				faq: Faq,
+			},
+		},
+	}),
 	methods: {},
 }
 </script>
-
-<style lang="scss" scoped>
-.page {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-}
-</style>

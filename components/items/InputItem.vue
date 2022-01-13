@@ -134,18 +134,18 @@ export default {
 .cta_form {
 	.input_item {
 		input {
-			height: 100%;
+			height: 60px;
 			border-bottom: none;
-			font-size: 20px;
+			// font-size: 20px;
 			&:focus {
 				~ .border {
-					background-image: linear-gradient(to right, $gradient-red, $gradient-red);
+					background-color: $gradient-red;
 				}
 			}
 			&:placeholder-shown ~ label {
 				top: 1rem;
-				font-size: 1.6rem;
-				font-weight: bold;
+				font-size: 1.5rem;
+				// font-weight: bold;
 			}
 			&:focus ~ label {
 				top: 0;
@@ -155,12 +155,12 @@ export default {
 		}
 		.border {
 			position: absolute;
-			bottom: 18px;
+			bottom: 0;
 			display: block;
 			right: 0;
 			width: 100%;
 			height: 3px;
-			background-image: linear-gradient(to right, $gradient-gray, $gradient-red);
+			background-color: $secondary;
 			transition: background-image 0.3s ease-in;
 		}
 	}

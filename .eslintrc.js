@@ -9,9 +9,11 @@ module.exports = {
 		requireConfigFile: false,
 	},
 	extends: ['@nuxtjs', 'prettier', 'plugin:prettier/recommended', 'plugin:nuxt/recommended'],
-	plugins: ['prettier'],
+	plugins: ['prettier', '@asbjorn/groq'],
 	// add your custom rules here
 	rules: {
+		'@asbjorn/groq/no-syntax-errors': ['error', { groqs: ['@nuxtjs/sanity'] }],
+		'@asbjorn/groq/no-template-expressions': ['error', { groqs: ['@nuxtjs/sanity'] }],
 		'prettier/prettier': [
 			'warn',
 			{

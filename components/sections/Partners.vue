@@ -1,10 +1,10 @@
 <template>
 	<section class="partners">
-		<div class="content">
-			<h2 class="title">title</h2>
-			<div class="partners-grid">
-				<datocms-image v-for="image in data" :key="image.responsiveImage.src" :data="image.responsiveImage" />
-			</div>
+		<h2>{{ title }}</h2>
+		<div class="partners-grid">
+			<figure v-for="image in imageItem" :key="image._key">
+				<SanityImage :asset-id="image.asset._ref" />
+			</figure>
 		</div>
 	</section>
 </template>
@@ -13,8 +13,12 @@
 export default {
 	name: 'Partners',
 	props: {
-		data: {
+		imageItem: {
 			type: Array,
+			required: true,
+		},
+		title: {
+			type: String,
 			required: true,
 		},
 	},
@@ -23,21 +27,33 @@ export default {
 
 <style lang="scss" scooped>
 .partners {
-	padding-top: 50px;
-	padding-bottom: 50px;
+	margin-top: 2rem;
+	padding: $section-padding;
 	background-color: $primary-light;
 	&::after {
 		display: none;
 	}
 	.partners-grid {
 		display: flex;
-		width: 100%;
+		width: -webkit-fill-available;
 		align-items: center;
 		flex-wrap: wrap;
-		picture {
-			margin: 2rem;
-			width: initial;
-			height: initial;
+		margin-left: 50px;
+		figure {
+			height: 200px;
+			width: auto;
+			padding: 5px;
+			border: 1px solid hsl(0deg, 0%, 22%);
+			filter: drop-shadow(0px 4px 20px hsl(0deg 0% 6%));
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-right: 10px;
+			img {
+				margin: 2rem;
+				width: initial;
+				height: initial;
+			}
 		}
 	}
 }

@@ -2,11 +2,11 @@
 	<section class="cta">
 		<div class="content">
 			<div class="text">
-				<h2 class="cta-title">{{ data.primary.title }}</h2>
-				<p class="cta-description">{{ data.primary.description }}</p>
+				<h2 class="cta-title">{{ title }}</h2>
+				<p class="cta-description">{{ subtitle }}</p>
 			</div>
 			<div class="form">
-				<CtaForm />
+				<CtaForm :label="label" />
 			</div>
 		</div>
 	</section>
@@ -15,8 +15,16 @@
 export default {
 	name: 'Cta',
 	props: {
-		data: {
-			type: Object,
+		label: {
+			type: String,
+			required: true,
+		},
+		title: {
+			type: String,
+			required: true,
+		},
+		subtitle: {
+			type: String,
 			required: true,
 		},
 	},
@@ -25,8 +33,9 @@ export default {
 
 <style lang="scss" scooped>
 .cta {
-	padding-top: 10vw;
-	padding-bottom: 10vw;
+	padding: $section-padding;
+	padding-top: 10rem;
+	padding-bottom: 10rem;
 	background-color: $primary-light;
 	&::after {
 		display: none;
@@ -36,7 +45,12 @@ export default {
 		justify-content: center;
 		.text,
 		.form {
-			width: 50%;
+			width: 45%;
+		}
+		.form {
+			display: flex;
+			align-items: center;
+			padding-left: 3rem;
 		}
 		.text {
 			padding-right: 3vw;
@@ -44,6 +58,11 @@ export default {
 				text-align: center;
 				font-size: 5vw;
 				line-height: 1;
+				margin: 0;
+				padding: 0;
+				border: none;
+				width: 100%;
+				display: inline-block;
 				&::first-letter {
 					color: $secondary;
 				}
@@ -52,19 +71,6 @@ export default {
 				text-align: center;
 				font-size: 1.5vw;
 				line-height: 1;
-			}
-		}
-		.form {
-			padding-left: 10vw;
-			position: relative;
-			&::before {
-				content: '';
-				height: 100%;
-				width: 5px;
-				background-color: $secondary;
-				display: block;
-				position: absolute;
-				left: 0;
 			}
 		}
 	}

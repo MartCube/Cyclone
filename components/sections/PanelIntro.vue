@@ -1,19 +1,23 @@
 <template>
 	<section class="intro-panel">
 		<div class="main-image">
-			<ImageItem :data="data.image" />
+			<DatocmsImage :data="poster" />
 		</div>
 		<div class="title-wrapper">
-			<h1>{{ data.title }}</h1>
+			<h1>{{ title }}</h1>
 		</div>
 	</section>
 </template>
 <script>
 export default {
-	name: 'IntroPanel',
+	name: 'PanelIntro',
 	props: {
-		data: {
+		poster: {
 			type: Object,
+			required: true,
+		},
+		title: {
+			type: String,
 			required: true,
 		},
 	},

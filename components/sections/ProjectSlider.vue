@@ -1,31 +1,23 @@
 <template>
-	<section class="panel-slider">
+	<section class="project-slider">
 		<h2>{{ title }}</h2>
 		<div class="slider">
 			<div class="slider-wrapper">
-				<article v-for="panel in panels" :key="panel._id">
-					<div class="text">
-						<h5 class="title">{{ panel.title }}</h5>
-						<div class="description">
-							<SanityContent :blocks="panel.description" />
-						</div>
-						<div class="links">
-							<n-link exact :to="`/projects#${panel.uid}`">Объекты с {{ panel.title }}</n-link>
-							<n-link exact :to="`/${panel.uid}`">Подробнее</n-link>
-						</div>
-					</div>
-					<SanityImage :asset-id="`${panel.poster}?w=200`" />
-				</article>
+				<n-link v-for="project in projects" :key="project._id" exact :to="`/${project.uid}`" class="project">
+					<h3 class="title">{{ project.title }}</h3>
+					<SanityImage :asset-id="`${project.poster}?w=500`" />
+				</n-link>
 			</div>
 		</div>
+		<n-link exact :to="'/projects'" class="button">Смореть все</n-link>
 	</section>
 </template>
 
 <script>
 export default {
-	name: 'PanelSlider',
+	name: 'ProjectSlider',
 	props: {
-		panelItems: {
+		projectItems: {
 			type: Array,
 			required: true,
 		},
@@ -35,23 +27,23 @@ export default {
 		},
 	},
 	data: () => ({
-		panels: null,
+		projects: null,
 	}),
 	mounted() {
-		this.getPanels()
+		this.getprojects()
 	},
 	methods: {
-		async getPanels() {
-			const panelData = this.panelItems.map((el) => {
-				return el.panelItem._ref
+		async getprojects() {
+			const projectData = this.projectItems.map((el) => {
+				return el.projectItem._ref
 			})
-			// console.log(panelData)
-			const query = '*[_id in $ids]{"uid": uid.current, _id, title, description, "poster": poster.asset._ref}'
-			const params = { ids: panelData }
+			// console.log(projectData)
+			const query = '*[_id in $ids]{"uid": uid.current, _id, title, "poster": poster.asset._ref}'
+			const params = { ids: projectData }
 
 			await this.$sanity.fetch(query, params).then((data) => {
 				// console.log(data)
-				this.panels = data
+				this.projects = data
 			})
 		},
 	},
@@ -59,12 +51,26 @@ export default {
 </script>
 
 <style lang="scss" scooped>
-$article-width: 22rem;
+$article-width: auto;
 $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 
-.panel-slider {
-	overflow-x: hidden;
+.project-slider {
 	padding: $section-padding;
+	overflow-x: hidden;
+	.button {
+		margin-left: 50px;
+		margin-top: 3rem;
+		display: inline-block;
+		color: $white;
+		font-size: 1.5rem;
+		text-decoration: none;
+		padding: 10px 30px;
+		border: 2px solid $secondary;
+		&:hover {
+			color: $secondary;
+			text-decoration: none;
+		}
+	}
 	.slider {
 		width: 100%;
 		overflow-x: auto;
@@ -110,60 +116,32 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 		.slider-wrapper {
 			display: inline-flex;
 			width: auto;
-			article {
+			.project {
 				width: $article-width;
-				margin: 0.5rem;
-				height: auto;
-				padding: 2.5rem;
+				margin: 0.5rem 0.5rem 0.5rem 0;
 				display: flex;
 				flex-direction: column;
-				justify-content: space-between;
+				justify-content: flex-end;
+				align-items: flex-end;
 				transition: $transition;
-				p {
-					width: 100%;
-					margin: 0;
-					padding: 0;
-				}
-				ul {
-					list-style-type: initial;
-					margin: 1rem 0;
-					li {
-						margin: 0 0 0 1rem;
-						display: list-item;
-						&::before {
-							display: none;
-						}
-					}
-				}
-				.text {
-					display: flex;
-					flex-direction: column;
-					margin-bottom: 2rem;
-					flex: 1;
-					justify-content: space-between;
-					a {
-						color: $white;
-						margin-top: 10px;
-						font-weight: 500;
-						text-decoration-thickness: 1.5px;
-						&:last-child {
-							color: $secondary;
-							display: flex;
-							width: 100%;
-							justify-content: space-between;
-						}
-						&:hover {
-							color: lighten($secondary, 10%);
-						}
-					}
-				}
+				height: 20vw;
+				position: relative;
 				.title {
-					margin-bottom: 1rem;
+					margin: 0;
+					font-size: 2rem;
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					z-index: 2;
+					padding: 2px 10px;
+					background-color: rgb($primary, 40%);
+					&::first-letter {
+						color: $secondary;
+					}
 				}
 				img {
 					width: 100%;
-					margin: 0 auto;
-					height: auto;
+					height: 100%;
 					filter: drop-shadow(0px 4px 11px rgba(26, 26, 26, 1));
 				}
 				&:hover {
@@ -176,7 +154,7 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 	}
 }
 @media (max-width: 600px) {
-	.panel-slider .content .slider {
+	.project-slider .content .slider {
 		margin-left: 0;
 	}
 }

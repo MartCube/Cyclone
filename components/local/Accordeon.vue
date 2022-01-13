@@ -2,7 +2,7 @@
 	<div class="accordeon" :class="{ active: isOpen }" @click="toggleAccordion">
 		<div class="question">
 			<span class="number">{{ number }}</span>
-			<h3>{{ question }}</h3>
+			<p>{{ question }}</p>
 			<!-- <Icon name="close" /> -->
 			<button class="collapse_button">
 				<span></span>
@@ -10,7 +10,7 @@
 			</button>
 		</div>
 		<div class="answer">
-			<p>{{ answer }}</p>
+			<SanityContent :blocks="answer.richTextContent" />
 		</div>
 	</div>
 </template>
@@ -28,7 +28,7 @@ export default {
 			required: true,
 		},
 		answer: {
-			type: String,
+			type: Object,
 			required: true,
 		},
 	},
@@ -57,13 +57,13 @@ export default {
 		cursor: pointer;
 		color: white;
 		display: flex;
-		min-height: 70px;
+		min-height: 80px;
 		align-items: center;
 		border: 1px solid $secondary;
 		.number {
-			min-height: 70px;
+			min-height: 80px;
 			display: flex;
-			width: 5rem;
+			flex-basis: 5rem;
 			justify-content: center;
 			align-items: center;
 			position: relative;
@@ -81,16 +81,17 @@ export default {
 				right: 0;
 			}
 			&::before {
-				top: 0;
+				top: -1px;
 			}
 			&::after {
-				bottom: 0;
+				bottom: -1px;
 			}
 		}
-		h3 {
+		p {
 			display: inline-block;
 			flex: 1;
-			padding-left: 2rem;
+			padding: 0 2rem;
+			margin: 0;
 		}
 		.collapse_button {
 			width: 25px;
@@ -138,7 +139,7 @@ export default {
 	&.active {
 		.question {
 			.collapse_button {
-				transform: rotate(405deg);
+				transform: rotate(180deg);
 			}
 			border-bottom-color: $secondary;
 		}

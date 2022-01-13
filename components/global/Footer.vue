@@ -1,5 +1,5 @@
 <template>
-	<footer v-if="footer">
+	<footer>
 		<div class="contacts">
 			<h4>Контакты</h4>
 			<n-link to="/"> <Icon name="phone" /> 044 492 05 30</n-link>
@@ -20,7 +20,7 @@
 		<div class="map">
 			<h4>Карта</h4>
 			<n-link to="/">
-				<ImageItem :data="map" />
+				<!-- <ImageItem :data="map" /> -->
 			</n-link>
 		</div>
 		<div class="policy">
@@ -32,21 +32,22 @@
 
 <script>
 export default {
+	name: 'Footer',
 	data: () => ({
 		map: null,
 	}),
-	async fetch() {
-		const fetch = await this.$prismic.api.getSingle('footer')
-		this.map = fetch.data.map
-	},
-	computed: {
-		year() {
-			return new Date().getFullYear()
-		},
-		footer() {
-			return this.$store.getters.footer
-		},
-	},
+	// async fetch() {
+	// 	const fetch = await this.$prismic.api.getSingle('footer')
+	// 	this.map = fetch.data.map
+	// },
+	// computed: {
+	// 	year() {
+	// 		return new Date().getFullYear()
+	// 	},
+	// 	footer() {
+	// 		return this.$store.getters.footer
+	// 	},
+	// },
 }
 </script>
 
@@ -54,7 +55,7 @@ export default {
 footer {
 	background: $primary-dark;
 	width: 100%;
-	height: 100%;
+	height: fit-content;
 	padding: 50px 100px 0 100px;
 
 	display: flex;

@@ -52,13 +52,28 @@ button {
 
 	&:hover {
 		background-color: hsl(1, 84%, 40%);
-		box-shadow: 0 0 10px 0 #000;
+		box-shadow: 0 0 10px 0 $primary-dark;
 		.overlay {
 			width: 100%;
 		}
 		svg {
 			opacity: 1;
 			fill: $secondary;
+		}
+	}
+}
+
+.cta_form {
+	button {
+		height: 40px;
+		width: fit-content;
+		margin: 0 0 0 2rem;
+		border-radius: 2px;
+
+		&:hover,
+		&:focus,
+		&:active {
+			background-color: $gradient-red;
 		}
 	}
 }
