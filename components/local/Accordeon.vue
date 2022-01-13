@@ -63,7 +63,7 @@ export default {
 		.number {
 			min-height: 70px;
 			display: flex;
-			width: 5rem;
+			flex-basis: 5rem;
 			justify-content: center;
 			align-items: center;
 			position: relative;
@@ -81,16 +81,18 @@ export default {
 				right: 0;
 			}
 			&::before {
-				top: 0;
+				top: -1px;
 			}
 			&::after {
-				bottom: 0;
+				bottom: -1px;
 			}
 		}
-		h3 {
+		p {
 			display: inline-block;
 			flex: 1;
-			padding-left: 2rem;
+			padding: 0 2rem;
+			font-size: 1.2rem;
+			margin: 0;
 		}
 		.collapse_button {
 			width: 25px;

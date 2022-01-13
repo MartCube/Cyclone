@@ -2,9 +2,10 @@
 	<div class="layout">
 		<!-- <Navbar /> -->
 		<Sidebar />
-		<Nuxt keep-alive />
-
-		<!-- <Footer /> -->
+		<div class="content">
+			<Nuxt keep-alive />
+			<Footer />
+		</div>
 	</div>
 </template>
 <style lang="scss">

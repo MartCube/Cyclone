@@ -60,6 +60,7 @@ export default {
 			max-width: 20vw;
 			line-height: 1;
 			margin-top: 2rem;
+			min-height: 4rem;
 		}
 		.number {
 			font-size: 5vw;

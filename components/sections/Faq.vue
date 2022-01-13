@@ -40,10 +40,11 @@ export default {
 .faq {
 	padding-top: 50px;
 	padding-bottom: 50px;
+	position: relative;
 	.question-icon {
 		position: absolute;
-		top: 30vh;
-		right: 190px;
+		bottom: 10vh;
+		right: 90px;
 		z-index: -1;
 		width: auto;
 		height: 40vh;
@@ -60,7 +61,7 @@ export default {
 	}
 	.accordeon_wrapper {
 		// padding-left: 1.5rem;
-		margin-left: 50px;
+		margin: 0 50px;
 	}
 }
 @media (max-width: 800px) {

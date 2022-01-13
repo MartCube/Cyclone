@@ -160,7 +160,7 @@ export default {
 			right: 0;
 			width: 100%;
 			height: 3px;
-			background-color: $gradient-red;
+			background-color: $secondary;
 			transition: background-image 0.3s ease-in;
 		}
 	}
