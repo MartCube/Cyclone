@@ -1,9 +1,9 @@
 <template>
 	<client-only>
 		<div class="plyr_video">
-			<vue-plyr>
+			<!-- <vue-plyr>
 				<div :data-plyr-provider="provider" :data-plyr-embed-id="data"></div>
-			</vue-plyr>
+			</vue-plyr> -->
 		</div>
 	</client-only>
 </template>
