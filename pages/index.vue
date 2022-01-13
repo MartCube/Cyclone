@@ -1,5 +1,6 @@
 <template>
 	<div class="page">
+		<HomeIntro />
 		<SanityContent :blocks="content" :serializers="serializers" />
 	</div>
 </template>

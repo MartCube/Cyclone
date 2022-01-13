@@ -38,13 +38,12 @@ export default {
 
 <style lang="scss" scooped>
 .faq {
-	padding-top: 50px;
-	padding-bottom: 50px;
+	padding: $section-padding;
 	position: relative;
 	.question-icon {
 		position: absolute;
-		bottom: 10vh;
-		right: 90px;
+		bottom: 8vh;
+		right: 16%;
 		z-index: -1;
 		width: auto;
 		height: 40vh;
@@ -60,7 +59,6 @@ export default {
 		}
 	}
 	.accordeon_wrapper {
-		// padding-left: 1.5rem;
 		margin: 0 50px;
 	}
 }
@@ -68,7 +66,6 @@ export default {
 	.faq {
 		padding-right: 0;
 		.accordeon_wrapper {
-			// padding-left: 30px;
 			display: flex;
 			flex-direction: column;
 			align-items: center;

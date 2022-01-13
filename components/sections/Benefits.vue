@@ -36,7 +36,7 @@ export default {
 
 <style lang="scss" scooped>
 .benefits {
-	padding: 50px 0;
+	padding: $section-padding;
 	.list {
 		display: flex;
 		flex-wrap: wrap;
@@ -71,8 +71,8 @@ export default {
 				flex: 1;
 				h3 {
 					margin-top: 1rem;
-					font-size: 2rem;
 					margin-bottom: 2rem;
+					line-height: 1;
 				}
 				p {
 					padding: 0;

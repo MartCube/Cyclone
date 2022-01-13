@@ -57,11 +57,11 @@ export default {
 		cursor: pointer;
 		color: white;
 		display: flex;
-		min-height: 70px;
+		min-height: 80px;
 		align-items: center;
 		border: 1px solid $secondary;
 		.number {
-			min-height: 70px;
+			min-height: 80px;
 			display: flex;
 			flex-basis: 5rem;
 			justify-content: center;
@@ -91,7 +91,6 @@ export default {
 			display: inline-block;
 			flex: 1;
 			padding: 0 2rem;
-			font-size: 1.2rem;
 			margin: 0;
 		}
 		.collapse_button {

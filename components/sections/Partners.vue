@@ -28,7 +28,7 @@ export default {
 <style lang="scss" scooped>
 .partners {
 	margin-top: 2rem;
-	padding: 50px 0;
+	padding: $section-padding;
 	background-color: $primary-light;
 	&::after {
 		display: none;

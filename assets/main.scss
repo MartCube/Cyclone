@@ -17,7 +17,7 @@ body {
 	background-color: $primary;
 	color: $white;
 	font-weight: 200;
-	font-size: 1rem;
+	font-size: 16px;
 }
 
 .page{
@@ -25,12 +25,14 @@ body {
 		color: $white;
 		margin-bottom: 10px;
 		padding: 0 50px 10px;
+		font-size: $font-size;
+		line-height: $line-height;
 	} 
 	a {
-		color: $white;
+		color: $secondary;
 		font-weight: inherit;
-		font-size: inherit;
-		line-height: inherit;
+		font-size: $font-size;
+		line-height: $line-height;
 		margin-bottom: 10px;
 		&:hover{
 			text-decoration: underline;
@@ -40,9 +42,24 @@ body {
 	h4, h3, h2 {
 		margin-bottom: 2rem;
 	}
+	h1 {
+		font-size: $h1;
+	}
+	h3 {
+		font-size: $h3;
+	}
+	h4 {
+		font-size: $h4;
+	}
+	h5 {
+		font-size: $h5;
+	}
+	h6 {
+		font-size: $h6;
+	}
 	h2 {
 		border-left: 5px solid $secondary;
-		font-size: 3rem;
+		font-size: $h3;
 		line-height: 1;
 		display: inline-flex;
 		padding-left: 1.5rem;
@@ -54,9 +71,9 @@ body {
 			margin: 7px 0;
 			display: flex;
 			flex-wrap: nowrap;
+			line-height: $line-height;
 			white-space: nowrap;
-			line-height: 1.8rem;
-			// font-size: 1.2rem;
+			font-size: $font-size;
 			&::before {
 				content: '';
 				margin-top: 10px;

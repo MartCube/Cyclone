@@ -1,10 +1,6 @@
 <template>
 	<aside>
 		<div class="wrapper">
-			<n-link exact :to="'/'" class="logo">
-				<Logo />
-			</n-link>
-			<Navbar />
 			<ul class="messengers">
 				<li>
 					<a href="https://www.facebook.com/cyclone.kiev.ua" rel="nofollow" target="_blank">

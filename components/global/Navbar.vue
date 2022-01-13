@@ -23,6 +23,9 @@
 				</li>
 			</ul>
 		</nav>
+		<n-link exact :to="'/'" class="logo">
+			<Logo />
+		</n-link>
 	</div>
 </template>
 
@@ -86,107 +89,120 @@ export default {
 
 <style lang="scss" scoped>
 $animation-time: 0.3s;
-nav {
-	ul {
-		display: flex;
-		align-items: flex-start;
-		flex-direction: column;
-
-		width: 100%;
-		height: 100%;
-		li {
+.navbar {
+	z-index: 20;
+	right: 0;
+	top: 0;
+	transition: height 0.05s linear;
+	position: fixed;
+	width: 100%;
+	background-color: $primary;
+	height: 100px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 3rem;
+	nav {
+		width: fit-content;
+		ul {
 			display: flex;
 			align-items: center;
-			width: fit-content;
+			width: 100%;
 			height: 100%;
-			// padding: 0.5rem 2rem;
-			transition: all 0.3s ease;
-			a {
-				opacity: 0;
-				color: $white;
-				white-space: nowrap;
-				text-decoration: none;
-				font-weight: 400;
-				font-size: 1.3rem;
-				transition: all $animation-time linear;
-				padding: 0 3px;
-				margin-bottom: 0.5rem;
-
-				position: relative;
-				&::before {
-					content: '';
-					position: absolute;
-					top: 0;
-					right: 0;
-					width: 0;
-					height: 100%;
-					z-index: -1;
-					transition: all 0.35s ease;
-				}
-
-				&:hover,
-				&.nuxt-link-active {
-					&::before {
-						width: 100%;
-						background: $secondary;
-						right: unset;
-						left: 0;
-					}
-				}
-			}
-			&.active.submenu {
-				.panels-list {
-					animation: fadeIn $animation-time linear forwards;
-				}
-				border-left-color: $primary;
-			}
-			.panels-list {
-				position: fixed;
-				top: 100px;
-				left: -100vw;
-				width: calc(100vw - 100px);
-				height: calc(100vh - 100px);
-				z-index: 20;
-				background-color: $primary;
+			li {
 				display: flex;
-				flex-wrap: wrap;
-				opacity: 0;
-				transition: all $animation-time linear;
-				li {
-					padding: 1rem;
-					margin: 0 2vw;
-					height: initial;
-					&:first-child {
-						border-left: none;
+				align-items: center;
+				width: fit-content;
+				height: 100%;
+				padding: 0 2rem;
+				transition: all 0.3s ease;
+				a {
+					opacity: 0;
+					color: $white;
+					white-space: nowrap;
+					text-decoration: none;
+					font-weight: 400;
+					font-size: 1.5rem;
+					transition: all $animation-time linear;
+					padding: 0 10px;
+					position: relative;
+					&::before {
+						content: '';
+						position: absolute;
+						top: 0;
+						right: 0;
+						width: 0;
+						height: 100%;
+						z-index: -1;
+						transition: all 0.35s ease;
 					}
-					a {
-						display: flex;
-						opacity: 1;
-						flex-direction: column-reverse;
-						align-items: center;
-						justify-content: flex-start;
-						max-width: 130px;
-						width: 100%;
-						transition: $animation-time linear;
-
-						span {
-							margin-bottom: 1rem;
-						}
-						picture {
+					&:hover,
+					&.nuxt-link-active {
+						&::before {
 							width: 100%;
-							height: 100%;
-							filter: drop-shadow(10px 10px 10px $primary-dark);
+							background: $secondary;
+							right: unset;
+							left: 0;
 						}
-						&:hover {
-							transform: scale(1.02);
+					}
+				}
+				&.active.submenu {
+					.panels-list {
+						animation: fadeIn $animation-time linear forwards;
+					}
+					border-left-color: $primary;
+				}
+				.panels-list {
+					position: fixed;
+					top: 100px;
+					left: -100vw;
+					width: calc(100vw - 100px);
+					height: calc(100vh - 100px);
+					z-index: 20;
+					background-color: $primary;
+					display: flex;
+					flex-wrap: wrap;
+					opacity: 0;
+					transition: all $animation-time linear;
+					li {
+						padding: 1rem;
+						margin: 0 2vw;
+						height: initial;
+						&:first-child {
+							border-left: none;
+						}
+						a {
+							display: flex;
+							opacity: 1;
+							flex-direction: column-reverse;
+							align-items: center;
+							justify-content: flex-start;
+							max-width: 130px;
+							width: 100%;
+							transition: $animation-time linear;
+							span {
+								margin-bottom: 1rem;
+							}
+							picture {
+								width: 100%;
+								height: 100%;
+								filter: drop-shadow(10px 10px 10px $primary-dark);
+							}
+							&:hover {
+								transform: scale(1.02);
+							}
 						}
 					}
 				}
 			}
 		}
+		&.compact {
+			height: 70px;
+		}
 	}
-	&.compact {
-		height: 70px;
+	.logo {
+		width: 17rem;
+		margin-right: 3rem;
 	}
 }
 @media (min-width: 950px) {
@@ -344,7 +360,6 @@ nav {
 		left: 8px;
 	}
 }
-
 @keyframes fadeInMobile {
 	0% {
 		opacity: 0;

@@ -55,17 +55,16 @@ $article-width: auto;
 $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 
 .project-slider {
-	padding-top: 50px;
-	padding-bottom: 50px;
+	padding: $section-padding;
 	overflow-x: hidden;
 	.button {
 		margin-left: 50px;
 		margin-top: 3rem;
 		display: inline-block;
 		color: $white;
-		font-size: 1.3rem;
+		font-size: 1.5rem;
 		text-decoration: none;
-		padding: 5px 25px;
+		padding: 10px 30px;
 		border: 2px solid $secondary;
 		&:hover {
 			color: $secondary;
@@ -129,7 +128,7 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 				position: relative;
 				.title {
 					margin: 0;
-					font-size: 1.4rem;
+					font-size: 2rem;
 					position: absolute;
 					bottom: 0;
 					left: 0;

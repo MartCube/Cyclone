@@ -25,7 +25,7 @@ export default {
 @import '~/assets/colors.scss';
 
 svg {
-	width: 100%;
+	width: inherit;
 	height: auto;
 	fill: $white;
 	path {

@@ -5,7 +5,7 @@
 			<div class="slider-wrapper">
 				<article v-for="panel in panels" :key="panel._id">
 					<div class="text">
-						<h3 class="title">{{ panel.title }}</h3>
+						<h5 class="title">{{ panel.title }}</h5>
 						<div class="description">
 							<SanityContent :blocks="panel.description" />
 						</div>
@@ -59,13 +59,12 @@ export default {
 </script>
 
 <style lang="scss" scooped>
-$article-width: 18rem;
+$article-width: 22rem;
 $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 
 .panel-slider {
-	padding-top: 50px;
-	padding-bottom: 50px;
 	overflow-x: hidden;
+	padding: $section-padding;
 	.slider {
 		width: 100%;
 		overflow-x: auto;
@@ -115,14 +114,13 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 				width: $article-width;
 				margin: 0.5rem;
 				height: auto;
-				padding: 1.5rem;
+				padding: 2.5rem;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
 				transition: $transition;
 				p {
 					width: 100%;
-					font-size: 1rem;
 					margin: 0;
 					padding: 0;
 				}
@@ -131,7 +129,6 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 					margin: 1rem 0;
 					li {
 						margin: 0 0 0 1rem;
-						font-size: 1rem;
 						display: list-item;
 						&::before {
 							display: none;
@@ -147,7 +144,6 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 					a {
 						color: $white;
 						margin-top: 10px;
-						font-size: 1rem;
 						font-weight: 500;
 						text-decoration-thickness: 1.5px;
 						&:last-child {
@@ -163,10 +159,9 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 				}
 				.title {
 					margin-bottom: 1rem;
-					font-size: 1.4rem;
 				}
 				img {
-					width: 90%;
+					width: 100%;
 					margin: 0 auto;
 					height: auto;
 					filter: drop-shadow(0px 4px 11px rgba(26, 26, 26, 1));

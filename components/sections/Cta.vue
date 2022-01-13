@@ -33,8 +33,9 @@ export default {
 
 <style lang="scss" scooped>
 .cta {
-	padding-top: 10vw;
-	padding-bottom: 10vw;
+	padding: $section-padding;
+	padding-top: 10rem;
+	padding-bottom: 10rem;
 	background-color: $primary-light;
 	&::after {
 		display: none;
@@ -49,6 +50,7 @@ export default {
 		.form {
 			display: flex;
 			align-items: center;
+			padding-left: 3rem;
 		}
 		.text {
 			padding-right: 3vw;
