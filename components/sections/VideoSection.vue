@@ -70,12 +70,16 @@ export default {
 		object-fit: cover;
 		object-position: center;
 		display: block;
-		filter: grayscale(100%) brightness(130%);
+		filter: grayscale(10%) brightness(130%);
 		opacity: 0.8;
 	}
 	.play {
-		padding: 24px;
-		background: $primary;
+		background: $secondary;
+		height: 60px;
+		width: 60px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		position: absolute;
 		top: 50%;
 		left: 50%;
@@ -85,6 +89,8 @@ export default {
 		z-index: 3;
 		svg {
 			fill: $white;
+			margin-left: 3px;
+			margin-top: -2px;
 		}
 	}
 }

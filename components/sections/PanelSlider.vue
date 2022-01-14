@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import { panelSlider } from '@/plugins/queries'
+
 export default {
 	name: 'PanelSlider',
 	props: {
@@ -46,7 +48,7 @@ export default {
 				return el.panelItem._ref
 			})
 			// console.log(panelData)
-			const query = '*[_id in $ids]{"uid": uid.current, _id, title, description, "poster": poster.asset._ref}'
+			const query = panelSlider
 			const params = { ids: panelData }
 
 			await this.$sanity.fetch(query, params).then((data) => {
@@ -127,6 +129,7 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 				ul {
 					list-style-type: initial;
 					margin: 1rem 0;
+					padding: 0;
 					li {
 						margin: 0 0 0 1rem;
 						display: list-item;
@@ -161,7 +164,7 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 					margin-bottom: 1rem;
 				}
 				img {
-					width: 100%;
+					width: 90%;
 					margin: 0 auto;
 					height: auto;
 					filter: drop-shadow(0px 4px 11px rgba(26, 26, 26, 1));

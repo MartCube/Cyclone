@@ -3,7 +3,7 @@
 		<h2>{{ title }}</h2>
 		<div class="slider">
 			<div class="slider-wrapper">
-				<n-link v-for="project in projects" :key="project._id" exact :to="`/${project.uid}`" class="project">
+				<n-link v-for="project in projects" :key="project._id" exact :to="`/projects/${project.uid}`" class="project">
 					<h3 class="title">{{ project.title }}</h3>
 					<SanityImage :asset-id="`${project.poster}?w=500`" />
 				</n-link>

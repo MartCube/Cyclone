@@ -1,7 +1,7 @@
 <template>
-	<n-link class="project_card" :to="project.uid">
+	<n-link class="project_card" :to="`/projects/${project.uid}`">
 		<div class="image">
-			<DatocmsImage :data="project.poster.responsiveImage" />
+			<SanityImage :asset-id="`${project.poster}?w=450`" />
 			<span class="link">Смотреть</span>
 		</div>
 		<h2 class="title">
@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$card-size: 250px;
+$card-size: 300px;
 .project_card {
 	width: $card-size;
 	cursor: pointer;
@@ -33,7 +33,7 @@ $card-size: 250px;
 
 	text-decoration: none;
 	color: $white;
-	margin: 0 2.5rem 1.5rem 0;
+	margin: 0 1rem 1rem 0;
 
 	.image {
 		width: inherit;
@@ -62,7 +62,7 @@ $card-size: 250px;
 			writing-mode: vertical-rl;
 			text-orientation: mixed;
 		}
-		picture {
+		img {
 			width: 100%;
 			height: 100%;
 			z-index: 1;

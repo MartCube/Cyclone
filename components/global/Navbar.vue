@@ -8,18 +8,18 @@
 		<nav :class="{ active: isActive }" @click="isActive = false">
 			<ul>
 				<li class="first-lvl submenu" :class="{ active: isActive }">
-					<a href="#" @mouseover="isActive = true">Вентилируемые фасады</a>
-					<!-- <ul class="panels-list">
-						<li v-for="panel in panels" :key="panel.uid">
+					<a href="javascript:;" @mouseover="isActive = true">Вентилируемые фасады</a>
+					<ul class="panels-list">
+						<li v-for="panel in panels" :key="panel._id">
 							<n-link exact :to="panel.uid">
-								<DatocmsImage :data="panel.poster.responsiveImage" />
+								<SanityImage :asset-id="`${panel.poster}?w=150`" />
 								<span class="title">{{ panel.title }}</span>
 							</n-link>
 						</li>
-					</ul> -->
+					</ul>
 				</li>
-				<li v-for="link in menu" :key="link" class="first-lvl">
-					<n-link to="/projects">{{ link }}</n-link>
+				<li v-for="link in menu" :key="link.uid" class="first-lvl">
+					<n-link :to="`/${link.uid}`">{{ link.name }}</n-link>
 				</li>
 			</ul>
 		</nav>
@@ -31,19 +31,32 @@
 
 <script>
 import { navbarAnimation } from '~/assets/anime'
-
+import { panelList } from '@/plugins/queries'
 export default {
 	data: () => ({
 		compact: true,
 		isActive: false,
-		menu: ['Объекты', 'Статьи', 'Контакты'],
+		menu: [
+			{
+				name: 'Объекты',
+				uid: 'projects',
+			},
+			{
+				name: 'Статьи',
+				uid: 'blog',
+			},
+			{
+				name: 'Контакты',
+				uid: 'contact',
+			},
+		],
 		panels: null,
 	}),
 	async fetch() {
-		// const fetch = await request({
-		// 	query: panelList,
-		// })
-		// this.panels = fetch.allPanels
+		await this.$sanity.fetch(panelList).then((data) => {
+			// console.log(data)
+			this.panels = data
+		})
 	},
 	computed: {},
 	mounted() {
@@ -114,7 +127,7 @@ $animation-time: 0.3s;
 				align-items: center;
 				width: fit-content;
 				height: 100%;
-				padding: 0 2rem;
+				// padding: 0 2rem;
 				transition: all 0.3s ease;
 				a {
 					opacity: 0;
@@ -125,6 +138,7 @@ $animation-time: 0.3s;
 					font-size: $font-size;
 					transition: all $animation-time linear;
 					padding: 0 10px;
+					margin-right: 2rem;
 					position: relative;
 					&::before {
 						content: '';
@@ -132,7 +146,7 @@ $animation-time: 0.3s;
 						top: 0;
 						right: 0;
 						width: 0;
-						height: 100%;
+						height: 1.6rem;
 						z-index: -1;
 						transition: all 0.35s ease;
 					}
@@ -154,23 +168,21 @@ $animation-time: 0.3s;
 				}
 				.panels-list {
 					position: fixed;
-					top: 100px;
-					left: -100vw;
-					width: calc(100vw - 100px);
+					top: -100vh;
+					left: 0;
+					width: 100vw;
 					height: calc(100vh - 100px);
 					z-index: 20;
 					background-color: $primary;
 					display: flex;
 					flex-wrap: wrap;
+					padding: 0 4rem;
 					opacity: 0;
 					transition: all $animation-time linear;
 					li {
 						padding: 1rem;
 						margin: 0 2vw;
 						height: initial;
-						&:first-child {
-							border-left: none;
-						}
 						a {
 							display: flex;
 							opacity: 1;
@@ -202,7 +214,7 @@ $animation-time: 0.3s;
 	}
 	.logo {
 		width: 17rem;
-		margin-right: 3rem;
+		margin-right: 10px;
 	}
 }
 @media (min-width: 950px) {
@@ -229,9 +241,6 @@ $animation-time: 0.3s;
 					display: flex;
 					flex-direction: column;
 					align-items: flex-start;
-				}
-				&:first-child {
-					border-left: none;
 				}
 				&.submenu:hover {
 					.panels-list {
@@ -377,14 +386,14 @@ $animation-time: 0.3s;
 @keyframes fadeIn {
 	0% {
 		opacity: 0;
-		left: -100vw;
+		top: -100vh;
 	}
 	1% {
 		opacity: 0;
-		left: 100px;
+		top: 100px;
 	}
 	100% {
-		left: 100px;
+		top: 100px;
 		opacity: 1;
 	}
 }

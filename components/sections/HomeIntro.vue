@@ -52,13 +52,13 @@ export default {
 	.cyclone {
 		position: absolute;
 		bottom: 2rem;
-		right: 6rem;
+		right: 4rem;
 		z-index: 1;
 	}
 	.title-wrapper {
 		position: absolute;
 		bottom: 3.5rem;
-		right: 10rem;
+		right: 6rem;
 		border-right: 10px solid $secondary;
 		padding-right: 2rem;
 		text-align: right;

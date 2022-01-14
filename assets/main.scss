@@ -67,21 +67,24 @@ body {
 		margin: 3rem 0 3rem 50px;
 	}
 	ul {
-		list-style-type: none;
-		padding: 0 50px 10px;
+		// list-style-type: none;
+		padding: 0 0 10px;
+		list-style-type: '-';
+		list-style-position: inside;
+		list-style-image: linear-gradient(to left bottom, $secondary, $gradient-red);
 		li {
 			margin: 7px 0;
-			display: flex;
+			// display: flex;
 			line-height: $line-height;
 			font-size: $font-size;
-			&::before {
-				content: '';
-				margin-top: 10px;
-				margin-right: 20px;
-				min-width: 20px;
-				height: 5px;
-				background: $secondary;
-			}
+			// &::before {
+			// 	content: '';
+			// 	margin-top: 10px;
+			// 	margin-right: 20px;
+			// 	min-width: 20px;
+			// 	height: 5px;
+			// 	background: $secondary;
+			// }
 		}
 	}
 }
