@@ -40,14 +40,14 @@ export default {
 	// 	const fetch = await this.$prismic.api.getSingle('footer')
 	// 	this.map = fetch.data.map
 	// },
-	// computed: {
-	// 	year() {
-	// 		return new Date().getFullYear()
-	// 	},
-	// 	footer() {
-	// 		return this.$store.getters.footer
-	// 	},
-	// },
+	computed: {
+		year() {
+			return new Date().getFullYear()
+		},
+		// footer() {
+		// 	return this.$store.getters.footer
+		// },
+	},
 }
 </script>
 

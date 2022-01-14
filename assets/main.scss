@@ -21,6 +21,7 @@ body {
 }
 
 .page{
+	margin-top: 100px;
 	p {
 		color: $white;
 		margin-bottom: 10px;
@@ -67,12 +68,11 @@ body {
 	}
 	ul {
 		list-style-type: none;
+		padding: 0 50px 10px;
 		li {
 			margin: 7px 0;
 			display: flex;
-			flex-wrap: nowrap;
 			line-height: $line-height;
-			white-space: nowrap;
 			font-size: $font-size;
 			&::before {
 				content: '';

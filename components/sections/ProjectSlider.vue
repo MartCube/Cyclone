@@ -131,6 +131,7 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 					font-size: 2rem;
 					position: absolute;
 					bottom: 0;
+					color: $white;
 					left: 0;
 					z-index: 2;
 					padding: 2px 10px;

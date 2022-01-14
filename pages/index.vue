@@ -1,8 +1,8 @@
 <template>
-	<div class="page">
+	<main class="page">
 		<HomeIntro />
 		<SanityContent :blocks="content" :serializers="serializers" />
-	</div>
+	</main>
 </template>
 
 <script>

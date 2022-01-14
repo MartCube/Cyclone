@@ -1,14 +1,14 @@
 <template>
-	<picture>
+	<div class="image">
 		<!-- <source v-if="data.mobile" :data-srcset="data.mobile.url" media="(max-width: 900px)" /> -->
-		<img :data-src="data.url" loading="lazy" class="lazyload" />
-	</picture>
+		<SanityImage :asset-id="asset._ref" fit="fillmax" />
+	</div>
 </template>
 
 <script>
 export default {
 	props: {
-		data: {
+		asset: {
 			type: Object,
 			required: true,
 		},
@@ -17,9 +17,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-picture {
+.image {
 	z-index: 3;
 	display: flex;
+	width: 100%;
+	object-fit: cover;
+	object-position: revert;
+	margin-bottom: 20px;
 
 	img {
 		width: inherit;

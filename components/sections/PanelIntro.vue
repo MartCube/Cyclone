@@ -1,7 +1,7 @@
 <template>
 	<section class="intro-panel">
 		<div class="main-image">
-			<DatocmsImage :data="poster" />
+			<SanityImage :asset-id="`${poster}?w=250`" />
 		</div>
 		<div class="title-wrapper">
 			<h1>{{ title }}</h1>
@@ -13,7 +13,7 @@ export default {
 	name: 'PanelIntro',
 	props: {
 		poster: {
-			type: Object,
+			type: String,
 			required: true,
 		},
 		title: {
@@ -26,11 +26,11 @@ export default {
 <style lang="scss" scoped>
 .intro-panel {
 	height: 100vh;
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	padding: 0 0px 0 100px;
 	.main-image {
 		width: 20vw;
 		margin-top: 2rem;
@@ -38,7 +38,7 @@ export default {
 		filter: drop-shadow(30px 40px 100px hsl(0, 0%, 5%));
 		position: relative;
 		z-index: 3;
-		picture {
+		img {
 			width: 100%;
 			height: 100%;
 		}

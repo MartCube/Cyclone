@@ -26,12 +26,12 @@
 <script>
 export default {
 	name: 'HomeIntro',
-	props: {
-		data: {
-			type: Object,
-			required: true,
-		},
-	},
+	// props: {
+	// 	data: {
+	// 		type: Object,
+	// 		required: true,
+	// 	},
+	// },
 }
 </script>
 

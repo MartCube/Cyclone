@@ -122,7 +122,7 @@ $animation-time: 0.3s;
 					white-space: nowrap;
 					text-decoration: none;
 					font-weight: 400;
-					font-size: 1.5rem;
+					font-size: $font-size;
 					transition: all $animation-time linear;
 					padding: 0 10px;
 					position: relative;

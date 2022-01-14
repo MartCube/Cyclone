@@ -7,31 +7,38 @@
 
 <script>
 export default {
-	computed: {
-		links() {
-			const fullPath = this.$route.fullPath
-			const params = fullPath.startsWith('/') ? fullPath.substring(1).split('/') : fullPath.split('/')
-			// console.log('params', params)
-			const crumbs = []
-			let path = ''
-
-			params.forEach((param) => {
-				path = `${path}/${param}`
-				// console.log('path', path)
-
-				const match = this.$router.match(path)
-				// console.log('match', match)
-
-				if (match.name !== null) {
-					crumbs.push({
-						title: param.replace(/-/g, ' '),
-						path,
-					})
-				}
-			})
-			return crumbs
+	name: 'Crumbs',
+	props: {
+		links: {
+			type: Array,
+			required: true,
 		},
 	},
+	// computed: {
+	// 	links() {
+	// 		const fullPath = this.$route.fullPath
+	// 		const params = fullPath.startsWith('/') ? fullPath.substring(1).split('/') : fullPath.split('/')
+	// 		// console.log('params', params)
+	// 		const crumbs = []
+	// 		let path = ''
+
+	// 		params.forEach((param) => {
+	// 			path = `${path}/${param}`
+	// 			// console.log('path', path)
+
+	// 			const match = this.$router.match(path)
+	// 			// console.log('match', match)
+
+	// 			if (match.name !== null) {
+	// 				crumbs.push({
+	// 					title: param.replace(/-/g, ' '),
+	// 					path,
+	// 				})
+	// 			}
+	// 		})
+	// 		return crumbs
+	// 	},
+	// },
 }
 </script>
 
