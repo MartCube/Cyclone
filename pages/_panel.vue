@@ -2,6 +2,7 @@
 	<main class="page panel">
 		<PanelIntro :poster="poster" :title="title" />
 		<section class="content">
+			<Crumbs :links="breadCrumbs" />
 			<SanityContent :blocks="content" :serializers="serializers" />
 		</section>
 	</main>
@@ -32,6 +33,11 @@ export default {
 			},
 		},
 	}),
+	computed: {
+		breadCrumbs() {
+			return [{ title: this.title }]
+		},
+	},
 }
 </script>
 
@@ -51,7 +57,13 @@ export default {
 		margin: 3rem 0 3rem 50px;
 	}
 	.content {
-		padding: 0 10%;
+		padding: 0 10% 3rem 10%;
+		ul {
+			padding: 0 50px 10px;
+		}
+	}
+	.crumbs {
+		margin-left: 50px;
 	}
 }
 </style>

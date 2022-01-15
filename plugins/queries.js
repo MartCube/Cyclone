@@ -18,17 +18,17 @@ export const projectsList = groq`*[_type == "project"] | order(_updatedAt desc) 
 	"uid": uid.current, 
 	title, 
 	"poster": poster.asset._ref, 
-	tags,
+	"tags": tags[].value,
 }`
 export const project = groq`*[_type == "project" && uid.current == $uid][0] {
 	"uid": uid.current, 
 	title, 
 	"poster": poster.asset._ref, 
-	gallery, 
-	tags,
+	"gallery": gallery[].asset._ref, 
 	_updatedAt,
 	description,
-	youtube
+	youtube,
+	_id
 }`
 export const index = groq`*[_type == 'page' && name == 'index'][0]{
 	content

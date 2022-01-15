@@ -19,10 +19,12 @@ export default {
 <style lang="scss" scoped>
 .title {
 	width: 100%;
-	height: 240px;
 	display: flex;
 	align-items: center;
+	border-left: 5px solid $secondary;
+	padding-left: 1.5rem;
 	font-size: 4rem;
 	color: $white;
+	line-height: 1;
 }
 </style>

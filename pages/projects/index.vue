@@ -1,39 +1,30 @@
 <template>
 	<div class="page">
 		<div class="projects">
+			<Crumbs :links="breadCrumbs" />
 			<Title value="Объекты" />
 
 			<div class="filter">
-				<span :class="{ active: active_filter[0] == null }" @click="filterUpdate('all')">all</span>
-				<span v-for="filter in filters" :key="filter" :class="{ active: active_filter[0] == filter }" @click="filterUpdate(filter)">
-					{{ filter }}
+				<span :class="{ active: active_filter[0] == null }" @click="filterUpdate('all')"> Все </span>
+				<span v-for="(filter, i) in filters" :key="i" :class="{ active: active_filter == filter.key }" @click="filterUpdate(filter.key)">
+					{{ filter.name }}
 				</span>
 			</div>
 
-			<div class="grid">
-				<!-- <template v-if="$fetchState.error">error</template> -->
-				<!-- <template> -->
-				<ProjectCard v-for="project in projects" :key="project.uid" :project="project" />
-				<!-- <div class="wrapper">
-					<ButtonItem>Показать больше</ButtonItem>
-				</div> -->
-				<!-- </template> -->
+			<div ref="grid" class="grid">
+				<ProjectCard v-for="project in gridProjects" :key="project.uid" :project="project" />
 			</div>
 		</div>
 	</div>
 </template>
 <script>
 import { projectsList } from '@/plugins/queries'
-
+import { postAnim } from '~/assets/anime'
 export default {
 	name: 'Projects',
-	// asyncData({ $sanity }) {
-	// 	const projects = $sanity.fetch(projectsList)
-	// 	console.log(projects)
-	// 	return { projects }
-	// },
 	data: () => ({
-		projects: [],
+		currentProjects: [],
+		gridProjects: [],
 		// filters
 		active_filter: [],
 		// pagination
@@ -45,27 +36,75 @@ export default {
 	}),
 	async fetch() {
 		const data = await this.$sanity.fetch(projectsList)
-		console.log(data)
+		// console.log(data)
 		// move this to vuex store
-		this.projects = data
-		// this.total_pages = projects.total_pages
-		// this.prev_page = projects.prev_page
-		// this.next_page = projects.next_page
+		this.currentProjects = data
+		this.gridProjects = data
 	},
 	computed: {
 		filters() {
-			return ['composite', 'kerama-alum', 'cassete', 'hpl', 'kerama-large', 'kerama-steel', 'ventarock', 'proflist']
+			return [
+				{
+					name: 'Composite',
+					key: 'composite',
+				},
+				{
+					name: 'Kerama-alum',
+					key: 'kerama_alum',
+				},
+				{
+					name: 'Cassete',
+					key: 'cassete',
+				},
+				{
+					name: 'Hpl',
+					key: 'hpl',
+				},
+				{
+					name: 'Kerama-large',
+					key: 'kerama_large',
+				},
+				{
+					name: 'Kerama-steel',
+					key: 'kerama_steel',
+				},
+				{
+					name: 'Ventarock',
+					key: 'ventarock',
+				},
+				{
+					name: 'Proflist',
+					key: 'proflist',
+				},
+			]
+		},
+		breadCrumbs() {
+			return [{ title: 'Объекты' }]
+		},
+	},
+	watch: {
+		async gridProjects(newValue, oldValue) {
+			await this.$nextTick()
+			postAnim(this.$refs.grid.children, true)
 		},
 	},
 	methods: {
 		// filters
-		filterUpdate(filter) {
-			this.active_filter = [filter]
-			if (filter === 'all') this.active_filter = []
-			// restart results
-			// this.current_page = 1
-			// this.next_page = 6
-			this.$fetch()
+		filterUpdate(filterItem) {
+			console.log(filterItem)
+			this.active_filter = filterItem
+			const filteredProjects = this.currentProjects.filter((project) => {
+				if (project.tags.includes(filterItem)) {
+					return project
+				}
+				return false
+			})
+			this.gridProjects = filteredProjects
+			if (filterItem === 'all') {
+				this.active_filter = []
+				this.gridProjects = this.currentProjects
+			}
+			postAnim(this.$refs.grid.children, true)
 		},
 		// pagination
 		// fetchNext() {
@@ -132,6 +171,12 @@ export default {
 			}
 		}
 	}
+	.title {
+		margin: 5rem 0;
+	}
+	.crumbs {
+		margin-top: 2rem;
+	}
 	.grid {
 		flex: 1;
 		padding-left: 40px;
@@ -144,6 +189,9 @@ export default {
 			width: 100%;
 			display: flex;
 			justify-content: center;
+			.project_card {
+				opacity: 0;
+			}
 		}
 	}
 }

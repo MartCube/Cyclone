@@ -19,9 +19,7 @@
 		</div>
 		<div class="map">
 			<h4>Карта</h4>
-			<n-link to="/">
-				<!-- <ImageItem :data="map" /> -->
-			</n-link>
+			<n-link target="_blank" to="https://goo.gl/maps/xSn9CX9dBNtFPHoM7"> <Icon name="location" /> ул. Куреневская, 18, оф. 416, Київ, 04073 </n-link>
 		</div>
 		<div class="policy">
 			<p><Icon name="copyright" /> Cyclone {{ year }} All rights reserved</p>
@@ -36,17 +34,10 @@ export default {
 	data: () => ({
 		map: null,
 	}),
-	// async fetch() {
-	// 	const fetch = await this.$prismic.api.getSingle('footer')
-	// 	this.map = fetch.data.map
-	// },
 	computed: {
 		year() {
 			return new Date().getFullYear()
 		},
-		// footer() {
-		// 	return this.$store.getters.footer
-		// },
 	},
 }
 </script>
@@ -57,10 +48,11 @@ footer {
 	width: 100%;
 	height: fit-content;
 	padding: 50px 100px 0 100px;
-
 	display: flex;
 	flex-wrap: wrap;
 	& > * {
+		position: relative;
+		z-index: 2;
 		flex: 1;
 		h4 {
 			font-size: 1.5rem;

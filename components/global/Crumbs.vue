@@ -28,17 +28,17 @@ export default {
 <style lang="scss" scoped>
 .crumbs {
 	height: min-content;
-	margin: 50px 0;
 	display: flex;
 	p {
 		padding: 0;
 		font-size: 1rem;
 		color: $grey;
+		margin: 0;
 	}
 	a {
 		text-decoration: none;
 		color: $grey;
-
+		margin: 0;
 		width: min-content;
 		display: flex;
 		align-items: center;

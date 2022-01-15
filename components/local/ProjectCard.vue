@@ -33,7 +33,7 @@ $card-size: 300px;
 
 	text-decoration: none;
 	color: $white;
-	margin: 0 1rem 1rem 0;
+	margin: 0 1.5rem 1.5rem 0;
 
 	.image {
 		width: inherit;

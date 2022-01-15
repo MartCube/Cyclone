@@ -15,6 +15,11 @@ export default {
 	middleware({ store }) {
 		store.dispatch('bindFooter', false)
 	},
+	computed: {
+		breadCrumbs() {
+			return [{ title: 'Контакты' }]
+		},
+	},
 }
 </script>
 

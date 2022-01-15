@@ -1,6 +1,5 @@
 <template>
 	<main class="page project">
-		<!-- <projectIntro :poster="poster" :title="title" /> -->
 		<Crumbs :links="breadCrumbs" />
 		<div class="content">
 			<div class="text">
@@ -12,24 +11,48 @@
 			</div>
 			<VideoSection v-if="youtube" :preview="youtube.preview" :url="youtube.url" />
 		</div>
+		<div class="gallery">
+			<CoolLightBox :items="galleryImages(gallery)" :index="galleryIndex" @close="galleryIndex = null"></CoolLightBox>
+			<div class="wrapper">
+				<figure v-for="(image, y) in gallery" :key="y" @click="galleryIndex = y">
+					<SanityImage :asset-id="`${image}?w=500`" />
+				</figure>
+			</div>
+		</div>
 	</main>
 </template>
 
 <script>
+import CoolLightBox from 'vue-cool-lightbox'
 import { project } from '@/plugins/queries'
-// import VideoSection from '@/components/sections/VideoSection'
-// import ImageItem from '@/components/items/ImageItem'
+import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 export default {
 	name: 'Project',
+	components: {
+		CoolLightBox,
+	},
 	asyncData({ $sanity, params }) {
 		return $sanity.fetch(project, {
 			uid: params.project,
 		})
 	},
-	data: () => ({}),
+	data: () => ({
+		galleryIndex: null,
+	}),
 	computed: {
 		breadCrumbs() {
 			return [{ path: '/projects', title: 'Проекты' }, { title: this.title }]
+		},
+	},
+	methods: {
+		galleryImages(gallery) {
+			console.log(gallery)
+			const imagesUrls = gallery.map((el) => {
+				// eslint-disable-next-line prettier/prettier
+				console.log(el);
+				return `https://cdn.sanity.io/images/wv1u3p06/production/${el.slice(6, el.length - 4)}.jpg`
+			})
+			return imagesUrls
 		},
 	},
 }
@@ -52,7 +75,6 @@ export default {
 		margin: 3rem 0 3rem 50px;
 	}
 	.content {
-		// padding: 0 10%;
 		display: flex;
 
 		p {
@@ -61,14 +83,42 @@ export default {
 		h1 {
 			margin-left: 0;
 		}
+		.image {
+			// width: 100%;
+			img {
+				height: 100%;
+				width: 100%;
+			}
+		}
+		.text {
+			padding-right: 2rem;
+		}
 		.text,
+		.image,
 		.video_container {
 			flex: 0 0 50%;
 		}
-
-		// ul {
-
-		// }
+	}
+	.gallery {
+		.wrapper {
+			margin-top: 10px;
+			column-count: 3;
+			column-gap: 10px;
+			width: 100%;
+			figure {
+				width: 29.7vw;
+				margin-bottom: 10px;
+				img {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					display: flex;
+				}
+			}
+		}
+	}
+	.crumbs {
+		margin: 3rem 0;
 	}
 }
 </style>
