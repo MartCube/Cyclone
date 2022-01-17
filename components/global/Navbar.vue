@@ -1,11 +1,11 @@
 <template>
-	<div class="navbar">
+	<div class="navbar" :class="{ active: isActive }">
 		<div class="burger" :class="{ active: isActive }" @click="ShowHideMenu">
 			<span class="top_line" />
 			<span class="mid_line" />
 			<span class="bot_line" />
 		</div>
-		<nav :class="{ active: isActive }" @click="isActive = false">
+		<nav @click="isActive = false">
 			<ul>
 				<li class="first-lvl submenu" :class="{ active: isActive }">
 					<a href="javascript:;" @mouseover="isActive = true">Вентилируемые фасады</a>
@@ -134,6 +134,7 @@ $animation-time: 0.3s;
 					color: $white;
 					white-space: nowrap;
 					text-decoration: none;
+					margin-bottom: 0;
 					font-weight: 400;
 					font-size: $font-size;
 					transition: all $animation-time linear;
@@ -181,7 +182,7 @@ $animation-time: 0.3s;
 					transition: all $animation-time linear;
 					li {
 						padding: 1rem;
-						margin: 0 2vw;
+						margin: 0 1rem;
 						height: initial;
 						a {
 							display: flex;
@@ -190,6 +191,8 @@ $animation-time: 0.3s;
 							align-items: center;
 							justify-content: flex-start;
 							max-width: 130px;
+							margin-bottom: 0;
+
 							width: 100%;
 							transition: $animation-time linear;
 							span {
@@ -223,80 +226,82 @@ $animation-time: 0.3s;
 	}
 }
 @media (max-width: 950px) {
-	nav {
+	.navbar {
 		padding-left: 50px;
 		height: 100%;
 		width: 100%;
 		left: -100%;
-		ul {
-			flex-direction: column;
-			padding-left: 10px;
-			border-left: 1px solid $secondary;
-			align-items: flex-start;
-			padding-top: 1rem;
-			li {
-				padding: 0;
-				height: initial;
-				&.submenu {
-					display: flex;
-					flex-direction: column;
-					align-items: flex-start;
-				}
-				&.submenu:hover {
-					.panels-list {
-						animation: initial;
+		nav {
+			ul {
+				flex-direction: column;
+				padding-left: 10px;
+				border-left: 1px solid $secondary;
+				align-items: flex-start;
+				padding-top: 1rem;
+				li {
+					padding: 0;
+					height: initial;
+					&.submenu {
+						display: flex;
+						flex-direction: column;
+						align-items: flex-start;
 					}
-				}
-				a {
-					opacity: 1;
-					height: 3rem;
-					text-decoration: none;
-					display: flex;
-					align-items: center;
-				}
-				.panels-list {
-					position: initial;
-					top: initial;
-					left: initial;
-					width: 100%;
-					height: auto;
-					z-index: initial;
-					padding-top: 0;
-					display: flex;
-					flex-wrap: wrap;
-					margin: 2rem 0;
-					align-items: flex-start;
-					flex-direction: row;
-					padding-left: 0;
-					border: none;
-					opacity: 1;
-					li {
-						padding: 0.3rem;
-						height: initial;
-						width: 30%;
-						margin: 0;
-						a {
-							display: flex;
-							opacity: 1;
-							flex-direction: row;
-							align-items: center;
-							justify-content: flex-start;
-							max-width: initial;
-							width: 100%;
-							margin: 0 0px;
-							height: auto;
-							&:before {
-								height: 100%;
-							}
-							picture {
-								height: 12vw;
-								width: auto;
-							}
-							span {
-								margin-bottom: initial;
-								white-space: normal;
-								text-align: left;
-								margin-left: 10px;
+					&.submenu:hover {
+						.panels-list {
+							animation: initial;
+						}
+					}
+					a {
+						opacity: 1;
+						height: 3rem;
+						text-decoration: none;
+						display: flex;
+						align-items: center;
+					}
+					.panels-list {
+						position: initial;
+						top: initial;
+						left: initial;
+						width: 100%;
+						height: auto;
+						z-index: initial;
+						padding-top: 0;
+						display: flex;
+						flex-wrap: wrap;
+						margin: 2rem 0;
+						align-items: flex-start;
+						flex-direction: row;
+						padding-left: 0;
+						border: none;
+						opacity: 1;
+						li {
+							padding: 0.3rem;
+							height: initial;
+							width: 30%;
+							margin: 0;
+							a {
+								display: flex;
+								opacity: 1;
+								flex-direction: row;
+								align-items: center;
+								justify-content: flex-start;
+								max-width: initial;
+								width: 100%;
+								margin: 0 0px;
+								height: auto;
+								&:before {
+									height: 100%;
+								}
+								picture {
+									height: 12vw;
+									width: auto;
+								}
+								span {
+									margin-bottom: initial;
+									white-space: normal;
+									text-align: left;
+									margin-left: 10px;
+								}
 							}
 						}
 					}
@@ -306,67 +311,71 @@ $animation-time: 0.3s;
 		&.active {
 			animation: fadeInMobile $animation-time linear forwards;
 		}
-	}
-}
-.burger {
-	position: fixed;
-	height: 3rem;
-	width: 15px;
-	display: flex;
-	justify-content: space-between;
-	top: 1rem;
-	left: 18px;
-	z-index: 24;
-	span {
-		display: flex;
-		height: 100%;
-		width: 2px;
-		opacity: 1;
-		background-color: $secondary;
-		transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
-	}
-	&.active {
-		.top_line {
-			transform: rotate(20deg) translate(5px, -3px);
-			transition-delay: 0.1s;
-			height: 106%;
-		}
-		.mid_line {
-			transform: translateX(-4px);
-		}
-		.bot_line {
-			transition-delay: 0.1s;
-			transform: translateX(-4px);
-		}
-	}
-}
-@media (max-width: 600px) {
-	nav {
-		padding-left: 30px;
-		ul {
-			li {
-				.panels-list {
-					li {
-						width: 50%;
-						padding: 0;
-						a {
-							padding: 0.3rem;
-							span {
-								font-size: 0.9rem;
-							}
-						}
-					}
+		.burger {
+			position: fixed;
+			height: 3rem;
+			width: 15px;
+			display: flex;
+			justify-content: space-between;
+			top: 1rem;
+			left: 18px;
+			z-index: 24;
+			span {
+				display: flex;
+				height: 100%;
+				width: 2px;
+				opacity: 1;
+				background-color: $secondary;
+				transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
+			}
+			&.active {
+				.top_line {
+					transform: rotate(20deg) translate(5px, -3px);
+					transition-delay: 0.1s;
+					height: 106%;
 				}
-				a {
-					&::before {
-						height: 45px;
-					}
+				.mid_line {
+					transform: translateX(-4px);
+				}
+				.bot_line {
+					transition-delay: 0.1s;
+					transform: translateX(-4px);
 				}
 			}
 		}
 	}
-	.burger {
-		left: 8px;
+}
+@media (max-width: 600px) {
+	.navbar {
+		height: 100vh;
+		width: 100vw;
+		nav {
+			padding-left: 30px;
+			ul {
+				li {
+					.panels-list {
+						li {
+							width: 50%;
+							padding: 0;
+							a {
+								padding: 0.3rem;
+								span {
+									font-size: 0.9rem;
+								}
+							}
+						}
+					}
+					a {
+						&::before {
+							height: 45px;
+						}
+					}
+				}
+			}
+		}
+		.burger {
+			left: 8px;
+		}
 	}
 }
 @keyframes fadeInMobile {

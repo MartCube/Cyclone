@@ -1,8 +1,11 @@
 <template>
 	<section class="project-slider">
-		<h2>{{ title }}</h2>
 		<div class="slider">
 			<div class="slider-wrapper">
+				<div class="content">
+					<h2>{{ title }}</h2>
+					<SanityContent :blocks="text.richTextContent" />
+				</div>
 				<n-link v-for="project in projects" :key="project._id" exact :to="`/projects/${project.uid}`" class="project">
 					<h3 class="title">{{ project.title }}</h3>
 					<SanityImage :asset-id="`${project.poster}?w=500`" />
@@ -23,6 +26,10 @@ export default {
 		},
 		title: {
 			type: String,
+			required: true,
+		},
+		text: {
+			type: Object,
 			required: true,
 		},
 	},
@@ -73,49 +80,50 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 	}
 	.slider {
 		width: 100%;
-		overflow-x: auto;
-		scrollbar-color: $secondary $primary-dark;
-		scrollbar-width: thin;
-		margin-left: 50px;
-		padding-bottom: 1rem;
-		overflow-y: hidden;
+		// overflow-x: auto;
+		// scrollbar-color: $secondary $primary-dark;
+		// scrollbar-width: thin;
+		// margin-left: 50px;
+		// padding-bottom: 1rem;
+		// overflow-y: hidden;
 		height: auto;
-		&::-webkit-scrollbar {
-			width: 5px;
-			height: 5px;
-		}
-		&::-webkit-scrollbar-button {
-			width: 0px;
-			height: 0px;
-		}
-		&::-webkit-scrollbar-thumb {
-			background: $secondary;
-			border: 5px none $secondary;
-			border-radius: 50px;
-		}
-		&::-webkit-scrollbar-thumb:hover {
-			background: $gradient-red;
-		}
-		&::-webkit-scrollbar-thumb:active {
-			background: $secondary;
-		}
-		&::-webkit-scrollbar-track {
-			background: $primary-dark;
-			border: 5px none $primary-dark;
-			border-radius: 50px;
-		}
-		&::-webkit-scrollbar-track:hover {
-			background: $gradient-gray;
-		}
-		&::-webkit-scrollbar-track:active {
-			background: $gradient-gray;
-		}
-		&::-webkit-scrollbar-corner {
-			background: $gradient-gray;
-		}
+		// &::-webkit-scrollbar {
+		// 	width: 5px;
+		// 	height: 5px;
+		// }
+		// &::-webkit-scrollbar-button {
+		// 	width: 0px;
+		// 	height: 0px;
+		// }
+		// &::-webkit-scrollbar-thumb {
+		// 	background: $secondary;
+		// 	border: 5px none $secondary;
+		// 	border-radius: 50px;
+		// }
+		// &::-webkit-scrollbar-thumb:hover {
+		// 	background: $gradient-red;
+		// }
+		// &::-webkit-scrollbar-thumb:active {
+		// 	background: $secondary;
+		// }
+		// &::-webkit-scrollbar-track {
+		// 	background: $primary-dark;
+		// 	border: 5px none $primary-dark;
+		// 	border-radius: 50px;
+		// }
+		// &::-webkit-scrollbar-track:hover {
+		// 	background: $gradient-gray;
+		// }
+		// &::-webkit-scrollbar-track:active {
+		// 	background: $gradient-gray;
+		// }
+		// &::-webkit-scrollbar-corner {
+		// 	background: $gradient-gray;
+		// }
 		.slider-wrapper {
 			display: inline-flex;
-			width: auto;
+			// width: auto;
+			flex-wrap: wrap;
 			.project {
 				width: $article-width;
 				margin: 0.5rem 0.5rem 0.5rem 0;
@@ -150,6 +158,8 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 					transform: scale(1.03);
 					background-color: hsl(0deg 0% 19%);
 				}
+			}
+			.text {
 			}
 		}
 	}

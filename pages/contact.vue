@@ -1,8 +1,10 @@
 <template>
 	<div class="page contacts">
-		<Crumbs />
+		<Crumbs :links="breadCrumbs" />
 		<Title value="Контакты" />
+		<ContactInfo />
 		<ContactForm />
+		<Policy />
 	</div>
 </template>
 
@@ -12,6 +14,7 @@ export default {
 		this.$store.dispatch('bindFooter', true)
 		next()
 	},
+	layout: 'contact',
 	middleware({ store }) {
 		store.dispatch('bindFooter', false)
 	},
@@ -25,8 +28,24 @@ export default {
 
 <style lang="scss" scoped>
 .contacts {
-	border-left: 1px solid $secondary;
-	margin-left: 100px;
-	padding: 100px 0 0 40px;
+	// border-left: 1px solid $secondary;
+	// margin-left: 100px;
+	padding: 0 4rem;
+	display: flex;
+	flex-wrap: wrap;
+	.title {
+		margin-bottom: 4rem;
+	}
+	.crumbs {
+		margin: 3rem 0;
+	}
+	.contact_info {
+		flex: 1;
+		flex-wrap: wrap;
+		padding-right: 5rem;
+	}
+	.policy {
+		margin-top: 5rem;
+	}
 }
 </style>

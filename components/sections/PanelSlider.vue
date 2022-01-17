@@ -131,7 +131,7 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 					margin: 1rem 0;
 					padding: 0;
 					li {
-						margin: 0 0 0 1rem;
+						// margin: 0 0 0 1rem;
 						display: list-item;
 						&::before {
 							display: none;

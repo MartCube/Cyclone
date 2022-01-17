@@ -1,5 +1,5 @@
 <template>
-	<article class="benefits">
+	<section class="benefits">
 		<div class="content">
 			<SanityContent :blocks="benefitcontent" />
 		</div>
@@ -15,7 +15,7 @@
 				</div>
 			</div>
 		</div>
-	</article>
+	</section>
 </template>
 
 <script>

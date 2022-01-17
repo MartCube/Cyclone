@@ -20,7 +20,7 @@ button {
 	width: 100%;
 	height: 100%;
 	margin: 1rem 0;
-	padding: 1rem 2rem;
+	padding: 0.5rem 2rem;
 	border: none;
 
 	background-color: $secondary;
@@ -44,7 +44,7 @@ button {
 	line-height: 2rem;
 	transition: all 0.2s ease;
 	svg {
-		fill: $grey;
+		fill: $white;
 		margin-left: 15px;
 		transition: all 0.2s ease;
 	}
@@ -57,8 +57,8 @@ button {
 			width: 100%;
 		}
 		svg {
-			opacity: 1;
-			fill: $secondary;
+			opacity: 0.8;
+			// fill: $secondary;
 		}
 	}
 }

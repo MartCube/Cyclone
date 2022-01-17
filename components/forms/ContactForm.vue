@@ -1,7 +1,7 @@
 <template>
 	<div class="contact_form">
+		<h6 class="title">Нам правда важно ваше мнение</h6>
 		<ValidationObserver v-if="!message" ref="contact" tag="form" autocomplete="off" @submit.prevent="Submit()">
-			<h4 class="title">Нам правда важно ваше мнение</h4>
 			<InputItem name="name" label="Имя" rules="required" @getValue="storeValue" />
 			<InputItem name="number" label="Телефон" rules="min:9|required" @getValue="storeValue" />
 			<InputItem name="email" label="Email" rules="email|required" @getValue="storeValue" />
@@ -79,7 +79,7 @@ export default {
 	height: 100%;
 	display: flex;
 	justify-content: center;
-
+	flex-direction: column;
 	form {
 		width: 100%;
 		display: flex;
@@ -87,15 +87,7 @@ export default {
 		justify-content: space-between;
 	}
 	.title {
-		width: max-content;
-		border-bottom: 2px solid $primary;
-		margin-bottom: 1rem;
-
-		font-size: 2rem;
 		color: $grey;
-		&::selection {
-			color: $white;
-		}
 	}
 	.message {
 		display: flex;
@@ -109,8 +101,11 @@ export default {
 			margin-top: 2rem;
 		}
 	}
+	p {
+		padding: 0;
+	}
 	.input_item {
-		margin: 2rem 0;
+		margin: 1rem 0;
 	}
 }
 </style>
