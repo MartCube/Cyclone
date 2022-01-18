@@ -98,7 +98,7 @@ export default {
 			flex-direction: column;
 			.text {
 				padding-right: 0;
-				margin-bottom: 5rem;
+				margin-bottom: 2rem;
 				.cta-title {
 					margin-bottom: 1rem;
 					font-size: 3rem;
@@ -110,16 +110,6 @@ export default {
 			}
 			.form {
 				padding-left: 0;
-				&::before {
-					content: '';
-					height: 3px;
-					width: 4rem;
-					background-color: $gradient-gray;
-					display: block;
-					position: absolute;
-					left: 50%;
-					transform: translateX(-50%);
-				}
 			}
 			.text,
 			.form {

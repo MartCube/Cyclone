@@ -82,13 +82,27 @@ export default {
 @media (max-width: 800px) {
 	.cta_form {
 		width: 100%;
-		margin-top: 4rem;
+		// margin-top: 4rem;
 		justify-content: flex-end;
-		padding-right: 1.5rem;
+		// padding-right: 1.5rem;
 		form {
-			width: 75vw;
+			flex-direction: column;
+			margin: 0;
+			width: 100%;
 			button {
 				align-items: center;
+				margin-left: 0;
+				margin-top: 2rem;
+				height: 40px;
+				// width: fit-content;
+				// margin: 0 0 0 2rem;
+				border-radius: 2px;
+
+				&:hover,
+				&:focus,
+				&:active {
+					background-color: $gradient-red;
+				}
 			}
 		}
 	}

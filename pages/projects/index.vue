@@ -205,8 +205,8 @@ export default {
 }
 @media (max-width: 900px) {
 	.projects {
-		margin-left: 30px;
-		padding: 0px 0 0 25px;
+		// margin-left: 30px;
+		padding: 0px 1rem 3rem 1rem;
 		.filter {
 			width: 100%;
 			padding-right: 40px;
@@ -229,7 +229,7 @@ export default {
 			}
 		}
 		.title {
-			height: 110px;
+			// height: 110px;
 			font-size: 3rem;
 		}
 		button {

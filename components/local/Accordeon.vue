@@ -150,16 +150,28 @@ export default {
 		}
 	}
 }
-@media (max-width: 750px) {
+@media (max-width: 950px) {
 	.accordeon {
-		width: 90%;
+		width: 100%;
 		.question {
 			align-items: stretch;
+			.number {
+				flex-basis: 3rem;
+				&::before,
+				&::after {
+					height: 52%;
+				}
+			}
 			.collapse_button {
 				margin: 1rem;
+				align-self: center;
 			}
 			h3 {
 				padding: 10px 0 10px 20px;
+			}
+			p {
+				font-size: 1rem;
+				padding: 0.5rem 0 1rem 1rem;
 			}
 		}
 	}

@@ -75,27 +75,25 @@ export default {
 }
 @media (max-width: 800px) {
 	.achievements {
-		padding-right: 0;
-		.content {
-			flex-direction: column;
-			.achievement-item {
-				margin-right: 30px;
-				.number {
-					font-size: 5rem;
-				}
-				.description {
-					font-size: 2rem;
-					max-width: 100%;
-				}
+		padding: 0 2rem 3rem 2rem;
+		flex-direction: column;
+		.achievement-item {
+			margin: 0;
+			.number {
+				font-size: 5rem;
 			}
-			.achievement-image {
-				margin: 4rem 0;
-			}
-			.achievement-item,
-			.achievement-image {
-				width: 100%;
+			.description {
+				font-size: 2rem;
 				max-width: 100%;
 			}
+		}
+		.achievement-image {
+			margin: 4rem 0;
+		}
+		.achievement-item,
+		.achievement-image {
+			width: 100%;
+			max-width: 100%;
 		}
 	}
 }

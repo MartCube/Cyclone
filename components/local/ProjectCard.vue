@@ -112,42 +112,42 @@ $card-size: 300px;
 }
 @media (max-width: 900px) {
 	.project_card {
-		margin: 0 20px 20px 0;
-		width: 200px;
+		margin: 1rem 1vw;
+		width: 48vw;
 		.image {
-			height: 200px;
+			height: 48vw;
 		}
 		.title {
-			font-size: 1.3rem;
+			font-size: 1.6rem;
 		}
 	}
 }
 @media (max-width: 600px) {
 	.project_card {
-		margin: 0 10px 20px 0;
-		width: 140px;
+		// margin: 0 10px 20px 0;
+		width: 100%;
 		.image {
-			height: 140px;
+			height: 80vw;
 			.link {
-				font-size: 1rem;
+				// font-size: 1rem;
 			}
 		}
 		.title {
-			font-size: 1rem;
+			// font-size: 1rem;
 		}
 	}
 }
-@media (max-width: 360px) {
-	.project_card {
-		margin: 0 10px 20px 0;
-		width: calc(100% - 25px);
-		.image {
-			height: 100%;
-			width: 100%;
-		}
-		.title {
-			font-size: 1rem;
-		}
-	}
-}
+// @media (max-width: 360px) {
+// 	.project_card {
+// 		margin: 0 10px 20px 0;
+// 		width: calc(100% - 25px);
+// 		.image {
+// 			height: 100%;
+// 			width: 100%;
+// 		}
+// 		.title {
+// 			font-size: 1rem;
+// 		}
+// 	}
+// }
 </style>

@@ -84,18 +84,16 @@ export default {
 
 @media (max-width: 950px) {
 	.benefits {
-		.content {
-			.list {
-				padding: 0 15px;
-				.benefit {
-					width: 100%;
-					.number {
-						width: 25%;
-					}
-					.info {
-						h3 {
-							margin-top: 0;
-						}
+		.list {
+			padding: 0 15px;
+			.benefit {
+				width: 100%;
+				.number {
+					width: 25%;
+				}
+				.info {
+					h3 {
+						margin-top: 0;
 					}
 				}
 			}
@@ -104,21 +102,22 @@ export default {
 }
 @media (max-width: 600px) {
 	.benefits {
-		.content {
-			.list {
-				padding: 0 10px;
-				.benefit {
-					width: 100%;
-					.number {
-						width: 17vw;
-						font-size: 7vw;
-					}
-					.info {
-						h3 {
-							margin-bottom: 1rem;
-							font-size: 1.7rem;
-							line-height: 1.2;
-						}
+		.list {
+			padding: 0;
+			.benefit {
+				width: 100%;
+				&:nth-child(odd) {
+					margin-right: 0;
+				}
+				.number {
+					width: 17vw;
+					font-size: 2.4rem;
+				}
+				.info {
+					h3 {
+						margin-bottom: 1rem;
+						font-size: 1.7rem;
+						line-height: 1.2;
 					}
 				}
 			}

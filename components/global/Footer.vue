@@ -28,7 +28,7 @@ footer {
 }
 @media (max-width: 600px) {
 	footer {
-		padding: 0 0 0 50px;
+		padding: 0 2rem 3rem 2rem;
 	}
 }
 </style>

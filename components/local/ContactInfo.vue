@@ -78,11 +78,16 @@ export default {
 }
 @media (max-width: 900px) {
 	.contact_info {
+		flex-wrap: wrap;
 		& > * {
 			flex: initial;
 			width: 100%;
 			h6 {
 				margin: 30px 0;
+			}
+			a,
+			p {
+				margin-bottom: 10px;
 			}
 		}
 	}

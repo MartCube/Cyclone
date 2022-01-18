@@ -42,15 +42,14 @@ export default {
 		figure {
 			height: 200px;
 			width: auto;
-			padding: 5px;
 			border: 1px solid hsl(0deg, 0%, 22%);
 			filter: drop-shadow(0px 4px 20px hsl(0deg 0% 6%));
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			margin-right: 10px;
+			padding: 2rem;
 			img {
-				margin: 2rem;
 				width: initial;
 				height: initial;
 			}
@@ -58,13 +57,35 @@ export default {
 	}
 }
 
-@media (max-width: 600px) {
+@media (max-width: 950px) {
 	.partners {
 		.partners-grid {
-			picture {
-				margin: 1rem;
-				width: 5rem;
-				height: auto;
+			margin-left: 0;
+			figure {
+				width: auto;
+				height: 150px;
+				padding: 1rem;
+				img {
+					width: 100%;
+					height: 100%;
+					object-fit: contain;
+				}
+			}
+		}
+	}
+}
+@media (max-width: 450px) {
+	.partners {
+		.partners-grid {
+			margin-left: 0;
+			figure {
+				width: auto;
+				height: 70px;
+				img {
+					width: 100%;
+					height: 100%;
+					object-fit: contain;
+				}
 			}
 		}
 	}

@@ -1,18 +1,34 @@
 <template>
-	<div class="navbar" :class="{ active: isActive }">
+	<div class="navbar">
 		<div class="burger" :class="{ active: isActive }" @click="ShowHideMenu">
 			<span class="top_line" />
 			<span class="mid_line" />
 			<span class="bot_line" />
 		</div>
-		<nav @click="isActive = false">
+		<nav :class="{ active: isActive }" @click="isActive = false">
 			<ul>
 				<li class="first-lvl submenu" :class="{ active: isActive }">
 					<a href="javascript:;" @mouseover="isActive = true">Вентилируемые фасады</a>
 					<ul class="panels-list">
 						<li v-for="panel in panels" :key="panel._id">
 							<n-link exact :to="panel.uid">
-								<SanityImage :asset-id="`${panel.poster}?w=150`" />
+								<!-- <SanityImage :asset-id="`${panel.poster}?w=150`" /> -->
+								<!-- <SanityImage :asset-id="panel.poster">
+									<template #default="{ src }">
+										<img :src="src" :srcset="`${src}?w=50, ${src}&w=150,`" sizes="(max-width:900px) 50px,(min-width:901px) 150px," />
+									</template>
+								</SanityImage> -->
+								<!-- <picture>
+									<source :data-srcset="props.mobile" media="(max-width:500px)" />
+									<source :data-srcset="props.retina" media="(min-width:1600px)" />
+									<img :width="props.width" :height="props.height" :data-src="props.src" loading="lazy" class="lazyload" :alt="props.alt" />
+								</picture> -->
+								<div class="image">
+									<picture>
+										<source :srcset="$urlFor(panel.poster).size(70)" media="(max-width: 600px)" />
+										<img :src="$urlFor(panel.poster).size(150)" loading="lazy" />
+									</picture>
+								</div>
 								<span class="title">{{ panel.title }}</span>
 							</n-link>
 						</li>
@@ -41,10 +57,10 @@ export default {
 				name: 'Объекты',
 				uid: 'projects',
 			},
-			{
-				name: 'Статьи',
-				uid: 'blog',
-			},
+			// {
+			// 	name: 'Статьи',
+			// 	uid: 'blog',
+			// },
 			{
 				name: 'Контакты',
 				uid: 'contact',
@@ -127,7 +143,6 @@ $animation-time: 0.3s;
 				align-items: center;
 				width: fit-content;
 				height: 100%;
-				// padding: 0 2rem;
 				transition: all 0.3s ease;
 				a {
 					opacity: 0;
@@ -169,7 +184,7 @@ $animation-time: 0.3s;
 				}
 				.panels-list {
 					position: fixed;
-					top: -100vh;
+					top: -150%;
 					left: 0;
 					width: 100vw;
 					height: calc(100vh - 100px);
@@ -198,10 +213,12 @@ $animation-time: 0.3s;
 							span {
 								margin-bottom: 1rem;
 							}
-							picture {
-								width: 100%;
-								height: 100%;
-								filter: drop-shadow(10px 10px 10px $primary-dark);
+							.image {
+								picture {
+									width: 100%;
+									height: 100%;
+									filter: drop-shadow(10px 10px 10px $primary-dark);
+								}
 							}
 							&:hover {
 								transform: scale(1.02);
@@ -227,24 +244,36 @@ $animation-time: 0.3s;
 }
 @media (max-width: 950px) {
 	.navbar {
-		padding-left: 50px;
-		height: 100%;
-		width: 100%;
-		left: -100%;
+		height: 70px;
+		padding: 0 1rem;
 		nav {
+			left: -100vw;
+			width: 100vw;
+			order: 2;
+			height: 100vh;
+			top: 70px;
+			position: fixed;
+			padding: 0;
+			background-color: $primary-dark;
+			&.active {
+				animation: fadeInMobile $animation-time linear forwards;
+			}
 			ul {
 				flex-direction: column;
-				padding-left: 10px;
+				padding: 0;
+				margin: 0;
+				width: 100%;
+				height: 100%;
+				align-items: flex-end;
 				border-left: 1px solid $secondary;
-				align-items: flex-start;
-				padding-top: 1rem;
 				li {
 					padding: 0;
 					height: initial;
+					align-items: flex-end;
 					&.submenu {
 						display: flex;
 						flex-direction: column;
-						align-items: flex-start;
+						align-items: flex-end;
 					}
 					&.submenu:hover {
 						.panels-list {
@@ -254,30 +283,32 @@ $animation-time: 0.3s;
 					a {
 						opacity: 1;
 						height: 3rem;
+						margin: 0;
 						text-decoration: none;
 						display: flex;
+						padding: 0.5rem 1rem;
 						align-items: center;
 					}
 					.panels-list {
 						position: initial;
 						top: initial;
 						left: initial;
+						z-index: initial;
 						width: 100%;
 						height: auto;
-						z-index: initial;
-						padding-top: 0;
 						display: flex;
 						flex-wrap: wrap;
-						margin: 2rem 0;
 						align-items: flex-start;
 						flex-direction: row;
-						padding-left: 0;
 						border: none;
+						padding: 0 0 0 50px;
+						margin: 0;
+						width: 100%;
 						opacity: 1;
 						li {
-							padding: 0.3rem;
+							padding: 0;
 							height: initial;
-							width: 30%;
+							width: 33.333%;
 							margin: 0;
 							a {
 								display: flex;
@@ -287,14 +318,24 @@ $animation-time: 0.3s;
 								justify-content: flex-start;
 								max-width: initial;
 								width: 100%;
-								margin: 0 0px;
+								margin: 1rem 0px;
 								height: auto;
 								&:before {
 									height: 100%;
 								}
-								picture {
-									height: 12vw;
-									width: auto;
+								.image {
+									width: 4rem;
+									height: 5rem;
+									picture {
+										width: 100%;
+										height: 100%;
+										object-fit: contain;
+										img {
+											width: inherit;
+											height: inherit;
+											object-fit: inherit;
+										}
+									}
 								}
 								span {
 									margin-bottom: initial;
@@ -308,18 +349,17 @@ $animation-time: 0.3s;
 				}
 			}
 		}
-		&.active {
-			animation: fadeInMobile $animation-time linear forwards;
+		.logo {
+			width: 10rem;
+			order: 1;
+			display: flex;
 		}
 		.burger {
-			position: fixed;
-			height: 3rem;
+			height: 2rem;
 			width: 15px;
+			order: 2;
 			display: flex;
 			justify-content: space-between;
-			top: 1rem;
-			left: 18px;
-			z-index: 24;
 			span {
 				display: flex;
 				height: 100%;
@@ -335,11 +375,11 @@ $animation-time: 0.3s;
 					height: 106%;
 				}
 				.mid_line {
-					transform: translateX(-4px);
+					transform: translateX(-2px);
 				}
 				.bot_line {
 					transition-delay: 0.1s;
-					transform: translateX(-4px);
+					transform: translateX(-6px);
 				}
 			}
 		}
@@ -347,34 +387,34 @@ $animation-time: 0.3s;
 }
 @media (max-width: 600px) {
 	.navbar {
-		height: 100vh;
-		width: 100vw;
 		nav {
-			padding-left: 30px;
 			ul {
 				li {
 					.panels-list {
+						padding: 0 0 0 1rem;
 						li {
 							width: 50%;
-							padding: 0;
 							a {
 								padding: 0.3rem;
+								margin: 0;
 								span {
-									font-size: 0.9rem;
+									font-size: 1rem;
+								}
+								.image {
+									width: 2.5rem;
+									height: 3.5rem;
 								}
 							}
 						}
 					}
 					a {
+						padding: 1rem;
 						&::before {
 							height: 45px;
 						}
 					}
 				}
 			}
-		}
-		.burger {
-			left: 8px;
 		}
 	}
 }

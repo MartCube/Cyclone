@@ -71,20 +71,25 @@ export default {
 }
 @media (max-width: 900px) {
 	.intro-panel {
-		padding: 0 0px 0 50px;
+		padding: 0;
+		height: 60vh;
+		.content {
+			ul {
+				padding: 0 0 0 10px;
+			}
+		}
 	}
 }
 @media (max-width: 600px) {
 	.intro-panel {
-		padding: 0 0px 0 30px;
 		.main-image {
 			margin-bottom: 2rem;
-			width: 30vw;
+			width: 40vw;
 		}
 		.title-wrapper {
 			h1 {
-				width: calc(100vw - 30px);
-				font-size: 12vw;
+				width: 100vw;
+				font-size: 3rem;
 			}
 		}
 	}

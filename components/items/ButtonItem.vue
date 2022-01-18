@@ -63,20 +63,20 @@ button {
 	}
 }
 
-.cta_form {
-	button {
-		height: 40px;
-		width: fit-content;
-		margin: 0 0 0 2rem;
-		border-radius: 2px;
+// .cta_form {
+// 	button {
+// 		height: 40px;
+// 		width: fit-content;
+// 		// margin: 0 0 0 2rem;
+// 		border-radius: 2px;
 
-		&:hover,
-		&:focus,
-		&:active {
-			background-color: $gradient-red;
-		}
-	}
-}
+// 		&:hover,
+// 		&:focus,
+// 		&:active {
+// 			background-color: $gradient-red;
+// 		}
+// 	}
+// }
 @media (max-width: 900px) {
 	button {
 		font-size: 1.2rem;

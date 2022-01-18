@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.page {
+.panel {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -64,6 +64,24 @@ export default {
 	}
 	.crumbs {
 		margin-left: 50px;
+	}
+}
+@media (max-width: 950px) {
+	.page {
+		.content {
+			padding: 0 2rem 3rem 2rem;
+			width: 100%;
+			h1 {
+				margin-left: 0;
+				font-size: 2rem;
+			}
+			ul {
+				padding: 0 0 0 10px;
+			}
+		}
+		.crumbs {
+			margin-left: 0;
+		}
 	}
 }
 </style>

@@ -1,7 +1,12 @@
 <template>
 	<div class="image">
 		<!-- <source v-if="data.mobile" :data-srcset="data.mobile.url" media="(max-width: 900px)" /> -->
-		<SanityImage :asset-id="asset._ref" fit="fillmax" />
+		<!-- <SanityImage :asset-id="asset._ref" fit="fillmax" /> -->
+		<SanityImage :asset-id="asset._ref">
+			<template #default="{ src }">
+				<img :src="src" :srcset="`${src} 280px, ${src} 430w,`" sizes="(max-width:900px) 100px,(min-width:900px) 200px," />
+			</template>
+		</SanityImage>
 		<!-- <img src="/images/1-610.jpg.jpg"
       alt=""
       sizes="(min-width:1420px) 610px,

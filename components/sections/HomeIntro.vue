@@ -41,7 +41,9 @@ export default {
 	.main-image {
 		position: absolute;
 		width: 100%;
-		height: 100%;
+		height: 100vh;
+		left: 0;
+		top: 0;
 		img {
 			width: 100%;
 			height: 100%;
@@ -76,9 +78,6 @@ export default {
 
 @media (max-width: 950px) {
 	.home-intro {
-		.main-image {
-			width: calc(100% - 100px);
-		}
 		.title-wrapper {
 			right: 5rem;
 			h1 {
@@ -99,24 +98,18 @@ export default {
 }
 @media (max-width: 600px) {
 	.home-intro {
-		.main-image {
-			width: 100%;
-		}
 		.title-wrapper {
 			right: 0.5rem;
-			bottom: 10rem;
+			bottom: 16rem;
 			h1 {
-				font-size: 8vw;
-			}
-			h2 {
-				font-size: 5vw;
+				font-size: 2.4rem;
 			}
 		}
 		.cyclone {
-			bottom: 5rem;
+			bottom: 12rem;
 			right: 0;
 			svg {
-				width: 80vw;
+				width: 95vw;
 			}
 		}
 	}

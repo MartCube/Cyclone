@@ -34,7 +34,7 @@ svg {
 }
 @media (max-width: 900px) {
 	svg {
-		width: 18px;
+		width: 10rem;
 		margin-bottom: 0;
 	}
 }

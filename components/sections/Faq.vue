@@ -64,12 +64,12 @@ export default {
 }
 @media (max-width: 800px) {
 	.faq {
-		padding-right: 0;
+		padding: 50px 2rem;
 		.accordeon_wrapper {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			margin-left: 0;
+			margin: 0;
 		}
 		.question-icon {
 			right: 55px;

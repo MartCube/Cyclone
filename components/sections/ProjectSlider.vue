@@ -6,13 +6,22 @@
 					<h2>{{ title }}</h2>
 					<SanityContent :blocks="text.richTextContent" />
 				</div>
-				<n-link v-for="project in projects" :key="project._id" exact :to="`/projects/${project.uid}`" class="project">
-					<h3 class="title">{{ project.title }}</h3>
-					<SanityImage :asset-id="`${project.poster}?w=500`" />
-				</n-link>
+				<template v-for="(project, i) in projects">
+					<template v-if="i === projects.length - 1">
+						<div :key="project._id" class="project">
+							<SanityImage :asset-id="`${project.poster}?w=700&h=600`" />
+							<n-link exact :to="'/projects'">Смореть все <Icon name="arrow" size="60px" fill="#B93937" /></n-link>
+						</div>
+					</template>
+					<template v-else>
+						<n-link :key="project._id" exact :to="`/projects/${project.uid}`" class="project">
+							<h3 class="title">{{ project.title }}</h3>
+							<SanityImage :asset-id="`${project.poster}?w=700&h=600`" />
+						</n-link>
+					</template>
+				</template>
 			</div>
 		</div>
-		<n-link exact :to="'/projects'" class="button">Смореть все</n-link>
 	</section>
 </template>
 
@@ -45,7 +54,7 @@ export default {
 				return el.projectItem._ref
 			})
 			// console.log(projectData)
-			const query = '*[_id in $ids]{"uid": uid.current, _id, title, "poster": poster.asset._ref}'
+			const query = '*[_id in $ids][0..4]{"uid": uid.current, _id, title, "poster": poster.asset._ref}'
 			const params = { ids: projectData }
 
 			await this.$sanity.fetch(query, params).then((data) => {
@@ -58,7 +67,7 @@ export default {
 </script>
 
 <style lang="scss" scooped>
-$article-width: auto;
+$article-width: 49%;
 $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 
 .project-slider {
@@ -123,16 +132,27 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 		.slider-wrapper {
 			display: inline-flex;
 			// width: auto;
+			justify-content: flex-start;
 			flex-wrap: wrap;
+			// .project:nth-child(3),
+			// .project:nth-child(4),
+			// .project:nth-child(5) {
+			// 	}
+			.project,
+			.content {
+				// width: $article-width;
+				width: 32%;
+				margin: 0.5rem;
+			}
 			.project {
-				width: $article-width;
-				margin: 0.5rem 0.5rem 0.5rem 0;
+				margin: 0.5rem;
 				display: flex;
 				flex-direction: column;
 				justify-content: flex-end;
 				align-items: flex-end;
+				overflow: hidden;
 				transition: $transition;
-				height: 20vw;
+				// height: 20vw;
 				position: relative;
 				.title {
 					margin: 0;
@@ -150,16 +170,59 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 				}
 				img {
 					width: 100%;
+					transition: $transition;
 					height: 100%;
+					object-fit: cover;
 					filter: drop-shadow(0px 4px 11px rgba(26, 26, 26, 1));
 				}
 				&:hover {
 					box-shadow: 0 0 30px 0px $primary-dark;
-					transform: scale(1.03);
 					background-color: hsl(0deg 0% 19%);
+					img {
+						transform: scale(1.03);
+					}
+				}
+				&:last-child {
+					img {
+						position: relative;
+						z-index: 0;
+						opacity: 0.5;
+					}
+					a {
+						position: absolute;
+						z-index: 2;
+						font-weight: bold;
+						font-size: 2rem;
+						justify-content: center;
+						margin-bottom: 0;
+						width: 100%;
+						height: 100%;
+						background-color: rgb($primary-dark, 50%);
+						backdrop-filter: blur(50px);
+						display: flex;
+						align-items: center;
+						color: $white;
+						&::first-letter {
+							text-transform: uppercase;
+						}
+						svg {
+							margin-left: 2rem;
+						}
+						&:hover {
+							background-color: rgb($primary-dark, 50%);
+						}
+					}
 				}
 			}
-			.text {
+			.content {
+				padding-right: 1rem;
+				h2 {
+					margin-top: 0;
+					margin-left: 0;
+				}
+				p {
+					padding: 0;
+				}
 			}
 		}
 	}

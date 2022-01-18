@@ -87,16 +87,51 @@ body {
 }
 
 @media (max-width: 950px) {
+	.page {
+		margin-top: 70px;
+	}
+	body {
+		section {
+			a, p{
+				margin-bottom: 10px;
+			}
+			p{
+				padding: 0 0 10px;
+			}
+		}
+		h2 {
+			padding-left: 0.5rem;
+			margin: 2rem 0 2rem 0px;
+		}
+	}
 }
 @media (max-width: 600px) {
 	body {
 		overflow-x: hidden;
+		h1 {
+			font-size: 2rem;
+		}
+		h2 {
+			font-size: 1.9rem;
+		}
+		h3 {
+			font-size: 1.8rem;
+		}
+		h4 {
+			font-size: 1.7rem;
+		}
+		h5 {
+			font-size: 1.6rem;
+		}
+		h6 {
+			font-size: 1.6rem;
+		}
 	}
 	section{
 		padding: 0 30px;
 		h2 {
 			font-size: 2rem;
-			margin-left: 25px;
+			// margin-left: 25px;
 		}
 	}
 }
