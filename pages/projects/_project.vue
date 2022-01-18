@@ -59,7 +59,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.page {
+.project {
 	width: 100%;
 	display: flex;
 	padding: 0 4rem;
@@ -119,6 +119,34 @@ export default {
 	}
 	.crumbs {
 		margin: 3rem 0;
+	}
+}
+@media (max-width: 950px) {
+	.project {
+		padding: 0 2rem;
+		.content {
+			flex: 0 0 100%;
+			flex-wrap: wrap;
+			.text {
+				padding-right: 0;
+			}
+			.text,
+			.image,
+			.video_container {
+				flex: 0 0 100%;
+			}
+			.video_container {
+				padding-bottom: 0;
+			}
+		}
+		.gallery {
+			.wrapper {
+				column-count: 1;
+				figure {
+					width: 100%;
+				}
+			}
+		}
 	}
 }
 </style>
