@@ -100,6 +100,7 @@ export default {
 		}
 	}
 	.gallery {
+		margin-bottom: 3rem;
 		.wrapper {
 			margin-top: 10px;
 			column-count: 3;
@@ -108,14 +109,25 @@ export default {
 			figure {
 				width: 29.7vw;
 				margin-bottom: 10px;
+				overflow: hidden;
 				img {
 					width: 100%;
 					height: 100%;
 					object-fit: cover;
 					display: flex;
+					transition: transform 0.3s linear;
+				}
+				&:hover {
+					cursor: pointer;
+					img {
+						transform: scale(1.02);
+					}
 				}
 			}
 		}
+	}
+	.video_container {
+		padding: 0;
 	}
 	.crumbs {
 		margin: 3rem 0;
@@ -129,14 +141,12 @@ export default {
 			flex-wrap: wrap;
 			.text {
 				padding-right: 0;
+				margin-bottom: 3rem;
 			}
 			.text,
 			.image,
 			.video_container {
 				flex: 0 0 100%;
-			}
-			.video_container {
-				padding-bottom: 0;
 			}
 		}
 		.gallery {

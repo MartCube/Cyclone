@@ -10,8 +10,8 @@
 							<SanityContent :blocks="panel.description" />
 						</div>
 						<div class="links">
-							<n-link exact :to="`/projects#${panel.uid}`">Объекты с {{ panel.title }}</n-link>
-							<n-link exact :to="`/${panel.uid}`">Подробнее</n-link>
+							<n-link exact :to="`/projects/#${panel.uid}`">Объекты с {{ panel.title }}</n-link>
+							<n-link exact :to="`/${panel.uid}/`">Подробнее</n-link>
 						</div>
 					</div>
 					<SanityImage :asset-id="`${panel.poster}?w=200`" />
@@ -179,7 +179,7 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 	}
 }
 @media (max-width: 600px) {
-	.panel-slider .content .slider {
+	.panel-slider .slider {
 		margin-left: 0;
 	}
 }

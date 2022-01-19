@@ -111,7 +111,7 @@ export default {
 				}
 				.number {
 					width: 17vw;
-					font-size: 2.4rem;
+					font-size: 3.5rem;
 				}
 				.info {
 					h3 {

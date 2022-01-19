@@ -11,18 +11,7 @@
 					<a href="javascript:;" @mouseover="isActive = true">Вентилируемые фасады</a>
 					<ul class="panels-list">
 						<li v-for="panel in panels" :key="panel._id">
-							<n-link exact :to="panel.uid">
-								<!-- <SanityImage :asset-id="`${panel.poster}?w=150`" /> -->
-								<!-- <SanityImage :asset-id="panel.poster">
-									<template #default="{ src }">
-										<img :src="src" :srcset="`${src}?w=50, ${src}&w=150,`" sizes="(max-width:900px) 50px,(min-width:901px) 150px," />
-									</template>
-								</SanityImage> -->
-								<!-- <picture>
-									<source :data-srcset="props.mobile" media="(max-width:500px)" />
-									<source :data-srcset="props.retina" media="(min-width:1600px)" />
-									<img :width="props.width" :height="props.height" :data-src="props.src" loading="lazy" class="lazyload" :alt="props.alt" />
-								</picture> -->
+							<n-link exact :to="`/${panel.uid}/`">
 								<div class="image">
 									<picture>
 										<source :srcset="$urlFor(panel.poster).size(70)" media="(max-width: 600px)" />
@@ -35,7 +24,7 @@
 					</ul>
 				</li>
 				<li v-for="link in menu" :key="link.uid" class="first-lvl">
-					<n-link :to="`/${link.uid}`">{{ link.name }}</n-link>
+					<n-link :to="`/${link.uid}/`">{{ link.name }}</n-link>
 				</li>
 			</ul>
 		</nav>
@@ -350,7 +339,7 @@ $animation-time: 0.3s;
 			}
 		}
 		.logo {
-			width: 10rem;
+			width: 14rem;
 			order: 1;
 			display: flex;
 		}

@@ -1,5 +1,5 @@
 <template>
-	<n-link class="project_card" :to="`/projects/${project.uid}`">
+	<n-link class="project_card" :to="`/projects/${project.uid}/`">
 		<div class="image">
 			<SanityImage :asset-id="`${project.poster}?w=450`" />
 			<span class="link">Смотреть</span>
@@ -118,7 +118,7 @@ $card-size: 300px;
 			height: 48vw;
 		}
 		.title {
-			font-size: 1.6rem;
+			font-size: 1.8rem;
 		}
 	}
 }

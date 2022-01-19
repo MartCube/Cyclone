@@ -133,6 +133,7 @@ export default {
 }
 .cta_form {
 	.input_item {
+		width: 18rem;
 		input {
 			height: 60px;
 			border-bottom: none;
@@ -167,9 +168,11 @@ export default {
 }
 // @media (min-width: 1700px) {
 // }
-// @media (max-width: 900px) {
-// 	.cta_form {
-
-// 	}
-// }
+@media (max-width: 900px) {
+	.cta_form {
+		.input_item {
+			width: 100%;
+		}
+	}
+}
 </style>
