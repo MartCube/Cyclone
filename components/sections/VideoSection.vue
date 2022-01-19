@@ -43,7 +43,7 @@ export default {
 	padding: 2rem 0;
 	.video_default_preview {
 		width: 100%;
-		max-height: 80vh;
+		max-height: 100vh;
 		display: flex;
 		justify-content: center;
 		align-items: center;

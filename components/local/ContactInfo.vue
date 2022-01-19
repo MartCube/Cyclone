@@ -91,5 +91,16 @@ export default {
 			}
 		}
 	}
+	.contacts {
+		.contact_info {
+			.contacts,
+			.smedias,
+			.mail,
+			.map {
+				width: 100%;
+			}
+			margin-bottom: 4rem;
+		}
+	}
 }
 </style>

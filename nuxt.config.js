@@ -30,6 +30,9 @@ export default {
 		// https://go.nuxtjs.dev/eslint
 		'@nuxtjs/eslint-module',
 	],
+	router: {
+		trailingSlash: true,
+	},
 
 	build: {
 		// vee validate

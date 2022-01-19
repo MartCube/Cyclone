@@ -45,16 +45,18 @@ export default {
 @media (max-width: 600px) {
 	.policy {
 		flex-direction: column;
-		padding-right: 30px;
+		margin-top: 3rem;
+		// padding-right: 30px;
 		a {
 			justify-content: center;
 			align-items: flex-end;
-			flex-direction: column;
+			// flex-direction: column;
+			margin-bottom: 0;
 		}
 		p {
 			justify-content: center;
 			align-items: flex-start;
-			flex-direction: column;
+			// flex-direction: column;
 			margin-bottom: 0;
 		}
 		.text {

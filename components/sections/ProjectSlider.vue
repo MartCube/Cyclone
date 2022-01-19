@@ -14,7 +14,7 @@
 						</div>
 					</template>
 					<template v-else>
-						<n-link :key="project._id" exact :to="`/projects/${project.uid}`" class="project">
+						<n-link :key="project._id" exact :to="`/projects/${project.uid}/`" class="project">
 							<h3 class="title">{{ project.title }}</h3>
 							<SanityImage :asset-id="`${project.poster}?w=700&h=600`" />
 						</n-link>
@@ -228,8 +228,13 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 	}
 }
 @media (max-width: 600px) {
-	.project-slider .content .slider {
-		margin-left: 0;
+	.project-slider .slider {
+		.slider-wrapper {
+			.project,
+			.content {
+				width: 100%;
+			}
+		}
 	}
 }
 </style>

@@ -69,6 +69,8 @@ export default {
 		align-items: flex-end;
 	}
 	button {
+		width: 8rem;
+		margin: 0 0 0 1rem;
 		height: 40px;
 		width: fit-content;
 	}
@@ -94,7 +96,7 @@ export default {
 				margin-left: 0;
 				margin-top: 2rem;
 				height: 40px;
-				// width: fit-content;
+				width: 100%;
 				// margin: 0 0 0 2rem;
 				border-radius: 2px;
 

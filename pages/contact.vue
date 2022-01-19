@@ -48,4 +48,14 @@ export default {
 		margin-top: 5rem;
 	}
 }
+@media (max-width: 950px) {
+	.contacts {
+		.contact_info {
+			padding-right: 0;
+		}
+		.policy {
+			margin: 3rem;
+		}
+	}
+}
 </style>
