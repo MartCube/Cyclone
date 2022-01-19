@@ -15,7 +15,7 @@
 			<CoolLightBox :items="galleryImages(gallery)" :index="galleryIndex" @close="galleryIndex = null"></CoolLightBox>
 			<div class="wrapper">
 				<figure v-for="(image, y) in gallery" :key="y" @click="galleryIndex = y">
-					<SanityImage :asset-id="`${image}?w=500`" />
+					<ImageItem :image="image" w="500" />
 				</figure>
 			</div>
 		</div>
@@ -26,6 +26,7 @@
 import CoolLightBox from 'vue-cool-lightbox'
 import { project } from '@/plugins/queries'
 import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
+
 export default {
 	name: 'Project',
 	components: {
@@ -46,10 +47,7 @@ export default {
 	},
 	methods: {
 		galleryImages(gallery) {
-			console.log(gallery)
 			const imagesUrls = gallery.map((el) => {
-				// eslint-disable-next-line prettier/prettier
-				console.log(el);
 				return `https://cdn.sanity.io/images/wv1u3p06/production/${el.slice(6, el.length - 4)}.jpg`
 			})
 			return imagesUrls

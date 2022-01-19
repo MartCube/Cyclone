@@ -1,52 +1,64 @@
 <template>
-	<div class="image">
-		<!-- <source v-if="data.mobile" :data-srcset="data.mobile.url" media="(max-width: 900px)" /> -->
-		<!-- <SanityImage :asset-id="asset._ref" fit="fillmax" /> -->
-		<SanityImage :asset-id="asset._ref">
-			<template #default="{ src }">
-				<img :src="src" :srcset="`${src} 280px, ${src} 430w,`" sizes="(max-width:900px) 100px,(min-width:900px) 200px," />
-			</template>
-		</SanityImage>
-		<!-- <img src="/images/1-610.jpg.jpg"
-      alt=""
-      sizes="(min-width:1420px) 610px,
-             (min-width:1320px) 500px,
-             (min-width:1000px) 430px,
-             (min-width:620px)  580px,
-             280px"
-      srcset="/images/1-280.jpg 280w,
-              /images/1-430.jpg 430w,
-              /images/1-610.jpg 610w,
-              /images/1-1000.jpg 1000w,
-              /images/1-1220.jpg 1220w" /> -->
-	</div>
+	<picture>
+		<source v-if="mobile" :data-srcset="mobile" media="(max-width:500px)" />
+		<source v-if="retina" :data-srcset="retina" media="(min-width:1600px)" />
+		<img :data-src="src" class="lazyload" />
+	</picture>
 </template>
 
 <script>
+import imageUrlBuilder from '@sanity/image-url'
+
 export default {
+	name: 'ImageItem',
 	props: {
-		asset: {
-			type: Object,
+		image: {
+			type: String,
 			required: true,
+		},
+		mobile: {
+			type: String,
+			default: undefined,
+		},
+		retina: {
+			type: String,
+			default: undefined,
+		},
+		w: {
+			type: String,
+			default: undefined,
+		},
+		h: {
+			type: String,
+			default: undefined,
+		},
+		fit: {
+			type: String,
+			default: 'clip',
+		},
+	},
+	computed: {
+		src() {
+			const builder = imageUrlBuilder(this.$sanity.config)
+			return builder.image(this.image).width(this.w).height(this.h)
 		},
 	},
 }
 </script>
 
-<style lang="scss" scoped>
-.image {
-	z-index: 3;
-	display: flex;
+<style lang="scss">
+picture {
 	width: 100%;
-	object-fit: cover;
-	object-position: revert;
-	margin-bottom: 20px;
-
+	height: 100%;
+	z-index: 3;
 	img {
 		width: inherit;
 		height: inherit;
+		position: relative;
 		object-fit: inherit;
-		object-position: center;
+		object-position: inherit;
+		filter: inherit;
+		display: block;
 		&::before {
 			display: none;
 		}

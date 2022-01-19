@@ -12,7 +12,6 @@
 		"lint": "npm run lint:js"
 	},
 	"dependencies": {
-		"@asbjorn/eslint-plugin-groq": "^2.0.0",
 		"@nuxtjs/sanity": "^0.10.0",
 		"@sanity/image-url": "^1.0.1",
 		"@sendgrid/mail": "^7.4.5",
