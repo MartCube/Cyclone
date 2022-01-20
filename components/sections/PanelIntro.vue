@@ -1,7 +1,7 @@
 <template>
 	<section class="intro-panel">
 		<div class="main-image">
-			<SanityImage :asset-id="`${poster}?w=250`" />
+			<ImageItem :image="poster" w="300" mobile />
 		</div>
 		<div class="title-wrapper">
 			<h1>{{ title }}</h1>

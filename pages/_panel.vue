@@ -24,12 +24,6 @@ export default {
 			types: {
 				youtube: VideoSection,
 				image: ImageItem,
-				// 	slider_projects: ProjectSlider,
-				// 	counter: Achievements,
-				// 	benefits: Benefits,
-				// 	gallery: Partners,
-				// 	richText: RichText,
-				// 	faq: Faq,
 			},
 		},
 	}),

@@ -9,14 +9,14 @@
 				<template v-for="(project, i) in projects">
 					<template v-if="i === projects.length - 1">
 						<div :key="project._id" class="project">
-							<SanityImage :asset-id="`${project.poster}?w=700&h=600`" />
+							<ImageItem :image="project.poster" w="700" h="600" mobile />
 							<n-link exact :to="'/projects'">Смореть все <Icon name="arrow" size="60px" fill="#B93937" /></n-link>
 						</div>
 					</template>
 					<template v-else>
 						<n-link :key="project._id" exact :to="`/projects/${project.uid}/`" class="project">
 							<h3 class="title">{{ project.title }}</h3>
-							<SanityImage :asset-id="`${project.poster}?w=700&h=600`" />
+							<ImageItem :image="project.poster" w="700" h="600" mobile />
 						</n-link>
 					</template>
 				</template>

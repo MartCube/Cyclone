@@ -13,10 +13,7 @@
 						<li v-for="panel in panels" :key="panel._id">
 							<n-link exact :to="`/${panel.uid}/`">
 								<div class="image">
-									<picture>
-										<source :srcset="$urlFor(panel.poster).size(70)" media="(max-width: 600px)" />
-										<img :src="$urlFor(panel.poster).size(150)" loading="lazy" />
-									</picture>
+									<ImageItem :image="panel.poster" w="160" mobile />
 								</div>
 								<span class="title">{{ panel.title }}</span>
 							</n-link>

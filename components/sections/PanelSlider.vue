@@ -14,7 +14,7 @@
 							<n-link exact :to="`/${panel.uid}/`">Подробнее</n-link>
 						</div>
 					</div>
-					<SanityImage :asset-id="`${panel.poster}?w=200`" />
+					<ImageItem :image="panel.poster" w="200" />
 				</article>
 			</div>
 		</div>
