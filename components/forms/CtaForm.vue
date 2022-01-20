@@ -1,19 +1,22 @@
 <template>
 	<div class="cta_form">
-		<ValidationObserver v-if="!message" ref="contact" tag="form" autocomplete="off" @submit.prevent="Submit()">
-			<InputItem name="number" :label="label" rules="min:9|required" @getValue="getNumber" />
-			<ButtonItem>Send</ButtonItem>
-		</ValidationObserver>
+		<form ref="cta_form" autocomplete="off" @submit.prevent="sendEmail()">
+			<ValidationObserver v-if="!message" ref="contact" tag="div">
+				<InputItem ref="phone" name="contact_number" type="number" :label="label" rules="min:10|required" @getValue="Submit" />
+				<ButtonItem>Send</ButtonItem>
+			</ValidationObserver>
 
-		<div v-else class="message">
-			<span>response like thank you</span>
-			<ButtonItem @click.native="$router.push('/')"></ButtonItem>
-		</div>
+			<div v-else class="message">
+				<h5>Мы уже звоним !</h5>
+				<!-- <n-link :to="'/'">На главную</n-link> -->
+			</div>
+		</form>
 	</div>
 </template>
 
 <script>
 import { ValidationObserver } from 'vee-validate'
+import * as emailjs from '@emailjs/browser'
 export default {
 	components: {
 		ValidationObserver,
@@ -34,28 +37,25 @@ export default {
 	}),
 	methods: {
 		getNumber(value) {
-			this.form.number = value
+			this.form.contact_number = value
 		},
 		async Submit() {
 			const isValid = await this.$refs.contact.validate()
 			// validation
 			if (!isValid) return
 			this.loading = true
-			console.log('loading')
-			// compose email template
-			this.form.emailTemplate = `
-				<h4>Number</h4>
-				<p>${this.form.number}</p>
-			`
-			// trigger netlify function
-			try {
-				await this.$axios.$post('.netlify/functions/sendmail', this.form)
-			} catch (error) {
-				console.log(error)
-			}
-			this.loading = false
-			console.log('submited')
-			this.message = !this.message
+			emailjs.sendForm('default_service', 'gmail_cyclone', this.$refs.cta_form, 'user_vgxo7Nole0QeHb4nsY5SS').then(
+				(result) => {
+					console.log('SUCCESS!', result.text)
+					this.loading = false
+					this.message = !this.message
+				},
+				(error) => {
+					console.log('FAILED...', error.text)
+					// this.message = !this.message
+				},
+			)
+			// console.log('submited')
 		},
 	},
 }
@@ -68,17 +68,18 @@ export default {
 		display: flex;
 		align-items: flex-end;
 	}
-	button {
-		width: 8rem;
-		margin: 0 0 0 1rem;
-		height: 40px;
-		width: fit-content;
-	}
 	.message {
 		display: flex;
+		background-color: rgb(0 219 17 / 5%);
+		padding: 1rem;
 		flex-direction: column;
 		justify-content: center;
-		color: $grey;
+		color: $white;
+		align-items: center;
+		border: 1px solid rgb(255, 255, 255, 10%);
+		a {
+			font-weight: bold;
+		}
 	}
 }
 @media (max-width: 800px) {
@@ -87,6 +88,9 @@ export default {
 		// margin-top: 4rem;
 		justify-content: flex-end;
 		// padding-right: 1.5rem;
+		div {
+			width: 100%;
+		}
 		form {
 			flex-direction: column;
 			margin: 0;

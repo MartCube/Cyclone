@@ -6,10 +6,10 @@
 				<h1>{{ title }}</h1>
 				<SanityContent :blocks="description" />
 			</div>
-			<div v-if="!youtube" class="image">
+			<VideoSection v-if="youtube" :preview="youtube.preview" :url="youtube.url" />
+			<div v-else class="image">
 				<SanityImage :asset-id="`${poster}?w=700`" />
 			</div>
-			<VideoSection v-if="youtube" :preview="youtube.preview" :url="youtube.url" />
 		</div>
 		<div class="gallery">
 			<CoolLightBox :items="galleryImages(gallery)" :index="galleryIndex" @close="galleryIndex = null"></CoolLightBox>
@@ -38,10 +38,12 @@ export default {
 	},
 	data: () => ({
 		galleryIndex: null,
+		youtube: undefined,
+		description: undefined,
 	}),
 	computed: {
 		breadCrumbs() {
-			return [{ path: '/projects', title: 'Проекты' }, { title: this.title }]
+			return [{ path: '/projects/', title: 'Проекты' }, { title: this.title }]
 		},
 	},
 	methods: {
@@ -49,7 +51,7 @@ export default {
 			console.log(gallery)
 			const imagesUrls = gallery.map((el) => {
 				// eslint-disable-next-line prettier/prettier
-				console.log(el);
+				// console.log(el);
 				return `https://cdn.sanity.io/images/wv1u3p06/production/${el.slice(6, el.length - 4)}.jpg`
 			})
 			return imagesUrls
@@ -76,7 +78,7 @@ export default {
 	}
 	.content {
 		display: flex;
-
+		width: 100%;
 		p {
 			padding: 0;
 		}
@@ -96,7 +98,7 @@ export default {
 		.text,
 		.image,
 		.video_container {
-			flex: 0 0 50%;
+			flex: 0 0 45vw;
 		}
 	}
 	.gallery {
@@ -107,7 +109,7 @@ export default {
 			column-gap: 10px;
 			width: 100%;
 			figure {
-				width: 29.7vw;
+				width: 29.45vw;
 				margin-bottom: 10px;
 				overflow: hidden;
 				img {
@@ -136,6 +138,9 @@ export default {
 @media (max-width: 950px) {
 	.project {
 		padding: 0 2rem;
+		.wrapper {
+			width: 100%;
+		}
 		.content {
 			flex: 0 0 100%;
 			flex-wrap: wrap;
@@ -153,7 +158,7 @@ export default {
 			.wrapper {
 				column-count: 1;
 				figure {
-					width: 100%;
+					width: 90vw;
 				}
 			}
 		}

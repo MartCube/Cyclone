@@ -22,7 +22,7 @@ button {
 	margin: 1rem 0;
 	padding: 0.5rem 2rem;
 	border: none;
-
+	max-height: 3rem;
 	background-color: $secondary;
 	color: $white;
 	cursor: pointer;
@@ -63,23 +63,36 @@ button {
 	}
 }
 
-// .cta_form {
-// 	button {
-// 		height: 40px;
-// 		width: fit-content;
-// 		// margin: 0 0 0 2rem;
-// 		border-radius: 2px;
+.cta_form {
+	button {
+		width: 8rem;
+		margin: 0 0 0 1rem;
+		height: 40px;
+		width: fit-content;
 
-// 		&:hover,
-// 		&:focus,
-// 		&:active {
-// 			background-color: $gradient-red;
-// 		}
-// 	}
-// }
-@media (max-width: 900px) {
+		&:hover,
+		&:focus,
+		&:active {
+			background-color: $gradient-red;
+		}
+	}
+}
+@media (max-width: 950px) {
 	button {
 		font-size: 1.2rem;
+	}
+	.cta_form {
+		button {
+			width: 100%;
+			margin: 1rem 0 0 0;
+			height: 40px;
+
+			&:hover,
+			&:focus,
+			&:active {
+				background-color: $gradient-red;
+			}
+		}
 	}
 }
 </style>

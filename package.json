@@ -13,6 +13,7 @@
 	},
 	"dependencies": {
 		"@asbjorn/eslint-plugin-groq": "^2.0.0",
+		"@emailjs/browser": "^3.4.0",
 		"@nuxtjs/sanity": "^0.10.0",
 		"@sanity/image-url": "^1.0.1",
 		"@sendgrid/mail": "^7.4.5",
@@ -22,7 +23,8 @@
 		"nuxt": "^2.15.7",
 		"vee-validate": "^3.4.10",
 		"vue-cool-lightbox": "^2.7.4",
-		"vue-lazytube": "^1.0.2"
+		"vue-lazytube": "^1.0.2",
+		"vue-the-mask": "^0.11.1"
 	},
 	"devDependencies": {
 		"@babel/eslint-parser": "^7.14.7",
