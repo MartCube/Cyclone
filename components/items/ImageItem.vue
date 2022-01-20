@@ -1,7 +1,6 @@
 <template>
 	<picture>
-		<source v-if="mobile" :data-srcset="mobile" media="(max-width:500px)" />
-		<source v-if="retina" :data-srcset="retina" media="(min-width:1600px)" />
+		<source v-if="mobile" :data-srcset="src + `&dpr=0.75`" media="(max-width:500px)" />
 		<img :data-src="src" class="lazyload" />
 	</picture>
 </template>
@@ -17,12 +16,8 @@ export default {
 			required: true,
 		},
 		mobile: {
-			type: String,
-			default: undefined,
-		},
-		retina: {
-			type: String,
-			default: undefined,
+			type: Boolean,
+			default: false,
 		},
 		w: {
 			type: String,
@@ -34,13 +29,17 @@ export default {
 		},
 		fit: {
 			type: String,
-			default: 'clip',
+			default: 'crop',
+		},
+		crop: {
+			type: String,
+			default: 'center',
 		},
 	},
 	computed: {
 		src() {
 			const builder = imageUrlBuilder(this.$sanity.config)
-			return builder.image(this.image).width(this.w).height(this.h)
+			return builder.image(this.image).width(this.w).height(this.h).auto('format').fit(this.fit).crop(this.crop)
 		},
 	},
 }

@@ -7,7 +7,7 @@
 				<SanityContent :blocks="description" />
 			</div>
 			<div v-if="!youtube" class="image">
-				<SanityImage :asset-id="`${poster}?w=700`" />
+				<ImageItem :image="poster" w="700" />
 			</div>
 			<VideoSection v-if="youtube" :preview="youtube.preview" :url="youtube.url" />
 		</div>

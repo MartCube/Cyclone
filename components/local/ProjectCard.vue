@@ -1,7 +1,7 @@
 <template>
 	<n-link class="project_card" :to="`/projects/${project.uid}/`">
 		<div class="image">
-			<SanityImage :asset-id="`${project.poster}?w=450`" />
+			<ImageItem :image="project.poster" w="450" h="450" />
 			<span class="link">Смотреть</span>
 		</div>
 		<h2 class="title">
@@ -128,12 +128,6 @@ $card-size: 300px;
 		width: 100%;
 		.image {
 			height: 80vw;
-			.link {
-				// font-size: 1rem;
-			}
-		}
-		.title {
-			// font-size: 1rem;
 		}
 	}
 }

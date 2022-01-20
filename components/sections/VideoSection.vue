@@ -1,7 +1,7 @@
 <template>
 	<div class="video_container">
 		<div class="video_default_preview" :class="{ playing: playVideo }">
-			<SanityImage :asset-id="`${preview.asset._ref}?w=1300`" />
+			<ImageItem :image="preview.asset._ref" w="1300" mobile />
 			<div class="play" @click="video">
 				<Icon name="play" />
 			</div>
