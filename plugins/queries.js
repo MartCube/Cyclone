@@ -37,5 +37,11 @@ export const index = groq`*[_type == 'page' && name == 'index'][0]{
 export const panel = groq`*[_type == "panel" && uid.current == $uid][0]{
 	title,
 	"poster": poster.asset._ref,
-	content
+	content[]{
+    _type == 'image' => {
+      "image": asset._ref, w, _key, _type
+    },
+    _type == 'block' => {...},
+    _type == 'youtube' => {...},
+  }
 }`

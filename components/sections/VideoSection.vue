@@ -1,8 +1,8 @@
 <template>
 	<div class="video_container">
 		<div class="video_default_preview" :class="{ playing: playVideo }">
-			<ImageItem :image="preview.asset._ref" w="1300" mobile />
-			<div class="play" @click="video">
+			<ImageItem v-if="!playVideo" :image="preview.asset._ref" w="1300" mobile />
+			<div v-if="!playVideo" class="play" @click="video">
 				<Icon name="play" />
 			</div>
 			<div v-if="playVideo" class="video">
@@ -43,7 +43,7 @@ export default {
 	padding: 2rem 0;
 	.video_default_preview {
 		width: 100%;
-		max-height: 100vh;
+		height: 100%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
