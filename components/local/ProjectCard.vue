@@ -113,9 +113,9 @@ $card-size: 300px;
 @media (max-width: 900px) {
 	.project_card {
 		margin: 1rem 1vw;
-		width: 48vw;
+		width: 45vw;
 		.image {
-			height: 48vw;
+			height: 45vw;
 		}
 		.title {
 			font-size: 1.8rem;

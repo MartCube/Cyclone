@@ -90,7 +90,7 @@ export default {
 		}
 	}
 }
-@media (max-width: 800px) {
+@media (max-width: 950px) {
 	.cta {
 		padding-top: 7rem;
 		padding-bottom: 7rem;

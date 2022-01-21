@@ -163,7 +163,7 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 				.title {
 					margin-bottom: 1rem;
 				}
-				img {
+				picture {
 					width: 90%;
 					margin: 0 auto;
 					height: auto;
@@ -178,7 +178,7 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 		}
 	}
 }
-@media (max-width: 600px) {
+@media (max-width: 950px) {
 	.panel-slider .slider {
 		margin-left: 0;
 	}

@@ -8,7 +8,8 @@
 			</div>
 			<VideoSection v-if="youtube" :preview="youtube.preview" :url="youtube.url" />
 			<div v-else class="image">
-				<SanityImage :asset-id="`${poster}?w=700`" />
+				<!-- <SanityImage :asset-id="`${poster}?w=700`" /> -->
+				<ImageItem :image="poster" w="700" />
 			</div>
 		</div>
 		<div class="gallery">
@@ -85,7 +86,7 @@ export default {
 		}
 		.image {
 			// width: 100%;
-			img {
+			picture {
 				height: 100%;
 				width: 100%;
 			}
@@ -107,7 +108,7 @@ export default {
 			column-gap: 10px;
 			width: 100%;
 			figure {
-				width: 29.45vw;
+				width: 29.75vw;
 				margin-bottom: 10px;
 				overflow: hidden;
 				img {
@@ -145,6 +146,11 @@ export default {
 			.text {
 				padding-right: 0;
 				margin-bottom: 3rem;
+				order: 2;
+			}
+			.image,
+			.video_container {
+				order: 1;
 			}
 			.text,
 			.image,

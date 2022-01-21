@@ -65,9 +65,9 @@ export default {
 				width: auto;
 				height: 150px;
 				padding: 1rem;
-				img {
+				picture {
 					width: 100%;
-					height: 100%;
+					height: auto;
 					object-fit: contain;
 				}
 			}
@@ -81,9 +81,9 @@ export default {
 			figure {
 				width: auto;
 				height: 70px;
-				img {
+				picture {
 					width: 100%;
-					height: 100%;
+					// height: 100%;
 					object-fit: contain;
 				}
 			}

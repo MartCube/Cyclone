@@ -172,7 +172,7 @@ export default {
 }
 // @media (min-width: 1700px) {
 // }
-@media (max-width: 900px) {
+@media (max-width: 950px) {
 	.cta_form {
 		.input_item {
 			width: 100%;

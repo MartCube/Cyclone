@@ -168,8 +168,10 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 						color: $secondary;
 					}
 				}
-				img {
+				picture {
 					width: 100%;
+					position: relative;
+					z-index: 1;
 					transition: $transition;
 					height: 100%;
 					object-fit: cover;
@@ -223,6 +225,16 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 				p {
 					padding: 0;
 				}
+			}
+		}
+	}
+}
+@media (max-width: 950px) {
+	.project-slider .slider {
+		.slider-wrapper {
+			.project,
+			.content {
+				width: 47%;
 			}
 		}
 	}

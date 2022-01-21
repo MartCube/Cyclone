@@ -85,7 +85,7 @@ export default {
 		}
 	}
 }
-@media (max-width: 800px) {
+@media (max-width: 950px) {
 	.cta_form {
 		width: 100%;
 		// margin-top: 4rem;
@@ -93,22 +93,26 @@ export default {
 		// padding-right: 1.5rem;
 
 		form {
-			flex-direction: column;
-			margin: 0;
 			width: 100%;
-			button {
-				align-items: center;
-				margin-left: 0;
-				margin-top: 2rem;
-				height: 40px;
+			div {
+				flex-direction: column;
+				margin: 0;
+				align-items: flex-start;
 				width: 100%;
-				// margin: 0 0 0 2rem;
-				border-radius: 2px;
+				button {
+					align-items: center;
+					margin-left: 0;
+					margin-top: 2rem;
+					height: 40px;
+					width: 100%;
+					// margin: 0 0 0 2rem;
+					border-radius: 2px;
 
-				&:hover,
-				&:focus,
-				&:active {
-					background-color: $gradient-red;
+					&:hover,
+					&:focus,
+					&:active {
+						background-color: $gradient-red;
+					}
 				}
 			}
 		}

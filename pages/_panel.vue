@@ -92,6 +92,10 @@ export default {
 		ul {
 			padding: 0 50px 10px;
 		}
+		picture {
+			margin-bottom: 10px;
+			display: block;
+		}
 	}
 	.crumbs {
 		margin-left: 50px;
