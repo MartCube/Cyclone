@@ -43,4 +43,8 @@ export default {
 			vue.transformAssetUrls.source = ['data-srcset', 'srcset']
 		},
 	},
+
+	generate: {
+		fallback: '404.html',
+	},
 }
