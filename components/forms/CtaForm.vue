@@ -65,8 +65,11 @@ export default {
 .cta_form {
 	form {
 		width: 25rem;
-		display: flex;
-		align-items: flex-end;
+		div {
+			display: flex;
+			align-items: flex-end;
+			width: 100%;
+		}
 	}
 	.message {
 		display: flex;
@@ -88,9 +91,7 @@ export default {
 		// margin-top: 4rem;
 		justify-content: flex-end;
 		// padding-right: 1.5rem;
-		div {
-			width: 100%;
-		}
+
 		form {
 			flex-direction: column;
 			margin: 0;
