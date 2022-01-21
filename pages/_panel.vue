@@ -14,10 +14,14 @@ import VideoSection from '@/components/sections/VideoSection'
 import ImageItem from '@/components/items/ImageItem'
 export default {
 	name: 'Panel',
-	asyncData({ $sanity, params }) {
-		return $sanity.fetch(panel, {
-			uid: params.panel,
-		})
+	async asyncData({ $sanity, params, error }) {
+		try {
+			return await $sanity.fetch(panel, {
+				uid: params.panel,
+			})
+		} catch {
+			error({ statusCode: 404, message: 'Post not found' })
+		}
 	},
 	data: () => ({
 		serializers: {
