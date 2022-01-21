@@ -18,10 +18,14 @@
 	</div>
 </template>
 <script>
-import { projectsList } from '@/plugins/queries'
+import { projectsList, page } from '@/plugins/queries'
 import { postAnim } from '~/assets/anime'
+
 export default {
 	name: 'Projects',
+	asyncData({ $sanity }) {
+		return $sanity.fetch(page, { uid: 'projects' })
+	},
 	data: () => ({
 		currentProjects: [],
 		gridProjects: [],
@@ -40,6 +44,50 @@ export default {
 		// move this to vuex store
 		this.currentProjects = data
 		this.gridProjects = data
+	},
+	head() {
+		return {
+			title: this.metaTags.title,
+			link: [
+				{
+					hid: 'canonical',
+					rel: 'canonical',
+					href: `https://cyclone.kiev.ua/projects/`,
+				},
+			],
+			meta: [
+				{
+					hid: 'title',
+					name: 'title',
+					content: this.metaTags.title,
+				},
+				{
+					hid: 'description',
+					name: 'description',
+					content: this.metaTags.description,
+				},
+				{
+					hid: 'og:title',
+					name: 'og:title',
+					content: this.metaTags.title,
+				},
+				{
+					hid: 'og:image',
+					property: 'og:image',
+					content: `https://cdn.sanity.io/images/wv1u3p06/production/${this.metaTags.image.slice(6)}?auto=format`,
+				},
+				{
+					hid: 'og:description',
+					property: 'og:description',
+					content: this.metaTags.description,
+				},
+				{
+					hid: 'og:url',
+					property: 'og:url',
+					content: `http://cyclone.kiev.ua/${this.$route.params.panel}/`,
+				},
+			],
+		}
 	},
 	computed: {
 		filters() {

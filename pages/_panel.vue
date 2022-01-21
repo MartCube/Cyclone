@@ -30,6 +30,13 @@ export default {
 	head() {
 		return {
 			title: this.title,
+			link: [
+				{
+					hid: 'canonical',
+					rel: 'canonical',
+					href: `https://cyclone.kiev.ua/${this.$route.params.panel}/`,
+				},
+			],
 			meta: [
 				{
 					hid: 'title',
@@ -49,7 +56,7 @@ export default {
 				{
 					hid: 'og:image',
 					property: 'og:image',
-					content: `https://cdn.sanity.io/images/wv1u3p06/production/${this.poster.slice(6)}?auto=format`,
+					content: `https://cdn.sanity.io/images/wv1u3p06/production/${this.metaTags.image.slice(6)}?auto=format`,
 				},
 				{
 					hid: 'og:description',

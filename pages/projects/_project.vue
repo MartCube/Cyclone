@@ -43,6 +43,50 @@ export default {
 		youtube: undefined,
 		description: undefined,
 	}),
+	head() {
+		return {
+			title: this.title,
+			link: [
+				{
+					hid: 'canonical',
+					rel: 'canonical',
+					href: `https://cyclone.kiev.ua/${this.$route.params.project}/`,
+				},
+			],
+			meta: [
+				{
+					hid: 'title',
+					name: 'title',
+					content: this.metaTags.title,
+				},
+				{
+					hid: 'description',
+					name: 'description',
+					content: this.metaTags.description,
+				},
+				{
+					hid: 'og:title',
+					name: 'og:title',
+					content: this.metaTags.title,
+				},
+				{
+					hid: 'og:image',
+					property: 'og:image',
+					content: `https://cdn.sanity.io/images/wv1u3p06/production/${this.metaTags.image.slice(6)}?auto=format`,
+				},
+				{
+					hid: 'og:description',
+					property: 'og:description',
+					content: this.metaTags.description,
+				},
+				{
+					hid: 'og:url',
+					property: 'og:url',
+					content: `http://cyclone.kiev.ua/${this.$route.params.panel}/`,
+				},
+			],
+		}
+	},
 	computed: {
 		breadCrumbs() {
 			return [{ path: '/projects/', title: 'Проекты' }, { title: this.title }]
