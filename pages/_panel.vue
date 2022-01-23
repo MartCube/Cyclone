@@ -1,9 +1,9 @@
 <template>
 	<main class="page panel">
-		<PanelIntro :poster="poster" :title="title" />
+		<PanelIntro :poster="data.poster" :title="data.title" />
 		<section class="content">
 			<Crumbs :links="breadCrumbs" />
-			<SanityContent :blocks="content" :serializers="serializers" />
+			<SanityContent :blocks="data.content" :serializers="serializers" />
 		</section>
 	</main>
 </template>
@@ -14,23 +14,13 @@ import VideoSection from '@/components/sections/VideoSection'
 import ImageItem from '@/components/items/ImageItem'
 export default {
 	name: 'Panel',
-	async asyncData({ $sanity, params, error }) {
-		try {
-			return await $sanity.fetch(panel, {
-				uid: params.panel,
-			})
-		} catch {
-			error({ statusCode: 404, message: 'Post not found' })
-		}
-	},
 	data: () => ({
-		serializers: {
-			types: {
-				youtube: VideoSection,
-				image: ImageItem,
-			},
-		},
+		data: null,
+		serializers: null,
 	}),
+	async fetch() {
+		this.data = await this.$sanity.fetch(panel, { uid: this.$route.params.panel })
+	},
 	head() {
 		return {
 			title: this.title,
@@ -79,6 +69,14 @@ export default {
 		breadCrumbs() {
 			return [{ title: this.title }]
 		},
+	},
+	mounted() {
+		this.serializers = {
+			types: {
+				youtube: VideoSection,
+				image: ImageItem,
+			},
+		}
 	},
 }
 </script>
