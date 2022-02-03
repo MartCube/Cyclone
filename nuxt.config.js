@@ -14,7 +14,7 @@ export default {
 
 	plugins: [{ src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }],
 
-	modules: ['@nuxtjs/sanity/module', '@nuxtjs/style-resources'],
+	modules: ['@nuxtjs/sanity/module'],
 
 	styleResources: {
 		scss: ['./assets/colors.scss', './assets/mixins.scss'],
@@ -29,6 +29,7 @@ export default {
 	buildModules: [
 		// https://go.nuxtjs.dev/eslint
 		'@nuxtjs/eslint-module',
+		'@nuxtjs/style-resources',
 	],
 	router: {
 		trailingSlash: true,

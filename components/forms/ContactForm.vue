@@ -37,10 +37,28 @@ export default {
 	}),
 	methods: {
 		storeValue(input) {
-			if (input.name === 'name') this.form.name = input.value
-			else if (input.name === 'number') this.form.number = input.value
-			else if (input.name === 'email') this.form.email = input.value
-			else if (input.name === 'message') this.form.message = input.value
+			switch (input.name) {
+				case 'name': {
+					this.form.name = input.value
+					break
+				}
+				case 'number': {
+					this.form.number = input.value
+					break
+				}
+				case 'email': {
+					this.form.email = input.value
+					break
+				}
+				case 'message': {
+					this.form.message = input.value
+					break
+				}
+			}
+			// if (input.name === 'name') this.form.name = input.value
+			// else if (input.name === 'number') this.form.number = input.value
+			// else if (input.name === 'email') this.form.email = input.value
+			// else if (input.name === 'message') this.form.message = input.value
 		},
 
 		async Submit() {

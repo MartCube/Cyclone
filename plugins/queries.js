@@ -1,5 +1,15 @@
 import { groq } from '@nuxtjs/sanity'
 
+// index
+export const index = groq`*[_type == 'page' && uid.current == 'index'][0]{
+	content,
+	metaTags {
+		title,
+		description,
+		"image": image.asset._ref
+	},
+}`
+
 // by uid
 export const panel = groq`*[_type == "panel" && uid.current == $uid][0]{
 	title,
@@ -17,7 +27,6 @@ export const panel = groq`*[_type == "panel" && uid.current == $uid][0]{
 		"image": image.asset._ref
 	},
 }`
-
 export const project = groq`*[_type == "project" && uid.current == $uid][0] {
 	title, 
 	"poster": poster.asset._ref, 
@@ -32,18 +41,7 @@ export const project = groq`*[_type == "project" && uid.current == $uid][0] {
 		"image": image.asset._ref
 	},
 }`
-
 export const page = groq`*[_type == "page" && uid.current == $uid][0] {
-	metaTags {
-		title,
-		description,
-		"image": image.asset._ref
-	},
-}`
-
-// index
-export const index = groq`*[_type == 'page' && uid.current == 'index'][0]{
-	content,
 	metaTags {
 		title,
 		description,
@@ -59,18 +57,18 @@ export const panelList = groq`*[_type == "panel"]{
 	_id,
 	_updatedAt
 }`
+export const projectsList = groq`*[_type == "project"] | order(_updatedAt desc) {
+	"uid": uid.current, 
+	title, 
+	"poster": poster.asset._ref, 
+	"tags": tags[].value,
+}`
 
+// refs
 export const panelSlider = groq`*[_id in $ids] {
 	"uid": uid.current, 
 	_id, 
 	title, 
 	description, 
 	"poster": poster.asset._ref
-}`
-
-export const projectsList = groq`*[_type == "project"] | order(_updatedAt desc) {
-	"uid": uid.current, 
-	title, 
-	"poster": poster.asset._ref, 
-	"tags": tags[].value,
 }`
