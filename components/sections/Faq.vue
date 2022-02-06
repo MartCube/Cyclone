@@ -62,9 +62,9 @@ export default {
 		margin: 0 50px;
 	}
 }
-@media (max-width: 800px) {
+@media (max-width: 950px) {
 	.faq {
-		padding: 50px 2rem;
+		padding: 50px 10%;
 		.accordeon_wrapper {
 			display: flex;
 			flex-direction: column;

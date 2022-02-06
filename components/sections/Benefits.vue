@@ -82,6 +82,22 @@ export default {
 	}
 }
 
+@media (max-width: 1200px) {
+	.benefits {
+		.list {
+			.benefit {
+				.number {
+					font-size: 6vw;
+				}
+				.info {
+					h3 {
+						margin-top: 0;
+					}
+				}
+			}
+		}
+	}
+}
 @media (max-width: 950px) {
 	.benefits {
 		.list {

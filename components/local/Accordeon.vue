@@ -3,13 +3,12 @@
 		<div class="question">
 			<span class="number">{{ number }}</span>
 			<p>{{ question }}</p>
-			<!-- <Icon name="close" /> -->
 			<button class="collapse_button">
 				<span></span>
 				<span></span>
 			</button>
 		</div>
-		<div class="answer">
+		<div ref="elemHeight" class="answer">
 			<SanityContent :blocks="answer.richTextContent" />
 		</div>
 	</div>
@@ -34,11 +33,21 @@ export default {
 	},
 	data() {
 		return {
+			height: 0,
 			isOpen: false,
 		}
 	},
+	mounted() {
+		this.height = this.$refs.elemHeight.offsetHeight
+		this.$refs.elemHeight.style.height = '0px'
+	},
 	methods: {
 		toggleAccordion() {
+			if (!this.isOpen) {
+				this.$refs.elemHeight.style.height = `${this.height}px`
+			} else {
+				this.$refs.elemHeight.style.height = '0px'
+			}
 			this.isOpen = !this.isOpen
 		},
 	},
@@ -47,7 +56,6 @@ export default {
 
 <style lang="scss" scoped>
 .accordeon {
-	// margin-bottom: 1rem;
 	&:not(:last-child) .question {
 		border-bottom-color: $primary;
 	}
@@ -72,7 +80,6 @@ export default {
 			&::before,
 			&::after {
 				content: '';
-				// transform: rotate(90deg);
 				display: flex;
 				width: 1px;
 				height: 1.5rem;
@@ -125,13 +132,10 @@ export default {
 		}
 	}
 	.answer {
-		// background-color: white;
-		max-height: 30em;
-		height: 0;
 		overflow: hidden;
 		opacity: 0;
 		transform: translateY(-20px);
-		transition: all 0.1s ease-in-out;
+		transition: all 0.3s ease-in-out;
 		p {
 			padding: 20px 10px;
 		}
@@ -144,7 +148,6 @@ export default {
 			border-bottom-color: $secondary;
 		}
 		.answer {
-			height: 100%;
 			transform: translateY(0);
 			opacity: 1;
 		}

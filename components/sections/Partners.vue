@@ -59,6 +59,7 @@ export default {
 
 @media (max-width: 950px) {
 	.partners {
+		padding: 50px 10%;
 		.partners-grid {
 			margin-left: 0;
 			figure {
