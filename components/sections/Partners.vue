@@ -3,7 +3,7 @@
 		<h2>{{ title }}</h2>
 		<div class="partners-grid">
 			<figure v-for="image in imageItem" :key="image._key">
-				<ImageItem :image="image.asset._ref" mobile />
+				<ImageItem :image="image.image" mobile />
 			</figure>
 		</div>
 	</section>

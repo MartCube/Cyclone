@@ -20,7 +20,7 @@ export default {
 
 <style lang="scss" scooped>
 .rich_text {
-	padding: 0 10%;
+	padding: $section-padding;
 	.content {
 		h2.title {
 			border-left: 5px solid $secondary;

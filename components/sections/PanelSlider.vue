@@ -3,18 +3,17 @@
 		<h2>{{ title }}</h2>
 		<div class="slider">
 			<div class="slider-wrapper">
-				<article v-for="panel in panels" :key="panel._id">
+				<article v-for="panel in panelItems" :key="panel._id">
 					<div class="text">
-						<h5 class="title">{{ panel.title }}</h5>
+						<h5 class="title">{{ panel.panelItem.title }}</h5>
 						<div class="description">
-							<SanityContent :blocks="panel.description" />
+							<SanityContent :blocks="panel.panelItem.description" />
 						</div>
 						<div class="links">
-							<n-link exact :to="`/projects/#${panel.uid}`">Объекты с {{ panel.title }}</n-link>
-							<n-link exact :to="`/${panel.uid}/`">Подробнее</n-link>
+							<n-link exact :to="`/${panel.panelItem.uid}/`">Подробнее</n-link>
 						</div>
 					</div>
-					<ImageItem :image="panel.poster" w="200" />
+					<ImageItem :image="panel.panelItem.poster" w="200" />
 				</article>
 			</div>
 		</div>
@@ -22,8 +21,6 @@
 </template>
 
 <script>
-import { panelSlider } from '@/plugins/queries'
-
 export default {
 	name: 'PanelSlider',
 	props: {
@@ -34,27 +31,6 @@ export default {
 		title: {
 			type: String,
 			required: true,
-		},
-	},
-	data: () => ({
-		panels: null,
-	}),
-	mounted() {
-		this.getPanels()
-	},
-	methods: {
-		async getPanels() {
-			const panelData = this.panelItems.map((el) => {
-				return el.panelItem._ref
-			})
-			// console.log(panelData)
-			const query = panelSlider
-			const params = { ids: panelData }
-
-			await this.$sanity.fetch(query, params).then((data) => {
-				// console.log(data)
-				this.panels = data
-			})
 		},
 	},
 }

@@ -1,15 +1,15 @@
 <template>
-	<div class="navbar">
-		<div class="burger" :class="{ active: isActive }" @click="ShowHideMenu">
+	<div class="navbar" :class="{ hide: isNavbarHidden && mobile > 950 }">
+		<div class="burger" :class="{ active: isActiveMobileNavbar }" @click="ShowHideMenu">
 			<span class="top_line" />
 			<span class="mid_line" />
 			<span class="bot_line" />
 		</div>
-		<nav :class="{ active: isActive }" @click="isActive = false">
+		<nav :class="{ active: isActiveMobileNavbar }">
 			<ul>
-				<li class="first-lvl submenu" :class="{ active: isActive }">
-					<a href="javascript:;" @mouseover="isActive = true">Вентилируемые фасады</a>
-					<ul class="panels-list">
+				<li class="first-lvl submenu" :class="{ active: isActiveSecondLvl }">
+					<a href="javascript:;" @click="isActiveSecondLvl = !isActiveSecondLvl">Вентилируемые фасады</a>
+					<ul class="panels-list" @click="isActiveSecondLvl = !isActiveSecondLvl">
 						<li v-for="panel in panels" :key="panel._id">
 							<n-link exact :to="`/${panel.uid}/`">
 								<div class="image">
@@ -37,7 +37,9 @@ import { panelList } from '@/plugins/queries'
 export default {
 	data: () => ({
 		compact: true,
-		isActive: false,
+		isActiveMobileNavbar: false,
+		isNavbarHidden: false,
+		isActiveSecondLvl: false,
 		menu: [
 			{
 				name: 'Объекты',
@@ -53,6 +55,9 @@ export default {
 			},
 		],
 		panels: null,
+		scrollPosition: 0,
+		scrollPositionUpdated: 0,
+		mobile: 0,
 	}),
 	async fetch() {
 		await this.$sanity.fetch(panelList).then((data) => {
@@ -62,40 +67,36 @@ export default {
 	},
 	computed: {},
 	mounted() {
+		this.mobile = window.innerWidth
 		this.navBarAnimation()
 		window.addEventListener('resize', () => {
 			this.navBarAnimation()
+			this.resize()
 		})
+		window.addEventListener('scroll', this.updateScroll)
 	},
 	methods: {
-		onScroll() {
-			// Get the current scroll position
-			const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop
-
-			this.compact = currentScrollPosition < screen.height - 200
-
-			// Because of momentum scrolling on mobiles, we shouldn't continue if it is less than zero
-			if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 80) {
-				return
-			} // Here we determine whether we need to show or hide the navbar
-			this.lastScrollPosition = currentScrollPosition
-			// window.removeEventListener('scroll', this.onScroll)
+		updateScroll() {
+			this.scrollPositionUpdated = window.pageYOffset
+			if (this.scrollPosition < this.scrollPositionUpdated) {
+				this.isNavbarHidden = true
+			} else if (this.scrollPosition > this.scrollPositionUpdated) {
+				this.isNavbarHidden = false
+			}
+			this.scrollPosition = this.scrollPositionUpdated
+		},
+		resize() {
+			this.mobile = window.innerWidth
 		},
 		ShowHideMenu() {
-			console.log(this.isActive)
-			this.isActive = !this.isActive
+			this.isActiveMobileNavbar = !this.isActiveMobileNavbar
 		},
 		CloseMenu() {
-			console.log('closeMenu', this.isActive)
-			this.isActive = false
+			this.isActiveMobileNavbar = false
 		},
 		navBarAnimation() {
 			if (window.innerWidth > 950) {
-				window.addEventListener('scroll', this.onScroll)
-				// this.onScroll()
 				navbarAnimation(document.querySelectorAll('.first-lvl a'))
-			} else {
-				window.removeEventListener('scroll', this.onScroll)
 			}
 		},
 	},
@@ -108,7 +109,7 @@ $animation-time: 0.3s;
 	z-index: 20;
 	right: 0;
 	top: 0;
-	transition: height 0.05s linear;
+	transition: all 0.2s ease-in;
 	position: fixed;
 	width: 100%;
 	background-color: $primary;
@@ -182,8 +183,10 @@ $animation-time: 0.3s;
 					opacity: 0;
 					transition: all $animation-time linear;
 					li {
-						padding: 1rem;
-						margin: 0 1rem;
+						padding: 0;
+						margin: 0;
+						margin: 0;
+						padding: 0;
 						height: initial;
 						a {
 							display: flex;
@@ -191,8 +194,8 @@ $animation-time: 0.3s;
 							flex-direction: column-reverse;
 							align-items: center;
 							justify-content: flex-start;
-							max-width: 130px;
-							margin-bottom: 0;
+							max-width: 11vw;
+							margin: 0 2rem 0 0;
 
 							width: 100%;
 							transition: $animation-time linear;
@@ -221,6 +224,9 @@ $animation-time: 0.3s;
 	.logo {
 		width: 17rem;
 		margin-right: 10px;
+	}
+	&.hide {
+		top: -100px;
 	}
 }
 @media (min-width: 950px) {
@@ -304,7 +310,8 @@ $animation-time: 0.3s;
 								justify-content: flex-start;
 								max-width: initial;
 								width: 100%;
-								margin: 1rem 0px;
+								margin: 0;
+								padding: 0;
 								height: auto;
 								&:before {
 									height: 100%;
@@ -381,7 +388,7 @@ $animation-time: 0.3s;
 						li {
 							width: 50%;
 							a {
-								padding: 0.3rem;
+								padding: 0;
 								margin: 0;
 								span {
 									font-size: 1rem;

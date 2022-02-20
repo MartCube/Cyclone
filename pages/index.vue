@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { index } from '@/plugins/queries'
+import { page } from '@/plugins/queries'
 import Cta from '@/components/sections/Cta'
 import PanelSlider from '@/components/sections/PanelSlider'
 import ProjectSlider from '@/components/sections/ProjectSlider'
@@ -18,7 +18,7 @@ import Faq from '@/components/sections/Faq'
 
 export default {
 	asyncData({ $sanity }) {
-		return $sanity.fetch(index)
+		return $sanity.fetch(page, { uid: 'index' })
 	},
 	data: () => ({
 		serializers: {

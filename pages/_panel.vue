@@ -1,10 +1,15 @@
 <template>
 	<main class="page panel">
-		<PanelIntro :poster="data.poster" :title="data.title" />
-		<section class="content">
-			<Crumbs :links="breadCrumbs" />
-			<SanityContent :blocks="data.content" :serializers="serializers" />
-		</section>
+		<template v-if="$fetchState.error && data !== null && !$fetchState.pending && $fetchState.pending">
+			<Error />
+		</template>
+		<template v-if="!$fetchState.pending">
+			<PanelIntro :poster="data.poster" :title="data.title" />
+			<section class="content">
+				<Crumbs :links="breadCrumbs" />
+				<SanityContent :blocks="data.content" :serializers="serializers" />
+			</section>
+		</template>
 	</main>
 </template>
 
@@ -15,8 +20,20 @@ import ImageItem from '@/components/items/ImageItem'
 export default {
 	name: 'Panel',
 	data: () => ({
-		data: null,
-		serializers: null,
+		data: {
+			title: '',
+			metaTags: {
+				title: '',
+				description: '',
+				image: '',
+			},
+		},
+		serializers: {
+			types: {
+				youtube: VideoSection,
+				image: ImageItem,
+			},
+		},
 	}),
 	async fetch() {
 		this.data = await this.$sanity.fetch(panel, { uid: this.$route.params.panel })
@@ -70,14 +87,7 @@ export default {
 			return [{ title: this.data.title }]
 		},
 	},
-	mounted() {
-		this.serializers = {
-			types: {
-				youtube: VideoSection,
-				image: ImageItem,
-			},
-		}
-	},
+	fetchOnServer: false,
 }
 </script>
 

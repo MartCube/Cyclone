@@ -1,7 +1,8 @@
 <template>
 	<div class="video_container">
 		<div class="video_default_preview" :class="{ playing: playVideo }">
-			<ImageItem v-if="!playVideo" :image="preview.asset._ref" w="1300" mobile />
+			<ImageItem v-if="!playVideo && preview !== ''" :image="preview" w="1300" mobile />
+			<img v-else :src="`https://i.ytimg.com/vi/${imagePreview}/maxresdefault.jpg`" />
 			<div v-if="!playVideo" class="play" @click="video">
 				<Icon name="play" />
 			</div>
@@ -18,8 +19,8 @@ export default {
 	name: 'VideoSection',
 	props: {
 		preview: {
-			type: Object,
-			required: true,
+			type: String,
+			default: '',
 		},
 		url: {
 			type: String,
@@ -29,6 +30,11 @@ export default {
 	data: () => ({
 		playVideo: false,
 	}),
+	computed: {
+		imagePreview() {
+			return this.url.slice(this.url.length - 11, this.url.length)
+		},
+	},
 	methods: {
 		video() {
 			this.playVideo = true

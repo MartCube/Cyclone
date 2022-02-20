@@ -38,6 +38,7 @@ export default {
 <style lang="scss" scoped>
 .home-intro {
 	height: 100vh;
+	position: relative;
 	.main-image {
 		position: absolute;
 		width: 100%;

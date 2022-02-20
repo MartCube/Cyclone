@@ -6,17 +6,17 @@
 					<h2>{{ title }}</h2>
 					<SanityContent :blocks="text.richTextContent" />
 				</div>
-				<template v-for="(project, i) in projects">
-					<template v-if="i === projects.length - 1">
+				<template v-for="(project, i) in projectItems">
+					<template v-if="i === projectItems.length - 1">
 						<div :key="project._id" class="project">
-							<ImageItem :image="project.poster" w="700" h="600" mobile />
-							<n-link exact :to="'/projects'">Смореть все <Icon name="arrow" size="60px" fill="#B93937" /></n-link>
+							<ImageItem :image="project.projectItem.poster" w="700" h="600" mobile />
+							<n-link exact :to="'/projects/'">Смореть все <Icon name="arrow" size="60px" fill="#B93937" /></n-link>
 						</div>
 					</template>
 					<template v-else>
-						<n-link :key="project._id" exact :to="`/projects/${project.uid}/`" class="project">
-							<h3 class="title">{{ project.title }}</h3>
-							<ImageItem :image="project.poster" w="700" h="600" mobile />
+						<n-link :key="project._id" exact :to="`/projects/${project.projectItem.uid}/`" class="project">
+							<h3 class="title">{{ project.projectItem.title }}</h3>
+							<ImageItem :image="project.projectItem.poster" w="700" h="600" mobile />
 						</n-link>
 					</template>
 				</template>
@@ -40,27 +40,6 @@ export default {
 		text: {
 			type: Object,
 			required: true,
-		},
-	},
-	data: () => ({
-		projects: null,
-	}),
-	mounted() {
-		this.getprojects()
-	},
-	methods: {
-		async getprojects() {
-			const projectData = this.projectItems.map((el) => {
-				return el.projectItem._ref
-			})
-			// console.log(projectData)
-			const query = '*[_id in $ids][0..4]{"uid": uid.current, _id, title, "poster": poster.asset._ref}'
-			const params = { ids: projectData }
-
-			await this.$sanity.fetch(query, params).then((data) => {
-				// console.log(data)
-				this.projects = data
-			})
 		},
 	},
 }
