@@ -44,7 +44,6 @@ export default {
 		}
 		a,
 		p {
-			// font-size: 1.2rem;
 			text-decoration: none;
 			color: $white;
 			margin-bottom: 25px;

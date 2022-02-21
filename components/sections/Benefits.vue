@@ -64,7 +64,7 @@ export default {
 					text-shadow: 1px 1px $secondary, -1px -1px $secondary, -1px 1px $secondary, 1px -1px $secondary;
 				}
 				span {
-					filter: drop-shadow(0px 4px 11px rgba(26, 26, 26, 1));
+					// filter: drop-shadow(0px 4px 11px rgba(26, 26, 26, 1));
 				}
 			}
 			.info {

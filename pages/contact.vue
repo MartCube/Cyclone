@@ -78,8 +78,6 @@ export default {
 
 <style lang="scss" scoped>
 .contacts {
-	// border-left: 1px solid $secondary;
-	// margin-left: 100px;
 	padding: 0 4rem;
 	display: flex;
 	flex-wrap: wrap;

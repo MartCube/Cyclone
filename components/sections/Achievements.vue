@@ -69,7 +69,6 @@ export default {
 			justify-content: center;
 			line-height: 1.2;
 			color: $secondary;
-			filter: drop-shadow(1px 1px 20px $primary-dark);
 		}
 	}
 }

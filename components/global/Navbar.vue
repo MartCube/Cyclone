@@ -61,7 +61,6 @@ export default {
 	}),
 	async fetch() {
 		await this.$sanity.fetch(panelList).then((data) => {
-			// console.log(data)
 			this.panels = data
 		})
 	},

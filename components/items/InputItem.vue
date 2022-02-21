@@ -141,7 +141,6 @@ export default {
 		input {
 			height: 60px;
 			border-bottom: none;
-			// font-size: 20px;
 			&:focus {
 				~ .border {
 					background-color: $gradient-red;
@@ -150,7 +149,6 @@ export default {
 			&:placeholder-shown ~ label {
 				top: 1rem;
 				font-size: 1.5rem;
-				// font-weight: bold;
 			}
 			&:focus ~ label {
 				top: 0;
@@ -170,8 +168,6 @@ export default {
 		}
 	}
 }
-// @media (min-width: 1700px) {
-// }
 @media (max-width: 950px) {
 	.cta_form {
 		.input_item {

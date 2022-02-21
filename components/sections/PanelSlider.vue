@@ -143,10 +143,8 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 					width: 90%;
 					margin: 0 auto;
 					height: auto;
-					filter: drop-shadow(0px 4px 11px rgba(26, 26, 26, 1));
 				}
 				&:hover {
-					box-shadow: 0 0 30px 0px $primary-dark;
 					transform: scale(1.03);
 					background-color: hsl(0deg 0% 19%);
 				}

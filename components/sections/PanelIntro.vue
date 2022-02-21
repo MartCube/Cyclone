@@ -35,7 +35,6 @@ export default {
 		width: 20vw;
 		margin-top: 2rem;
 		height: auto;
-		filter: drop-shadow(30px 40px 100px hsl(0, 0%, 5%));
 		position: relative;
 		z-index: 3;
 		img {

@@ -134,7 +134,6 @@ export default {
 			margin-left: 0;
 		}
 		.image {
-			// width: 100%;
 			picture {
 				height: 100%;
 				width: 100%;

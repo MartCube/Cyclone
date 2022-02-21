@@ -46,17 +46,14 @@ export default {
 	.policy {
 		flex-direction: column;
 		margin-top: 3rem;
-		// padding-right: 30px;
 		a {
 			justify-content: center;
 			align-items: flex-end;
-			// flex-direction: column;
 			margin-bottom: 0;
 		}
 		p {
 			justify-content: center;
 			align-items: flex-start;
-			// flex-direction: column;
 			margin-bottom: 0;
 		}
 		.text {

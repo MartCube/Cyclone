@@ -43,13 +43,13 @@ export default {
 			height: 200px;
 			width: auto;
 			border: 1px solid hsl(0deg, 0%, 22%);
-			filter: drop-shadow(0px 4px 20px hsl(0deg 0% 6%));
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			margin-right: 10px;
 			padding: 2rem;
-			img {
+			picture {
+				display: contents;
 				width: initial;
 				height: initial;
 			}
@@ -84,7 +84,6 @@ export default {
 				height: 70px;
 				picture {
 					width: 100%;
-					// height: 100%;
 					object-fit: contain;
 				}
 			}

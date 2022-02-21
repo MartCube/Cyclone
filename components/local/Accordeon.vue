@@ -173,7 +173,6 @@ export default {
 				padding: 10px 0 10px 20px;
 			}
 			p {
-				// font-size: 1rem;
 				padding: 0.5rem 0 1rem 1rem;
 			}
 		}

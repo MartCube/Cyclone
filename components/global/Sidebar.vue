@@ -28,11 +28,9 @@
 </template>
 
 <script>
-// import Logo from './Logo.vue'
 import { messengersAnim } from '~/assets/anime'
 
 export default {
-	// components: { Logo },
 	data: () => ({
 		color: '#B93937',
 	}),

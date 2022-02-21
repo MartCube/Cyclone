@@ -1,13 +1,11 @@
 export const state = (context) => ({
 	panels: {},
 
-	modalVideo: false, // toggle visibility
 	footer: true, // toggle visibility
 })
 
 export const getters = {
 	panels: (state) => state.panels,
-	modalVideo: (state) => state.modalVideo,
 	footer: (state) => state.footer,
 }
 

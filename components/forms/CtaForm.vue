@@ -105,7 +105,6 @@ export default {
 					margin-top: 2rem;
 					height: 40px;
 					width: 100%;
-					// margin: 0 0 0 2rem;
 					border-radius: 2px;
 
 					&:hover,

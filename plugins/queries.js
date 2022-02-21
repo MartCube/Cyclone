@@ -109,12 +109,3 @@ export const projectsList = groq`*[_type == "project"] | order(_updatedAt desc) 
 	"poster": poster.asset._ref, 
 	"tags": tags[].value,
 }`
-
-// refs
-// export const panelSlider = groq`*[_id in $ids] {
-// 	"uid": uid.current,
-// 	_id,
-// 	title,
-// 	description,
-// 	"poster": poster.asset._ref
-// }`

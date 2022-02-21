@@ -124,24 +124,10 @@ $card-size: 300px;
 }
 @media (max-width: 600px) {
 	.project_card {
-		// margin: 0 10px 20px 0;
 		width: 100%;
 		.image {
 			height: 80vw;
 		}
 	}
 }
-// @media (max-width: 360px) {
-// 	.project_card {
-// 		margin: 0 10px 20px 0;
-// 		width: calc(100% - 25px);
-// 		.image {
-// 			height: 100%;
-// 			width: 100%;
-// 		}
-// 		.title {
-// 			font-size: 1rem;
-// 		}
-// 	}
-// }
 </style>

@@ -86,7 +86,6 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 				align-items: flex-end;
 				overflow: hidden;
 				transition: $transition;
-				// height: 20vw;
 				position: relative;
 				.title {
 					margin: 0;
@@ -109,7 +108,6 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 					transition: $transition;
 					height: 100%;
 					object-fit: cover;
-					filter: drop-shadow(0px 4px 11px rgba(26, 26, 26, 1));
 				}
 				&:hover {
 					box-shadow: 0 0 30px 0px $primary-dark;

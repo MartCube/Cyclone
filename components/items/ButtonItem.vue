@@ -26,9 +26,6 @@ button {
 	background-color: $secondary;
 	color: $white;
 	cursor: pointer;
-	// z-index: 1;
-	// overflow: hidden;
-	// position: relative;
 
 	display: flex;
 	justify-content: center;
@@ -58,7 +55,6 @@ button {
 		}
 		svg {
 			opacity: 0.8;
-			// fill: $secondary;
 		}
 	}
 }
