@@ -58,9 +58,6 @@ export default {
 			display: block;
 		}
 	}
-	.accordeon_wrapper {
-		margin: 0 50px;
-	}
 }
 @media (max-width: 950px) {
 	.faq {

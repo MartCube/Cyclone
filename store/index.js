@@ -1,6 +1,6 @@
 export const state = (context) => ({
 	panels: {},
-
+	domain: 'https://cyclone-dev.vercel.app',
 	footer: true, // toggle visibility
 })
 

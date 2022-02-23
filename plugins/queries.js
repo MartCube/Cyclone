@@ -8,10 +8,62 @@ export const panel = groq`*[_type == "panel" && uid.current == $uid][0]{
 		_type == 'image' => {
 			_key, _type, "image": asset._ref, w, 
 		},
-		_type == 'block' => {...},
+		_type == 'richText' => {...},
+		_type == 'cta' => {...},
+		_type == 'counter' => {
+			...,
+			counterItems[] {
+				title,number
+			}
+		},
+		_type == 'benefits' => {
+			...,
+			benefitItems[] {
+			description, title
+			}
+		},
+		_type == 'faq' => {
+			...,
+			faqItems[] {
+			_key, 
+			question,
+			answer
+			}
+		},
+		_type == 'slider_projects' => {
+			...,
+			projectItems[] {
+				projectItem -> {
+					"uid": uid.current, 
+					_id, 
+					title, 
+					"poster": poster.asset._ref
+				},
+			}, 
+		},
+		_type == 'slider_panel' => {
+			...,
+			panelItems[] {
+				panelItem -> {
+					"uid": uid.current, 
+					_id, 
+					title, 
+					description, 
+					"poster": poster.asset._ref
+				},
+			}, 
+		},
 		_type == 'youtube' => { 
 			...,
 			"preview" : preview.asset._ref
+		},
+		_type == 'panelImages' => {
+			_key, 
+			_type, 
+			"galleryProperty": galleryProperty[0].value,
+			imageItem[] {
+				"image": asset._ref, 
+			},
 		},
     },
 	metaTags{
@@ -109,3 +161,5 @@ export const projectsList = groq`*[_type == "project"] | order(_updatedAt desc) 
 	"poster": poster.asset._ref, 
 	"tags": tags[].value,
 }`
+
+export const sitemapData = groq`*[_type == $type] {"uid": uid.current, "type":  _type, "updated": _updatedAt}`

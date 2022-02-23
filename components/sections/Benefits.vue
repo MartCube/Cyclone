@@ -41,7 +41,7 @@ export default {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: flex-start;
-		padding: 0 50px;
+		// padding: 0 50px;
 
 		.benefit {
 			width: 48%;

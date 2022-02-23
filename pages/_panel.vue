@@ -5,10 +5,8 @@
 		</template>
 		<template v-if="!$fetchState.pending">
 			<PanelIntro :poster="data.poster" :title="data.title" />
-			<section class="content">
-				<Crumbs :links="breadCrumbs" />
-				<SanityContent :blocks="data.content" :serializers="serializers" />
-			</section>
+			<Crumbs :links="breadCrumbs" />
+			<SanityContent :blocks="data.content" class="content" :serializers="serializers" />
 		</template>
 	</main>
 </template>
@@ -16,7 +14,15 @@
 <script>
 import { panel } from '@/plugins/queries'
 import VideoSection from '@/components/sections/VideoSection'
-import ImageItem from '@/components/items/ImageItem'
+import PanelImage from '@/components/items/PanelImage'
+import Cta from '@/components/sections/Cta'
+import PanelSlider from '@/components/sections/PanelSlider'
+import ProjectSlider from '@/components/sections/ProjectSlider'
+import Achievements from '@/components/sections/Achievements'
+import Benefits from '@/components/sections/Benefits'
+// import Partners from '@/components/sections/Partners'
+import RichText from '@/components/sections/RichText'
+import Faq from '@/components/sections/Faq'
 export default {
 	name: 'Panel',
 	data: () => ({
@@ -31,7 +37,15 @@ export default {
 		serializers: {
 			types: {
 				youtube: VideoSection,
-				image: ImageItem,
+				image: PanelImage,
+				cta: Cta,
+				slider_panel: PanelSlider,
+				slider_projects: ProjectSlider,
+				counter: Achievements,
+				benefits: Benefits,
+				// panelImages: Partners,
+				richText: RichText,
+				faq: Faq,
 			},
 		},
 	}),
@@ -91,33 +105,23 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .panel {
 	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	h1 {
-		border-left: 5px solid $secondary;
-		font-size: $h2;
-		line-height: 1;
-		display: inline-flex;
-		padding-left: 1.5rem;
-		margin: 3rem 0 3rem 50px;
+	.rich_text {
+		h1 {
+			border-left: 5px solid $secondary;
+			font-size: $h2;
+			line-height: 1;
+			display: inline-flex;
+			padding-left: 1.5rem;
+		}
 	}
 	.content {
-		padding: 0 10% 3rem 10%;
-		ul {
-			padding: 0 50px 10px;
-		}
-		picture {
-			margin-bottom: 10px;
-			display: block;
-		}
+		width: 100%;
 	}
 	.crumbs {
-		margin-left: 50px;
+		margin-left: 10%;
 	}
 }
 @media (max-width: 950px) {

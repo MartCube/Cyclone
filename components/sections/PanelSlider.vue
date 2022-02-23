@@ -48,7 +48,7 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 		overflow-x: auto;
 		scrollbar-color: $secondary $primary-dark;
 		scrollbar-width: thin;
-		margin-left: 50px;
+		// margin-left: 50px;
 		padding-bottom: 1rem;
 		overflow-y: hidden;
 		height: auto;

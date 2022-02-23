@@ -1,5 +1,5 @@
 <template>
-	<div class="video_container">
+	<section class="video_container">
 		<div class="video_default_preview" :class="{ playing: playVideo }">
 			<ImageItem v-if="!playVideo && preview !== ''" :image="preview" w="1300" mobile />
 			<img v-else :src="`https://i.ytimg.com/vi/${imagePreview}/maxresdefault.jpg`" />
@@ -11,7 +11,7 @@
 				<VideoItem :url="url" />
 			</div>
 		</div>
-	</div>
+	</section>
 </template>
 
 <script>
@@ -46,7 +46,7 @@ export default {
 .video_container {
 	position: relative;
 	width: 100%;
-	padding: 2rem 0;
+	padding: $section-padding;
 	.video_default_preview {
 		width: 100%;
 		height: 100%;
