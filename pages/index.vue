@@ -1,7 +1,12 @@
 <template>
 	<main class="page">
-		<HomeIntro />
-		<SanityContent :blocks="content" :serializers="serializers" />
+		<template v-if="$fetchState.error && pageData !== null && !$fetchState.pending && $fetchState.pending">
+			<Error />
+		</template>
+		<template v-if="!$fetchState.pending">
+			<HomeIntro />
+			<SanityContent :blocks="pageData.content" :serializers="serializers" />
+		</template>
 	</main>
 </template>
 
@@ -17,10 +22,8 @@ import RichText from '@/components/sections/RichText'
 import Faq from '@/components/sections/Faq'
 
 export default {
-	asyncData({ $sanity }) {
-		return $sanity.fetch(page, { uid: 'index' })
-	},
 	data: () => ({
+		pageData: {},
 		serializers: {
 			types: {
 				cta: Cta,
@@ -34,49 +37,29 @@ export default {
 			},
 		},
 	}),
+	async fetch() {
+		await this.$sanity
+			.fetch(page, { uid: 'index' })
+			.then((fetch) => {
+				console.log(fetch)
+				this.pageData = {
+					content: fetch.content,
+				}
+				this.$store.dispatch('metaTags', { fetch })
+			})
+			.catch((error) => {
+				console.log(error)
+				// set status code on server and
+				if (process.server) {
+					this.$nuxt.context.res.statusCode = 404
+				}
+				// use throw new Error()
+				throw new Error('Projects not found', error)
+			})
+	},
+	fetchOnServer: false,
 	head() {
-		return {
-			title: 'Cyclone',
-			link: [
-				{
-					hid: 'canonical',
-					rel: 'canonical',
-					href: `https://cyclone.kiev.ua/`,
-				},
-			],
-			meta: [
-				{
-					hid: 'title',
-					name: 'title',
-					content: this.metaTags.title,
-				},
-				{
-					hid: 'description',
-					name: 'description',
-					content: this.metaTags.description,
-				},
-				{
-					hid: 'og:title',
-					name: 'og:title',
-					content: this.metaTags.title,
-				},
-				{
-					hid: 'og:image',
-					property: 'og:image',
-					content: `https://cdn.sanity.io/images/wv1u3p06/production/${this.metaTags.image.slice(6)}?auto=format`,
-				},
-				{
-					hid: 'og:description',
-					property: 'og:description',
-					content: this.metaTags.description,
-				},
-				{
-					hid: 'og:url',
-					property: 'og:url',
-					content: `http://cyclone.kiev.ua/`,
-				},
-			],
-		}
+		return this.$store.getters.metaHead
 	},
 }
 </script>

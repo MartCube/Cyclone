@@ -1,20 +1,25 @@
 <template>
 	<div class="page">
-		<div class="projects">
-			<Crumbs :links="breadCrumbs" />
-			<Title value="Объекты" />
+		<template v-if="$fetchState.error && gridProjects !== [] && !$fetchState.pending && $fetchState.pending">
+			<Error />
+		</template>
+		<template v-if="!$fetchState.pending">
+			<div class="projects">
+				<Crumbs :links="breadCrumbs" />
+				<Title value="Объекты" />
 
-			<div class="filter">
-				<span :class="{ active: active_filter[0] == null }" @click="filterUpdate('all')"> Все </span>
-				<span v-for="(filter, i) in filters" :key="i" :class="{ active: active_filter == filter.key }" @click="filterUpdate(filter.key)">
-					{{ filter.name }}
-				</span>
-			</div>
+				<div class="filter">
+					<span :class="{ active: active_filter[0] == null }" @click="filterUpdate('all')"> Все </span>
+					<span v-for="(filter, i) in filters" :key="i" :class="{ active: active_filter == filter.key }" @click="filterUpdate(filter.key)">
+						{{ filter.name }}
+					</span>
+				</div>
 
-			<div ref="grid" class="grid">
-				<ProjectCard v-for="project in gridProjects" :key="project.uid" :project="project" />
+				<div ref="grid" class="grid">
+					<ProjectCard v-for="project in gridProjects" :key="project.uid" :project="project" />
+				</div>
 			</div>
-		</div>
+		</template>
 	</div>
 </template>
 <script>
@@ -23,9 +28,6 @@ import { postAnim } from '~/assets/anime'
 
 export default {
 	name: 'Projects',
-	asyncData({ $sanity }) {
-		return $sanity.fetch(page, { uid: 'projects' })
-	},
 	data: () => ({
 		currentProjects: [],
 		gridProjects: [],
@@ -37,8 +39,24 @@ export default {
 		total_pages: null,
 		prev_page: null,
 		next_page: null,
+		pageData: {},
 	}),
 	async fetch() {
+		await this.$sanity
+			.fetch(page, { uid: 'projects' })
+			.then((fetch) => {
+				this.$store.dispatch('metaTags', { fetch })
+			})
+			.catch((error) => {
+				console.log(error)
+				// set status code on server and
+				if (process.server) {
+					this.$nuxt.context.res.statusCode = 404
+				}
+				// use throw new Error()
+				throw new Error('Projects not found', error)
+			})
+
 		const data = await this.$sanity.fetch(projectsList)
 		// console.log(data)
 		// move this to vuex store
@@ -46,48 +64,7 @@ export default {
 		this.gridProjects = data
 	},
 	head() {
-		return {
-			title: this.metaTags.title,
-			link: [
-				{
-					hid: 'canonical',
-					rel: 'canonical',
-					href: `https://cyclone.kiev.ua/projects/`,
-				},
-			],
-			meta: [
-				{
-					hid: 'title',
-					name: 'title',
-					content: this.metaTags.title,
-				},
-				{
-					hid: 'description',
-					name: 'description',
-					content: this.metaTags.description,
-				},
-				{
-					hid: 'og:title',
-					name: 'og:title',
-					content: this.metaTags.title,
-				},
-				{
-					hid: 'og:image',
-					property: 'og:image',
-					content: `https://cdn.sanity.io/images/wv1u3p06/production/${this.metaTags.image.slice(6)}?auto=format`,
-				},
-				{
-					hid: 'og:description',
-					property: 'og:description',
-					content: this.metaTags.description,
-				},
-				{
-					hid: 'og:url',
-					property: 'og:url',
-					content: `http://cyclone.kiev.ua/${this.$route.params.panel}/`,
-				},
-			],
-		}
+		return this.$store.getters.metaHead
 	},
 	computed: {
 		filters() {
@@ -272,9 +249,7 @@ export default {
 			width: 100%;
 			padding-left: 0;
 			border-left: none;
-			.wrapper {
-				justify-content: flex-start;
-			}
+			justify-content: space-between;
 		}
 		.title {
 			// height: 110px;

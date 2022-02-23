@@ -1,25 +1,29 @@
 <template>
 	<main class="page project">
-		<Crumbs :links="breadCrumbs" />
-		<div class="content">
-			<div class="text">
-				<h1>{{ title }}</h1>
-				<SanityContent :blocks="description" />
+		<template v-if="$fetchState.error">
+			<Error />
+		</template>
+		<template v-if="!$fetchState.pending">
+			<Crumbs :links="breadCrumbs" />
+			<div class="content">
+				<div class="text">
+					<h1>{{ pageData.content.title }}</h1>
+					<SanityContent :blocks="pageData.content.description" />
+				</div>
+				<VideoSection v-if="pageData.content.youtube" :preview="pageData.content.youtube.preview" :url="pageData.content.youtube.url" />
+				<div v-else class="image">
+					<ImageItem :image="pageData.content.poster" w="700" />
+				</div>
 			</div>
-			<VideoSection v-if="youtube" :preview="youtube.preview" :url="youtube.url" />
-			<div v-else class="image">
-				<!-- <SanityImage :asset-id="`${poster}?w=700`" /> -->
-				<ImageItem :image="poster" w="700" />
+			<div class="gallery">
+				<CoolLightBox :items="galleryImages(pageData.content.gallery)" :index="galleryIndex" @close="galleryIndex = null"></CoolLightBox>
+				<div class="wrapper">
+					<figure v-for="(image, y) in pageData.content.gallery" :key="y" @click="galleryIndex = y">
+						<ImageItem :image="image" w="500" />
+					</figure>
+				</div>
 			</div>
-		</div>
-		<div class="gallery">
-			<CoolLightBox :items="galleryImages(gallery)" :index="galleryIndex" @close="galleryIndex = null"></CoolLightBox>
-			<div class="wrapper">
-				<figure v-for="(image, y) in gallery" :key="y" @click="galleryIndex = y">
-					<ImageItem :image="image" w="500" />
-				</figure>
-			</div>
-		</div>
+		</template>
 	</main>
 </template>
 
@@ -33,68 +37,28 @@ export default {
 	components: {
 		CoolLightBox,
 	},
-	asyncData({ $sanity, params, error }) {
-		try {
-			return $sanity.fetch(project, {
-				uid: params.project,
-			})
-		} catch {
-			error({ statusCode: 404, message: 'Post not found' })
-		}
-	},
 	data: () => ({
 		galleryIndex: null,
-		youtube: undefined,
-		description: undefined,
+		pageData: {},
 	}),
-	head() {
-		if (this.metaTags)
-			return {
-				title: this.title,
-				link: [
-					{
-						hid: 'canonical',
-						rel: 'canonical',
-						href: `https://cyclone.kiev.ua/${this.$route.params.project}/`,
-					},
-				],
-				meta: [
-					{
-						hid: 'title',
-						name: 'title',
-						content: this.metaTags.title,
-					},
-					{
-						hid: 'description',
-						name: 'description',
-						content: this.metaTags.description,
-					},
-					{
-						hid: 'og:title',
-						name: 'og:title',
-						content: this.metaTags.title,
-					},
-					{
-						hid: 'og:image',
-						property: 'og:image',
-						content: `https://cdn.sanity.io/images/wv1u3p06/production/${this.metaTags.image.slice(6)}?auto=format`,
-					},
-					{
-						hid: 'og:description',
-						property: 'og:description',
-						content: this.metaTags.description,
-					},
-					{
-						hid: 'og:url',
-						property: 'og:url',
-						content: `http://cyclone.kiev.ua/${this.$route.params.panel}/`,
-					},
-				],
+	async fetch() {
+		await this.$sanity.fetch(project, { uid: this.$route.params.project }).then((fetch) => {
+			this.pageData = {
+				youtube: fetch.youtube,
+				gallery: fetch.gallery,
+				title: fetch.title,
+				description: fetch.description,
+				poster: fetch.poster,
 			}
+			this.$store.dispatch('metaTags', { fetch, type: 'project' })
+		})
+	},
+	head() {
+		return this.$store.getters.metaHead
 	},
 	computed: {
 		breadCrumbs() {
-			return [{ path: '/projects/', title: 'Проекты' }, { title: this.title }]
+			return [{ path: '/projects/', title: 'Проекты' }, { title: this.pageData.content.title }]
 		},
 	},
 	methods: {

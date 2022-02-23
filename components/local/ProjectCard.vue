@@ -112,8 +112,8 @@ $card-size: 300px;
 }
 @media (max-width: 900px) {
 	.project_card {
-		margin: 1rem 1vw;
-		width: 45vw;
+		// margin: 1rem 1vw;
+		width: 42vw;
 		.image {
 			height: 45vw;
 		}

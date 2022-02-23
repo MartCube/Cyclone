@@ -26,14 +26,7 @@ import Faq from '@/components/sections/Faq'
 export default {
 	name: 'Panel',
 	data: () => ({
-		data: {
-			title: '',
-			metaTags: {
-				title: '',
-				description: '',
-				image: '',
-			},
-		},
+		data: {},
 		serializers: {
 			types: {
 				youtube: VideoSection,
@@ -50,51 +43,24 @@ export default {
 		},
 	}),
 	async fetch() {
-		this.data = await this.$sanity.fetch(panel, { uid: this.$route.params.panel })
+		await this.$sanity
+			.fetch(panel, { uid: this.$route.params.panel })
+			.then((fetch) => {
+				this.data = fetch
+				this.$store.dispatch('metaTags', { fetch })
+			})
+			.catch((error) => {
+				console.log(error)
+				// set status code on server and
+				if (process.server) {
+					this.$nuxt.context.res.statusCode = 404
+				}
+				// use throw new Error()
+				throw new Error('Projects not found', error)
+			})
 	},
 	head() {
-		return {
-			title: this.data.title,
-			link: [
-				{
-					hid: 'canonical',
-					rel: 'canonical',
-					href: `https://cyclone.kiev.ua/${this.$route.params.panel}/`,
-				},
-			],
-			meta: [
-				{
-					hid: 'title',
-					name: 'title',
-					content: this.data.metaTags.title,
-				},
-				{
-					hid: 'description',
-					name: 'description',
-					content: this.data.metaTags.description,
-				},
-				{
-					hid: 'og:title',
-					name: 'og:title',
-					content: this.data.metaTags.title,
-				},
-				{
-					hid: 'og:image',
-					property: 'og:image',
-					content: `https://cdn.sanity.io/images/wv1u3p06/production/${this.data.metaTags.image.slice(6)}?auto=format`,
-				},
-				{
-					hid: 'og:description',
-					property: 'og:description',
-					content: this.data.metaTags.description,
-				},
-				{
-					hid: 'og:url',
-					property: 'og:url',
-					content: `http://cyclone.kiev.ua/${this.$route.params.panel}/`,
-				},
-			],
-		}
+		return this.$store.getters.metaHead
 	},
 	computed: {
 		breadCrumbs() {
@@ -127,7 +93,6 @@ export default {
 @media (max-width: 950px) {
 	.page {
 		.content {
-			padding: 0 2rem 3rem 2rem;
 			width: 100%;
 			h1 {
 				margin-left: 0;
@@ -136,9 +101,6 @@ export default {
 			ul {
 				padding: 0 0 0 10px;
 			}
-		}
-		.crumbs {
-			margin-left: 0;
 		}
 	}
 }

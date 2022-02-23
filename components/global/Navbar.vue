@@ -9,7 +9,7 @@
 			<ul>
 				<li class="first-lvl submenu" :class="{ active: isActiveSecondLvl }">
 					<a href="javascript:;" @click="isActiveSecondLvl = !isActiveSecondLvl">Вентилируемые фасады</a>
-					<ul class="panels-list" @click="isActiveSecondLvl = !isActiveSecondLvl">
+					<ul class="panels-list" @click="isActiveSecondLvl = false">
 						<li v-for="panel in panels" :key="panel._id">
 							<n-link exact :to="`/${panel.uid}/`">
 								<div class="image">
@@ -238,8 +238,8 @@ $animation-time: 0.3s;
 		height: 70px;
 		padding: 0 1rem;
 		nav {
-			left: -100vw;
-			width: 100vw;
+			left: -100%;
+			width: 100%;
 			order: 2;
 			height: 100vh;
 			top: 70px;
