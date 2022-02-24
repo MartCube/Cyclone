@@ -7,18 +7,18 @@
 			<Crumbs :links="breadCrumbs" />
 			<div class="content">
 				<div class="text">
-					<h1>{{ pageData.content.title }}</h1>
-					<SanityContent :blocks="pageData.content.description" />
+					<h1>{{ pageData.title }}</h1>
+					<SanityContent :blocks="pageData.description" />
 				</div>
-				<VideoSection v-if="pageData.content.youtube" :preview="pageData.content.youtube.preview" :url="pageData.content.youtube.url" />
+				<VideoSection v-if="pageData.youtube" :preview="pageData.youtube.preview" :url="pageData.youtube.url" />
 				<div v-else class="image">
-					<ImageItem :image="pageData.content.poster" w="700" />
+					<ImageItem :image="pageData.poster" w="700" />
 				</div>
 			</div>
 			<div class="gallery">
-				<CoolLightBox :items="galleryImages(pageData.content.gallery)" :index="galleryIndex" @close="galleryIndex = null"></CoolLightBox>
+				<CoolLightBox :items="galleryImages(pageData.gallery)" :index="galleryIndex" @close="galleryIndex = null"></CoolLightBox>
 				<div class="wrapper">
-					<figure v-for="(image, y) in pageData.content.gallery" :key="y" @click="galleryIndex = y">
+					<figure v-for="(image, y) in pageData.gallery" :key="y" @click="galleryIndex = y">
 						<ImageItem :image="image" w="500" />
 					</figure>
 				</div>
@@ -42,23 +42,34 @@ export default {
 		pageData: {},
 	}),
 	async fetch() {
-		await this.$sanity.fetch(project, { uid: this.$route.params.project }).then((fetch) => {
-			this.pageData = {
-				youtube: fetch.youtube,
-				gallery: fetch.gallery,
-				title: fetch.title,
-				description: fetch.description,
-				poster: fetch.poster,
-			}
-			this.$store.dispatch('metaTags', { fetch, type: 'project' })
-		})
+		await this.$sanity
+			.fetch(project, { uid: this.$route.params.project })
+			.then((fetch) => {
+				this.pageData = {
+					youtube: fetch.youtube,
+					gallery: fetch.gallery,
+					title: fetch.title,
+					description: fetch.description,
+					poster: fetch.poster,
+				}
+				this.$store.dispatch('metaTags', { fetch, type: 'project' })
+			})
+			.catch((error) => {
+				console.log(error)
+				// set status code on server and
+				if (process.server) {
+					this.$nuxt.context.res.statusCode = 404
+				}
+				// use throw new Error()
+				throw new Error('Projects not found', error)
+			})
 	},
 	head() {
 		return this.$store.getters.metaHead
 	},
 	computed: {
 		breadCrumbs() {
-			return [{ path: '/projects/', title: 'Проекты' }, { title: this.pageData.content.title }]
+			return [{ path: '/projects/', title: 'Проекты' }, { title: this.pageData.title }]
 		},
 	},
 	methods: {

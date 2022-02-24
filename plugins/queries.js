@@ -162,4 +162,4 @@ export const projectsList = groq`*[_type == "project"] | order(_updatedAt desc) 
 	"tags": tags[].value,
 }`
 
-export const sitemapData = groq`*[_type == $type] {"uid": uid.current, "type":  _type, "updated": _updatedAt}`
+export const sitemapData = groq`*[_type in ["project", "panel", "page"]] {"uid": uid.current, "type":  _type, "updated": _updatedAt}`
