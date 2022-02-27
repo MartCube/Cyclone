@@ -1,9 +1,9 @@
 <template>
 	<main class="page panel">
-		<template v-if="$fetchState.error && data !== null && !$fetchState.pending && $fetchState.pending">
+		<template v-if="$fetchState.error && !data.title && !$fetchState.pending">
 			<Error />
 		</template>
-		<template v-if="!$fetchState.pending">
+		<template v-if="!$fetchState.pending && data.title">
 			<PanelIntro :poster="data.poster" :title="data.title" />
 			<Crumbs :links="breadCrumbs" />
 			<SanityContent :blocks="data.content" class="content" :serializers="serializers" />
@@ -20,7 +20,7 @@ import PanelSlider from '@/components/sections/PanelSlider'
 import ProjectSlider from '@/components/sections/ProjectSlider'
 import Achievements from '@/components/sections/Achievements'
 import Benefits from '@/components/sections/Benefits'
-// import Partners from '@/components/sections/Partners'
+import Partners from '@/components/sections/Partners'
 import RichText from '@/components/sections/RichText'
 import Faq from '@/components/sections/Faq'
 export default {
@@ -36,7 +36,7 @@ export default {
 				slider_projects: ProjectSlider,
 				counter: Achievements,
 				benefits: Benefits,
-				// panelImages: Partners,
+				panelImages: Partners,
 				richText: RichText,
 				faq: Faq,
 			},
@@ -46,8 +46,11 @@ export default {
 		await this.$sanity
 			.fetch(panel, { uid: this.$route.params.panel })
 			.then((fetch) => {
-				this.data = fetch
-				this.$store.dispatch('metaTags', { fetch })
+				if (fetch.content) {
+					this.data = fetch
+					this.$store.dispatch('metaTags', { fetch })
+				}
+				throw new Error('panel not found no data')
 			})
 			.catch((error) => {
 				console.log(error)

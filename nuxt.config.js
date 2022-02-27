@@ -14,7 +14,6 @@ const configSanity = {
 	apiVersion: '2021-04-04',
 }
 
-const domain = 'https://cyclone-dev.vercel.app'
 const client = createClient(configSanity)
 
 const sitemapGenerator = async function () {
@@ -23,14 +22,12 @@ const sitemapGenerator = async function () {
 		.fetch(sitemapData)
 		.then((results) => {
 			data = results
-			// console.log('Data', results)
 		})
 		.catch((error) => {
 			console.log('log error', error)
 		})
 	const sitemaproute = []
 	data.forEach((doc) => {
-		// urlGenerator(type.value)
 		switch (doc.type) {
 			case 'page':
 				sitemaproute.push({
@@ -61,7 +58,6 @@ const sitemapGenerator = async function () {
 				break
 		}
 	})
-	// 	console.log('sitemap', sitemaproute)
 
 	return sitemaproute
 }
@@ -72,15 +68,12 @@ const routeGenerator = async function () {
 		.fetch(sitemapData)
 		.then((results) => {
 			data = results
-			// console.log('Data', results)
 		})
 		.catch((error) => {
 			console.log('log error', error)
 		})
 
 	data.forEach((doc) => {
-		// urlGenerator(type.value)
-		// console.log(i.type)
 		switch (doc.type) {
 			case 'page':
 				route.push(`/${doc.uid}/`)

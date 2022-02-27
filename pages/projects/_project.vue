@@ -1,9 +1,9 @@
 <template>
 	<main class="page project">
-		<template v-if="$fetchState.error">
+		<template v-if="$fetchState.error && !pageData.title && !$fetchState.pending">
 			<Error />
 		</template>
-		<template v-if="!$fetchState.pending">
+		<template v-if="!$fetchState.pending && pageData.title">
 			<Crumbs :links="breadCrumbs" />
 			<div class="content">
 				<div class="text">
@@ -45,14 +45,17 @@ export default {
 		await this.$sanity
 			.fetch(project, { uid: this.$route.params.project })
 			.then((fetch) => {
-				this.pageData = {
-					youtube: fetch.youtube,
-					gallery: fetch.gallery,
-					title: fetch.title,
-					description: fetch.description,
-					poster: fetch.poster,
+				if (fetch) {
+					this.pageData = {
+						youtube: fetch.youtube,
+						gallery: fetch.gallery,
+						title: fetch.title,
+						description: fetch.description,
+						poster: fetch.poster,
+					}
+					this.$store.dispatch('metaTags', { fetch, type: 'project' })
 				}
-				this.$store.dispatch('metaTags', { fetch, type: 'project' })
+				throw new Error('Project not found no data')
 			})
 			.catch((error) => {
 				console.log(error)
@@ -61,7 +64,7 @@ export default {
 					this.$nuxt.context.res.statusCode = 404
 				}
 				// use throw new Error()
-				throw new Error('Projects not found', error)
+				throw new Error('Project not found', error)
 			})
 	},
 	head() {

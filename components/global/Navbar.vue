@@ -314,6 +314,7 @@ $animation-time: 0.3s;
 								height: auto;
 								&:before {
 									height: 100%;
+									width: 90%;
 								}
 								.image {
 									width: 4rem;

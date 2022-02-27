@@ -77,6 +77,39 @@ body {
 			font-size: $font-size;
 		}
 	}
+	.button {
+		width: 100%;
+		height: 100%;
+		margin: 1rem 0;
+		padding: 0.5rem 2rem;
+		border: none;
+		max-height: 3rem;
+		background-color: $secondary;
+		color: $white;
+		cursor: pointer;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		// text
+
+		&::first-letter {
+			text-transform: uppercase;
+		}
+		font-size: 1.1rem;
+		font-weight: 500;
+		line-height: 2rem;
+		transition: all 0.2s ease;
+
+		&:hover {
+			background-color: hsl(1, 84%, 40%);
+			box-shadow: 0 0 10px 0 $primary-dark;
+			.overlay {
+				width: 100%;
+			}
+		}
+	}
 }
 
 .page{
@@ -87,20 +120,6 @@ body {
 @media (max-width: 950px) {
 	.page {
 		margin-top: 70px;
-	}
-	body {
-		// section {
-		// 	a, p{
-		// 		margin-bottom: 10px;
-		// 	}
-		// 	p{
-		// 		padding: 0 0 10px;
-		// 	}
-		// }
-		// h2 {
-		// 	padding-left: 0.5rem;
-		// 	margin: 2rem 0 2rem 0px;
-		// }
 	}
 }
 @media (max-width: 600px) {
@@ -127,9 +146,12 @@ body {
 	}
 	section{
 		padding: 0 30px;
-		h2 {
-			// font-size: 2rem;
-			// margin-left: 25px;
-		}
 	}
+}
+
+.page-enter-active, .page-leave-active {
+  transition: opacity .5s;
+}
+.page-enter, .page-leave-to {
+  opacity: 0;
 }

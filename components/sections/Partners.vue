@@ -1,17 +1,35 @@
 <template>
 	<section class="partners">
 		<h2>{{ title }}</h2>
-		<div class="partners-grid">
-			<figure v-for="image in imageItem" :key="image._key">
-				<ImageItem :image="image.image" mobile />
-			</figure>
-		</div>
+		<template v-if="galleryProperty === 'partners'">
+			<div class="partners-grid">
+				<figure v-for="image in imageItem" :key="image._key">
+					<ImageItem :image="image.image" mobile />
+				</figure>
+			</div>
+		</template>
+		<template v-else>
+			<div class="panel-gallery">
+				<CoolLightBox :items="galleryImages(imageItem)" :index="galleryIndex" @close="galleryIndex = null"></CoolLightBox>
+				<div class="wrapper">
+					<figure v-for="(image, y) in imageItem" :key="y" @click="galleryIndex = y">
+						<ImageItem :image="image.image" w="500" />
+					</figure>
+				</div>
+			</div>
+		</template>
 	</section>
 </template>
 
 <script>
+import CoolLightBox from 'vue-cool-lightbox'
+import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
+
 export default {
 	name: 'Partners',
+	components: {
+		CoolLightBox,
+	},
 	props: {
 		imageItem: {
 			type: Array,
@@ -20,6 +38,22 @@ export default {
 		title: {
 			type: String,
 			required: true,
+		},
+		galleryProperty: {
+			type: String,
+			default: 'partners',
+			required: true,
+		},
+	},
+	data: () => ({
+		galleryIndex: null,
+	}),
+	methods: {
+		galleryImages(gallery) {
+			const imagesUrls = gallery.map((el) => {
+				return `https://cdn.sanity.io/images/wv1u3p06/production/${el.image.slice(6, el.image.length - 4)}.jpg`
+			})
+			return imagesUrls
 		},
 	},
 }
@@ -55,6 +89,33 @@ export default {
 			}
 		}
 	}
+	.panel-gallery {
+		margin-bottom: 3rem;
+		.wrapper {
+			margin-top: 10px;
+			column-count: 3;
+			column-gap: 10px;
+			width: 100%;
+			figure {
+				width: 25.9vw;
+				margin-bottom: 10px;
+				overflow: hidden;
+				img {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					display: flex;
+					transition: transform 0.3s linear;
+				}
+				&:hover {
+					cursor: pointer;
+					img {
+						transform: scale(1.02);
+					}
+				}
+			}
+		}
+	}
 }
 
 @media (max-width: 950px) {
@@ -68,8 +129,16 @@ export default {
 				padding: 1rem;
 				picture {
 					width: 100%;
-					height: auto;
+					height: 100%;
 					object-fit: contain;
+				}
+			}
+		}
+		.panel-gallery {
+			.wrapper {
+				column-count: 1;
+				figure {
+					width: 80vw;
 				}
 			}
 		}
@@ -82,10 +151,6 @@ export default {
 			figure {
 				width: auto;
 				height: 70px;
-				picture {
-					width: 100%;
-					object-fit: contain;
-				}
 			}
 		}
 	}

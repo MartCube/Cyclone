@@ -60,6 +60,7 @@ export const panel = groq`*[_type == "panel" && uid.current == $uid][0]{
 		_type == 'panelImages' => {
 			_key, 
 			_type, 
+			title, 
 			"galleryProperty": galleryProperty[0].value,
 			imageItem[] {
 				"image": asset._ref, 
