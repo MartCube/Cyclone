@@ -45,7 +45,7 @@ export default {
 		await this.$sanity
 			.fetch(project, { uid: this.$route.params.project })
 			.then((fetch) => {
-				if (fetch) {
+				if (fetch.title) {
 					this.pageData = {
 						youtube: fetch.youtube,
 						gallery: fetch.gallery,
@@ -54,8 +54,9 @@ export default {
 						poster: fetch.poster,
 					}
 					this.$store.dispatch('metaTags', { fetch, type: 'project' })
+				} else {
+					throw new Error('Project not found no data')
 				}
-				throw new Error('Project not found no data')
 			})
 			.catch((error) => {
 				console.log(error)

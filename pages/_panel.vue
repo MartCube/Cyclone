@@ -49,8 +49,9 @@ export default {
 				if (fetch.content) {
 					this.data = fetch
 					this.$store.dispatch('metaTags', { fetch })
+				} else {
+					throw new Error('panel not found no data')
 				}
-				throw new Error('panel not found no data')
 			})
 			.catch((error) => {
 				console.log(error)

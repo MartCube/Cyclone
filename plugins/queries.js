@@ -79,7 +79,10 @@ export const project = groq`*[_type == "project" && uid.current == $uid][0] {
 	"gallery": gallery[].asset._ref, 
 	_updatedAt,
 	description,
-	youtube,
+	_type == 'youtube' => { 
+		...,
+		"preview" : preview.asset._ref
+	},
 	_id,
 	metaTags {
 		title,
