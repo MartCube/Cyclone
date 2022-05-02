@@ -37,6 +37,7 @@ export const panel = groq`*[_type == "panel" && uid.current == $uid][0]{
 					"uid": uid.current, 
 					_id, 
 					title, 
+					filter,
 					"poster": poster.asset._ref
 				},
 			}, 
@@ -78,6 +79,7 @@ export const project = groq`*[_type == "project" && uid.current == $uid][0] {
 	"poster": poster.asset._ref, 
 	"gallery": gallery[].asset._ref, 
 	_updatedAt,
+	order,
 	description,
 	_type == 'youtube' => { 
 		...,
@@ -162,6 +164,7 @@ export const panelList = groq`*[_type == "panel"]{
 export const projectsList = groq`*[_type == "project"] | order(_updatedAt desc) {
 	"uid": uid.current, 
 	title, 
+	order,
 	"poster": poster.asset._ref, 
 	"tags": tags[].value,
 }`

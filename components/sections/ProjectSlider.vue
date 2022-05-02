@@ -10,7 +10,8 @@
 					<template v-if="i === projectItems.length - 1">
 						<div :key="project._id" class="project">
 							<ImageItem :image="project.projectItem.poster" w="700" h="600" mobile />
-							<n-link exact :to="'/projects/'">Смореть все <Icon name="arrow" size="60px" fill="#B93937" /></n-link>
+							<n-link v-if="filter === ''" exact :to="{ path: '/projects/' }">Смореть все <Icon name="arrow" size="60px" fill="#B93937" /></n-link>
+							<n-link v-else exact :to="{ path: '/projects/', query: { filter: `${filter}` } }">Смореть все <Icon name="arrow" size="60px" fill="#B93937" /></n-link>
 						</div>
 					</template>
 					<template v-else>
@@ -36,6 +37,10 @@ export default {
 		title: {
 			type: String,
 			required: true,
+		},
+		filter: {
+			type: String,
+			default: '',
 		},
 		text: {
 			type: Object,

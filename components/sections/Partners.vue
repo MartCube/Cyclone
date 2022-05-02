@@ -41,8 +41,8 @@ export default {
 		},
 		galleryProperty: {
 			type: String,
-			default: 'partners',
 			required: true,
+			default: 'partners',
 		},
 	},
 	data: () => ({

@@ -3,6 +3,7 @@ export const state = (context) => ({
 	domain: 'https://cyclone-dev.vercel.app',
 	footer: true, // toggle visibility
 	metaHead: {},
+	aciveFilter: '',
 })
 
 export const getters = {
@@ -10,6 +11,7 @@ export const getters = {
 	panels: (state) => state.panels,
 	footer: (state) => state.footer,
 	metaHead: (state) => state.metaHead,
+	getAciveFilter: (state) => state.aciveFilter,
 }
 
 export const mutations = {
@@ -25,11 +27,17 @@ export const mutations = {
 	setMeta(state, value) {
 		state.metaHead = value
 	},
+	setAciveFilter(state, value) {
+		state.aciveFilter = value
+	},
 }
 
 export const actions = {
 	bindPanels(context, payload) {
 		context.commit('setPanelPages', payload)
+	},
+	bindAciveFilter(context, payload) {
+		context.commit('setAciveFilter', payload)
 	},
 	bindModalVideo(context, payload) {
 		context.commit('setModalVideo', payload)

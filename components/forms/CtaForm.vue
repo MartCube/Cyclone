@@ -1,6 +1,6 @@
 <template>
 	<div class="cta_form">
-		<form ref="cta_form" autocomplete="off" @submit.prevent="sendEmail()">
+		<form ref="cta_form" autocomplete="off" @submit.prevent="Submit()">
 			<ValidationObserver v-if="!message" ref="contact" tag="div">
 				<InputItem ref="phone" name="contact_number" type="number" :label="label" rules="min:10|required" @getValue="Submit" />
 				<ButtonItem>Send</ButtonItem>

@@ -68,16 +68,16 @@ export default {
 			this.loading = true
 			console.log('loading')
 			// compose email template
-			this.form.emailTemplate = `
-				<h4>Name</h4>
-				<p>${this.form.name}</p>
-				<h4>Number</h4>
-				<p>${this.form.number}</p>
-				<h4>Email</h4>
-				<p>${this.form.email}</p>
-				<h4>Message</h4>
-				<p>${this.form.message}</p>
-			`
+			// this.form.emailTemplate = `
+			// 	<h4>Name</h4>
+			// 	<p>${this.form.name}</p>
+			// 	<h4>Number</h4>
+			// 	<p>${this.form.number}</p>
+			// 	<h4>Email</h4>
+			// 	<p>${this.form.email}</p>
+			// 	<h4>Message</h4>
+			// 	<p>${this.form.message}</p>
+			// `
 			emailjs.sendForm('default_service', 'cyclone_contact', this.$refs.contact_form, 'user_vgxo7Nole0QeHb4nsY5SS').then(
 				(result) => {
 					console.log('SUCCESS!', result.text)

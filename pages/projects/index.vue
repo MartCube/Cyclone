@@ -9,8 +9,8 @@
 				<Title value="Объекты" />
 
 				<div class="filter">
-					<span :class="{ active: active_filter[0] == null }" @click="filterUpdate('all')"> Все </span>
-					<span v-for="(filter, i) in filters" :key="i" :class="{ active: active_filter == filter.key }" @click="filterUpdate(filter.key)">
+					<span :class="{ active: active_filter === 'all' }" @click="filterUpdate('all')"> Все </span>
+					<span v-for="(filter, i) in filters" :key="i" :class="{ active: active_filter === filter.key }" @click="filterUpdate(filter.key)">
 						{{ filter.name }}
 					</span>
 				</div>
@@ -32,14 +32,13 @@ export default {
 		currentProjects: [],
 		gridProjects: [],
 		// filters
-		active_filter: [],
+		active_filter: 'all',
 		// pagination
 		current_page: 1,
-		page_size: 6,
+		page_size: 100,
 		total_pages: null,
 		prev_page: null,
 		next_page: null,
-		pageData: {},
 	}),
 	async fetch() {
 		await this.$sanity
@@ -57,11 +56,28 @@ export default {
 				throw new Error('Projects not found', error)
 			})
 
-		const data = await this.$sanity.fetch(projectsList)
+		await this.$sanity
+			.fetch(projectsList)
+			.then((data) => {
+				console.log(data)
+				this.currentProjects = data.sort((a, b) => a.order - b.order)
+				this.gridProjects = data.sort((a, b) => b.order - a.order)
+				if (this.$route.query.filter) {
+					this.filterUpdate(this.$route.query.filter)
+				}
+				this.filterUpdate(this.active_filter)
+			})
+			.catch((error) => {
+				console.log(error)
+				// set status code on server and
+				// if (process.server) {
+				// 	this.$nuxt.context.res.statusCode = 404
+				// }
+				// // use throw new Error()
+				// throw new Error('Projects not found', error)
+			})
 		// console.log(data)
 		// move this to vuex store
-		this.currentProjects = data
-		this.gridProjects = data
 	},
 	head() {
 		return this.$store.getters.metaHead
@@ -118,17 +134,24 @@ export default {
 		filterUpdate(filterItem) {
 			console.log(filterItem)
 			this.active_filter = filterItem
-			const filteredProjects = this.currentProjects.filter((project) => {
+			this.$router.push({
+				// preserve existing query and hash if any
+				path: '/projects/',
+				query: { filter: filterItem },
+			})
+			this.gridProjects = this.currentProjects.filter((project) => {
 				if (project.tags.includes(filterItem)) {
+					// this.$route.query.filter.push(filterItem)
 					return project
 				}
 				return false
 			})
-			this.gridProjects = filteredProjects
+			// this.gridProjects = filteredProjects
 			if (filterItem === 'all') {
-				this.active_filter = []
+				this.active_filter = 'all'
 				this.gridProjects = this.currentProjects
 			}
+			this.$nextTick()
 			postAnim(this.$refs.grid.children, true)
 		},
 		// pagination
