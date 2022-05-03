@@ -59,7 +59,7 @@ export default {
 		await this.$sanity
 			.fetch(projectsList)
 			.then((data) => {
-				console.log(data)
+				// console.log(data)
 				this.currentProjects = data.sort((a, b) => a.order - b.order)
 				this.gridProjects = data.sort((a, b) => b.order - a.order)
 				if (this.$route.query.filter) {
@@ -132,7 +132,7 @@ export default {
 	methods: {
 		// filters
 		filterUpdate(filterItem) {
-			console.log(filterItem)
+			// console.log(filterItem)
 			this.active_filter = filterItem
 			this.$router.push({
 				// preserve existing query and hash if any
@@ -140,7 +140,7 @@ export default {
 				query: { filter: filterItem },
 			})
 			this.gridProjects = this.currentProjects.filter((project) => {
-				if (project.tags.includes(filterItem)) {
+				if (project.tags && project.tags.includes(filterItem)) {
 					// this.$route.query.filter.push(filterItem)
 					return project
 				}
