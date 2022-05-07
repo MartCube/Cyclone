@@ -68,7 +68,8 @@ export default {
 	},
 	computed: {
 		isSafari() {
-			return !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/)
+			alert('safari')
+			return !!navigator.userAgent.match(/Version\/[\d.]+.*Safari/)
 		},
 		isiOS() {
 			return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
