@@ -1,5 +1,5 @@
 <template>
-	<div class="navbar" :class="{ hide: isNavbarHidden && mobile > 950 && !isActiveSecondLvl && !isSafari, active: isActiveSecondLvl }">
+	<div class="navbar" :class="{ hide: isNavbarHidden && mobile > 950 && !isActiveSecondLvl && isSafari, active: isActiveSecondLvl }">
 		<div class="burger" :class="{ active: isActiveMobileNavbar }" @click="ShowHideMenu">
 			<span class="top_line" />
 			<span class="mid_line" />
@@ -57,6 +57,7 @@ export default {
 			},
 		],
 		panels: null,
+		isSafari: false,
 		scrollPosition: 0,
 		scrollPositionUpdated: 0,
 		mobile: 0,
@@ -67,17 +68,17 @@ export default {
 		})
 	},
 	computed: {
-		isSafari() {
-			alert('safari')
-			return !!navigator.userAgent.match(/Version\/[\d.]+.*Safari/)
-		},
-		isiOS() {
-			return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
-		},
+		// isSafari() {
+		// 	return
+		// },
+		// isiOS() {
+		// 	return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
+		// },
 	},
 	mounted() {
 		this.mobile = window.innerWidth
 		this.navBarAnimation()
+		this.isSafari = !!navigator.userAgent.match(/Version\/[\d.]+.*Safari/)
 		window.addEventListener('resize', () => {
 			this.navBarAnimation()
 			this.resize()
