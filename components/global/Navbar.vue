@@ -1,5 +1,5 @@
 <template>
-	<div class="navbar" :class="{ hide: isNavbarHidden && mobile > 950 }">
+	<div class="navbar" :class="{ hide: isNavbarHidden && mobile > 950 && !isActiveSecondLvl && (!isSafari || !isiOS), active: isActiveSecondLvl }">
 		<div class="burger" :class="{ active: isActiveMobileNavbar }" @click="ShowHideMenu">
 			<span class="top_line" />
 			<span class="mid_line" />
@@ -66,7 +66,14 @@ export default {
 			this.panels = data.panelItems
 		})
 	},
-	computed: {},
+	computed: {
+		isSafari() {
+			return !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/)
+		},
+		isiOS() {
+			return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
+		},
+	},
 	mounted() {
 		this.mobile = window.innerWidth
 		this.navBarAnimation()
