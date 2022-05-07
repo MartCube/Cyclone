@@ -22,6 +22,15 @@
 						<ImageItem :image="image" w="500" />
 					</figure>
 				</div>
+
+				<!-- <masonry-wall :items="items" :ssr-columns="1" :column-width="300" :gap="16">
+					<template #default="{ item, index }">
+					<div style="height: 100px">
+						<h1>{{ item.title }}</h1>
+						<span>{{ item.description }}</span>
+					</div>
+					</template>
+				</masonry-wall> -->
 			</div>
 		</template>
 	</main>
