@@ -1,10 +1,10 @@
 <template>
 	<section class="partners">
 		<h2>{{ title }}</h2>
-		<template v-if="galleryProperty === 'partners'">
+		<template v-if="galleryProperty && galleryProperty[0].value === 'partners'">
 			<div class="partners-grid">
 				<figure v-for="image in imageItem" :key="image._key">
-					<ImageItem :image="image.image" mobile />
+					<ImageItem :image="image.image" h="150" mobile />
 				</figure>
 			</div>
 		</template>
@@ -41,8 +41,8 @@ export default {
 		},
 		galleryProperty: {
 			type: String,
-			required: true,
 			default: 'partners',
+			required: true,
 		},
 	},
 	data: () => ({

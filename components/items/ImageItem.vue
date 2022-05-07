@@ -1,7 +1,7 @@
 <template>
 	<picture>
-		<source v-if="mobile" :data-srcset="src + `&dpr=0.75`" media="(max-width:500px)" />
-		<img :data-src="src" class="lazyload" />
+		<source v-if="mobile" :data-srcset="mobSrc" :width="mw" :h="mh" media="(max-width:500px)" />
+		<img :data-src="src" class="lazyload" :width="w" :height="h" />
 	</picture>
 </template>
 
@@ -27,6 +27,14 @@ export default {
 			type: String,
 			default: undefined,
 		},
+		mw: {
+			type: String,
+			default: undefined,
+		},
+		mh: {
+			type: String,
+			default: undefined,
+		},
 		fit: {
 			type: String,
 			default: 'crop',
@@ -40,6 +48,10 @@ export default {
 		src() {
 			const builder = imageUrlBuilder(this.$sanity.config)
 			return builder.image(this.image).width(this.w).height(this.h).auto('format').fit(this.fit).crop(this.crop)
+		},
+		mobSrc() {
+			const builder = imageUrlBuilder(this.$sanity.config)
+			return builder.image(this.image).width(this.mw).height(this.mh).auto('format').fit(this.fit).crop(this.crop)
 		},
 	},
 }

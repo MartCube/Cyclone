@@ -170,3 +170,13 @@ export const projectsList = groq`*[_type == "project"] | order(_updatedAt desc) 
 }`
 
 export const sitemapData = groq`*[_type in ["project", "panel", "page"]] {"uid": uid.current, "type":  _type, "updated": _updatedAt}`
+
+export const navbar = groq`*[_type == "navbar"][0] {
+	...,
+	panelItems[] -> {
+		"uid": uid.current, 
+		_id, 
+		title, 
+		"poster": poster.asset._ref
+	},
+}`

@@ -10,14 +10,16 @@
 				<li class="first-lvl submenu" :class="{ active: isActiveSecondLvl }">
 					<a href="javascript:;" @click="isActiveSecondLvl = !isActiveSecondLvl">Вентилируемые фасады</a>
 					<ul class="panels-list" @click="isActiveSecondLvl = false">
-						<li v-for="panel in panels" :key="panel._id">
-							<n-link exact :to="`/${panel.uid}/`">
-								<div class="image">
-									<ImageItem :image="panel.poster" w="160" mobile />
-								</div>
-								<span class="title">{{ panel.title }}</span>
-							</n-link>
-						</li>
+						<template v-if="panels">
+							<li v-for="panel in panels" :key="panel._id">
+								<n-link exact :to="`/${panel.uid}/`">
+									<div class="image">
+										<ImageItem :image="panel.poster" w="160" mw="70" mobile />
+									</div>
+									<span class="title">{{ panel.title }}</span>
+								</n-link>
+							</li>
+						</template>
 					</ul>
 				</li>
 				<li v-for="link in menu" :key="link.uid" class="first-lvl">
@@ -33,7 +35,7 @@
 
 <script>
 import { navbarAnimation } from '~/assets/anime'
-import { panelList } from '@/plugins/queries'
+import { navbar } from '@/plugins/queries'
 export default {
 	data: () => ({
 		compact: true,
@@ -60,8 +62,8 @@ export default {
 		mobile: 0,
 	}),
 	async fetch() {
-		await this.$sanity.fetch(panelList).then((data) => {
-			this.panels = data
+		await this.$sanity.fetch(navbar).then((data) => {
+			this.panels = data.panelItems
 		})
 	},
 	computed: {},
@@ -170,7 +172,8 @@ $animation-time: 0.3s;
 				}
 				.panels-list {
 					position: fixed;
-					top: -150%;
+					top: 0;
+					transform: translateY(-150%);
 					left: 0;
 					width: 100vw;
 					height: calc(100vh - 100px);
@@ -238,9 +241,10 @@ $animation-time: 0.3s;
 		height: 70px;
 		padding: 0 1rem;
 		nav {
-			left: -100%;
+			transform: translateX(-100%);
 			width: 100%;
 			order: 2;
+			left: 0;
 			height: 100vh;
 			top: 70px;
 			position: fixed;
@@ -282,6 +286,7 @@ $animation-time: 0.3s;
 					}
 					.panels-list {
 						position: initial;
+						transform: initial;
 						top: initial;
 						left: initial;
 						z-index: initial;
@@ -414,28 +419,28 @@ $animation-time: 0.3s;
 @keyframes fadeInMobile {
 	0% {
 		opacity: 0;
-		left: -100vw;
+		transform: translateX(-100%);
 	}
 	1% {
 		opacity: 0;
-		left: 0;
+		transform: translateX(0);
 	}
 	100% {
-		left: 0;
+		transform: translateX(0);
 		opacity: 1;
 	}
 }
 @keyframes fadeIn {
 	0% {
 		opacity: 0;
-		top: -100vh;
+		transform: translateY(150%);
 	}
 	1% {
 		opacity: 0;
-		top: 100px;
+		transform: translateY(0);
 	}
 	100% {
-		top: 100px;
+		transform: translateY(100px);
 		opacity: 1;
 	}
 }
