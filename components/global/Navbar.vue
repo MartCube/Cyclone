@@ -1,5 +1,6 @@
 <template>
-	<div class="navbar" :class="{ hide: isNavbarHidden && mobile > 950 && !isActiveSecondLvl && isSafari, active: isActiveSecondLvl }">
+	<!-- <div class="navbar" :class="{ hide: isNavbarHidden && mobile > 950 && !isActiveSecondLvl && isSafari, active: isActiveSecondLvl }"> -->
+	<div class="navbar" :class="{ active: isActiveSecondLvl }">
 		<div class="burger" :class="{ active: isActiveMobileNavbar }" @click="ShowHideMenu">
 			<span class="top_line" />
 			<span class="mid_line" />
