@@ -63,31 +63,35 @@ aside {
 	.messengers {
 		display: flex;
 		justify-content: space-between;
+		flex-direction: column;
 		align-items: center;
 		width: 100%;
 		li {
 			list-style-type: none;
 			opacity: 0;
+			&::marker {
+				display: none;
+			}
 		}
 	}
 	.logo {
 		width: 100%;
 	}
 }
-// @media (max-width: 950px) {
-// 	aside {
-// 		width: 50px;
-// 		.messengers {
-// 			top: 50%;
-// 			left: 50%;
-// 			transform: translate(-50%, -50%);
-// 			li a svg {
-// 				width: 20px;
-// 				height: 20px;
-// 			}
-// 		}
-// 	}
-// }
+@media (max-width: 950px) {
+	aside {
+		width: 50px;
+		.messengers {
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			li a svg {
+				width: 20px;
+				height: 20px;
+			}
+		}
+	}
+}
 // @media (max-width: 600px) {
 // 	aside {
 // 		width: 30px;

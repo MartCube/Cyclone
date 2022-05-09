@@ -28,10 +28,6 @@ export default {
 	width: 100%;
 }
 
-:root {
-	--plyr-color-main: rgb(255, 196, 36);
-}
-
 .ipOhDr {
 	max-width: 100% !important;
 }

@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"explorer.openEditors.visible": 0,
+		"explorer.confirmDelete": false,
+		"explorer.confirmDragAndDrop": false,
+		"vetur.validation.template": false,
+		"vetur.format.defaultFormatter.html": "none",
+		"vetur.format.defaultFormatter.js": "none",
+		"vetur.format.defaultFormatter.css": "none",
+		"vetur.format.defaultFormatter.scss": "none",
+		"git.ignoreLimitWarning": true,
+		"git.ignoreMissingGitWarning": true,
+		"breadcrumbs.enabled": false,
+		"eslint.alwaysShowStatus": true,
+		"files.autoSave": "afterDelay"
+	}
+}

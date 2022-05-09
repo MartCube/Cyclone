@@ -11,7 +11,7 @@
 	},
 	// "window.zoomLevel": 1,
 	// "editor.fontSize": 16,
-	"editor.tabSize": 4,
+	"editor.tabSize": 2,
 	// "editor.detectIndentation": false,
 	// "editor.insertSpaces": false,
 	// "html.format.wrapLineLength": 250,
@@ -68,4 +68,5 @@
 	// eslint
 	"eslint.format.enable": true,
 	"eslint.alwaysShowStatus": true,
+	"files.autoSave": "afterDelay",
 }
