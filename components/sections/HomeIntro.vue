@@ -3,10 +3,10 @@
 		<div class="main-image">
 			<!-- eslint-disable-next-line vue/attribute-hyphenation -->
 			<!-- <VideoItem url="https://www.youtube.com/watch?v=oIFJtJFXaQ8" /> -->
-			<video-background src="introbg.mp4" :sources="[{ src: 'intro-mob.mp4', res: 950, autoplay: true }]" style="max-height: 100%; height: 100vh" overlay="linear-gradient(to bottom,hsla(0, 0%, 18%, 0.2),hsla(0, 0%, 24%, 0.2))"> </video-background>
+			<video-background src="introbg_Trim.mp4" :sources="[{ src: 'intro-mob.mp4', res: 950, autoplay: true }]" style="max-height: 100%; height: 100vh" overlay="linear-gradient(to bottom,hsla(0, 0%, 18%, 0.2),hsla(0, 0%, 24%, 0.2))"> </video-background>
 			<!-- <img src="~/static/homeintro.jpg" alt="" /> -->
 		</div>
-		<!-- <div class="cyclone">
+		<div class="cyclone">
 			<svg width="951" height="199" viewBox="0 0 951 199" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path d="M134.463 146.691L148.283 174.617C143.267 180.154 135.866 184.67 126.08 188.167C116.45 191.51 106.145 193.147 95.1638 193.079C69.9536 192.922 49.5519 185.14 33.9586 169.731C18.369 154.012 10.7234 133.626 11.0219 108.572C11.3131 84.1364 18.9764 64.0772 34.0121 48.3946C49.0478 32.7119 70.0213 24.9542 96.9328 25.1214C107.141 25.1848 116.634 26.7904 125.413 29.9383C134.192 33.0861 141.18 37.2282 146.378 42.3645L129.575 70.1002C118.828 63.3828 107.809 59.989 96.5182 59.9189C83.3718 59.8372 72.4164 64.0998 63.6521 72.7068C55.0442 81.16 50.6473 93.1967 50.4612 108.817C50.2917 123.045 54.7133 134.905 63.726 144.395C72.7425 153.577 84.5199 158.213 99.0583 158.303C112.05 158.384 123.851 154.513 134.463 146.691Z" fill="white" fill-opacity="0.1" />
 				<path d="M239.862 28.0132L279.997 28.2625L221.315 124.178L220.528 190.294L183.408 190.063L184.196 123.948L128.272 27.3201L170.727 27.5838L204.794 89.2756L239.862 28.0132Z" fill="white" fill-opacity="0.1" />
@@ -16,13 +16,13 @@
 				<path d="M804.513 27.6073L802.578 189.996L772.882 189.811L697.021 91.8999L695.86 189.333L661.061 189.117L662.995 26.7283L692.691 26.9128L768.547 125.288L769.713 27.3912L804.513 27.6073Z" fill="white" fill-opacity="0.1" />
 				<path d="M922.316 190.451L823.718 189.838L825.653 27.4498L921.931 28.0478L921.516 62.8453L862.357 62.4779L862.017 91.0118L914.216 91.3361L913.802 126.134L861.603 125.809L861.252 155.271L922.73 155.653L922.316 190.451Z" fill="white" fill-opacity="0.1" />
 			</svg>
-		</div> -->
-		<!-- <div class="title-wrapper">
+		</div>
+		<div class="title-wrapper">
 			<h1>
 				вентиляционные <br />
 				фасады
 			</h1>
-		</div> -->
+		</div>
 	</section>
 </template>
 
@@ -42,6 +42,9 @@ export default {
 .home-intro {
 	height: 100vh;
 	position: relative;
+	.vue-responsive-videobg {
+		padding: 0;
+	}
 	.main-image {
 		position: absolute;
 		width: 100%;
@@ -104,13 +107,14 @@ export default {
 	.home-intro {
 		.title-wrapper {
 			right: 0.5rem;
-			bottom: 16rem;
+			bottom: 4rem;
 			h1 {
 				font-size: 2.4rem;
+				margin: 0;
 			}
 		}
 		.cyclone {
-			bottom: 12rem;
+			bottom: 0;
 			right: 0;
 			svg {
 				width: 95vw;

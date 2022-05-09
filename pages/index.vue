@@ -63,3 +63,8 @@ export default {
 	},
 }
 </script>
+<style lang="scss" scoped>
+.page {
+	margin-top: 0;
+}
+</style>
