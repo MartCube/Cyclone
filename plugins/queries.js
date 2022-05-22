@@ -110,6 +110,7 @@ export const page = groq`*[_type == "page" && uid.current == $uid][0] {
 		},
 		_type == 'gallery' => {
 			...,
+			"gallery": gallery[].asset._ref, 
 			imageItem[] {
 			"image": asset._ref,
 			}

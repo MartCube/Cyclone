@@ -1,4 +1,4 @@
 import Vue from 'vue'
-import MasonryWall from '@yeger/vue-masonry-wall'
+import VueMasonry from 'vue-masonry-css'
 
-Vue.use(MasonryWall)
+Vue.use(VueMasonry)

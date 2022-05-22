@@ -2,8 +2,8 @@
 	<section class="single-image">
 		<div class="image">
 			<picture>
-				<source v-if="mobile" :data-srcset="src + `&dpr=0.75`" media="(max-width:500px)" />
-				<img :data-src="src" class="lazyload" />
+				<source v-if="mobile" :data-srcset="mobSrc + `&dpr=0.75`" mw="500" media="(max-width:500px)" />
+				<img :data-src="src" class="lazyload" :w="w" />
 			</picture>
 		</div>
 	</section>
@@ -25,9 +25,17 @@ export default {
 		},
 		w: {
 			type: String,
-			default: undefined,
+			default: '2000',
 		},
 		h: {
+			type: String,
+			default: undefined,
+		},
+		mw: {
+			type: String,
+			default: '500',
+		},
+		mh: {
 			type: String,
 			default: undefined,
 		},
@@ -43,7 +51,11 @@ export default {
 	computed: {
 		src() {
 			const builder = imageUrlBuilder(this.$sanity.config)
-			return builder.image(this.image).width(this.w).height(this.h).auto('format').fit(this.fit).crop(this.crop)
+			return builder.image(this.image).width('2000').height(this.h).auto('format').fit(this.fit).crop(this.crop)
+		},
+		mobSrc() {
+			const builder = imageUrlBuilder(this.$sanity.config)
+			return builder.image(this.image).width(this.mw).height(this.mh).auto('format').fit(this.fit).crop(this.crop)
 		},
 	},
 }

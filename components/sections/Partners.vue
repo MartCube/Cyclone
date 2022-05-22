@@ -1,7 +1,7 @@
 <template>
 	<section class="partners">
 		<h2>{{ title }}</h2>
-		<template v-if="galleryProperty && galleryProperty[0].value === 'partners'">
+		<template v-if="galleryProperty && (galleryProperty[0].value || galleryProperty) === 'partners'">
 			<div class="partners-grid">
 				<figure v-for="image in imageItem" :key="image._key">
 					<ImageItem :image="image.image" h="150" mobile />

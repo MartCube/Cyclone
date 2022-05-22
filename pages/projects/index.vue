@@ -10,7 +10,7 @@
 
 				<div class="filter">
 					<span :class="{ active: active_filter === 'all' }" @click="filterUpdate('all')"> Все </span>
-					<span v-for="(filter, i) in filters" :key="i" :class="{ active: active_filter === filter.key }" @click="filterUpdate(filter.key)">
+					<span v-for="(filter, i) in filters" :key="i" :class="{ active: active_filter === filter.key }" @click="$router.push({ path: '/projects/', query: { filter: filter.key } })">
 						{{ filter.name }}
 					</span>
 				</div>
@@ -60,21 +60,21 @@ export default {
 			.fetch(projectsList)
 			.then((data) => {
 				// console.log(data)
-				this.currentProjects = data.sort((a, b) => a.order - b.order)
+				this.currentProjects = data.sort((a, b) => b.order - a.order)
 				this.gridProjects = data.sort((a, b) => b.order - a.order)
-				if (this.$route.query.filter) {
-					this.filterUpdate(this.$route.query.filter)
-				}
-				this.filterUpdate(this.active_filter)
+				// if (this.$route.query.filter && this.currentProjects) {
+				// 	this.filterUpdate(this.$route.query.filter)
+				// }
+				// this.filterUpdate(this.active_filter)
 			})
 			.catch((error) => {
 				console.log(error)
 				// set status code on server and
-				// if (process.server) {
-				// 	this.$nuxt.context.res.statusCode = 404
-				// }
-				// // use throw new Error()
-				// throw new Error('Projects not found', error)
+				if (process.server) {
+					this.$nuxt.context.res.statusCode = 404
+				}
+				// use throw new Error()
+				throw new Error('Projects not found', error)
 			})
 		// console.log(data)
 		// move this to vuex store
@@ -124,9 +124,15 @@ export default {
 		},
 	},
 	watch: {
-		async gridProjects(newValue, oldValue) {
-			await this.$nextTick()
-			postAnim(this.$refs.grid.children, true)
+		// async gridProjects(newValue, oldValue) {
+		// 	await this.$nextTick()
+		// 	postAnim(this.$refs.grid.children, true)
+		// },
+		$route(oldRoute, newRoute) {
+			if (oldRoute.query.filter !== newRoute.query.filter) {
+				this.filterUpdate(newRoute.query.filter)
+			}
+			// console.log(oldRoute, newRoute)
 		},
 	},
 	methods: {
@@ -134,52 +140,27 @@ export default {
 		filterUpdate(filterItem) {
 			// console.log(filterItem)
 			this.active_filter = filterItem
-			this.$router.push({
-				// preserve existing query and hash if any
-				path: '/projects/',
-				query: { filter: filterItem },
-			})
-			this.gridProjects = this.currentProjects.filter((project) => {
-				if (project.tags && project.tags.includes(filterItem)) {
-					// this.$route.query.filter.push(filterItem)
-					return project
-				}
-				return false
-			})
-			// this.gridProjects = filteredProjects
+
+			// route update
+			// this.$router.push({
+			// 	// preserve existing query and hash if any
+			// 	path: '/projects/',
+			// 	query: { filter: filterItem },
+			// })
+
+			// filter projects
+			this.gridProjects = this.currentProjects.filter((project) => project.tags && project.tags.includes(filterItem))
+
+			// default scenario
 			if (filterItem === 'all') {
 				this.active_filter = 'all'
 				this.gridProjects = this.currentProjects
 			}
+
+			// wait for rerender
 			this.$nextTick()
 			postAnim(this.$refs.grid.children, true)
 		},
-		// pagination
-		// fetchNext() {
-		// 	if (this.next_page) {
-		// 		this.current_page++
-		// 		this.ScrollToTop()
-		// 		this.$fetch()
-		// 	}
-		// },
-		// fetchBack() {
-		// 	if (this.prev_page) {
-		// 		this.current_page--
-		// 		this.ScrollToTop()
-		// 		this.$fetch()
-		// 	}
-		// },
-		// fetchPage(value) {
-		// 	this.current_page = value
-		// 	this.ScrollToTop()
-		// 	this.$fetch()
-		// },
-		// fetchFirst() {
-		// 	this.fetchPage(1)
-		// },
-		// fetchLast() {
-		// 	this.fetchPage(this.total_pages)
-		// },
 		ScrollToTop() {
 			window.scrollTo({ top: 0, behavior: 'smooth' })
 		},
@@ -188,9 +169,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.page {
-	min-height: initial;
-}
 .projects {
 	display: flex;
 	flex-wrap: wrap;

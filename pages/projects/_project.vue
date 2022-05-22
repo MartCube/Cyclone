@@ -17,20 +17,12 @@
 			</div>
 			<div class="gallery">
 				<CoolLightBox :items="galleryImages(pageData.gallery)" :index="galleryIndex" @close="galleryIndex = null"></CoolLightBox>
-				<div class="wrapper">
+
+				<masonry :cols="{ default: 3, 600: 1 }" :gutter="{ default: '10px' }">
 					<figure v-for="(image, y) in pageData.gallery" :key="y" @click="galleryIndex = y">
 						<ImageItem :image="image" w="500" />
 					</figure>
-				</div>
-
-				<!-- <masonry-wall :items="items" :ssr-columns="1" :column-width="300" :gap="16">
-					<template #default="{ item, index }">
-					<div style="height: 100px">
-						<h1>{{ item.title }}</h1>
-						<span>{{ item.description }}</span>
-					</div>
-					</template>
-				</masonry-wall> -->
+				</masonry>
 			</div>
 		</template>
 	</main>
@@ -38,8 +30,9 @@
 
 <script>
 import CoolLightBox from 'vue-cool-lightbox'
-import { project } from '@/plugins/queries'
 import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
+
+import { project } from '@/plugins/queries'
 
 export default {
 	name: 'Project',
@@ -115,6 +108,8 @@ export default {
 	.content {
 		display: flex;
 		width: 100%;
+		justify-content: space-between;
+		margin-bottom: 10px;
 		p {
 			padding: 0;
 		}
@@ -138,27 +133,21 @@ export default {
 	}
 	.gallery {
 		margin-bottom: 3rem;
-		.wrapper {
-			margin-top: 10px;
-			column-count: 3;
-			column-gap: 10px;
-			width: 100%;
-			figure {
-				width: 29.75vw;
-				margin-bottom: 10px;
-				overflow: hidden;
+		width: 100%;
+		figure {
+			margin-bottom: 10px;
+			overflow: hidden;
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: flex;
+				transition: transform 0.3s linear;
+			}
+			&:hover {
+				cursor: pointer;
 				img {
-					width: 100%;
-					height: 100%;
-					object-fit: cover;
-					display: flex;
-					transition: transform 0.3s linear;
-				}
-				&:hover {
-					cursor: pointer;
-					img {
-						transform: scale(1.02);
-					}
+					transform: scale(1.02);
 				}
 			}
 		}
