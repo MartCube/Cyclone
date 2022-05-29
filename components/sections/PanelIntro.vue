@@ -33,6 +33,7 @@ export default {
 	flex-direction: column;
 	.main-image {
 		width: 20vw;
+		height: 29vw;
 		margin-top: 2rem;
 		height: auto;
 		position: relative;
@@ -65,6 +66,7 @@ export default {
 		}
 		.main-image {
 			width: 15rem;
+			height: 21rem;
 		}
 	}
 }

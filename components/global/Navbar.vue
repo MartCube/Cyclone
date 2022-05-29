@@ -10,7 +10,12 @@
 			<ul>
 				<li class="first-lvl submenu" :class="{ active: isActiveSecondLvl }">
 					<a href="javascript:;" @click="isActiveSecondLvl = !isActiveSecondLvl">Вентилируемые фасады</a>
-					<ul class="panels-list" @click="isActiveSecondLvl = false">
+					<ul
+						class="panels-list"
+						@click="
+							isActiveSecondLvl = false
+							isActiveMobileNavbar = false
+						">
 						<template v-if="panels">
 							<li v-for="panel in panels" :key="panel._id">
 								<n-link exact :to="`/${panel.uid}/`">

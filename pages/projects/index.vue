@@ -127,13 +127,12 @@ export default {
 		if (this.$route.query.filter) {
 			this.filterUpdate(this.$route.query.filter)
 		} else {
-			this.filterUpdate('all')
+			this.filterUpdate()
 		}
 	},
 	methods: {
 		// filters
-		filterUpdate(filterItem) {
-			console.log(filterItem)
+		filterUpdate(filterItem = 'all') {
 			this.active_filter = filterItem
 
 			// route update

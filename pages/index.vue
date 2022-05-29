@@ -41,7 +41,7 @@ export default {
 		await this.$sanity
 			.fetch(page, { uid: 'index' })
 			.then((fetch) => {
-				console.log(fetch)
+				// console.log(fetch)
 				this.pageData = {
 					content: fetch.content,
 				}

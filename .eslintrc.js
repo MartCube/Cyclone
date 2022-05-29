@@ -26,6 +26,7 @@ module.exports = {
 				jsxBracketSameLine: false,
 				bracketSpacing: true,
 				endOfLine: 'auto',
+				bracketSameLine: true,
 			},
 		],
 		'no-console': 'off',
