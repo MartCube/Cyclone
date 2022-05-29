@@ -13,7 +13,7 @@
 				<CoolLightBox :items="galleryImages(imageItem)" :index="galleryIndex" @close="galleryIndex = null"></CoolLightBox>
 				<div class="wrapper">
 					<figure v-for="(image, y) in imageItem" :key="y" @click="galleryIndex = y">
-						<ImageItem :image="image.image" w="500" />
+						<ImageItem :image="image.image" w="500" xlw="800" />
 					</figure>
 				</div>
 			</div>

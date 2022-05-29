@@ -34,4 +34,12 @@ export default {
 		}
 	}
 }
+
+@media (min-width: 1550px) {
+	.rich_text {
+		.content {
+			max-width: 60%;
+		}
+	}
+}
 </style>

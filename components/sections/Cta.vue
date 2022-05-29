@@ -77,7 +77,12 @@ export default {
 	}
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 1550px) {
+	.cta_form form {
+		width: 80%;
+	}
+}
+@media (min-width: 1550px) {
 	.cta {
 		.content {
 			.text {

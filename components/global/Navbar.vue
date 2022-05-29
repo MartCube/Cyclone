@@ -206,15 +206,17 @@ $animation-time: 0.3s;
 							flex-direction: column-reverse;
 							align-items: center;
 							justify-content: flex-start;
-							max-width: 11vw;
+							max-width: 12vw;
 							margin: 0 2rem 0 0;
 
-							width: 100%;
+							// width: 100%;
 							transition: $animation-time linear;
 							span {
 								margin-bottom: 1rem;
 							}
 							.image {
+								width: 100%;
+								height: 100%;
 								picture {
 									width: 100%;
 									height: 100%;
@@ -239,6 +241,14 @@ $animation-time: 0.3s;
 	}
 	&.hide {
 		top: -100px;
+	}
+}
+@media (min-width: 1550px) {
+	.navbar {
+		padding: 0 10%;
+		nav ul li .panels-list {
+			padding: 0 10%;
+		}
 	}
 }
 @media (min-width: 950px) {

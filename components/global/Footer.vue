@@ -21,6 +21,11 @@ footer {
 	display: flex;
 	flex-wrap: wrap;
 }
+@media (min-width: 1550px) {
+	footer {
+		padding: 4rem 10%;
+	}
+}
 @media (max-width: 900px) {
 	footer {
 		padding: 0 30px 0 50px;

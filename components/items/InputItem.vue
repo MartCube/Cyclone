@@ -168,6 +168,13 @@ export default {
 		}
 	}
 }
+@media (min-width: 1550px) {
+	.cta_form {
+		.input_item {
+			width: 30rem;
+		}
+	}
+}
 @media (max-width: 950px) {
 	.cta_form {
 		.input_item {

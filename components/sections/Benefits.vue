@@ -81,7 +81,13 @@ export default {
 		}
 	}
 }
-
+@media (min-width: 1550px) {
+	.benefits {
+		.content {
+			max-width: 60%;
+		}
+	}
+}
 @media (max-width: 1200px) {
 	.benefits {
 		.list {

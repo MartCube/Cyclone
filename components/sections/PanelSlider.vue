@@ -55,6 +55,7 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 		&::-webkit-scrollbar {
 			width: 5px;
 			height: 5px;
+			transition: height 0.3s linear;
 		}
 		&::-webkit-scrollbar-button {
 			width: 0px;
@@ -84,6 +85,12 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 		}
 		&::-webkit-scrollbar-corner {
 			background: $gradient-gray;
+		}
+
+		&:hover {
+			&::-webkit-scrollbar {
+				height: 10px;
+			}
 		}
 		.slider-wrapper {
 			display: inline-flex;
