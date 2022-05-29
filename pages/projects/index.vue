@@ -9,7 +9,7 @@
 				<Title value="Объекты" />
 
 				<div class="filter">
-					<span :class="{ active: active_filter === 'all' }" @click="filterUpdate('all')"> Все </span>
+					<span :class="{ active: active_filter === 'all' }" @click="$router.push({ path: '/projects/', query: { filter: 'all' } })"> Все </span>
 					<span v-for="(filter, i) in filters" :key="i" :class="{ active: active_filter === filter.key }" @click="$router.push({ path: '/projects/', query: { filter: filter.key } })">
 						{{ filter.name }}
 					</span>
@@ -62,10 +62,6 @@ export default {
 				// console.log(data)
 				this.currentProjects = data.sort((a, b) => b.order - a.order)
 				this.gridProjects = data.sort((a, b) => b.order - a.order)
-				// if (this.$route.query.filter && this.currentProjects) {
-				// 	this.filterUpdate(this.$route.query.filter)
-				// }
-				// this.filterUpdate(this.active_filter)
 			})
 			.catch((error) => {
 				console.log(error)
@@ -123,17 +119,14 @@ export default {
 			return [{ title: 'Объекты' }]
 		},
 	},
-	watch: {
-		// async gridProjects(newValue, oldValue) {
-		// 	await this.$nextTick()
-		// 	postAnim(this.$refs.grid.children, true)
-		// },
-		$route(oldRoute, newRoute) {
-			if (oldRoute.query.filter !== newRoute.query.filter) {
-				this.filterUpdate(newRoute.query.filter)
-			}
-			// console.log(oldRoute, newRoute)
-		},
+	watchQuery(newQuery, oldQuery) {
+		// console.log('new: ' + newQuery.filter, 'old: ' + oldQuery.filter)
+		this.filterUpdate(newQuery.filter)
+	},
+	mounted() {
+		if (this.$route.query.filter) {
+			this.filterUpdate(this.$route.query.filter)
+		}
 	},
 	methods: {
 		// filters
