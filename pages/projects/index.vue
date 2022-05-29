@@ -126,12 +126,14 @@ export default {
 	mounted() {
 		if (this.$route.query.filter) {
 			this.filterUpdate(this.$route.query.filter)
+		} else {
+			this.filterUpdate('all')
 		}
 	},
 	methods: {
 		// filters
 		filterUpdate(filterItem) {
-			// console.log(filterItem)
+			console.log(filterItem)
 			this.active_filter = filterItem
 
 			// route update
