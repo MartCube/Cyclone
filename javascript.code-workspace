@@ -17,6 +17,6 @@
 		"git.ignoreMissingGitWarning": true,
 		"breadcrumbs.enabled": false,
 		"eslint.alwaysShowStatus": true,
-		"files.autoSave": "afterDelay"
+		"files.autoSave": "afterDelay",
 	}
 }

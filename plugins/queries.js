@@ -16,6 +16,19 @@ export const panel = groq`*[_type == "panel" && uid.current == $uid][0]{
 				title,number
 			}
 		},
+		_type == "colors_section" => {
+      colorsPage -> {
+        "uid": uid.current,
+        "title": name
+      },
+      "colorsGallery": imageItem[] {  
+        "image": asset._ref,
+        ...
+      },
+      title,
+      _key,
+      _type,
+    },
 		_type == 'benefits' => {
 			...,
 			benefitItems[] {
@@ -74,6 +87,30 @@ export const panel = groq`*[_type == "panel" && uid.current == $uid][0]{
 		"image": image.asset._ref
 	},
 }`
+export const colorPage = groq`*[_type == "colors" && uid.current == $uid][0] {
+  "title": name,
+  "uid": uid.current,
+  content[] {
+    _type == 'richText' => {...},
+    _type == 'colors_gallery' => {
+      ...,
+      "colorsGallery": gallery[] {
+        _type == 'colorItem' => {
+           "image": color_image.asset._ref,
+           _key,
+           _type,
+           name
+          },
+         
+        }
+      },
+    },
+  metaTags {
+    title,
+    description,
+    "image": image.asset._ref
+	},
+}`
 export const project = groq`*[_type == "project" && uid.current == $uid][0] {
 	title, 
 	"poster": poster.asset._ref, 
@@ -99,13 +136,13 @@ export const page = groq`*[_type == "page" && uid.current == $uid][0] {
 		_type == 'counter' => {
 			...,
 			counterItems[] {
-			title,number
+				title,number
 			}
 		},
 		_type == 'benefits' => {
 			...,
 			benefitItems[] {
-			description, title
+				description, title
 			}
 		},
 		_type == 'gallery' => {
@@ -170,7 +207,7 @@ export const projectsList = groq`*[_type == "project"] | order(_updatedAt desc) 
 	"tags": tags[].value,
 }`
 
-export const sitemapData = groq`*[_type in ["project", "panel", "page"]] {"uid": uid.current, "type":  _type, "updated": _updatedAt}`
+export const sitemapData = groq`*[_type in ["project", "panel", "page", "colors"]] {"uid": uid.current, "type":  _type, "updated": _updatedAt}`
 
 export const navbar = groq`*[_type == "navbar"][0] {
 	...,

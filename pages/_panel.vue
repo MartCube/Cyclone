@@ -23,6 +23,7 @@ import Benefits from '@/components/sections/Benefits'
 import Partners from '@/components/sections/Partners'
 import RichText from '@/components/sections/RichText'
 import Faq from '@/components/sections/Faq'
+import ColorsContent from '@/components/sections/ColorsContent'
 export default {
 	name: 'Panel',
 	data: () => ({
@@ -39,6 +40,7 @@ export default {
 				panelImages: Partners,
 				richText: RichText,
 				faq: Faq,
+				colors_section: ColorsContent,
 			},
 		},
 	}),

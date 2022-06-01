@@ -45,6 +45,14 @@ const sitemapGenerator = async function () {
 					lastmod: doc.updated,
 				})
 				break
+			case 'colors':
+				sitemaproute.push({
+					url: `/colors/${doc.uid}/`,
+					changefreq: 'monthly',
+					priority: 1,
+					lastmod: doc.updated,
+				})
+				break
 			case 'panel':
 				sitemaproute.push({
 					url: `/${doc.uid}/`,
@@ -80,6 +88,9 @@ const routeGenerator = async function () {
 				break
 			case 'project':
 				route.push(`/projects/${doc.uid}/`)
+				break
+			case 'colors':
+				route.push(`/colors/${doc.uid}/`)
 				break
 			case 'panel':
 				route.push(`/${doc.uid}/`)
