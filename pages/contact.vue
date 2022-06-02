@@ -76,6 +76,11 @@ export default {
 		margin-top: 5rem;
 	}
 }
+@media (min-width: 1550px) {
+	.contacts {
+		padding: 0 10%;
+	}
+}
 @media (max-width: 950px) {
 	.contacts {
 		.contact_info {

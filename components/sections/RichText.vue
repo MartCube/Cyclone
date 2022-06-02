@@ -39,6 +39,7 @@ export default {
 	.rich_text {
 		.content {
 			max-width: 60%;
+			margin: 0 auto;
 		}
 	}
 }

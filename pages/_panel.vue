@@ -96,6 +96,19 @@ export default {
 		margin-left: 10%;
 	}
 }
+@media (min-width: 1550px) {
+	.panel {
+		.crumbs {
+			padding: 0 10%;
+			max-width: 68%;
+			margin: 0 auto;
+		}
+		// .content {
+		// 	max-width: 60%;
+		// 	margin: 0 auto;
+		// }
+	}
+}
 @media (max-width: 950px) {
 	.page {
 		.content {

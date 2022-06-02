@@ -3,7 +3,14 @@
 		<h3>{{ title }}</h3>
 		<div class="colors_gallery">
 			<CoolLightBox :effect="'fade'" :items="galleryImages(colorsGallery)" :index="galleryIndex" @close="galleryIndex = null"></CoolLightBox>
-			
+			<div class="colors_gallery_wrapper">
+				<figure v-for="(image, y) in colorsGallery" :key="y" @click="galleryIndex = y">
+					<ImageItem :image="image.image" w="100" h="100" />
+					<div class="title">
+						{{ image.name }}
+					</div>
+				</figure>
+			</div>
 		</div>
 	</section>
 </template>
@@ -48,15 +55,18 @@ export default {
 .colors_gallery_section {
 	padding: 50px 10%;
 	.colors_gallery_wrapper {
-		display: grid;
+		display: flex;
 		width: 100%;
-		grid-template-columns: repeat(8, 1fr);
-		grid-auto-rows: auto;
-		grid-gap: 20px;
+		flex-wrap: wrap;
+		justify-self: space-between;
+		// grid-template-columns: repeat(10, 1fr);
+		// grid-auto-rows: auto;
+		// grid-gap: 20px;
 		figure {
 			overflow: hidden;
 			position: relative;
 			cursor: pointer;
+			margin: 5px;
 			picture {
 				border-radius: 0.6rem;
 				overflow: hidden;

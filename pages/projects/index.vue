@@ -215,6 +215,11 @@ export default {
 		}
 	}
 }
+@media (min-width: 1550px) {
+	.projects {
+		padding: 0 10%;
+	}
+}
 @media (max-width: 1200px) {
 	.projects {
 		.filter {

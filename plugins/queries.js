@@ -25,6 +25,7 @@ export const panel = groq`*[_type == "panel" && uid.current == $uid][0]{
         "image": asset._ref,
         ...
       },
+			description,
       title,
       _key,
       _type,
