@@ -9,8 +9,22 @@
 				<Title value="Объекты" />
 
 				<div class="filter">
-					<span :class="{ active: active_filter === 'all' }" @click="$router.push({ path: '/projects/', query: { filter: 'all' } })"> Все </span>
-					<span v-for="(filter, i) in filters" :key="i" :class="{ active: active_filter === filter.key }" @click="$router.push({ path: '/projects/', query: { filter: filter.key } })">
+					<span
+						:class="{ active: active_filter === 'all' }"
+						@click="
+							$router.push({ path: '/projects/', query: { filter: 'all' } })
+							filterUpdate('all')
+						">
+						Все
+					</span>
+					<span
+						v-for="(filter, i) in filters"
+						:key="i"
+						:class="{ active: active_filter === filter.key }"
+						@click="
+							$router.push({ path: '/projects/', query: { filter: filter.key } })
+							filterUpdate(filter.key)
+						">
 						{{ filter.name }}
 					</span>
 				</div>
@@ -24,7 +38,7 @@
 </template>
 <script>
 import { projectsList, page } from '@/plugins/queries'
-import { postAnim } from '~/assets/anime'
+// import { postAnim } from '~/assets/anime'
 
 export default {
 	name: 'Projects',
@@ -119,20 +133,28 @@ export default {
 			return [{ title: 'Объекты' }]
 		},
 	},
-	watchQuery(newQuery, oldQuery) {
-		// console.log('new: ' + newQuery.filter, 'old: ' + oldQuery.filter)
-		this.filterUpdate(newQuery.filter)
-	},
+	// watch(){
+	// 	$route(newQuery, oldQuery) {
+	// 		// console.log('new: ' + newQuery.filter, 'old: ' + oldQuery.filter)
+	// 		// if (newQuery !== undefined) {
+	// 		// 	console.log(newQuery.filter)
+	// 		// 	// this.filterUpdate(newQuery.filter)
+	// 		// } else {
+	// 		// 	this.filterUpdate('all')
+	// 		// }
+	// 	},
+	// },
 	mounted() {
 		if (this.$route.query.filter) {
 			this.filterUpdate(this.$route.query.filter)
 		} else {
-			this.filterUpdate()
+			this.filterUpdate('all')
 		}
 	},
 	methods: {
 		// filters
-		filterUpdate(filterItem = 'all') {
+		filterUpdate(filterItem) {
+			console.log(filterItem)
 			this.active_filter = filterItem
 
 			// route update
@@ -143,17 +165,18 @@ export default {
 			// })
 
 			// filter projects
-			this.gridProjects = this.currentProjects.filter((project) => project.tags && project.tags.includes(filterItem))
 
 			// default scenario
 			if (filterItem === 'all') {
-				this.active_filter = 'all'
+				// this.active_filter = 'all'
 				this.gridProjects = this.currentProjects
+			} else {
+				this.gridProjects = this.currentProjects.filter((project) => project.tags && project.tags.includes(filterItem))
 			}
 
 			// wait for rerender
 			this.$nextTick()
-			postAnim(this.$refs.grid.children, true)
+			// postAnim(this.$refs.grid.children, true)
 		},
 		ScrollToTop() {
 			window.scrollTo({ top: 0, behavior: 'smooth' })
