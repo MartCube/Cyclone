@@ -2,7 +2,9 @@
 	<section class="achievements">
 		<article v-for="(counter, i) in counterItems" :key="counter.number + i" class="achievement-item">
 			<div class="number">
-				{{ counter.number }}
+				<span v-if="counter.prefix" class="extra_text mr-1">{{ counter.prefix }}</span>
+				<span>{{ counter.number }}</span>
+				<span v-if="counter.postfix" class="extra_text ml-1">{{ counter.postfix }}</span>
 			</div>
 			<div class="description">
 				{{ counter.title }}
@@ -67,8 +69,20 @@ export default {
 			font-family: 'Nexa replica';
 			display: flex;
 			justify-content: center;
-			line-height: 1.2;
+			line-height: 1;
 			color: $secondary;
+			align-items: center;
+			.extra_text {
+				color: inherit;
+				font-weight: bold;
+				font-size: 2rem;
+			}
+			.mr-1 {
+				margin-right: 1rem;
+			}
+			.ml-1 {
+				margin-left: 1rem;
+			}
 		}
 	}
 }

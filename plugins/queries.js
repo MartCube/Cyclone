@@ -10,12 +10,7 @@ export const panel = groq`*[_type == "panel" && uid.current == $uid][0]{
 		},
 		_type == 'richText' => {...},
 		_type == 'cta' => {...},
-		_type == 'counter' => {
-			...,
-			counterItems[] {
-				title,number
-			}
-		},
+		_type == 'counter' => {...},
 		_type == "colors_section" => {
       colorsPage -> {
         "uid": uid.current,
