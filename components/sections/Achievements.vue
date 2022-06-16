@@ -2,9 +2,11 @@
 	<section class="achievements">
 		<article v-for="(counter, i) in counterItems" :key="counter.number + i" class="achievement-item">
 			<div class="number">
-				<span v-if="counter.prefix" class="extra_text mr-1">{{ counter.prefix }}</span>
-				<span>{{ counter.number }}</span>
-				<span v-if="counter.postfix" class="extra_text ml-1">{{ counter.postfix }}</span>
+				<!-- <span v-if="counter.prefix" class="extra_text mr-1 left">{{ counter.prefix }}</span> -->
+				<span>
+					{{ counter.number }}
+				</span>
+				<!-- <span v-if="counter.postfix" class="extra_text ml-1 right">{{ counter.postfix }}</span> -->
 			</div>
 			<div class="description">
 				{{ counter.title }}
@@ -72,17 +74,27 @@ export default {
 			line-height: 1;
 			color: $secondary;
 			align-items: center;
+			position: relative;
 			.extra_text {
-				color: inherit;
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				color: white;
 				font-weight: bold;
 				font-size: 2rem;
 			}
-			.mr-1 {
-				margin-right: 1rem;
+			.left {
+				left: -3rem;
 			}
-			.ml-1 {
-				margin-left: 1rem;
+			.right {
+				right: -2rem;
 			}
+			// .mr-1 {
+			// 	margin-right: 1rem;
+			// }
+			// .ml-1 {
+			// 	margin-left: 1rem;
+			// }
 		}
 	}
 }
