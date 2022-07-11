@@ -83,9 +83,9 @@ export default {
 }
 @media (min-width: 1550px) {
 	.benefits {
-		.content {
-			max-width: 60%;
-			margin: 0 auto;
+		padding: 50px 17%;
+		.list .benefit .number {
+			font-size: 8rem;
 		}
 	}
 }

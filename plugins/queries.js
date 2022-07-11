@@ -8,6 +8,10 @@ export const panel = groq`*[_type == "panel" && uid.current == $uid][0]{
 		_type == 'image' => {
 			_key, _type, "image": asset._ref, w, 
 		},
+		_type == "image_text" => {
+      ...,
+      "imageItem": imageItem.asset._ref
+		},
 		_type == 'richText' => {...},
 		_type == 'cta' => {...},
 		_type == 'counter' => {...},
@@ -129,6 +133,10 @@ export const page = groq`*[_type == "page" && uid.current == $uid][0] {
 	content[] {
 		_type == 'richText' => {...},
 		_type == 'cta' => {...},
+		_type == "image_text" => {
+      ...,
+      "imageItem": imageItem.asset._ref
+		},
 		_type == 'counter' => {
 			...,
 			counterItems[] {

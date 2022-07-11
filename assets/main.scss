@@ -105,6 +105,7 @@ body {
 		&:hover {
 			background-color: hsl(1, 84%, 40%);
 			box-shadow: 0 0 10px 0 $primary-dark;
+			color: $white;
 			.overlay {
 				width: 100%;
 			}

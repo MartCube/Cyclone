@@ -24,6 +24,7 @@ import Partners from '@/components/sections/Partners'
 import RichText from '@/components/sections/RichText'
 import Faq from '@/components/sections/Faq'
 import ColorsContent from '@/components/sections/ColorsContent'
+import ImageText from '@/components/sections/ImageText'
 export default {
 	name: 'Panel',
 	data: () => ({
@@ -34,6 +35,7 @@ export default {
 				image: PanelImage,
 				cta: Cta,
 				slider_panel: PanelSlider,
+				image_text: ImageText,
 				slider_projects: ProjectSlider,
 				counter: Achievements,
 				benefits: Benefits,
@@ -99,7 +101,7 @@ export default {
 @media (min-width: 1550px) {
 	.panel {
 		.crumbs {
-			padding: 0 10%;
+			padding: 0 1%;
 			max-width: 68%;
 			margin: 0 auto;
 		}

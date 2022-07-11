@@ -240,7 +240,7 @@ export default {
 }
 @media (min-width: 1550px) {
 	.projects {
-		padding: 0 10%;
+		padding: 0 17%;
 	}
 }
 @media (max-width: 1200px) {

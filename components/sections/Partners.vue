@@ -117,7 +117,24 @@ export default {
 		}
 	}
 }
-
+@media (min-width: 1550px) {
+	.partners {
+		padding: 50px 17%;
+		.partners-grid {
+			margin-left: 0;
+			figure {
+				height: 150px;
+				picture {
+					width: 100%;
+					height: 100%;
+				}
+			}
+		}
+		.panel-gallery .wrapper figure {
+			width: 20vw;
+		}
+	}
+}
 @media (max-width: 950px) {
 	.partners {
 		padding: 50px 10%;

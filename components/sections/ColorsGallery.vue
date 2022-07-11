@@ -103,6 +103,7 @@ export default {
 
 @media (min-width: 1550px) {
 	.colors_gallery_section {
+		padding: 50px 17%;
 		.colors_gallery_wrapper {
 			grid-template-columns: repeat(14, 1fr);
 			grid-gap: 10px;

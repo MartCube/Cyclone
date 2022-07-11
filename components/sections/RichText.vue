@@ -37,9 +37,10 @@ export default {
 
 @media (min-width: 1550px) {
 	.rich_text {
+		padding: 50px 17%;
 		.content {
-			max-width: 60%;
-			margin: 0 auto;
+			// max-width: 60%;
+			// margin: 0 auto;
 		}
 	}
 }

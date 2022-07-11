@@ -87,4 +87,16 @@ export default {
 		}
 	}
 }
+
+@media (min-width: 1550px) {
+	.color {
+		.title_wrapper {
+			padding: 50px 17% 0;
+		}
+		.crumbs,
+		.go_back {
+			padding: 50px 17%;
+		}
+	}
+}
 </style>

@@ -83,6 +83,21 @@ export default {
 	}
 }
 
+@media (min-width: 1550px) {
+	.home-intro {
+		.cyclone {
+			right: 11rem;
+		}
+		.title-wrapper {
+			right: 13rem;
+			bottom: 3rem;
+			h1 {
+				font-size: 5rem;
+				margin-bottom: 0;
+			}
+		}
+	}
+}
 @media (max-width: 950px) {
 	.home-intro {
 		.title-wrapper {

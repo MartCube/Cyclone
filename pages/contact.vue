@@ -78,7 +78,7 @@ export default {
 }
 @media (min-width: 1550px) {
 	.contacts {
-		padding: 0 10%;
+		padding: 0 17%;
 	}
 }
 @media (max-width: 950px) {

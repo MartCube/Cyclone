@@ -94,6 +94,7 @@ export default {
 }
 @media (min-width: 1550px) {
 	.colors_content_section {
+		padding: 50px 17%;
 		.colors_gallery_content {
 			justify-content: flex-start;
 			a {

@@ -159,6 +159,18 @@ export default {
 		margin: 3rem 0;
 	}
 }
+@media (min-width: 1550px) {
+	.project {
+		padding: 0 17%;
+		.content {
+			.text,
+			.image {
+				flex: 0 0 50%;
+			}
+		}
+	}
+}
+
 @media (max-width: 950px) {
 	.project {
 		padding: 0 2rem;

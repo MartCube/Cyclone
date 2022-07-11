@@ -78,12 +78,8 @@ export default {
 }
 
 @media (min-width: 1550px) {
-	.cta_form form {
-		width: 80%;
-	}
-}
-@media (min-width: 1550px) {
 	.cta {
+		padding: 50px 17%;
 		.content {
 			.text {
 				.cta-title {
@@ -93,6 +89,9 @@ export default {
 					font-size: 2rem;
 				}
 			}
+		}
+		form {
+			width: 80%;
 		}
 	}
 }

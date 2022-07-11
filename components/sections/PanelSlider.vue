@@ -164,4 +164,9 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 		margin-left: 0;
 	}
 }
+@media (min-width: 1550px) {
+	.panel-slider {
+		padding: 50px 17%;
+	}
+}
 </style>

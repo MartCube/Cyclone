@@ -93,4 +93,9 @@ picture {
 		}
 	}
 }
+@media (min-width: 1550px) {
+	.single-image {
+		padding: 50px 17%;
+	}
+}
 </style>

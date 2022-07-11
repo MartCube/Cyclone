@@ -250,9 +250,9 @@ $animation-time: 0.3s;
 }
 @media (min-width: 1550px) {
 	.navbar {
-		padding: 0 10%;
+		padding: 0 17%;
 		nav ul li .panels-list {
-			padding: 0 10%;
+			padding: 0 17%;
 		}
 	}
 }

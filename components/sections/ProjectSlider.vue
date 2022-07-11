@@ -166,6 +166,11 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 		}
 	}
 }
+@media (min-width: 1550px) {
+	.project-slider {
+		padding: 50px 17%;
+	}
+}
 @media (max-width: 1250px) {
 	.project-slider .slider {
 		.slider-wrapper {

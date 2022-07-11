@@ -100,4 +100,9 @@ export default {
 		}
 	}
 }
+@media (min-width: 1550px) {
+	.video_container {
+		padding: 50px 17%;
+	}
+}
 </style>

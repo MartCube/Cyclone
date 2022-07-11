@@ -23,7 +23,7 @@ footer {
 }
 @media (min-width: 1550px) {
 	footer {
-		padding: 4rem 10%;
+		padding: 4rem 17%;
 	}
 }
 @media (max-width: 900px) {
@@ -33,7 +33,7 @@ footer {
 }
 @media (max-width: 600px) {
 	footer {
-		padding: 0 2rem 3rem 2rem;
+		padding: 0 3rem 3rem;
 	}
 }
 </style>

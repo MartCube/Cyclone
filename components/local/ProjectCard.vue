@@ -102,6 +102,11 @@ $card-size: 300px;
 		}
 	}
 }
+@media (min-width: 1550px) {
+	.project_card {
+		width: 295px;
+	}
+}
 @media (max-width: 1200px) {
 	.project_card {
 		width: 15rem;
