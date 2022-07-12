@@ -131,7 +131,7 @@ export default {
 			}
 		}
 		.panel-gallery .wrapper figure {
-			width: 20vw;
+			width: 21.5vw;
 		}
 	}
 }
