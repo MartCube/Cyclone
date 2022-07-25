@@ -10,7 +10,7 @@
 							<SanityContent :blocks="panel.panelItem.description" />
 						</div>
 						<div class="links">
-							<n-link exact :to="`/${panel.panelItem.uid}/`">Подробнее</n-link>
+							<n-link exact :to="localePath({ name: 'panel', params: { panel: panel.panelItem.uid } })">Подробнее</n-link>
 						</div>
 					</div>
 					<ImageItem :image="panel.panelItem.poster" w="200" />
@@ -31,6 +31,11 @@ export default {
 		title: {
 			type: String,
 			required: true,
+		},
+	},
+	computed: {
+		normalizedLocale() {
+			return this.$i18n.localeProperties.code === 'ua' ? '/' : '/ru/'
 		},
 	},
 }

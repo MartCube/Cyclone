@@ -3,7 +3,7 @@
 		<div class="main-image">
 			<!-- eslint-disable-next-line vue/attribute-hyphenation -->
 			<!-- <VideoItem url="https://www.youtube.com/watch?v=oIFJtJFXaQ8" /> -->
-			<video-background src="introbg_Trim.mp4" :sources="[{ src: 'intro-mob.mp4', res: 950, autoplay: true }]" style="max-height: 100%; height: 100vh" overlay="linear-gradient(to bottom,hsla(0, 0%, 18%, 0.2),hsla(0, 0%, 24%, 0.2))"> </video-background>
+			<video-background src="/introbg_Trim.mp4" :sources="[{ src: '/intro-mob.mp4', res: 950, autoplay: true }]" style="max-height: 100%; height: 100vh" overlay="linear-gradient(to bottom,hsla(0, 0%, 18%, 0.2),hsla(0, 0%, 24%, 0.2))"> </video-background>
 			<!-- <img src="~/static/homeintro.jpg" alt="" /> -->
 		</div>
 		<div class="cyclone">
@@ -19,8 +19,8 @@
 		</div>
 		<div class="title-wrapper">
 			<h1>
-				вентиляционные <br />
-				фасады
+				{{ $t('pages.index.first_title') }} <br />
+				{{ $t('pages.index.second_title') }}
 			</h1>
 		</div>
 	</section>
@@ -75,6 +75,7 @@ export default {
 		h1 {
 			font-size: 5rem;
 			line-height: 1;
+			margin: 0;
 		}
 		h2 {
 			font-size: 4rem;
@@ -104,6 +105,7 @@ export default {
 			right: 5rem;
 			h1 {
 				font-size: 3rem;
+				margin: 0;
 			}
 			h2 {
 				font-size: 2rem;

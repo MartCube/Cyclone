@@ -45,18 +45,54 @@ export const actions = {
 	bindFooter(context, payload) {
 		context.commit('setFooter', payload)
 	},
-	async metaTags({ commit }, { fetch, type }) {
-		console.log(this.$router.app._route.fullPath)
+	async metaTags({ commit, state, dispatch }, { fetch, type }) {
+		console.log(this.$router.app._route.fullPath, fetch, type)
 		const metaData = await fetch.metaTags
 		const image = `https://cdn.sanity.io/images/wv1u3p06/production/${metaData.image === undefined ? '' : metaData.image.slice(6, metaData.image.length - 4)}.jpg?auto=metaData`
 		const head = {
-			htmlAttrs: { lang: 'ru' },
+			htmlAttrs: { lang: fetch.lang },
 			title: metaData.title,
 			link: [],
 			meta: [],
 		}
 		// canonical link
-		const canonical = `${this.state.domain}${type === 'projects' ? '/projects' + this.$router.app._route.fullPath : this.$router.app._route.fullPath}`
+		// const canonical = `${this.state.domain}${type === 'projects' ? '/projects' + this.$router.app._route.fullPath : this.$router.app._route.fullPath}`
+		let canonical
+		if (type === 'index') {
+			canonical = `${state.domain}/`
+			head.link.push(
+				...[
+					{ hid: 'alternate', rel: 'alternate', href: `${state.domain}/ru/`, hreflang: 'ru' },
+					{ hid: 'alternate', rel: 'alternate', href: `${state.domain}/`, hreflang: 'x-default' },
+				],
+			)
+		} else if (type === 'page' || type === 'panel') {
+			canonical = `${state.domain}/${fetch.languages.filter((el) => el.lang === 'ua')[0].uid}/`
+			head.link.push(
+				...[
+					{ hid: 'alternate', rel: 'alternate', href: `${state.domain}/ru/${fetch.languages.filter((el) => el.lang === 'ru')[0].uid}/`, hreflang: 'ru' },
+					{ hid: 'alternate', rel: 'alternate', href: `${state.domain}/${fetch.languages.filter((el) => el.lang === 'ua')[0].uid}/`, hreflang: 'x-default' },
+				],
+			)
+
+			await dispatch('i18n/setRouteParams', {
+				ru: { [type]: fetch.languages.filter((el) => el.lang === 'ru')[0].uid },
+				ua: { [type]: fetch.languages.filter((el) => el.lang === 'ua')[0].uid },
+			})
+		} else if (type === 'color') {
+			canonical = `${state.domain}${this.localePath(type, 'ua')}colors/${fetch.languages.filter((el) => el.lang === 'ua')[0].uid}/`
+			head.link.push(
+				...[
+					{ hid: 'alternate', rel: 'alternate', href: `${state.domain}/ru/colors/${fetch.languages.filter((el) => el.lang === 'ru')[0].uid}/`, hreflang: 'ru' },
+					{ hid: 'alternate', rel: 'alternate', href: `${state.domain}/colors/${fetch.languages.filter((el) => el.lang === 'ua')[0].uid}/`, hreflang: 'x-default' },
+				],
+			)
+
+			await dispatch('i18n/setRouteParams', {
+				ru: { [type]: fetch.languages.filter((el) => el.lang === 'ru')[0].uid },
+				ua: { [type]: fetch.languages.filter((el) => el.lang === 'ua')[0].uid },
+			})
+		}
 
 		head.link.push({ hid: 'canonical', rel: 'canonical', href: canonical })
 		head.meta.push({ hid: 'og:url', name: 'og:url', content: canonical })

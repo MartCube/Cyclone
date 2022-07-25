@@ -38,14 +38,16 @@ export default {
 		},
 	}),
 	async fetch() {
+		const id = this.$i18n.localeProperties.code === 'ua' ? 'index' : 'index-ru'
+
 		await this.$sanity
-			.fetch(page, { uid: 'index' })
+			.fetch(page, { uid: id })
 			.then((fetch) => {
 				// console.log(fetch)
 				this.pageData = {
 					content: fetch.content,
 				}
-				this.$store.dispatch('metaTags', { fetch })
+				this.$store.dispatch('metaTags', { fetch, type: 'index' })
 			})
 			.catch((error) => {
 				console.log(error)

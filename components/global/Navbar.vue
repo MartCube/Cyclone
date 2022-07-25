@@ -9,7 +9,7 @@
 		<nav :class="{ active: isActiveMobileNavbar }">
 			<ul>
 				<li class="first-lvl submenu" :class="{ active: isActiveSecondLvl }">
-					<a href="javascript:;" @click="isActiveSecondLvl = !isActiveSecondLvl">Вентилируемые фасады</a>
+					<a href="javascript:;" @click="isActiveSecondLvl = !isActiveSecondLvl">{{ $t('navbar.menu') }}</a>
 					<ul
 						class="panels-list"
 						@click="
@@ -18,7 +18,7 @@
 						">
 						<template v-if="panels">
 							<li v-for="panel in panels" :key="panel._id">
-								<n-link exact :to="`/${panel.uid}/`">
+								<n-link exact :to="`${normalizedLocale}${panel.uid}/`">
 									<div class="image">
 										<ImageItem :image="panel.poster" w="160" mw="70" mobile />
 									</div>
@@ -28,11 +28,12 @@
 						</template>
 					</ul>
 				</li>
-				<li v-for="link in menu" :key="link.uid" class="first-lvl">
-					<n-link :to="`/${link.uid}/`">{{ link.name }}</n-link>
+				<li v-for="link in currentMenu" :key="link.uid" class="first-lvl">
+					<n-link :to="localePath(link.uid)">{{ link.name }}</n-link>
 				</li>
 			</ul>
 		</nav>
+		<LanguageSwitcher />
 		<n-link exact :to="'/'" class="logo">
 			<Logo />
 		</n-link>
@@ -48,20 +49,37 @@ export default {
 		isActiveMobileNavbar: false,
 		isNavbarHidden: false,
 		isActiveSecondLvl: false,
-		menu: [
-			{
-				name: 'Объекты',
-				uid: 'projects',
-			},
-			// {
-			// 	name: 'Статьи',
-			// 	uid: 'blog',
-			// },
-			{
-				name: 'Контакты',
-				uid: 'contact',
-			},
-		],
+		menu: {
+			ru: [
+				{
+					name: 'Объекты',
+					uid: 'projects',
+				},
+				// {
+				// 	name: 'Статьи',
+				// 	uid: 'blog',
+				// },
+				{
+					name: 'Контакты',
+					uid: 'contact',
+				},
+			],
+			ua: [
+				{
+					name: "Об'єкти",
+					uid: 'projects',
+				},
+				// {
+				// 	name: 'Статьи',
+				// 	uid: 'blog',
+				// },
+				{
+					name: 'Контакти',
+					uid: 'contact',
+				},
+			],
+		},
+
 		panels: null,
 		isSafari: false,
 		scrollPosition: 0,
@@ -69,17 +87,22 @@ export default {
 		mobile: 0,
 	}),
 	async fetch() {
-		await this.$sanity.fetch(navbar).then((data) => {
+		await this.$sanity.fetch(navbar, { lang: this.$i18n.localeProperties.code }).then((data) => {
 			this.panels = data.panelItems
 		})
 	},
 	computed: {
-		// isSafari() {
-		// 	return
-		// },
-		// isiOS() {
-		// 	return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
-		// },
+		currentMenu() {
+			return this.menu[this.$i18n.localeProperties.code]
+		},
+		normalizedLocale() {
+			return this.$i18n.localeProperties.code === 'ua' ? '/' : '/ru/'
+		},
+	},
+	watch: {
+		$route(newValue, oldValue) {
+			this.$fetch()
+		},
 	},
 	mounted() {
 		this.mobile = window.innerWidth

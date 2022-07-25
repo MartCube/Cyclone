@@ -80,20 +80,24 @@ const routeGenerator = async function () {
 		.catch((error) => {
 			console.log('log error', error)
 		})
-
+		console.log(data);
 	data.forEach((doc) => {
 		switch (doc.type) {
 			case 'page':
-				route.push(`/${doc.uid}/`)
+				if (doc.uid === 'index' || doc.uid === 'index-ru') {
+					route.push(`${doc.lang === 'ua' ? '/' : '/ru/'}`)
+				} else {
+					route.push(`${doc.lang === 'ua' ? '/' : '/ru/'}${doc.uid}/`)
+				}
 				break
 			case 'project':
-				route.push(`/projects/${doc.uid}/`)
+				route.push(`${doc.lang === 'ua' ? '/proectu/' : '/ru/proecty/'}${doc.uid}/`)
 				break
 			case 'colors':
-				route.push(`/colors/${doc.uid}/`)
+				route.push(`${doc.lang === 'ua' ? '/' : '/ru/'}colors/${doc.uid}/`)
 				break
 			case 'panel':
-				route.push(`/${doc.uid}/`)
+				route.push(`${doc.lang === 'ua' ? '/' : '/ru/'}${doc.uid}/`)
 				break
 
 			default:
@@ -121,10 +125,65 @@ export default {
 
 	plugins: [{ src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }, { src: `~/plugins/masonry.js` }, { src: '~/plugins/responsive-video', mode: 'client' }],
 
-	modules: ['@nuxtjs/sanity/module', '@nuxtjs/sitemap'],
+	modules: ['@nuxtjs/sanity/module', '@nuxtjs/sitemap', '@nuxtjs/i18n'],
 
 	styleResources: {
 		scss: ['./assets/colors.scss', './assets/mixins.scss'],
+	},
+
+	i18n: {
+		defaultLocale: 'ua',
+		baseUrl: 'https://cyclone-dev.vercel.app/',
+		lazy: true,
+		langDir: 'i18n/',
+		detectBrowserLanguage: false,
+		seo: false,
+		parsePages: false, // Disable babel parsing
+		locales: [
+			{
+				code: 'ru',
+				name: 'рус',
+				file: 'ru.js',
+				iso: 'ru-RU',
+			},
+			{
+				isCatchallLocale: true,
+				code: 'ua',
+				name: 'укр',
+				file: 'ua.js',
+				iso: 'uk-UA',
+			},
+		],
+		pages: {
+			// 'blog/index': {
+			// 	ru: '/novosti',
+			// 	ua: '/novunu',
+			// },
+			// 'blog/_article_slug': {
+			// 	ru: '/novosti/:article_slug?',
+			// 	ua: '/novunu/:article_slug?',
+			// },
+			'panel/': {
+				ru: '/:panel?',
+				ua: '/:panel?',
+			},
+			'colors/_color/': {
+				ru: '/:color?',
+				ua: '/:color?',
+			},
+			'projects/index': {
+				ru: '/proekty',
+				ua: '/proectu',
+			},
+			'projects/_project': {
+				ru: '/proetky/:project?',
+				ua: '/proectu/:project?',
+			},
+			contacts: {
+				ru: '/kontakty',
+				ua: '/kontaktu',
+			},
+		},
 	},
 
 	sanity: {

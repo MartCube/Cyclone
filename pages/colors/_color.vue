@@ -41,8 +41,9 @@ export default {
 			.fetch(colorPage, { uid: this.$route.params.color })
 			.then((fetch) => {
 				if (fetch.title) {
+					console.log(fetch)
 					this.data = fetch
-					// this.$store.dispatch('metaTags', { fetch, type: 'colors' })
+					this.$store.dispatch('metaTags', { fetch, type: 'color' })
 				} else {
 					throw new Error('Colors not found no data')
 				}
@@ -58,6 +59,9 @@ export default {
 			})
 	},
 	fetchOnServer: false,
+	head() {
+		return this.$store.getters.metaHead
+	},
 	computed: {
 		breadCrumbs() {
 			return [{ title: this.data.title }]

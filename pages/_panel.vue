@@ -52,7 +52,7 @@ export default {
 			.then((fetch) => {
 				if (fetch.content) {
 					this.data = fetch
-					this.$store.dispatch('metaTags', { fetch })
+					this.$store.dispatch('metaTags', { fetch, type: 'panel' })
 				} else {
 					throw new Error('panel not found no data')
 				}
