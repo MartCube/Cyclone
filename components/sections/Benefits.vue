@@ -133,7 +133,7 @@ export default {
 					margin-right: 0;
 				}
 				.number {
-					width: 17vw;
+					width: 100px;
 					font-size: 3.5rem;
 				}
 				.info {

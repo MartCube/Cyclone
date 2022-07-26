@@ -24,6 +24,7 @@ export default {
 		projects: 'Проекты',
 		objects: 'Объекты',
 		all: 'Все',
+		watchAll: 'Смореть все',
 		main: 'Главная',
 		watch: 'Смотреть',
 		tohome: 'На главную',

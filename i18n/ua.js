@@ -25,6 +25,7 @@ export default {
 		all: 'Все',
 		main: 'Головна',
 		watch: 'Дивитись',
+		watchAll: 'Дивитись все',
 		more: 'Докладніше',
 		tohome: 'На головну',
 		errorTitle: 'Сторінка, яку ви шукаєте не існує.',

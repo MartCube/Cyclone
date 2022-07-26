@@ -10,7 +10,7 @@
 							<SanityContent :blocks="panel.panelItem.description" />
 						</div>
 						<div class="links">
-							<n-link exact :to="localePath({ name: 'panel', params: { panel: panel.panelItem.uid } })">Подробнее</n-link>
+							<n-link exact :to="localePath({ name: 'panel', params: { panel: panel.panelItem.uid } })">{{ $t('words.more') }}</n-link>
 						</div>
 					</div>
 					<ImageItem :image="panel.panelItem.poster" w="200" />

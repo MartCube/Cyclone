@@ -10,8 +10,8 @@
 					<template v-if="i === projectItems.length - 1">
 						<div :key="project._id" class="project">
 							<ImageItem :image="project.projectItem.poster" w="700" h="600" mobile />
-							<n-link v-if="filter === ''" exact :to="{ path: '/projects/' }">Смореть все <Icon name="arrow" size="60px" fill="#B93937" /></n-link>
-							<n-link v-else exact :to="{ path: '/projects/', query: { filter: `${filter}` } }">Смореть все <Icon name="arrow" size="60px" fill="#B93937" /></n-link>
+							<n-link v-if="filter === ''" exact :to="{ path: '/projects/' }">{{ $t('words.watchAll') }} <Icon name="arrow" size="60px" fill="#B93937" /></n-link>
+							<n-link v-else exact :to="{ path: '/projects/', query: { filter: `${filter}` } }">{{ $t('words.watchAll') }} <Icon name="arrow" size="60px" fill="#B93937" /></n-link>
 						</div>
 					</template>
 					<template v-else>
@@ -199,6 +199,9 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 			.project,
 			.content {
 				width: 100%;
+			}
+			.project {
+				margin-bottom: 2rem;
 			}
 		}
 	}
