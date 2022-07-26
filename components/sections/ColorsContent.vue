@@ -8,7 +8,7 @@
 		</div>
 		<div class="colors_gallery_content">
 			<p class="description">{{ description }}</p>
-			<nuxt-link :to="`/colors/${colorsPage.uid}/`">Подробнее</nuxt-link>
+			<nuxt-link :to="`/colors/${colorsPage.uid}/`">{{ $t('words.more') }}</nuxt-link>
 		</div>
 	</section>
 </template>

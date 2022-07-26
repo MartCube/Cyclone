@@ -37,6 +37,7 @@ export default {
 @media (max-width: 950px) {
 	.lang {
 		margin-left: initial;
+		margin-right: 0;
 	}
 }
 </style>

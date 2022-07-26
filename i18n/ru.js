@@ -17,6 +17,7 @@ export default {
 		phone: 'Телефон',
 		message: 'Сообщение',
 		button: 'Отправить',
+		more: 'Подробнее',
 		successMessage: 'Мы уже звоним !',
 	},
 	words: {

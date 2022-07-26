@@ -399,6 +399,7 @@ $animation-time: 0.3s;
 			width: 14rem;
 			order: 1;
 			display: flex;
+			margin-right: 0;
 		}
 		.burger {
 			height: 2rem;
