@@ -4,9 +4,29 @@ export default {
 			first_title: 'вентиляційні',
 			second_title: 'фасади',
 		},
+		contact: {
+			title: 'Контакти',
+		},
+	},
+	contact_form: {
+		title: 'Нам дуже важлива ваша думка',
+		name: "Ім'я",
+		phone: 'Телефон',
+		message: 'Повідомлення',
+		button: 'Відправити',
+		successMessage: 'Ми вже дзвонимо!',
 	},
 	navbar: {
 		menu: 'Вентильовані фасади',
+	},
+	words: {
+		projects: 'Проекти',
+		objects: "Об'єкти",
+		all: 'Все',
+		main: 'Головна',
+		watch: 'Дивитись',
+		tohome: 'На головну',
+		errorTitle: 'Сторінка, яку ви шукаєте не існує.',
 	},
 	footer: {
 		adress: 'ул. Куренівська, 18, оф. 416, Київ, 04073',

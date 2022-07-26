@@ -46,9 +46,9 @@ export const actions = {
 		context.commit('setFooter', payload)
 	},
 	async metaTags({ commit, state, dispatch }, { fetch, type }) {
-		console.log(this.$router.app._route.fullPath, fetch, type)
+		// console.log(this.$router.app._route.fullPath, fetch, type)
 		const metaData = await fetch.metaTags
-		const image = `https://cdn.sanity.io/images/wv1u3p06/production/${metaData.image === undefined ? '' : metaData.image.slice(6, metaData.image.length - 4)}.jpg?auto=metaData`
+		const image = `https://cdn.sanity.io/images/wv1u3p06/production/${metaData.image === undefined ? '' : metaData.image.slice(6, metaData.image.length - 4)}.jpg`
 		const head = {
 			htmlAttrs: { lang: fetch.lang },
 			title: metaData.title,
@@ -66,7 +66,7 @@ export const actions = {
 					{ hid: 'alternate', rel: 'alternate', href: `${state.domain}/`, hreflang: 'x-default' },
 				],
 			)
-		} else if (type === 'page' || type === 'panel') {
+		} else if (type === 'page' || type === 'panel' || type === 'projects') {
 			canonical = `${state.domain}/${fetch.languages.filter((el) => el.lang === 'ua')[0].uid}/`
 			head.link.push(
 				...[
@@ -85,6 +85,19 @@ export const actions = {
 				...[
 					{ hid: 'alternate', rel: 'alternate', href: `${state.domain}/ru/colors/${fetch.languages.filter((el) => el.lang === 'ru')[0].uid}/`, hreflang: 'ru' },
 					{ hid: 'alternate', rel: 'alternate', href: `${state.domain}/colors/${fetch.languages.filter((el) => el.lang === 'ua')[0].uid}/`, hreflang: 'x-default' },
+				],
+			)
+
+			await dispatch('i18n/setRouteParams', {
+				ru: { [type]: fetch.languages.filter((el) => el.lang === 'ru')[0].uid },
+				ua: { [type]: fetch.languages.filter((el) => el.lang === 'ua')[0].uid },
+			})
+		} else if (type === 'project') {
+			canonical = `${state.domain}${this.localePath('projects', 'ua')}colors/${fetch.languages.filter((el) => el.lang === 'ua')[0].uid}/`
+			head.link.push(
+				...[
+					{ hid: 'alternate', rel: 'alternate', href: `${state.domain}/ru/${this.localePath('projects', 'ru')}/${fetch.languages.filter((el) => el.lang === 'ru')[0].uid}/`, hreflang: 'ru' },
+					{ hid: 'alternate', rel: 'alternate', href: `${state.domain}/${this.localePath('projects', 'ua')}/${fetch.languages.filter((el) => el.lang === 'ua')[0].uid}/`, hreflang: 'x-default' },
 				],
 			)
 

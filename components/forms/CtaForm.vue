@@ -7,7 +7,7 @@
 			</ValidationObserver>
 
 			<div v-else class="message">
-				<h5>Мы уже звоним !</h5>
+				<h5>{{ $t('contact_form.successMessage') }}</h5>
 				<!-- <n-link :to="'/'">На главную</n-link> -->
 			</div>
 		</form>

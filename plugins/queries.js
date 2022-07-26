@@ -298,7 +298,12 @@ export const projectsList = groq`*[_type == "project" && __i18n_lang == $lang ] 
 	"tags": tags[].value,
 }`
 
-export const sitemapData = groq`*[_type in ["project", "panel", "page", "colors"]] {"uid": uid.current, "type":  _type, "updated": _updatedAt}`
+export const sitemapData = groq`*[_type in ["project", "panel", "page", "colors"]] {
+	"uid": uid.current, 
+	"type":  _type, 
+	"updated": _updatedAt,
+	"lang": __i18n_lang,
+}`
 
 export const navbar = groq`*[_type == "navbar" && __i18n_lang == $lang ][0] {
 	...,

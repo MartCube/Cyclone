@@ -5,7 +5,7 @@
 		</template>
 		<template v-if="!$fetchState.pending">
 			<Crumbs :links="breadCrumbs" />
-			<Title value="Контакты" />
+			<Title :value="$t('pages.contact.title')" />
 			<ContactInfo />
 			<ContactForm />
 			<Policy />
@@ -30,10 +30,10 @@ export default {
 	}),
 	async fetch() {
 		await this.$sanity
-			.fetch(page, { uid: 'contact' })
+			.fetch(page, { uid: this.localePath('contact') })
 			.then((fetch) => {
 				this.pageData = fetch
-				this.$store.dispatch('metaTags', { fetch })
+				this.$store.dispatch('metaTags', { fetch, type: 'page' })
 			})
 			.catch((error) => {
 				console.log(error)
@@ -50,7 +50,7 @@ export default {
 	},
 	computed: {
 		breadCrumbs() {
-			return [{ title: 'Контакты' }]
+			return [{ title: this.$t('pages.contact.title') }]
 		},
 	},
 }
@@ -81,6 +81,7 @@ export default {
 		padding: 0 17%;
 	}
 }
+
 @media (max-width: 950px) {
 	.contacts {
 		.contact_info {

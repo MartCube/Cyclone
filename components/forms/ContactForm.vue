@@ -1,16 +1,16 @@
 <template>
 	<div class="contact_form">
-		<h6 class="title">Нам правда важно ваше мнение</h6>
+		<h6 class="title">{{ $t('contact_form.title') }}</h6>
 		<form ref="contact_form" autocomplete="off" @submit.prevent="Submit()">
 			<ValidationObserver v-if="!message" ref="contact" tag="div">
-				<InputItem name="name" label="Имя" rules="required" @getValue="storeValue" />
-				<InputItem name="number" type="number" label="Телефон" rules="min:9|required" @getValue="storeValue" />
+				<InputItem name="name" :label="$t('contact_form.name')" rules="required" @getValue="storeValue" />
+				<InputItem name="number" type="number" :label="$t('contact_form.phone')" rules="min:9|required" @getValue="storeValue" />
 				<InputItem name="email" label="Email" rules="email|required" @getValue="storeValue" />
-				<InputItem name="message" label="Сообщение" rules="required" @getValue="storeValue" />
-				<ButtonItem> Отправить <Icon name="mail" /> </ButtonItem>
+				<InputItem name="message" :label="$t('contact_form.message')" rules="required" @getValue="storeValue" />
+				<ButtonItem> {{ $t('contact_form.button') }} <Icon name="mail" /> </ButtonItem>
 			</ValidationObserver>
 			<div v-else class="message">
-				<h5>Мы уже звоним !</h5>
+				<h5>{{ $t('contact_form.successMessage') }}</h5>
 				<!-- <n-link :to="'/'">На главную</n-link> -->
 			</div>
 		</form>
@@ -122,6 +122,16 @@ export default {
 	.input_item {
 		margin: 1rem 0;
 		height: 4rem;
+	}
+}
+@media (min-width: 950px) and (max-width: 1200px) {
+	.contact_form {
+		width: 40%;
+	}
+}
+@media (max-width: 950px) {
+	.contact_form {
+		width: 100%;
 	}
 }
 </style>

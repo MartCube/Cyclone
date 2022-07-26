@@ -1,8 +1,8 @@
 <template>
 	<div class="error page">
 		<span>404</span>
-		<h1>Страница, которую вы ищете не существует.</h1>
-		<NuxtLink to="/" class="button">На главную</NuxtLink>
+		<h1>{{ $t('words.errorTitle') }}</h1>
+		<NuxtLink :to="localePath('index')" class="button">{{ $t('words.tohome') }}</NuxtLink>
 	</div>
 </template>
 

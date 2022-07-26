@@ -30,16 +30,27 @@ const sitemapGenerator = async function () {
 	data.forEach((doc) => {
 		switch (doc.type) {
 			case 'page':
-				sitemaproute.push({
-					url: `/${doc.uid}/`,
-					changefreq: 'monthly',
-					priority: 1,
-					lastmod: doc.updated,
-				})
+				console.log(doc)
+
+				if (doc.uid === 'index' || doc.uid === 'index-ru') {
+					sitemaproute.push({
+						url: `${doc.lang === 'ua' ? '/' : '/ru/'}`,
+						changefreq: 'monthly',
+						priority: 1,
+						lastmod: doc.updated,
+					})
+				} else {
+					sitemaproute.push({
+						url: `${doc.lang === 'ua' ? '/' : '/ru/'}${doc.uid}/`,
+						changefreq: 'monthly',
+						priority: 1,
+						lastmod: doc.updated,
+					})
+				}
 				break
 			case 'project':
 				sitemaproute.push({
-					url: `/projects/${doc.uid}/`,
+					url: `${doc.lang === 'ua' ? '/' : '/ru/'}${doc.lang === 'ua' ? 'proectu' : 'proecty'}/${doc.uid}/`,
 					changefreq: 'monthly',
 					priority: 1,
 					lastmod: doc.updated,
@@ -47,7 +58,7 @@ const sitemapGenerator = async function () {
 				break
 			case 'colors':
 				sitemaproute.push({
-					url: `/colors/${doc.uid}/`,
+					url: `${doc.lang === 'ua' ? '/' : '/ru/'}colors/${doc.uid}/`,
 					changefreq: 'monthly',
 					priority: 1,
 					lastmod: doc.updated,
@@ -55,7 +66,7 @@ const sitemapGenerator = async function () {
 				break
 			case 'panel':
 				sitemaproute.push({
-					url: `/${doc.uid}/`,
+					url: `${doc.lang === 'ua' ? '/' : '/ru/'}${doc.uid}/`,
 					changefreq: 'monthly',
 					priority: 1,
 					lastmod: doc.updated,
@@ -80,8 +91,8 @@ const routeGenerator = async function () {
 		.catch((error) => {
 			console.log('log error', error)
 		})
-		console.log(data);
 	data.forEach((doc) => {
+		console.log(doc);
 		switch (doc.type) {
 			case 'page':
 				if (doc.uid === 'index' || doc.uid === 'index-ru') {

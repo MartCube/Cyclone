@@ -1,6 +1,6 @@
 <template>
 	<div class="crumbs">
-		<n-link to="/">Главная</n-link>
+		<n-link to="/">{{ $t('words.main') }}</n-link>
 		<template v-if="links.length < 2">
 			<p>{{ links[0].title }}</p>
 		</template>

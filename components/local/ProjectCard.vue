@@ -1,8 +1,8 @@
 <template>
-	<n-link class="project_card" :to="`/projects/${project.uid}/`">
+	<n-link class="project_card" :to="`${localePath('projects')}${project.uid}/`">
 		<div class="image">
 			<ImageItem :image="project.poster" w="450" h="450" />
-			<span class="link">Смотреть</span>
+			<span class="link">{{ $t('words.watch') }}</span>
 		</div>
 		<h2 class="title">
 			{{ project.title }}
@@ -17,6 +17,11 @@ export default {
 		project: {
 			type: Object,
 			required: true,
+		},
+	},
+	computed: {
+		normalizedLocale() {
+			return this.$i18n.localeProperties.code === 'ua' ? '/' : '/ru/'
 		},
 	},
 }

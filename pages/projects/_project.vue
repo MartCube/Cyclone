@@ -75,7 +75,7 @@ export default {
 	},
 	computed: {
 		breadCrumbs() {
-			return [{ path: '/projects/', title: 'Проекты' }, { title: this.pageData.title }]
+			return [{ path: `${this.localePath('projects')}`, title: this.$t('words.projects') }, { title: this.pageData.title }]
 		},
 	},
 	methods: {
@@ -128,7 +128,7 @@ export default {
 		.text,
 		.image,
 		.video_container {
-			flex: 0 0 45vw;
+			flex: 0 0 50%;
 		}
 	}
 	.gallery {

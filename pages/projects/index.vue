@@ -6,23 +6,23 @@
 		<template v-if="!$fetchState.pending">
 			<div class="projects">
 				<Crumbs :links="breadCrumbs" />
-				<Title value="Объекты" />
+				<Title :value="$t('words.objects')" />
 
 				<div class="filter">
 					<span
 						:class="{ active: active_filter === 'all' }"
 						@click="
-							$router.push({ path: '/projects/', query: { filter: 'all' } })
+							$router.push({ path: localePath('projects'), query: { filter: 'all' } })
 							filterUpdate('all')
 						">
-						Все
+						{{ $t('words.all') }}
 					</span>
 					<span
 						v-for="(filter, i) in filters"
 						:key="i"
 						:class="{ active: active_filter === filter.key }"
 						@click="
-							$router.push({ path: '/projects/', query: { filter: filter.key } })
+							$router.push({ path: localePath('projects'), query: { filter: filter.key } })
 							filterUpdate(filter.key)
 						">
 						{{ filter.name }}
@@ -56,9 +56,9 @@ export default {
 	}),
 	async fetch() {
 		await this.$sanity
-			.fetch(page, { uid: 'projects' })
+			.fetch(page, { uid: this.$route.fullPath.slice(1, -1) })
 			.then((fetch) => {
-				this.$store.dispatch('metaTags', { fetch })
+				this.$store.dispatch('metaTags', { fetch, type: 'projects' })
 			})
 			.catch((error) => {
 				console.log(error)
@@ -71,7 +71,7 @@ export default {
 			})
 
 		await this.$sanity
-			.fetch(projectsList)
+			.fetch(projectsList, { lang: this.$i18n.localeProperties.code })
 			.then((data) => {
 				// console.log(data)
 				this.currentProjects = data.sort((a, b) => b.order - a.order)
@@ -130,7 +130,7 @@ export default {
 			]
 		},
 		breadCrumbs() {
-			return [{ title: 'Объекты' }]
+			return [{ title: this.$t('words.objects') }]
 		},
 	},
 	// watch(){
