@@ -30,7 +30,7 @@ const sitemapGenerator = async function () {
 	data.forEach((doc) => {
 		switch (doc.type) {
 			case 'page':
-				console.log(doc)
+				// console.log(doc)
 
 				if (doc.uid === 'index' || doc.uid === 'index-ru') {
 					sitemaproute.push({
@@ -92,7 +92,7 @@ const routeGenerator = async function () {
 			console.log('log error', error)
 		})
 	data.forEach((doc) => {
-		console.log(doc);
+		// console.log(doc);
 		switch (doc.type) {
 			case 'page':
 				if (doc.uid === 'index' || doc.uid === 'index-ru') {
@@ -190,7 +190,7 @@ export default {
 				ru: '/proetky/:project?',
 				ua: '/proectu/:project?',
 			},
-			contacts: {
+			contact: {
 				ru: '/kontakty',
 				ua: '/kontaktu',
 			},
