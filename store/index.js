@@ -48,8 +48,8 @@ export const actions = {
 	async metaTags({ commit, state, dispatch }, { fetch, type }) {
 		// console.log(this.$router.app._route.fullPath, fetch, type)
 		const metaData = await fetch.metaTags
-		console.log(fetch)
-		// const image = `https://cdn.sanity.io/images/wv1u3p06/production/${metaData.image === undefined ? '' : metaData.image.slice(6, metaData.image.length - 4)}.jpg`
+		// console.log(fetch)
+		const image = `https://cdn.sanity.io/images/wv1u3p06/production/${metaData.image === undefined ? '' : metaData.image.slice(6, metaData.image.length - 4)}.jpg`
 		const head = {
 			htmlAttrs: { lang: fetch.lang },
 			title: metaData.title,
@@ -119,9 +119,9 @@ export const actions = {
 				{ hid: 'og:url', property: 'og:url', content: canonical },
 				{ hid: 'og:title', property: 'og:title', content: metaData.title },
 				{ hid: 'og:description', property: 'og:description', content: metaData.description },
-				// { hid: 'og:image', property: 'og:image', content: image },
+				{ hid: 'og:image', property: 'og:image', content: image },
 				// twitter
-				// { hid: 'twitter:card', name: 'twitter:card', content: image },
+				{ hid: 'twitter:card', name: 'twitter:card', content: image },
 			],
 		)
 		await commit('setMeta', head)

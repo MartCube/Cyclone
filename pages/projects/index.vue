@@ -58,8 +58,8 @@ export default {
 		await this.$sanity
 			.fetch(page, { uid: this.$route.fullPath.split('/').at(-2) })
 			.then((fetch) => {
-				console.log(fetch)
-				// this.$store.dispatch('metaTags', { fetch, type: 'projects' })
+				// console.log(fetch)
+				this.$store.dispatch('metaTags', { fetch, type: 'projects' })
 			})
 			.catch((error) => {
 				console.log(error)
