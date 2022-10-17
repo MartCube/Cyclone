@@ -34,7 +34,7 @@
 			</ul>
 		</nav>
 		<LanguageSwitcher />
-		<n-link exact :to="'/'" class="logo">
+		<n-link exact :to="normalizedLocale" class="logo">
 			<Logo />
 		</n-link>
 	</div>

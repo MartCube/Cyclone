@@ -21,6 +21,7 @@ export default {
 		successMessage: 'Мы уже звоним !',
 	},
 	words: {
+		more: 'Подробнее',
 		projects: 'Проекты',
 		objects: 'Объекты',
 		all: 'Все',

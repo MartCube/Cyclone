@@ -41,7 +41,7 @@ import { projectsList, page } from '@/plugins/queries'
 // import { postAnim } from '~/assets/anime'
 
 export default {
-	name: 'Projects',
+	name: 'ProjectsPage',
 	data: () => ({
 		currentProjects: [],
 		gridProjects: [],
@@ -56,9 +56,10 @@ export default {
 	}),
 	async fetch() {
 		await this.$sanity
-			.fetch(page, { uid: this.$route.fullPath.slice(1, -1) })
+			.fetch(page, { uid: this.$route.fullPath.split('/').at(-2) })
 			.then((fetch) => {
-				this.$store.dispatch('metaTags', { fetch, type: 'projects' })
+				console.log(fetch)
+				// this.$store.dispatch('metaTags', { fetch, type: 'projects' })
 			})
 			.catch((error) => {
 				console.log(error)
@@ -75,7 +76,7 @@ export default {
 			.then((data) => {
 				// console.log(data)
 				this.currentProjects = data.sort((a, b) => b.order - a.order)
-				this.gridProjects = data.sort((a, b) => b.order - a.order)
+				this.gridProjects = this.currentProjects
 			})
 			.catch((error) => {
 				console.log(error)
@@ -182,6 +183,7 @@ export default {
 			window.scrollTo({ top: 0, behavior: 'smooth' })
 		},
 	},
+	fetchOnServer: false,
 }
 </script>
 

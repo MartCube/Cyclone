@@ -50,7 +50,7 @@ const sitemapGenerator = async function () {
 				break
 			case 'project':
 				sitemaproute.push({
-					url: `${doc.lang === 'ua' ? '/' : '/ru/'}${doc.lang === 'ua' ? 'proectu' : 'proecty'}/${doc.uid}/`,
+					url: `${doc.lang === 'ua' ? '/' : '/ru/'}${doc.lang === 'ua' ? 'proectu' : 'proekty'}/${doc.uid}/`,
 					changefreq: 'monthly',
 					priority: 1,
 					lastmod: doc.updated,
@@ -102,7 +102,7 @@ const routeGenerator = async function () {
 				}
 				break
 			case 'project':
-				route.push(`${doc.lang === 'ua' ? '/proectu/' : '/ru/proecty/'}${doc.uid}/`)
+				route.push(`${doc.lang === 'ua' ? '/proectu/' : '/ru/proekty/'}${doc.uid}/`)
 				break
 			case 'colors':
 				route.push(`${doc.lang === 'ua' ? '/' : '/ru/'}colors/${doc.uid}/`)
@@ -148,6 +148,7 @@ export default {
 		lazy: true,
 		langDir: 'i18n/',
 		detectBrowserLanguage: false,
+		strategy: 'prefix_except_default',
 		seo: false,
 		parsePages: false, // Disable babel parsing
 		locales: [
@@ -186,9 +187,9 @@ export default {
 				ru: '/proekty',
 				ua: '/proectu',
 			},
-			'projects/_project': {
-				ru: '/proetky/:project?',
-				ua: '/proectu/:project?',
+			'projects/_building': {
+				ru: '/proekty/:building?',
+				ua: '/proectu/:building?',
 			},
 			contact: {
 				ru: '/kontakty',

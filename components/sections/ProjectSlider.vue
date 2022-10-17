@@ -10,12 +10,12 @@
 					<template v-if="i === projectItems.length - 1">
 						<div :key="project._id" class="project">
 							<ImageItem :image="project.projectItem.poster" w="700" h="600" mobile />
-							<n-link v-if="filter === ''" exact :to="{ path: '/projects/' }">{{ $t('words.watchAll') }} <Icon name="arrow" size="60px" fill="#B93937" /></n-link>
-							<n-link v-else exact :to="{ path: '/projects/', query: { filter: `${filter}` } }">{{ $t('words.watchAll') }} <Icon name="arrow" size="60px" fill="#B93937" /></n-link>
+							<n-link v-if="filter === ''" exact :to="localePath({ name: 'projects' })">{{ $t('words.watchAll') }} <Icon name="arrow" size="60px" fill="#B93937" /></n-link>
+							<n-link v-else exact :to="localePath({ name: 'projects', query: { filter: `${filter}` } })">{{ $t('words.watchAll') }} <Icon name="arrow" size="60px" fill="#B93937" /></n-link>
 						</div>
 					</template>
 					<template v-else>
-						<n-link :key="project._id" exact :to="`/projects/${project.projectItem.uid}/`" class="project">
+						<n-link :key="project._id" exact :to="`${localePath('projects')}${project.projectItem.uid}/`" class="project">
 							<h3 class="title">{{ project.projectItem.title }}</h3>
 							<ImageItem :image="project.projectItem.poster" w="700" h="600" mobile />
 						</n-link>

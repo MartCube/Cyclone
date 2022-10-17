@@ -1,9 +1,9 @@
 <template>
 	<main class="page project">
-		<template v-if="$fetchState.error && !pageData.title && !$fetchState.pending">
+		<template v-if="$fetchState.error && !$fetchState.pending">
 			<Error />
 		</template>
-		<template v-if="!$fetchState.pending && pageData.title">
+		<template v-if="!$fetchState.pending">
 			<Crumbs :links="breadCrumbs" />
 			<div class="content">
 				<div class="text">
@@ -35,7 +35,7 @@ import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 import { project } from '@/plugins/queries'
 
 export default {
-	name: 'Project',
+	name: 'Building',
 	components: {
 		CoolLightBox,
 	},
@@ -44,8 +44,9 @@ export default {
 		pageData: {},
 	}),
 	async fetch() {
+		console.log(this.$route.params.building)
 		await this.$sanity
-			.fetch(project, { uid: this.$route.params.project })
+			.fetch(project, { uid: this.$route.params.building })
 			.then((fetch) => {
 				if (fetch.title) {
 					this.pageData = {
@@ -55,7 +56,8 @@ export default {
 						description: fetch.description,
 						poster: fetch.poster,
 					}
-					this.$store.dispatch('metaTags', { fetch, type: 'project' })
+					// console.log(fetch)
+					this.$store.dispatch('metaTags', { fetch, type: 'building' })
 				} else {
 					throw new Error('Project not found no data')
 				}
@@ -86,6 +88,7 @@ export default {
 			return imagesUrls
 		},
 	},
+	fetchOnServer: false,
 }
 </script>
 

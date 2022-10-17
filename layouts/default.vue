@@ -2,7 +2,7 @@
 	<div class="layout">
 		<Navbar />
 		<!-- <Sidebar /> -->
-		<Nuxt keep-alive />
+		<Nuxt />
 		<Footer />
 	</div>
 </template>
