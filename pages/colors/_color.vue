@@ -92,7 +92,7 @@ export default {
 	}
 }
 
-@media (min-width: 1550px) {
+@media (min-width: 1650px) {
 	.color {
 		.title_wrapper {
 			padding: 50px 17% 0;

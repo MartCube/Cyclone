@@ -101,8 +101,8 @@ export default {
 					key: 'composite',
 				},
 				{
-					name: 'Kerama-alum',
-					key: 'kerama_alum',
+					name: 'Kerama',
+					key: 'kerama',
 				},
 				{
 					name: 'Cassete',
@@ -115,10 +115,6 @@ export default {
 				{
 					name: 'Kerama-large',
 					key: 'kerama_large',
-				},
-				{
-					name: 'Kerama-steel',
-					key: 'kerama_steel',
 				},
 				{
 					name: 'Ventarock',
@@ -240,7 +236,7 @@ export default {
 		}
 	}
 }
-@media (min-width: 1550px) {
+@media (min-width: 1650px) {
 	.projects {
 		padding: 0 17%;
 	}

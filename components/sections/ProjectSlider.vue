@@ -166,7 +166,7 @@ $transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
 		}
 	}
 }
-@media (min-width: 1550px) {
+@media (min-width: 1650px) {
 	.project-slider {
 		padding: 50px 17%;
 	}

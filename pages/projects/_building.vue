@@ -162,7 +162,7 @@ export default {
 		margin: 3rem 0;
 	}
 }
-@media (min-width: 1550px) {
+@media (min-width: 1650px) {
 	.project {
 		padding: 0 17%;
 		.content {

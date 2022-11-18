@@ -1,10 +1,7 @@
 <template>
 	<section class="home-intro">
 		<div class="main-image">
-			<!-- eslint-disable-next-line vue/attribute-hyphenation -->
-			<!-- <VideoItem url="https://www.youtube.com/watch?v=oIFJtJFXaQ8" /> -->
-			<video-background src="/introbg_Trim.mp4" :sources="[{ src: '/intro-mob.mp4', res: 950, autoplay: true }]" style="max-height: 100%; height: 100vh" overlay="linear-gradient(to bottom,hsla(0, 0%, 18%, 0.2),hsla(0, 0%, 24%, 0.2))"> </video-background>
-			<!-- <img src="~/static/homeintro.jpg" alt="" /> -->
+			<video-background src="/cyclone_video_horizonal.mp4" :sources="[{ src: '/cyclone_video_vertical.mp4', res: 950, autoplay: true }]" style="max-height: 100%; height: 100vh" overlay="linear-gradient(to bottom,hsla(0, 0%, 18%, 0.2),hsla(0, 0%, 24%, 0.2))"> </video-background>
 		</div>
 		<div class="cyclone">
 			<svg width="951" height="199" viewBox="0 0 951 199" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -84,7 +81,7 @@ export default {
 	}
 }
 
-@media (min-width: 1550px) {
+@media (min-width: 1650px) {
 	.home-intro {
 		.cyclone {
 			right: 11rem;

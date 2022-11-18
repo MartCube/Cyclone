@@ -67,7 +67,7 @@ export const actions = {
 					{ hid: 'alternate', rel: 'alternate', href: `${state.domain}/`, hreflang: 'x-default' },
 				],
 			)
-		} else if (type === 'page' || type === 'panel' || type === 'projects') {
+		} else if (type === 'page' || type === 'panel' || type === 'projects' || type === 'blog') {
 			canonical = `${state.domain}/${fetch.languages.filter((el) => el.lang === 'ua')[0].uid}/`
 			head.link.push(
 				...[

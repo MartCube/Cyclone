@@ -122,7 +122,7 @@ export default {
 		}
 	}
 }
-@media (min-width: 1550px) {
+@media (min-width: 1650px) {
 	.achievements {
 		padding: 50px 17%;
 		justify-content: space-between;

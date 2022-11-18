@@ -28,9 +28,13 @@
 						</template>
 					</ul>
 				</li>
-				<li v-for="link in currentMenu" :key="link.uid" class="first-lvl">
-					<n-link :to="localePath(link.uid)">{{ link.name }}</n-link>
-				</li>
+				<template v-if="menu">
+					<li v-for="link in menu" :key="link.uid" class="first-lvl">
+						<template v-if="!link.uid.includes('index')">
+							<n-link :to="`${normalizedLocale}${link.uid}/`">{{ link.title }}</n-link>
+						</template>
+					</li>
+				</template>
 			</ul>
 		</nav>
 		<LanguageSwitcher />
@@ -41,44 +45,16 @@
 </template>
 
 <script>
-import { navbarAnimation } from '~/assets/anime'
-import { navbar } from '@/plugins/queries'
+// import { navbarAnimation } from '~/assets/anime'
+import { navbar, menuList } from '@/plugins/queries'
 export default {
+	name: 'Navbar',
 	data: () => ({
 		compact: true,
 		isActiveMobileNavbar: false,
 		isNavbarHidden: false,
 		isActiveSecondLvl: false,
-		menu: {
-			ru: [
-				{
-					name: 'Объекты',
-					uid: 'projects',
-				},
-				// {
-				// 	name: 'Статьи',
-				// 	uid: 'blog',
-				// },
-				{
-					name: 'Контакты',
-					uid: 'contact',
-				},
-			],
-			ua: [
-				{
-					name: "Об'єкти",
-					uid: 'projects',
-				},
-				// {
-				// 	name: 'Статьи',
-				// 	uid: 'blog',
-				// },
-				{
-					name: 'Контакти',
-					uid: 'contact',
-				},
-			],
-		},
+		menu: null,
 
 		panels: null,
 		isSafari: false,
@@ -87,14 +63,25 @@ export default {
 		mobile: 0,
 	}),
 	async fetch() {
-		await this.$sanity.fetch(navbar, { lang: this.$i18n.localeProperties.code }).then((data) => {
-			this.panels = data.panelItems
-		})
+		await this.$sanity
+			.fetch(navbar, { lang: this.$i18n.localeProperties.code })
+			.then((data) => {
+				this.panels = data.panelItems
+			})
+			.catch((error) => {
+				console.error('Error:', error)
+			})
+		await this.$sanity
+			.fetch(menuList, { lang: this.$i18n.localeProperties.code })
+			.then((data) => {
+				console.log(this.$i18n.localeProperties.code)
+				this.menu = data
+			})
+			.catch((error) => {
+				console.error('Error:', error)
+			})
 	},
 	computed: {
-		currentMenu() {
-			return this.menu[this.$i18n.localeProperties.code]
-		},
 		normalizedLocale() {
 			return this.$i18n.localeProperties.code === 'ua' ? '/' : '/ru/'
 		},
@@ -134,9 +121,10 @@ export default {
 			this.isActiveMobileNavbar = false
 		},
 		navBarAnimation() {
-			if (window.innerWidth > 950) {
-				navbarAnimation(document.querySelectorAll('.first-lvl a'))
-			}
+			// if (window.innerWidth > 950) {
+			// 	this.$nextTick()
+			// 	navbarAnimation(document.querySelectorAll('.first-lvl a'))
+			// }
 		},
 	},
 }
@@ -171,7 +159,7 @@ $animation-time: 0.3s;
 				height: 100%;
 				transition: all 0.3s ease;
 				a {
-					opacity: 0;
+					// opacity: 0;
 					color: $white;
 					white-space: nowrap;
 					text-decoration: none;
@@ -271,7 +259,7 @@ $animation-time: 0.3s;
 		top: -100px;
 	}
 }
-@media (min-width: 1550px) {
+@media (min-width: 1650px) {
 	.navbar {
 		padding: 0 17%;
 		nav ul li .panels-list {

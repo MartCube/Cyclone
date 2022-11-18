@@ -11,11 +11,11 @@
 		<template v-else>
 			<div class="panel-gallery">
 				<CoolLightBox :items="galleryImages(imageItem)" :index="galleryIndex" @close="galleryIndex = null"></CoolLightBox>
-				<div class="wrapper">
+				<masonry :cols="{ default: 3, 600: 1 }" :gutter="{ default: '10px' }">
 					<figure v-for="(image, y) in imageItem" :key="y" @click="galleryIndex = y">
 						<ImageItem :image="image.image" w="500" xlw="800" />
 					</figure>
-				</div>
+				</masonry>
 			</div>
 		</template>
 	</section>
@@ -91,33 +91,27 @@ export default {
 	}
 	.panel-gallery {
 		margin-bottom: 3rem;
-		.wrapper {
-			margin-top: 10px;
-			column-count: 3;
-			column-gap: 10px;
-			width: 100%;
-			figure {
-				width: 25.9vw;
-				margin-bottom: 10px;
-				overflow: hidden;
+		figure {
+			width: 25.9vw;
+			margin-bottom: 10px;
+			overflow: hidden;
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: flex;
+				transition: transform 0.3s linear;
+			}
+			&:hover {
+				cursor: pointer;
 				img {
-					width: 100%;
-					height: 100%;
-					object-fit: cover;
-					display: flex;
-					transition: transform 0.3s linear;
-				}
-				&:hover {
-					cursor: pointer;
-					img {
-						transform: scale(1.02);
-					}
+					transform: scale(1.02);
 				}
 			}
 		}
 	}
 }
-@media (min-width: 1550px) {
+@media (min-width: 1650px) {
 	.partners {
 		padding: 50px 17%;
 		.partners-grid {

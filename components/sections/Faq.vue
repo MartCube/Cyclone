@@ -59,7 +59,7 @@ export default {
 		}
 	}
 }
-@media (min-width: 1550px) {
+@media (min-width: 1650px) {
 	.faq {
 		padding: 50px 17%;
 	}

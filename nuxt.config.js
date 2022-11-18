@@ -167,14 +167,14 @@ export default {
 			},
 		],
 		pages: {
-			// 'blog/index': {
-			// 	ru: '/novosti',
-			// 	ua: '/novunu',
-			// },
-			// 'blog/_article_slug': {
-			// 	ru: '/novosti/:article_slug?',
-			// 	ua: '/novunu/:article_slug?',
-			// },
+			'blog/index': {
+				ru: '/novosti',
+				ua: '/novunu',
+			},
+			'blog/_article': {
+				ru: '/novosti/:article?',
+				ua: '/novunu/:article?',
+			},
 			'panel/': {
 				ru: '/:panel?',
 				ua: '/:panel?',

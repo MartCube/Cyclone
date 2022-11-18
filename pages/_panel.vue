@@ -98,7 +98,7 @@ export default {
 		margin-left: 10%;
 	}
 }
-@media (min-width: 1550px) {
+@media (min-width: 1650px) {
 	.panel {
 		.crumbs {
 			padding: 0 1%;

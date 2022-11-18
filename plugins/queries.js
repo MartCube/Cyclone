@@ -32,15 +32,15 @@ export const panel = groq`*[_type == "panel" && uid.current == $uid][0]{
 		_type == 'benefits' => {
 			...,
 			benefitItems[] {
-			description, title
+				description, title
 			}
 		},
 		_type == 'faq' => {
 			...,
 			faqItems[] {
-			_key, 
-			question,
-			answer
+				_key, 
+				question,
+				answer
 			}
 		},
 		_type == 'slider_projects' => {
@@ -80,7 +80,7 @@ export const panel = groq`*[_type == "panel" && uid.current == $uid][0]{
 				"image": asset._ref, 
 			},
 		},
-    },
+	},
 	metaTags{
 		title,
 		description,
@@ -118,15 +118,14 @@ export const colorPage = groq`*[_type == "colors" && uid.current == $uid][0] {
       ...,
       "colorsGallery": gallery[] {
         _type == 'colorItem' => {
-           "image": color_image.asset._ref,
-           _key,
-           _type,
-           name
-          },
-         
-        }
-      },
-    },
+					"image": color_image.asset._ref,
+					_key,
+					_type,
+					name
+				},
+			},
+		},
+	},
   metaTags {
     title,
     description,
@@ -153,6 +152,85 @@ export const colorPage = groq`*[_type == "colors" && uid.current == $uid][0] {
 			__i18n_refs[] -> { 'lang': __i18n_lang, 'uid': uid.current }
 		],
 	},
+}`
+export const article = groq`*[_type == "article" && uid.current == $uid][0] {
+	...,
+  metaTags {
+		title,
+		description,
+		"image": image.asset._ref
+	},
+	"lang": __i18n_lang,
+	"uid": uid.current,
+	__i18n_lang != 'ua'  => {
+		'languages': [
+			{
+				'lang': __i18n_base -> __i18n_lang,
+				'uid': __i18n_base -> uid.current,
+			},
+			...
+			__i18n_base -> __i18n_refs[] -> { 'lang': __i18n_lang, 'uid': uid.current }, 
+		]  
+	},
+  __i18n_lang == 'ua' => {
+		'languages': [
+			{
+				'lang': __i18n_lang,
+				'uid':uid.current,
+			},
+			...
+			__i18n_refs[] -> { 'lang': __i18n_lang, 'uid': uid.current }
+		],
+	},
+  content[] {
+    _type == 'richText' => {...},
+    _type == 'cta' => {...},
+      
+    _type == 'gallery' => {
+			...,
+			"galleryProperty": galleryProperty[0].value,
+			imageItem[] {
+			"image": asset._ref,
+			}
+		},
+    _type == "image_text" => {
+      ...,
+      "imageItem": imageItem.asset._ref
+		},
+    _type == 'youtube' => { 
+			...,
+			"preview" : preview.asset._ref
+		},
+    _type == 'image' => {
+			_key, _type, "image": asset._ref, w, 
+		},
+    _type == 'benefits' => {
+			...,
+			benefitItems[] {
+				description, title
+			}
+		},
+    _type == 'faq' => {
+			...,
+			faqItems[] {
+				_key, 
+				question,
+				answer
+			}
+		},
+    _type == 'slider_panel' => {
+			...,
+			panelItems[] {
+				panelItem -> {
+					"uid": uid.current, 
+					_id, 
+					title, 
+					description, 
+					"poster": poster.asset._ref
+				},
+			}, 
+		},
+  },
 }`
 export const project = groq`*[_type == "project" && uid.current == $uid][0] {
 	title, 
@@ -297,6 +375,16 @@ export const projectsList = groq`*[_type == "project" && __i18n_lang == $lang ] 
 	"poster": poster.asset._ref, 
 	"tags": tags[].value,
 }`
+export const articleList = groq`*[_type == "article" && __i18n_lang == $lang ] {
+	"uid": uid.current, 
+	title, 
+	articleDate,
+	"poster": poster.asset._ref, 
+	author,
+	content[] {
+		_type == 'richText' => {...},
+	}
+}`
 
 export const sitemapData = groq`*[_type in ["project", "panel", "page", "colors"]] {
 	"uid": uid.current, 
@@ -313,4 +401,9 @@ export const navbar = groq`*[_type == "navbar" && __i18n_lang == $lang ][0] {
 		title, 
 		"poster": poster.asset._ref
 	},
+}`
+
+export const menuList = groq`*[_type == "page" && __i18n_lang == $lang ] {
+	"uid": uid.current, 
+	title, 
 }`

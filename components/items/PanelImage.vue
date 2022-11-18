@@ -93,7 +93,7 @@ picture {
 		}
 	}
 }
-@media (min-width: 1550px) {
+@media (min-width: 1650px) {
 	.single-image {
 		padding: 50px 17%;
 	}

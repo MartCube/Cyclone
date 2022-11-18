@@ -21,6 +21,7 @@ export default {
 	},
 	words: {
 		projects: 'Проекти',
+		blog: 'Новини',
 		objects: "Об'єкти",
 		all: 'Все',
 		main: 'Головна',

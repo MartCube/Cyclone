@@ -22,6 +22,7 @@ export default {
 	},
 	words: {
 		more: 'Подробнее',
+		blog: 'Новости',
 		projects: 'Проекты',
 		objects: 'Объекты',
 		all: 'Все',

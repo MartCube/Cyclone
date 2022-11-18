@@ -35,7 +35,7 @@ export default {
 	}
 }
 
-@media (min-width: 1550px) {
+@media (min-width: 1650px) {
 	.rich_text {
 		padding: 50px 17%;
 		.content {

@@ -76,7 +76,7 @@ export default {
 		margin-top: 5rem;
 	}
 }
-@media (min-width: 1550px) {
+@media (min-width: 1650px) {
 	.contacts {
 		padding: 0 17%;
 	}

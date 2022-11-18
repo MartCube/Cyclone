@@ -101,7 +101,7 @@ export default {
 	}
 }
 
-@media (min-width: 1550px) {
+@media (min-width: 1650px) {
 	.colors_gallery_section {
 		padding: 50px 17%;
 		.colors_gallery_wrapper {
