@@ -80,7 +80,7 @@ export default {
 		}
 	}
 }
-@media (min-width: 1650px) {
+@media (min-width: 1750px) {
 	.image_text_section {
 		padding: 50px 17%;
 	}

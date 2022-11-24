@@ -21,7 +21,7 @@ footer {
 	display: flex;
 	flex-wrap: wrap;
 }
-@media (min-width: 1650px) {
+@media (min-width: 1750px) {
 	footer {
 		padding: 4rem 17%;
 	}

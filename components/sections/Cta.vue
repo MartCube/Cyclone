@@ -77,7 +77,7 @@ export default {
 	}
 }
 
-@media (min-width: 1650px) {
+@media (min-width: 1750px) {
 	.cta {
 		padding: 50px 17%;
 		.content {

@@ -168,7 +168,7 @@ export default {
 		}
 	}
 }
-@media (min-width: 1650px) {
+@media (min-width: 1750px) {
 	.cta_form {
 		.input_item {
 			width: 30rem;

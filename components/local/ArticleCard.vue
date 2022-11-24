@@ -1,5 +1,5 @@
 <template>
-	<n-link class="article_card" :to="`${localePath('articles')}${article.uid}/`">
+	<n-link class="article_card" :to="`${localePath('blog')}${article.uid}/`">
 		<div class="image">
 			<ImageItem :image="article.poster" w="450" h="450" />
 			<span class="link">{{ $t('words.watch') }}</span>
@@ -107,7 +107,7 @@ $card-size: 300px;
 		}
 	}
 }
-@media (min-width: 1650px) {
+@media (min-width: 1750px) {
 	.article_card {
 		width: 295px;
 	}

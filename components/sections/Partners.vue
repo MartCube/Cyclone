@@ -111,7 +111,7 @@ export default {
 		}
 	}
 }
-@media (min-width: 1650px) {
+@media (min-width: 1750px) {
 	.partners {
 		padding: 50px 17%;
 		.partners-grid {

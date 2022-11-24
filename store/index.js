@@ -106,6 +106,19 @@ export const actions = {
 				ru: { [type]: fetch.languages.filter((el) => el.lang === 'ru')[0].uid },
 				ua: { [type]: fetch.languages.filter((el) => el.lang === 'ua')[0].uid },
 			})
+		} else if (type === 'article') {
+			canonical = `${state.domain}${this.localePath('blog', 'ua')}${fetch.languages.filter((el) => el.lang === 'ua')[0].uid}/`
+			head.link.push(
+				...[
+					{ hid: 'alternate', rel: 'alternate', href: `${state.domain}${this.localePath('blog', 'ru')}${fetch.languages.filter((el) => el.lang === 'ru')[0].uid}/`, hreflang: 'ru' },
+					{ hid: 'alternate', rel: 'alternate', href: `${state.domain}${this.localePath('blog', 'ua')}${fetch.languages.filter((el) => el.lang === 'ua')[0].uid}/`, hreflang: 'x-default' },
+				],
+			)
+
+			await dispatch('i18n/setRouteParams', {
+				ru: { [type]: fetch.languages.filter((el) => el.lang === 'ru')[0].uid },
+				ua: { [type]: fetch.languages.filter((el) => el.lang === 'ua')[0].uid },
+			})
 		}
 
 		head.link.push({ hid: 'canonical', rel: 'canonical', href: canonical })

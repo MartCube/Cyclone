@@ -56,6 +56,14 @@ const sitemapGenerator = async function () {
 					lastmod: doc.updated,
 				})
 				break
+			case 'article':
+				sitemaproute.push({
+					url: `${doc.lang === 'ua' ? '/' : '/ru/'}${doc.lang === 'ua' ? 'novunu' : 'novosti'}/${doc.uid}/`,
+					changefreq: 'monthly',
+					priority: 1,
+					lastmod: doc.updated,
+				})
+				break
 			case 'colors':
 				sitemaproute.push({
 					url: `${doc.lang === 'ua' ? '/' : '/ru/'}colors/${doc.uid}/`,
@@ -103,6 +111,9 @@ const routeGenerator = async function () {
 				break
 			case 'project':
 				route.push(`${doc.lang === 'ua' ? '/proectu/' : '/ru/proekty/'}${doc.uid}/`)
+				break
+			case 'article':
+				route.push(`${doc.lang === 'ua' ? '/novunu/' : '/ru/novosti/'}${doc.uid}/`)
 				break
 			case 'colors':
 				route.push(`${doc.lang === 'ua' ? '/' : '/ru/'}colors/${doc.uid}/`)

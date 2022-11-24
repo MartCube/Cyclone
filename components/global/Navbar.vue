@@ -259,7 +259,7 @@ $animation-time: 0.3s;
 		top: -100px;
 	}
 }
-@media (min-width: 1650px) {
+@media (min-width: 1750px) {
 	.navbar {
 		padding: 0 17%;
 		nav ul li .panels-list {

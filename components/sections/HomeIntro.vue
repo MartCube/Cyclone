@@ -81,7 +81,7 @@ export default {
 	}
 }
 
-@media (min-width: 1650px) {
+@media (min-width: 1750px) {
 	.home-intro {
 		.cyclone {
 			right: 11rem;

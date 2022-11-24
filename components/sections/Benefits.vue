@@ -81,7 +81,7 @@ export default {
 		}
 	}
 }
-@media (min-width: 1650px) {
+@media (min-width: 1750px) {
 	.benefits {
 		padding: 50px 17%;
 		.list .benefit .number {

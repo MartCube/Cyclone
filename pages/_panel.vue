@@ -25,6 +25,7 @@ import RichText from '@/components/sections/RichText'
 import Faq from '@/components/sections/Faq'
 import ColorsContent from '@/components/sections/ColorsContent'
 import ImageText from '@/components/sections/ImageText'
+
 export default {
 	name: 'Panel',
 	data: () => ({
@@ -98,7 +99,7 @@ export default {
 		margin-left: 10%;
 	}
 }
-@media (min-width: 1650px) {
+@media (min-width: 1750px) {
 	.panel {
 		.crumbs {
 			padding: 0 1%;

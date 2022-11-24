@@ -11,6 +11,26 @@
 				<div ref="grid" class="grid">
 					<ArticleCard v-for="article in gridArticles" :key="article.uid" :article="article" />
 				</div>
+				<div class="filter">
+					<span
+						:class="{ active: active_filter === 'all' }"
+						@click="
+							$router.push({ path: localePath('blog'), query: { filter: 'all' } })
+							filterUpdate('all')
+						">
+						{{ $t('words.all') }}
+					</span>
+					<span
+						v-for="(filter, i) in filters"
+						:key="i"
+						:class="{ active: active_filter === filter.key }"
+						@click="
+							$router.push({ path: localePath('blog'), query: { filter: filter.key } })
+							filterUpdate(filter.key)
+						">
+						{{ filter.name }}
+					</span>
+				</div>
 			</div>
 		</template>
 	</div>
@@ -22,7 +42,16 @@ import { articleList, page } from '@/plugins/queries'
 export default {
 	name: 'Blog',
 	data: () => ({
+		currentArticles: [],
 		gridArticles: [],
+		// filters
+		active_filter: 'all',
+		// pagination
+		current_page: 1,
+		page_size: 100,
+		total_pages: null,
+		prev_page: null,
+		next_page: null,
 	}),
 	async fetch() {
 		if (this.$route) {
@@ -47,7 +76,8 @@ export default {
 			.fetch(articleList, { lang: this.$i18n.localeProperties.code })
 			.then((data) => {
 				// console.log(data)
-				this.gridArticles = data
+				this.currentArticles = data.sort((a, b) => b.articleDate - a.articleDate)
+				this.gridArticles = this.currentArticles
 			})
 			.catch((error) => {
 				console.log(error)
@@ -62,6 +92,72 @@ export default {
 		// move this to vuex store
 	},
 	fetchOnServer: false,
+	head() {
+		return this.$store.getters.metaHead
+	},
+	computed: {
+		filters() {
+			return [
+				{
+					name: 'Теплоизоляция',
+					key: 'termal_inslulation',
+				},
+				{
+					name: 'Фасад',
+					key: 'facade',
+				},
+				{
+					name: 'Кровля',
+					key: 'roof',
+				},
+				{
+					name: 'Каркасное строительство',
+					key: 'frame_construction',
+				},
+			]
+		},
+		breadCrumbs() {
+			return [{ title: this.$t('words.blog') }]
+		},
+	},
+	mounted() {
+		if (this.$route.query.filter) {
+			this.filterUpdate(this.$route.query.filter)
+		} else {
+			this.filterUpdate('all')
+		}
+	},
+	methods: {
+		// filters
+		filterUpdate(filterItem) {
+			console.log(filterItem)
+			this.active_filter = filterItem
+
+			// route update
+			// this.$router.push({
+			// 	// preserve existing query and hash if any
+			// 	path: '/projects/',
+			// 	query: { filter: filterItem },
+			// })
+
+			// filter projects
+
+			// default scenario
+			if (filterItem === 'all') {
+				// this.active_filter = 'all'
+				this.gridArticles = this.currentArticles
+			} else {
+				this.gridArticles = this.currentArticles.filter((article) => article.tags && article.tags.includes(filterItem))
+			}
+
+			// wait for rerender
+			this.$nextTick()
+			// postAnim(this.$refs.grid.children, true)
+		},
+		ScrollToTop() {
+			window.scrollTo({ top: 0, behavior: 'smooth' })
+		},
+	},
 }
 </script>
 <style lang="scss" scoped>
@@ -70,7 +166,8 @@ export default {
 	flex-wrap: wrap;
 	padding: 0 4rem;
 	.filter {
-		width: 250px;
+		width: 350px;
+		padding-left: 40px;
 		height: fit-content;
 		position: relative;
 		z-index: 6;
@@ -101,8 +198,8 @@ export default {
 	}
 	.grid {
 		flex: 1;
-		padding-left: 40px;
-		border-left: 1px solid $secondary;
+		padding-right: 40px;
+		border-right: 1px solid $secondary;
 		display: flex;
 		// justify-content: space-between;
 		align-items: flex-start;
@@ -114,6 +211,52 @@ export default {
 			.project_card {
 				opacity: 0;
 			}
+		}
+	}
+}
+@media (min-width: 1750px) {
+	.articles {
+		padding: 0 17%;
+	}
+}
+@media (max-width: 1200px) {
+	.articles {
+		.filter {
+			width: auto;
+			padding-right: 40px;
+		}
+	}
+}
+@media (max-width: 900px) {
+	.articles {
+		// margin-left: 30px;
+		padding: 0px 1rem 3rem 1rem;
+		.filter {
+			width: 100%;
+			padding-right: 40px;
+			flex-direction: row;
+			flex-wrap: wrap;
+			padding-bottom: 40px;
+			margin-bottom: 4rem;
+			border-bottom: 1px solid red;
+			span {
+				margin: 0px 20px 5px 0;
+			}
+		}
+		.grid {
+			flex: initial;
+			width: 100%;
+			padding-left: 0;
+			border-left: none;
+			justify-content: space-between;
+		}
+		.title {
+			// height: 110px;
+			font-size: 3rem;
+		}
+		button {
+			width: auto;
+			padding: 0 1.5rem 1rem 1.5rem;
 		}
 	}
 }

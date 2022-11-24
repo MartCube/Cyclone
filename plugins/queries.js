@@ -186,7 +186,7 @@ export const article = groq`*[_type == "article" && uid.current == $uid][0] {
     _type == 'richText' => {...},
     _type == 'cta' => {...},
       
-    _type == 'gallery' => {
+    _type == 'articleImages' => {
 			...,
 			"galleryProperty": galleryProperty[0].value,
 			imageItem[] {
@@ -217,6 +217,17 @@ export const article = groq`*[_type == "article" && uid.current == $uid][0] {
 				question,
 				answer
 			}
+		},
+		_type == 'slider_projects' => {
+			...,
+			projectItems[] {
+				projectItem -> {
+					"uid": uid.current, 
+					_id, 
+					title, 
+					"poster": poster.asset._ref
+				},
+			}, 
 		},
     _type == 'slider_panel' => {
 			...,
@@ -381,6 +392,7 @@ export const articleList = groq`*[_type == "article" && __i18n_lang == $lang ] {
 	articleDate,
 	"poster": poster.asset._ref, 
 	author,
+	"articleTags": articleTag[].value,
 	content[] {
 		_type == 'richText' => {...},
 	}
