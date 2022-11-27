@@ -72,20 +72,20 @@ export default {
 		width: -webkit-fill-available;
 		align-items: center;
 		flex-wrap: wrap;
-		margin-left: 50px;
+		// margin-left: 50px;
 		figure {
-			height: 200px;
+			height: 10vw;
 			width: auto;
 			border: 1px solid hsl(0deg, 0%, 22%);
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			margin-right: 10px;
+			margin: 0 10px 10px 0;
 			padding: 2rem;
 			picture {
-				display: contents;
-				width: initial;
-				height: initial;
+				// display: contents;
+				width: 100%;
+				height: 100%;
 			}
 		}
 	}
@@ -136,7 +136,7 @@ export default {
 			margin-left: 0;
 			figure {
 				width: auto;
-				height: 150px;
+				height: 90px;
 				padding: 1rem;
 				picture {
 					width: 100%;
