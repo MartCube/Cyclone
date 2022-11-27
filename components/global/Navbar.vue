@@ -74,7 +74,7 @@ export default {
 		await this.$sanity
 			.fetch(menuList, { lang: this.$i18n.localeProperties.code })
 			.then((data) => {
-				console.log(this.$i18n.localeProperties.code)
+				// console.log(this.$i18n.localeProperties.code)
 				this.menu = data
 			})
 			.catch((error) => {

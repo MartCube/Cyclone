@@ -155,6 +155,7 @@ export const colorPage = groq`*[_type == "colors" && uid.current == $uid][0] {
 }`
 export const article = groq`*[_type == "article" && uid.current == $uid][0] {
 	...,
+	"poster": poster.asset._ref,
   metaTags {
 		title,
 		description,
@@ -250,7 +251,7 @@ export const project = groq`*[_type == "project" && uid.current == $uid][0] {
 	_updatedAt,
 	order,
 	description,
-	_type == 'youtube' => { 
+	youtube {
 		...,
 		"preview" : preview.asset._ref
 	},

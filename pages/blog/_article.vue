@@ -8,7 +8,7 @@
 			<div class="intro">
 				<h1>{{ pageData.title }}</h1>
 				<p class="author">{{ pageData.author }}</p>
-				<p class="date">{{ pageData.articleDate }}</p>
+				<p class="date">{{ date }}</p>
 				<div class="image">
 					<ImageItem :image="pageData.poster" w="700" />
 				</div>
@@ -56,12 +56,12 @@ export default {
 		},
 	}),
 	async fetch() {
-		console.log(this.$route.params.article)
+		// console.log(this.$route.params.article)
 		await this.$sanity
 			.fetch(article, { uid: this.$route.params.article })
 			.then((fetch) => {
 				if (fetch.title) {
-					console.log(fetch)
+					// console.log(fetch)
 					this.pageData = fetch
 					this.$store.dispatch('metaTags', { fetch, type: 'article' })
 				} else {
@@ -86,19 +86,14 @@ export default {
 			return [{ path: `${this.localePath('blog')}`, title: this.$t('words.blog') }, { title: this.pageData.title }]
 		},
 		date() {
-			const date = new Date()
+			console.log(this.$i18n.localeProperties.code)
+			const date = new Date(this.pageData.articleDate.split('-'))
 			const options = {
-				era: 'long',
 				year: 'numeric',
 				month: 'long',
 				day: 'numeric',
-				weekday: 'long',
-				timezone: 'UTC',
-				hour: 'numeric',
-				minute: 'numeric',
-				second: 'numeric',
 			}
-			return date.toLocaleString('ru', options)
+			return date.toLocaleString(this.$i18n.localeProperties.iso, options)
 		},
 	},
 	methods: {
@@ -121,13 +116,30 @@ export default {
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: flex-start;
-	h1 {
-		border-left: 5px solid $secondary;
-		font-size: $h2;
-		line-height: 1;
-		display: inline-flex;
-		padding-left: 1.5rem;
-		margin: 3rem 0 3rem 50px;
+	.intro {
+		display: flex;
+		flex-wrap: wrap;
+		h1 {
+			border-left: 5px solid $secondary;
+			font-size: $h2;
+			line-height: 1;
+			display: inline-flex;
+			padding-left: 1.5rem;
+			margin: 3rem 0 3rem 50px;
+			width: 100%;
+		}
+		.image {
+			width: 100%;
+		}
+		.author {
+			margin: 1rem 0 1rem 50px;
+			width: calc(50% - 50px);
+		}
+		.date {
+			margin: 1rem 50px 1rem 0;
+			width: calc(50% - 50px);
+			text-align: right;
+		}
 	}
 	.content {
 		// display: flex;
@@ -180,7 +192,7 @@ export default {
 		padding: 0;
 	}
 	.crumbs {
-		margin: 3rem 10%;
+		margin: 3rem 4%;
 	}
 }
 @media (min-width: 1750px) {
