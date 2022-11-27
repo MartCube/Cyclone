@@ -1,6 +1,6 @@
 import { createClient } from '@nuxtjs/sanity'
 import fetch from 'node-fetch'
-import { sitemapData } from './plugins/queries'
+import { sitemapData } from './assets/queries'
 
 if (!globalThis.fetch) {
 	globalThis.fetch = fetch

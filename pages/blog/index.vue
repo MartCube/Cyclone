@@ -37,7 +37,7 @@
 </template>
 <script>
 // import { articleList } from '@/plugins/queries'
-import { articleList, page } from '@/plugins/queries'
+import { articleList, page } from '~/assets/queries'
 
 export default {
 	name: 'Blog',
@@ -233,9 +233,10 @@ export default {
 		padding: 0px 1rem 3rem 1rem;
 		.filter {
 			width: 100%;
-			padding-right: 40px;
+			padding: 0;
 			flex-direction: row;
 			flex-wrap: wrap;
+			order: 1;
 			padding-bottom: 40px;
 			margin-bottom: 4rem;
 			border-bottom: 1px solid red;
@@ -246,8 +247,9 @@ export default {
 		.grid {
 			flex: initial;
 			width: 100%;
-			padding-left: 0;
-			border-left: none;
+			order: 2;
+			padding-right: 0;
+			border-right: none;
 			justify-content: space-between;
 		}
 		.title {

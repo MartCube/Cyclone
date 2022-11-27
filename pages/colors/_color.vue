@@ -21,7 +21,7 @@
 	</main>
 </template>
 <script>
-import { colorPage } from '@/plugins/queries'
+import { colorPage } from '~/assets/queries'
 import RichText from '@/components/sections/RichText'
 import ColorsGallery from '@/components/sections/ColorsGallery'
 

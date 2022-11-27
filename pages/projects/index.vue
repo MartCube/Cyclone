@@ -37,7 +37,7 @@
 	</div>
 </template>
 <script>
-import { projectsList, page } from '@/plugins/queries'
+import { projectsList, page } from '~/assets/queries'
 // import { postAnim } from '~/assets/anime'
 
 export default {

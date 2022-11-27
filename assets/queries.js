@@ -394,9 +394,7 @@ export const articleList = groq`*[_type == "article" && __i18n_lang == $lang ] {
 	"poster": poster.asset._ref, 
 	author,
 	"articleTags": articleTag[].value,
-	content[] {
-		_type == 'richText' => {...},
-	}
+	description
 }`
 
 export const sitemapData = groq`*[_type in ["project", "panel", "page", "colors"]] {

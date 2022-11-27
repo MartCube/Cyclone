@@ -146,11 +146,9 @@ export default {
 			}
 		}
 		.panel-gallery {
-			.wrapper {
+			figure {
 				column-count: 1;
-				figure {
-					width: 80vw;
-				}
+				width: 80vw;
 			}
 		}
 	}

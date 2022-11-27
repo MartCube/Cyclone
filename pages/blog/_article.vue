@@ -20,7 +20,7 @@
 	</main>
 </template>
 <script>
-import { article } from '@/plugins/queries'
+import { article } from '~/assets/queries'
 import VideoSection from '@/components/sections/VideoSection'
 import PanelImage from '@/components/items/PanelImage'
 import Cta from '@/components/sections/Cta'
@@ -210,6 +210,24 @@ export default {
 @media (max-width: 950px) {
 	.article {
 		// padding: 0 2rem;
+		.intro {
+			display: flex;
+			flex-wrap: wrap;
+			h1 {
+				margin: 0 0 3rem 15px;
+			}
+			.author {
+				margin: 1rem 0 1rem 15px;
+				width: calc(50% - 15px);
+			}
+			.date {
+				margin: 1rem 15px 1rem 0;
+				width: calc(50% - 15px);
+			}
+		}
+		.crumbs {
+			flex-wrap: wrap;
+		}
 		.wrapper {
 			width: 100%;
 		}

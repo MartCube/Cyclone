@@ -37,7 +37,8 @@ export default {
 
 <style lang="scss" scoped>
 .home-intro {
-	height: 100vh;
+	min-height: 100vh;
+	max-height: -webkit-fill-available;
 	position: relative;
 	.vue-responsive-videobg {
 		padding: 0;

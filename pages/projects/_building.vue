@@ -32,7 +32,7 @@
 import CoolLightBox from 'vue-cool-lightbox'
 import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 
-import { project } from '@/plugins/queries'
+import { project } from '~/assets/queries'
 
 export default {
 	name: 'Building',

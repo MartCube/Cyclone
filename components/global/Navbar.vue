@@ -29,11 +29,13 @@
 					</ul>
 				</li>
 				<template v-if="menu">
-					<li v-for="link in menu" :key="link.uid" class="first-lvl">
+					<template v-for="link in menu">
 						<template v-if="!link.uid.includes('index')">
-							<n-link :to="`${normalizedLocale}${link.uid}/`">{{ link.title }}</n-link>
+							<li :key="link.uid" class="first-lvl">
+								<n-link :to="`${normalizedLocale}${link.uid}/`">{{ link.title }}</n-link>
+							</li>
 						</template>
-					</li>
+					</template>
 				</template>
 			</ul>
 		</nav>
@@ -46,7 +48,7 @@
 
 <script>
 // import { navbarAnimation } from '~/assets/anime'
-import { navbar, menuList } from '@/plugins/queries'
+import { navbar, menuList } from '~/assets/queries'
 export default {
 	name: 'Navbar',
 	data: () => ({
@@ -426,7 +428,7 @@ $animation-time: 0.3s;
 			ul {
 				li {
 					.panels-list {
-						padding: 0 0 0 1rem;
+						padding: 1rem 0 1rem 1rem;
 						li {
 							width: 50%;
 							a {

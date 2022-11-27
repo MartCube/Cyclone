@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { panel } from '@/plugins/queries'
+import { panel } from '~/assets/queries'
 import VideoSection from '@/components/sections/VideoSection'
 import PanelImage from '@/components/items/PanelImage'
 import Cta from '@/components/sections/Cta'

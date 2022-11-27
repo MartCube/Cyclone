@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { page } from '@/plugins/queries'
+import { page } from '~/assets/queries'
 
 export default {
 	beforeRouteLeave(to, from, next) {

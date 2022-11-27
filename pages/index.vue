@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { page } from '@/plugins/queries'
+import { page } from '~/assets/queries'
 import Cta from '@/components/sections/Cta'
 import PanelSlider from '@/components/sections/PanelSlider'
 import ProjectSlider from '@/components/sections/ProjectSlider'
