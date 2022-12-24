@@ -19,6 +19,14 @@ export default {
 	navbar: {
 		menu: 'Вентильовані фасади',
 	},
+	blog: {
+		filters: {
+			termal_inslulation: 'Теплоізоляція',
+			facade: 'Фасади',
+			roof: 'Дах',
+			frame_construction: 'Каркасне будівництво',
+		},
+	},
 	words: {
 		projects: 'Проекти',
 		blog: 'Новини',

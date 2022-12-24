@@ -380,7 +380,14 @@ export const panelList = groq`*[_type == "panel" && __i18n_lang == $lang ]{
 	_id,
 	_updatedAt
 }`
-export const projectsList = groq`*[_type == "project" && __i18n_lang == $lang ] | order(_updatedAt desc) {
+export const projectsList = groq`*[_type == "project" && __i18n_lang == $lang ] {
+	"uid": uid.current, 
+	title, 
+	order,
+	"poster": poster.asset._ref, 
+	"tags": tags[].value,
+}`
+export const projectsFilteredList = groq`*[_type == "project" &&  $activeTag in tags[].value && __i18n_lang == $lang ] {
 	"uid": uid.current, 
 	title, 
 	order,
@@ -397,7 +404,17 @@ export const articleList = groq`*[_type == "article" && __i18n_lang == $lang ] {
 	description
 }`
 
-export const sitemapData = groq`*[_type in ["project", "panel", "page", "colors"]] {
+export const articleFilteredList = groq`*[_type == "article" &&  $activeTag in articleTag[].value && __i18n_lang == $lang ]  {
+	"uid": uid.current, 
+	title, 
+	articleDate,
+	"poster": poster.asset._ref, 
+	author,
+	"articleTags": articleTag[].value,
+	description
+}`
+
+export const sitemapData = groq`*[_type in ["project", "panel", "page", "colors", "article"]] {
 	"uid": uid.current, 
 	"type":  _type, 
 	"updated": _updatedAt,

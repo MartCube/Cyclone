@@ -100,7 +100,7 @@ const routeGenerator = async function () {
 			console.log('log error', error)
 		})
 	data.forEach((doc) => {
-		// console.log(doc);
+		// console.log(doc)
 		switch (doc.type) {
 			case 'page':
 				if (doc.uid === 'index' || doc.uid === 'index-ru') {
@@ -135,7 +135,12 @@ export default {
 	target: 'static',
 	components: ['~/components/forms', '~/components/global', '~/components/items', '~/components/local', '~/components/sections'],
 	css: ['~/assets/main.scss'],
-
+	vue: {
+		config: {
+			// productionTip: true,
+			devtools: true,
+		},
+	},
 	head: {
 		title: 'cyclone',
 		htmlAttrs: {
@@ -147,7 +152,7 @@ export default {
 
 	plugins: [{ src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }, { src: `~/plugins/masonry.js` }, { src: '~/plugins/responsive-video', mode: 'client' }],
 
-	modules: ['@nuxtjs/sanity/module', '@nuxtjs/sitemap', '@nuxtjs/i18n'],
+	modules: ['@nuxtjs/sanity/module', '@nuxtjs/i18n', '@nuxtjs/sitemap'],
 
 	styleResources: {
 		scss: ['./assets/colors.scss', './assets/mixins.scss'],
@@ -226,7 +231,6 @@ export default {
 
 	generate: {
 		// only pass the urls to the generate function
-		// routes: routes.map(route => route.url)
 		fallback: '404.html',
 		crawler: false,
 		// routes: routes.map((route) => route.url),
@@ -235,10 +239,9 @@ export default {
 		},
 	},
 	sitemap: {
-		// pass the sitemap objects as is to the sitemap module
+		// 	// pass the sitemap objects as is to the sitemap module
 		hostname: 'https://cyclone-dev.vercel.app/',
-		// exclude: ['sitemap'],
-		trailingSlash: true,
+		i18n: false,
 		routes() {
 			return sitemapGenerator()
 		},

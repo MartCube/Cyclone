@@ -7,53 +7,16 @@
 			<div class="projects">
 				<Crumbs :links="breadCrumbs" />
 				<Title :value="$t('words.objects')" />
-
-				<div class="filter">
-					<span
-						:class="{ active: active_filter === 'all' }"
-						@click="
-							$router.push({ path: localePath('projects'), query: { filter: 'all' } })
-							filterUpdate('all')
-						">
-						{{ $t('words.all') }}
-					</span>
-					<span
-						v-for="(filter, i) in filters"
-						:key="i"
-						:class="{ active: active_filter === filter.key }"
-						@click="
-							$router.push({ path: localePath('projects'), query: { filter: filter.key } })
-							filterUpdate(filter.key)
-						">
-						{{ filter.name }}
-					</span>
-				</div>
-
-				<div ref="grid" class="grid">
-					<ProjectCard v-for="project in gridProjects" :key="project.uid" :project="project" />
-				</div>
+				<ProjectsGrid />
 			</div>
 		</template>
 	</div>
 </template>
 <script>
-import { projectsList, page } from '~/assets/queries'
-// import { postAnim } from '~/assets/anime'
+import { page } from '~/assets/queries'
 
 export default {
 	name: 'ProjectsPage',
-	data: () => ({
-		currentProjects: [],
-		gridProjects: [],
-		// filters
-		active_filter: 'all',
-		// pagination
-		current_page: 1,
-		page_size: 100,
-		total_pages: null,
-		prev_page: null,
-		next_page: null,
-	}),
 	async fetch() {
 		await this.$sanity
 			.fetch(page, { uid: this.$route.fullPath.split('/').at(-2) })
@@ -70,111 +33,16 @@ export default {
 				// use throw new Error()
 				throw new Error('Projects not found', error)
 			})
-
-		await this.$sanity
-			.fetch(projectsList, { lang: this.$i18n.localeProperties.code })
-			.then((data) => {
-				// console.log(data)
-				this.currentProjects = data.sort((a, b) => b.order - a.order)
-				this.gridProjects = this.currentProjects
-			})
-			.catch((error) => {
-				console.log(error)
-				// set status code on server and
-				if (process.server) {
-					this.$nuxt.context.res.statusCode = 404
-				}
-				// use throw new Error()
-				throw new Error('Projects not found', error)
-			})
-		// console.log(data)
-		// move this to vuex store
 	},
 	head() {
 		return this.$store.getters.metaHead
 	},
 	computed: {
-		filters() {
-			return [
-				{
-					name: 'Composite',
-					key: 'composite',
-				},
-				{
-					name: 'Kerama',
-					key: 'kerama',
-				},
-				{
-					name: 'Cassete',
-					key: 'cassete',
-				},
-				{
-					name: 'Hpl',
-					key: 'hpl',
-				},
-				{
-					name: 'Kerama-large',
-					key: 'kerama_large',
-				},
-				{
-					name: 'Ventarock',
-					key: 'ventarock',
-				},
-				{
-					name: 'Proflist',
-					key: 'proflist',
-				},
-			]
-		},
 		breadCrumbs() {
 			return [{ title: this.$t('words.objects') }]
 		},
 	},
-	// watch(){
-	// 	$route(newQuery, oldQuery) {
-	// 		// console.log('new: ' + newQuery.filter, 'old: ' + oldQuery.filter)
-	// 		// if (newQuery !== undefined) {
-	// 		// 	console.log(newQuery.filter)
-	// 		// 	// this.filterUpdate(newQuery.filter)
-	// 		// } else {
-	// 		// 	this.filterUpdate('all')
-	// 		// }
-	// 	},
-	// },
-	mounted() {
-		if (this.$route.query.filter) {
-			this.filterUpdate(this.$route.query.filter)
-		} else {
-			this.filterUpdate('all')
-		}
-	},
 	methods: {
-		// filters
-		filterUpdate(filterItem) {
-			console.log(filterItem)
-			this.active_filter = filterItem
-
-			// route update
-			// this.$router.push({
-			// 	// preserve existing query and hash if any
-			// 	path: '/projects/',
-			// 	query: { filter: filterItem },
-			// })
-
-			// filter projects
-
-			// default scenario
-			if (filterItem === 'all') {
-				// this.active_filter = 'all'
-				this.gridProjects = this.currentProjects
-			} else {
-				this.gridProjects = this.currentProjects.filter((project) => project.tags && project.tags.includes(filterItem))
-			}
-
-			// wait for rerender
-			this.$nextTick()
-			// postAnim(this.$refs.grid.children, true)
-		},
 		ScrollToTop() {
 			window.scrollTo({ top: 0, behavior: 'smooth' })
 		},

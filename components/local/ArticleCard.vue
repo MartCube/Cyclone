@@ -1,14 +1,29 @@
 <template>
-	<n-link class="article_card" :to="`${localePath('blog')}${article.uid}/`">
+	<article class="article_card">
 		<div class="image">
 			<ImageItem :image="article.poster" w="450" h="450" />
-			<span class="link">{{ $t('words.watch') }}</span>
 		</div>
-		<h2 class="title">
-			{{ article.title }}
-			<Icon name="arrow" size="40px" fill="#F7F7F7" />
-		</h2>
-	</n-link>
+		<div class="content">
+			<h2 class="title">
+				{{ article.title }}
+			</h2>
+			<div class="info">
+				<div v-if="article.articleTags" class="tags">
+					<n-link v-for="tag in article.articleTags" :key="tag" class="link" :to="`${localePath('blog')}?filter=${tag}`"><span class="hashtag">#</span> {{ $t(`blog.filters.${tag}`) }}</n-link>
+				</div>
+				<div class="date">
+					{{ article.articleDate }}
+				</div>
+			</div>
+			<div class="description">
+				{{ article.description }}
+			</div>
+			<n-link class="link" :to="`${localePath('blog')}${article.uid}/`">
+				<span class="link">{{ $t('words.watch') }} </span>
+				<Icon name="arrow" size="40px" fill="#F7F7F7" />
+			</n-link>
+		</div>
+	</article>
 </template>
 
 <script>
@@ -30,24 +45,22 @@ export default {
 <style lang="scss" scoped>
 $card-size: 300px;
 .article_card {
-	width: $card-size;
+	width: 100%;
 	cursor: pointer;
 
 	display: flex;
-	flex-direction: column;
 
 	text-decoration: none;
 	color: $white;
 	margin: 0 1.5rem 1.5rem 0;
 
 	.image {
-		width: inherit;
+		width: 30%;
 		height: $card-size;
 
 		user-select: none;
 		position: relative;
 		overflow: hidden;
-
 		.link {
 			position: absolute;
 			top: 0;
@@ -67,7 +80,7 @@ $card-size: 300px;
 			writing-mode: vertical-rl;
 			text-orientation: mixed;
 		}
-		img {
+		picture {
 			width: 100%;
 			height: 100%;
 			z-index: 1;
@@ -93,11 +106,57 @@ $card-size: 300px;
 
 		font-weight: 400;
 		font-size: 1.5rem;
+		padding-left: 0;
+		border-left: none;
 		&::first-letter {
 			text-transform: capitalize;
 		}
 	}
 
+	.info {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-bottom: 1rem;
+		width: 100%;
+		.tags {
+			display: flex;
+			a {
+				font-weight: 600;
+				margin-right: 10px;
+				font-size: 15px;
+				&::first-letter {
+					color: $secondary;
+				}
+				.hashtag {
+					color: $secondary;
+				}
+			}
+		}
+		.date {
+			color: $secondary;
+			font-weight: 600;
+			margin-left: auto;
+		}
+	}
+	.content {
+		width: 70%;
+		padding-left: 2rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+	.link {
+		margin-left: auto;
+		display: flex;
+		align-items: center;
+		color: rgb(255, 255, 255, 60%);
+		svg {
+			margin-left: 10px;
+			width: 35px;
+			fill: $secondary;
+		}
+	}
 	&:hover {
 		h2 svg {
 			fill: $secondary;
@@ -107,37 +166,26 @@ $card-size: 300px;
 		}
 	}
 }
-@media (min-width: 1750px) {
-	.article_card {
-		width: 295px;
-	}
-}
-@media (max-width: 1200px) {
-	.article_card {
-		width: 15rem;
-		.image {
-			height: 15rem;
-		}
-	}
-}
+
 @media (max-width: 900px) {
 	.article_card {
-		// margin: 1rem 1vw;
-		width: 42vw;
-		.image {
-			height: 45vw;
-		}
-		.title {
-			font-size: 1.8rem;
-		}
 	}
 }
 @media (max-width: 600px) {
 	.article_card {
 		width: 100%;
 		margin-right: 0;
+		flex-direction: column;
 		.image {
-			height: 80vw;
+			width: 100%;
+			height: auto;
+		}
+		.content {
+			width: 100%;
+			padding: 0;
+		}
+		.info {
+			flex-wrap: wrap;
 		}
 	}
 }

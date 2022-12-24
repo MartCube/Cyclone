@@ -8,6 +8,14 @@ export default {
 			title: 'Контакты',
 		},
 	},
+	blog: {
+		filters: {
+			termal_inslulation: 'Теплоизоляция',
+			facade: 'Фасады',
+			roof: 'Кровля',
+			frame_construction: 'Каркасное строительство',
+		},
+	},
 	navbar: {
 		menu: 'Вентилируемые фасады',
 	},
