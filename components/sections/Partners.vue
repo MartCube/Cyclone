@@ -11,7 +11,7 @@
 		<template v-else>
 			<div class="panel-gallery">
 				<CoolLightBox :items="galleryImages(imageItem)" :index="galleryIndex" @close="galleryIndex = null"></CoolLightBox>
-				<masonry :cols="{ default: 3, 600: 1 }" :gutter="{ default: '10px' }">
+				<masonry :cols="{ default: 3, 950: 1 }" :gutter="{ default: '10px' }">
 					<figure v-for="(image, y) in imageItem" :key="y" @click="galleryIndex = y">
 						<ImageItem :image="image.image" w="500" xlw="800" />
 					</figure>
@@ -152,7 +152,7 @@ export default {
 		.panel-gallery {
 			figure {
 				column-count: 1;
-				// width: 80vw;
+				width: 80vw;
 			}
 		}
 	}
