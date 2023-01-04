@@ -114,10 +114,14 @@ export default {
 @media (min-width: 1750px) {
 	.partners {
 		padding: 50px 17%;
+		.panel-gallery figure {
+			width: 21.5vw;
+		}
 		.partners-grid {
 			margin-left: 0;
 			figure {
 				height: 150px;
+				// width: 80vw;
 				picture {
 					width: 100%;
 					height: 100%;
@@ -148,7 +152,7 @@ export default {
 		.panel-gallery {
 			figure {
 				column-count: 1;
-				width: 80vw;
+				// width: 80vw;
 			}
 		}
 	}
