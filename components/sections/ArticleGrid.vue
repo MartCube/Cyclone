@@ -62,14 +62,14 @@ export default {
 					name: 'Фасад',
 					key: 'facade',
 				},
-				{
-					name: 'Кровля',
-					key: 'roof',
-				},
-				{
-					name: 'Каркасное строительство',
-					key: 'frame_construction',
-				},
+				// {
+				// 	name: 'Кровля',
+				// 	key: 'roof',
+				// },
+				// {
+				// 	name: 'Каркасное строительство',
+				// 	key: 'frame_construction',
+				// },
 			]
 		},
 	},
