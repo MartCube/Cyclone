@@ -223,7 +223,7 @@ $animation-time: 0.3s;
 						height: initial;
 						&:nth-child(2) {
 							a {
-								max-width: 10.5vw;
+								max-width: 11.6vw;
 							}
 						}
 						a {
