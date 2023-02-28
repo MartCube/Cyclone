@@ -207,7 +207,7 @@ export default {
 				ru: '/proekty/:building?',
 				ua: '/proectu/:building?',
 			},
-			contact: {
+			ContactPage: {
 				ru: '/kontakty',
 				ua: '/kontaktu',
 			},

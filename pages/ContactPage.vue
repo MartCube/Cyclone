@@ -17,11 +17,12 @@
 import { page } from '~/assets/queries'
 
 export default {
+	name: 'ContactPage',
 	beforeRouteLeave(to, from, next) {
 		this.$store.dispatch('bindFooter', true)
 		next()
 	},
-	layout: 'contact',
+	layout: 'contactLayout',
 	middleware({ store }) {
 		store.dispatch('bindFooter', false)
 	},
@@ -30,7 +31,7 @@ export default {
 	}),
 	async fetch() {
 		await this.$sanity
-			.fetch(page, { uid: this.localePath('contact') })
+			.fetch(page, { uid: this.$route.fullPath.slice(1, this.$route.fullPath.length - 1) })
 			.then((fetch) => {
 				this.pageData = fetch
 				this.$store.dispatch('metaTags', { fetch, type: 'page' })

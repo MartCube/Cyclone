@@ -31,7 +31,7 @@
 				<template v-if="menu">
 					<template v-for="link in menu">
 						<template v-if="!link.uid.includes('index')">
-							<li :key="link.uid" class="first-lvl">
+							<li :key="link.uid" class="first-lvl" @click="CloseSecondLvlMenu()">
 								<n-link :to="`${normalizedLocale}${link.uid}/`">{{ link.title }}</n-link>
 							</li>
 						</template>
@@ -121,6 +121,9 @@ export default {
 		},
 		CloseMenu() {
 			this.isActiveMobileNavbar = false
+		},
+		CloseSecondLvlMenu() {
+			this.isActiveSecondLvl = false
 		},
 		navBarAnimation() {
 			// if (window.innerWidth > 950) {
@@ -218,6 +221,11 @@ $animation-time: 0.3s;
 						margin: 0;
 						padding: 0;
 						height: initial;
+						&:nth-child(2) {
+							a {
+								max-width: 10.5vw;
+							}
+						}
 						a {
 							display: flex;
 							opacity: 1;
