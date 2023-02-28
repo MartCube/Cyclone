@@ -19,7 +19,7 @@
 		</div>
 		<div class="map">
 			<h6>{{ $t('footer.group_title4') }}</h6>
-			<n-link target="_blank" to="https://goo.gl/maps/xSn9CX9dBNtFPHoM7"> <Icon name="location" /> {{ $t('footer.adress') }}</n-link>
+			<a target="_blank" href="https://goo.gl/maps/xSn9CX9dBNtFPHoM7"> <Icon name="location" /> {{ $t('footer.adress') }}</a>
 		</div>
 	</div>
 </template>
