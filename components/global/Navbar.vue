@@ -212,7 +212,7 @@ $animation-time: 0.3s;
 					background-color: $primary;
 					display: flex;
 					flex-wrap: wrap;
-					padding: 0 4rem;
+					padding: 2rem 4rem;
 					opacity: 0;
 					transition: all $animation-time linear;
 					li {
@@ -221,21 +221,14 @@ $animation-time: 0.3s;
 						margin: 0;
 						padding: 0;
 						height: initial;
-						&:nth-child(2) {
-							a {
-								max-width: 11.6vw;
-							}
-						}
 						a {
 							display: flex;
 							opacity: 1;
 							flex-direction: column-reverse;
 							align-items: center;
 							justify-content: flex-start;
-							max-width: 12vw;
+							max-width: 10rem;
 							margin: 0 2rem 0 0;
-
-							// width: 100%;
 							transition: $animation-time linear;
 							span {
 								margin-bottom: 1rem;
@@ -273,7 +266,7 @@ $animation-time: 0.3s;
 	.navbar {
 		padding: 0 17%;
 		nav ul li .panels-list {
-			padding: 0 17%;
+			padding: 6% 17%;
 		}
 	}
 }
@@ -381,6 +374,9 @@ $animation-time: 0.3s;
 										}
 									}
 								}
+								.title {
+									width: calc(100% - 4rem);
+								}
 								span {
 									margin-bottom: initial;
 									white-space: normal;
@@ -448,6 +444,9 @@ $animation-time: 0.3s;
 								.image {
 									width: 2.5rem;
 									height: 3.5rem;
+								}
+								.title {
+									width: calc(100% - 2.5rem);
 								}
 							}
 						}
