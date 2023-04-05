@@ -1,7 +1,7 @@
 export default {
 	pages: {
 		index: {
-			first_title: 'вентиляционные',
+			first_title: 'вентилируемые',
 			second_title: 'фасады',
 		},
 		contact: {
