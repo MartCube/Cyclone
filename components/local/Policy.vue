@@ -1,7 +1,7 @@
 <template>
 	<div class="policy">
-		<p><Icon name="copyright" /> Cyclone {{ year }} All rights reserved</p>
-		<n-link to="/">Privacy Policy Terms and Conditions</n-link>
+		<p><Icon name="copyright" /> Cyclone {{ year }} {{ $t('footer.copyright') }}</p>
+		<n-link to="/">{{ $t('footer.privacy_policy') }}</n-link>
 	</div>
 </template>
 <script>

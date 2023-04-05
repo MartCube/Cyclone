@@ -1,7 +1,7 @@
 export default {
 	pages: {
 		index: {
-			first_title: 'вентиляційні',
+			first_title: 'вентильовані',
 			second_title: 'фасади',
 		},
 		contact: {
@@ -45,5 +45,7 @@ export default {
 		group_title2: 'Ми в соц мережах',
 		group_title3: 'Напишіть нам',
 		group_title4: 'Карта',
+		privacy_policy: 'Правила та умови політики конфіденційності',
+		copyright: 'Всі права захищено',
 	},
 }

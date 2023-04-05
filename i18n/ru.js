@@ -46,5 +46,7 @@ export default {
 		group_title2: 'Мы в соц сетях',
 		group_title3: 'Напишите нам',
 		group_title4: 'Карта',
+		privacy_policy: 'Условия и положения политики конфиденциальности',
+		copyright: 'Все права защищены',
 	},
 }

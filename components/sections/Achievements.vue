@@ -9,7 +9,7 @@
 				<!-- <span v-if="counter.postfix" class="extra_text ml-1 right">{{ counter.postfix }}</span> -->
 			</div>
 			<div class="description">
-				{{ counter.title }}
+				{{ counter.prefix }}
 			</div>
 		</article>
 	</section>
