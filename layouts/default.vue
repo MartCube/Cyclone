@@ -8,20 +8,20 @@
 </template>
 
 <script>
-export default {
-	mounted() {
-		this.initGA()
-	},
-	methods: {
-		initGA() {
-			window.dataLayer = window.dataLayer || []
-			function gtag() {
-				// eslint-disable-next-line no-undef
-				dataLayer.push(arguments)
-			}
-			gtag('js', new Date())
-			gtag('config', 'G-9CVZM7JWD6')
-		},
-	},
-}
+// export default {
+// 	mounted() {
+// 		this.initGA()
+// 	},
+// 	methods: {
+// 		initGA() {
+// 			window.dataLayer = window.dataLayer || []
+// 			function gtag() {
+// 				// eslint-disable-next-line no-undef
+// 				dataLayer.push(arguments)
+// 			}
+// 			gtag('js', new Date())
+// 			gtag('config', 'G-9CVZM7JWD6')
+// 		},
+// 	},
+// }
 </script>
