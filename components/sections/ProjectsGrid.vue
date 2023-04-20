@@ -64,7 +64,7 @@ export default {
 				},
 				{
 					name: 'Cassete',
-					key: 'cassete',
+					key: 'cassette',
 				},
 				{
 					name: 'Hpl',

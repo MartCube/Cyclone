@@ -224,9 +224,14 @@ export default {
 		// https://go.nuxtjs.dev/eslint
 		'@nuxtjs/eslint-module',
 		'@nuxtjs/style-resources',
+		'@nuxtjs/google-analytics',
 	],
 	router: {
 		trailingSlash: true,
+	},
+
+	googleAnalytics: {
+		id: 'G-9CVZM7JWD6',
 	},
 
 	generate: {
