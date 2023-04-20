@@ -148,6 +148,14 @@ export default {
 		},
 		meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }, { name: 'format-detection', content: 'telephone=no' }, { hid: 'robots', name: 'robots', content: 'follow' }],
 		link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+		script: [
+			{
+				src: 'https://www.googletagmanager.com/gtag/js?id=G-9CVZM7JWD6',
+			},
+			{
+				type: 'text/javascript',
+			},
+		],
 	},
 
 	plugins: [{ src: '@/plugins/vee-validate.js' }, { src: `~/plugins/lazysizes.client.js` }, { src: `~/plugins/masonry.js` }, { src: '~/plugins/responsive-video', mode: 'client' }],
@@ -224,16 +232,10 @@ export default {
 		// https://go.nuxtjs.dev/eslint
 		'@nuxtjs/eslint-module',
 		'@nuxtjs/style-resources',
-		'@nuxtjs/google-analytics',
 	],
 	router: {
 		trailingSlash: true,
 	},
-
-	googleAnalytics: {
-		id: 'G-9CVZM7JWD6',
-	},
-
 	generate: {
 		// only pass the urls to the generate function
 		fallback: '404.html',
