@@ -295,7 +295,7 @@ export const page = groq`*[_type == "page" && uid.current == $uid][0] {
 		_type == 'counter' => {
 			...,
 			counterItems[] {
-				title,number
+				prefix,number
 			}
 		},
 		_type == 'benefits' => {
