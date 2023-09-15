@@ -223,7 +223,7 @@ export default {
 	},
 
 	sanity: {
-		projectId: process.env.projectId,
+		projectId: 'wv1u3p06',
 		minimal: true,
 		contentHepler: true,
 	},
