@@ -110,7 +110,7 @@ export const panel = groq`*[_type == "panel" && uid.current == $uid][0]{
 	},
 }`
 export const colorPage = groq`*[_type == "colors" && uid.current == $uid][0] {
-  "title": name,
+  "title": title,
   "uid": uid.current,
   content[] {
     _type == 'richText' => {...},

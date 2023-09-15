@@ -40,8 +40,9 @@ export default {
 		await this.$sanity
 			.fetch(colorPage, { uid: this.$route.params.color })
 			.then((fetch) => {
+				// console.log(fetch)
 				if (fetch.title) {
-					console.log(fetch)
+					// console.log(fetch)
 					this.data = fetch
 					this.$store.dispatch('metaTags', { fetch, type: 'color' })
 				} else {
