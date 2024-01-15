@@ -82,6 +82,10 @@ export default {
 					name: 'Proflist',
 					key: 'proflist',
 				},
+				{
+					name: 'СПОК',
+					key: 'spok',
+				},
 			]
 		},
 	},
