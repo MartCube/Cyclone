@@ -64,7 +64,7 @@ export default {
 	}
 	.title-wrapper {
 		position: absolute;
-		bottom: 3.5rem;
+		bottom: 3.1rem;
 		right: 6rem;
 		border-right: 10px solid $secondary;
 		padding-right: 2rem;
