@@ -247,7 +247,7 @@ export default {
 	},
 	sitemap: {
 		// 	// pass the sitemap objects as is to the sitemap module
-		hostname: 'https://cyclone-dev.vercel.app/',
+		hostname: 'https://cyclonkiev.ua/',
 		i18n: false,
 		routes() {
 			return sitemapGenerator()
