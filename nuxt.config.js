@@ -132,7 +132,7 @@ const routeGenerator = async function () {
 // const routes = routeGenerator()
 
 export default {
-	target: 'static',
+	target: 'server',
 	components: ['~/components/forms', '~/components/global', '~/components/items', '~/components/local', '~/components/sections'],
 	css: ['~/assets/main.scss'],
 	vue: {
