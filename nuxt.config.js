@@ -168,7 +168,7 @@ export default {
 
 	i18n: {
 		defaultLocale: 'ua',
-		baseUrl: 'https://cyclone-dev.vercel.app/',
+		baseUrl: 'https://cyclone.kiev.ua/',
 		lazy: true,
 		langDir: 'i18n/',
 		detectBrowserLanguage: false,
@@ -247,7 +247,7 @@ export default {
 	},
 	sitemap: {
 		// 	// pass the sitemap objects as is to the sitemap module
-		hostname: 'https://cyclonkiev.ua/',
+		hostname: 'https://cyclone.kiev.ua/',
 		i18n: false,
 		routes() {
 			return sitemapGenerator()
