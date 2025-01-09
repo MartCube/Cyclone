@@ -28,7 +28,7 @@ jobs:
       - name: Set up Node.js 16
         uses: actions/setup-node@v3
         with:
-          node-version: 18  # Указываем версию Node.js
+          node-version: 16  # Указываем версию Node.js
 
       # Step 3: Checkout repo
       - name: Checkout Repository
